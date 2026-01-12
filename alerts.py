@@ -13,7 +13,7 @@ class AlertChecker:
         self.mailer = Mailer()
         
         # Configuración de umbrales
-        self.umbral_total_clp = 250_000_000
+        self.umbral_total_clp = 150_000_000
         self.umbrales_cuenta = {
             "67946987": {"banco": "Santander", "umbral": 100_000_000, "moneda": "CLP"},
             "76798861": {"banco": "BCI", "umbral": 6_000_000, "moneda": "CLP"},
