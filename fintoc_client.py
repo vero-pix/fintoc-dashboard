@@ -46,8 +46,8 @@ class FintocClient:
                 disponible = acc.get("balance", {}).get("available", 0)
                 moneda = acc.get("currency")
                 
-                # Solo USD viene en centavos
-                if moneda == "USD":
+                # USD y EUR vienen en centavos
+                if moneda in ("USD", "EUR"):
                     disponible = disponible / 100
                 
                 all_balances.append({
