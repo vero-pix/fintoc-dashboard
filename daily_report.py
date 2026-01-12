@@ -1,21 +1,18 @@
-from dotenv import load_dotenv
-load_dotenv()
-
 from fintoc_client import FintocClient
 from mailer import Mailer
-
+from alerts import AlertChecker
 
 def main():
+    # Enviar reporte de saldos
     client = FintocClient()
-    mailer = Mailer()
-
     balances = client.get_all_balances()
-
-    if balances:
-        mailer.send_daily_balances(balances)
-    else:
-        print("ERROR: No se obtuvieron saldos")
-
+    
+    mailer = Mailer()
+    mailer.send_daily_balances(balances)
+    
+    # Verificar alertas
+    checker = AlertChecker()
+    checker.check_alerts()
 
 if __name__ == "__main__":
     main()
