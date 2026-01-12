@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: cathpro-dashboard
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: FINTOC_SECRET_KEY
+        sync: false
+      - key: FINTOC_BASE_URL
+        sync: false
+      - key: FINTOC_LINK_SCOTIA
+        sync: false
+      - key: FINTOC_LINK_BCI
+        sync: false
+      - key: FINTOC_LINK_CHILE
+        sync: false
+      - key: FINTOC_LINK_SANTANDER
+        sync: false
+      - key: FINTOC_LINK_BICE
+        sync: false
+      - key: DASHBOARD_PASSWORD
+        sync: false
+```
+
+**Paso 4 - Agrega a tu `.env`:**
+```
+DASHBOARD_PASSWORD=TuPasswordSeguro123
