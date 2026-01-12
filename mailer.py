@@ -17,12 +17,31 @@ class Mailer:
         recipients = os.getenv("EMAIL_TO", "")
         self.recipient = [r.strip() for r in recipients.split(",") if r.strip()]
 
-    def send_daily_balances(self, balances, saldos_skualo):
+    def send_daily_balances(self, balances, saldos_skualo, variaciones=None):
         subject = "Saldos Diarios CathPro"
-        body = self._build_body(balances, saldos_skualo)
+        body = self._build_body(balances, saldos_skualo, variaciones)
         return self._send_email(subject, body)
 
-    def _build_body(self, balances, saldos_skualo):
+    def _formato_variacion(self, valor, moneda='CLP'):
+        if valor is None or valor == 0:
+            return ""
+        
+        if moneda == 'EUR':
+            simbolo = "€"
+            formato = f"{abs(valor):,.0f}"
+        elif moneda == 'USD':
+            simbolo = "$"
+            formato = f"{abs(valor):,.2f}"
+        else:
+            simbolo = "$"
+            formato = f"{abs(valor):,.0f}"
+        
+        if valor > 0:
+            return f"<span style='color:#55b245;font-size:12px'>▲ +{simbolo}{formato}</span>"
+        else:
+            return f"<span style='color:#e74c3c;font-size:12px'>▼ -{simbolo}{formato}</span>"
+
+    def _build_body(self, balances, saldos_skualo, variaciones=None):
         total_clp = sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
         total_usd = sum(b['disponible'] for b in balances if b['moneda'] == 'USD')
         total_eur = sum(b['disponible'] for b in balances if b['moneda'] == 'EUR')
@@ -30,6 +49,14 @@ class Mailer:
         
         posicion_neta = saldos_skualo['por_cobrar'] - saldos_skualo['por_pagar_total']
         posicion_color = "#55b245" if posicion_neta >= 0 else "#e74c3c"
+        
+        # Variaciones
+        var_clp = self._formato_variacion(variaciones.get('total_clp'), 'CLP') if variaciones else ""
+        var_usd = self._formato_variacion(variaciones.get('total_usd'), 'USD') if variaciones else ""
+        var_eur = self._formato_variacion(variaciones.get('total_eur'), 'EUR') if variaciones else ""
+        var_fondos = self._formato_variacion(variaciones.get('fondos_mutuos'), 'CLP') if variaciones else ""
+        var_cobrar = self._formato_variacion(variaciones.get('por_cobrar'), 'CLP') if variaciones else ""
+        var_pagar = self._formato_variacion(variaciones.get('por_pagar_total'), 'CLP') if variaciones else ""
 
         rows = ""
         for b in balances:
@@ -59,19 +86,19 @@ class Mailer:
             <tr>
                 <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #55b245">
                     <span style="color:#7f8c8d;font-size:11px;font-weight:600">TOTAL CLP</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">${total_clp:,.0f}</span>
+                    <span style="font-size:20px;font-weight:800;color:#242625">${total_clp:,.0f}</span><br>{var_clp}
                 </td>
                 <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #f46302">
                     <span style="color:#7f8c8d;font-size:11px;font-weight:600">TOTAL USD</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">${total_usd:,.2f}</span>
+                    <span style="font-size:20px;font-weight:800;color:#242625">${total_usd:,.2f}</span><br>{var_usd}
                 </td>
                 <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #3498db">
                     <span style="color:#7f8c8d;font-size:11px;font-weight:600">TOTAL EUR</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">€{total_eur:,.0f}</span>
+                    <span style="font-size:20px;font-weight:800;color:#242625">€{total_eur:,.0f}</span><br>{var_eur}
                 </td>
                 <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #9b59b6">
                     <span style="color:#7f8c8d;font-size:11px;font-weight:600">FONDOS MUTUOS</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">${saldos_skualo['fondos_mutuos']:,.0f}</span>
+                    <span style="font-size:20px;font-weight:800;color:#242625">${saldos_skualo['fondos_mutuos']:,.0f}</span><br>{var_fondos}
                 </td>
             </tr>
         </table>
@@ -81,7 +108,7 @@ class Mailer:
             <tr>
                 <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #55b245;width:33%">
                     <span style="color:#7f8c8d;font-size:11px;font-weight:600">POR COBRAR</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">${saldos_skualo['por_cobrar']:,.0f}</span>
+                    <span style="font-size:20px;font-weight:800;color:#242625">${saldos_skualo['por_cobrar']:,.0f}</span><br>{var_cobrar}
                 </td>
                 <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #e74c3c;width:33%">
                     <span style="color:#7f8c8d;font-size:11px;font-weight:600">POR PAGAR NACIONAL</span><br>
