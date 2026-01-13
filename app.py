@@ -4,6 +4,7 @@ from fintoc_client import FintocClient
 from skualo_client import SkualoClient
 from skualo_cashflow import SkualoCashFlow
 from datetime import datetime, timedelta
+import pytz
 import os
 import base64
 import json
@@ -15,6 +16,7 @@ load_dotenv()
 
 app = Flask(__name__)
 TABLERO_PASSWORD = os.getenv("DASHBOARD_PASSWORD", "cathpro2024")
+TZ_CHILE = pytz.timezone('America/Santiago')
 
 # ============================================
 # CONFIGURACIÓN CASHFLOW
@@ -53,6 +55,15 @@ def get_logo_base64():
             return base64.b64encode(f.read()).decode('utf-8')
     except:
         return ""
+
+def now_chile():
+    """Retorna datetime actual en zona horaria Chile"""
+    return datetime.now(TZ_CHILE)
+
+DIAS_SEMANA_ES = {
+    'Mon': 'Lun', 'Tue': 'Mar', 'Wed': 'Mié', 'Thu': 'Jue',
+    'Fri': 'Vie', 'Sat': 'Sáb', 'Sun': 'Dom'
+}
 
 def parse_clp(val):
     if pd.isna(val) or val == '' or val == '$0':
@@ -313,7 +324,7 @@ CASHFLOW_SEMANAL_HTML = """
         NAV_PLACEHOLDER
         <div class="header-right">
             <div class="header-saldo">SALDO_PLACEHOLDER</div>
-            <div class="header-sub">Saldo Fintoc CLP</div>
+            <div class="header-sub">Saldo ApiVV CLP</div>
         </div>
     </div>
     
@@ -389,7 +400,7 @@ CASHFLOW_SEMANAL_HTML = """
                 <h3 class="section">Top 5 Salidas</h3>
                 <table>
                     <thead>
-                        <tr><th>Concepto</th><th class="center">Tipo</th><th class="right">Monto</th></tr>
+                <tr><th>Concepto</th><th class="center">Fecha</th><th class="center">Tipo</th><th class="right">Monto</th></tr>
                     </thead>
                     <tbody>
                         ROWS_TOP_SALIDAS
@@ -399,7 +410,7 @@ CASHFLOW_SEMANAL_HTML = """
         </div>
         
         <div class="footer">
-            Cash Flow CathPro | Fintoc + Skualo CxC/CxP + Recurrentes | FECHA_PLACEHOLDER
+            Cash Flow CathPro | ApiVV + Skualo CxC/CxP + Recurrentes | FECHA_PLACEHOLDER
         </div>
     </div>
     
@@ -545,7 +556,7 @@ CASHFLOW_ANUAL_HTML = """
         NAV_PLACEHOLDER
         <div class="header-right">
             <div class="header-saldo">SALDO_PLACEHOLDER</div>
-            <div class="header-sub">Saldo Fintoc CLP</div>
+            <div class="header-sub">Saldo ApiVV CLP</div>
         </div>
     </div>
     
@@ -676,7 +687,7 @@ def tablero():
     
     html = TABLERO_HTML.replace('LOGO_BASE64', logo_b64)
     html = html.replace('NAV_PLACEHOLDER', nav)
-    html = html.replace('FECHA_PLACEHOLDER', datetime.now().strftime('%d-%m-%Y %H:%M'))
+    html = html.replace('FECHA_PLACEHOLDER', now_chile().strftime('%d-%m-%Y %H:%M'))
     html = html.replace('ROWS_PLACEHOLDER', rows)
     html = html.replace('TOTAL_CLP_PLACEHOLDER', f"${total_clp:,.0f}")
     html = html.replace('TOTAL_USD_PLACEHOLDER', f"${total_usd:,.2f}")
@@ -753,7 +764,7 @@ def cashflow_anual():
     
     html = CASHFLOW_ANUAL_HTML.replace('LOGO_BASE64', logo_b64)
     html = html.replace('NAV_PLACEHOLDER', nav)
-    html = html.replace('FECHA_PLACEHOLDER', datetime.now().strftime('%d-%m-%Y %H:%M'))
+    html = html.replace('FECHA_PLACEHOLDER', now_chile().strftime('%d-%m-%Y %H:%M'))
     html = html.replace('SALDO_PLACEHOLDER', fmt_full(saldo_clp))
     html = html.replace('Q1_CARDS_PLACEHOLDER', q1_cards)
     html = html.replace('ROWS_ANUAL_PLACEHOLDER', rows_anual)
@@ -805,9 +816,11 @@ def cashflow_semanal():
     dias_data = []
     for fecha, p in proyeccion.items():
         saldo_acum += p['neto']
+        dia_en = fecha.strftime('%a')
+        dia_es = DIAS_SEMANA_ES.get(dia_en, dia_en)
         dias_data.append({
             'fecha': fecha,
-            'dia': fecha.strftime('%a'),
+            'dia': dia_es,
             'entradas': p['entradas'],
             'salidas': p['salidas_total'],
             'neto': p['neto'],
@@ -867,20 +880,34 @@ def cashflow_semanal():
             <td class="right verde">{fmt_full(e['saldo'])}</td>
         </tr>'''
     
-    # Top salidas (recurrentes + CxP)
+    # Top salidas (recurrentes + CxP) con fecha
+    hoy = now_chile().date()
     salidas_todas = []
     for r in RECURRENTES:
-        salidas_todas.append({'concepto': r['concepto'], 'monto': r['monto'], 'tipo': 'rec'})
+        # Calcular próxima fecha del recurrente
+        dia_rec = r['dia']
+        if hoy.day <= dia_rec:
+            fecha_rec = hoy.replace(day=dia_rec)
+        else:
+            # Siguiente mes
+            if hoy.month == 12:
+                fecha_rec = hoy.replace(year=hoy.year+1, month=1, day=dia_rec)
+            else:
+                fecha_rec = hoy.replace(month=hoy.month+1, day=dia_rec)
+        salidas_todas.append({'concepto': r['concepto'], 'monto': r['monto'], 'tipo': 'rec', 'fecha': fecha_rec})
     for c in cxp_detalle:
-        salidas_todas.append({'concepto': c['proveedor'], 'monto': c['saldo'], 'tipo': 'cxp'})
+        fecha_cxp = c.get('vencimiento') or hoy
+        salidas_todas.append({'concepto': c['proveedor'], 'monto': c['saldo'], 'tipo': 'cxp', 'fecha': fecha_cxp})
     
     top_salidas = sorted(salidas_todas, key=lambda x: x['monto'], reverse=True)[:5]
     rows_top_salidas = ""
     for s in top_salidas:
         badge_class = 'badge-rec' if s['tipo'] == 'rec' else 'badge-cxp'
         bg = 'style="background:#fff5f5"' if s['monto'] > 50000000 else ''
+        fecha_str = s['fecha'].strftime('%d-%b') if hasattr(s['fecha'], 'strftime') else str(s['fecha'])[:6]
         rows_top_salidas += f'''<tr {bg}>
             <td>{s['concepto'][:35]}</td>
+            <td class="center">{fecha_str}</td>
             <td class="center"><span class="badge {badge_class}">{s['tipo']}</span></td>
             <td class="right">{fmt_full(s['monto'])}</td>
         </tr>'''
@@ -900,7 +927,7 @@ def cashflow_semanal():
     
     html = CASHFLOW_SEMANAL_HTML.replace('LOGO_BASE64', logo_b64)
     html = html.replace('NAV_PLACEHOLDER', nav)
-    html = html.replace('FECHA_PLACEHOLDER', datetime.now().strftime('%d-%m-%Y %H:%M'))
+    html = html.replace('FECHA_PLACEHOLDER', now_chile().strftime('%d-%m-%Y %H:%M'))
     html = html.replace('SALDO_PLACEHOLDER', fmt_full(saldo_clp))
     html = html.replace('ENTRADAS_PLACEHOLDER', fmt_full(total_entradas))
     html = html.replace('SALIDAS_PLACEHOLDER', fmt_full(total_salidas))
