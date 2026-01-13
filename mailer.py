@@ -161,8 +161,8 @@ class Mailer:
         </div>
         
         <div style="margin-top:25px;text-align:center;padding:20px;background:#f8f9fa;border-radius:10px">
-            <span style="font-size:14px;font-weight:600;color:#242625">📊 Ver Dashboards en Línea</span><br><br>
-            <a href="https://fintoc-dashboard.onrender.com/dashboard?key=Ale234de" style="display:inline-block;background:#55b245;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;font-size:13px;margin:5px">Saldos Diarios</a>
+            <span style="font-size:14px;font-weight:600;color:#242625">📊 Ver Tableros en Línea</span><br><br>
+            <a href="https://fintoc-dashboard.onrender.com/tablero?key=Ale234de" style="display:inline-block;background:#55b245;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;font-size:13px;margin:5px">Saldos Diarios</a>
             <a href="https://fintoc-dashboard.onrender.com/cashflow?key=Ale234de" style="display:inline-block;background:#17a2b8;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;font-size:13px;margin:5px">Cash Flow Anual</a>
             <a href="https://fintoc-dashboard.onrender.com/cashflow/semanal?key=Ale234de" style="display:inline-block;background:#f7941d;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;font-size:13px;margin:5px">Cash Flow Semanal</a>
         </div>

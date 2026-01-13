@@ -14,7 +14,7 @@ from io import BytesIO
 load_dotenv()
 
 app = Flask(__name__)
-DASHBOARD_PASSWORD = os.getenv("DASHBOARD_PASSWORD", "cathpro2024")
+TABLERO_PASSWORD = os.getenv("DASHBOARD_PASSWORD", "cathpro2024")
 
 # ============================================
 # CONFIGURACIÓN CASHFLOW
@@ -66,17 +66,25 @@ def parse_clp(val):
         return 0
 
 def get_forecast_2026():
-    """Obtener forecast desde Google Sheet con lógica Q1 solo Compromiso"""
+    """Obtener forecast desde Google Sheet. Lógica: siempre G, si G vacío entonces E"""
     try:
         response = requests.get(FORECAST_URL, timeout=30)
         df = pd.read_excel(BytesIO(response.content))
         df_año = df[df['Año'] == 2026].copy()
         
-        col_forecast = 'Forecast del mes\n(Se modifica del día 3 de cada mes)'
+        col_presupuesto = 'Presupuesto 2026'
         col_compromiso = 'Compromiso Inicio Mes'
+        col_forecast = 'Forecast del mes\n(Se modifica del día 3 de cada mes)'
         
-        df_año['Forecast'] = df_año[col_forecast].apply(parse_clp)
+        df_año['Presupuesto'] = df_año[col_presupuesto].apply(parse_clp)
         df_año['Compromiso'] = df_año[col_compromiso].apply(parse_clp)
+        df_año['Forecast_G'] = df_año[col_forecast].apply(parse_clp)
+        
+        # Lógica: Siempre G, si G vacío entonces E
+        df_año['Forecast'] = df_año.apply(
+            lambda row: row['Forecast_G'] if row['Forecast_G'] > 0 else row['Presupuesto'],
+            axis=1
+        )
         
         resultado = []
         for mes in MESES_ORDEN:
@@ -88,8 +96,8 @@ def get_forecast_2026():
                 usar = c
                 vta_nueva = 0
             else:
-                usar = c if c > 0 else f
-                vta_nueva = max(0, usar - c)
+                usar = f  # Siempre usar Forecast (G > E)
+                vta_nueva = max(0, f - c)
             
             pct = int(c / usar * 100) if usar > 0 else 0
             
@@ -132,7 +140,7 @@ LOGIN_HTML = """
 <body>
     <div class="login-box">
         <div class="logo"><img src="data:image/png;base64,LOGO_BASE64" alt="CathPro"></div>
-        <form action="/dashboard" method="get">
+        <form action="/tablero" method="get">
             <input type="password" name="key" placeholder="Contraseña" required>
             <button type="submit">Ingresar</button>
         </form>
@@ -143,13 +151,13 @@ LOGIN_HTML = """
 
 NAV_HTML = """
 <div class="nav-links">
-    <a href="/dashboard?key=KEY_PLACEHOLDER" class="NAV_SALDOS">Saldos</a>
+    <a href="/tablero?key=KEY_PLACEHOLDER" class="NAV_SALDOS">Saldos</a>
     <a href="/cashflow?key=KEY_PLACEHOLDER" class="NAV_ANUAL">Cash Flow Anual</a>
     <a href="/cashflow/semanal?key=KEY_PLACEHOLDER" class="NAV_SEMANAL">Cash Flow Semanal</a>
 </div>
 """
 
-DASHBOARD_HTML = """
+TABLERO_HTML = """
 <!DOCTYPE html>
 <html>
 <head>
@@ -551,7 +559,7 @@ CASHFLOW_ANUAL_HTML = """
                 <div class="legend-box vta"></div>
                 <div><div class="legend-title">Venta Nueva</div><div class="legend-desc">Proyección comercial</div></div>
             </div>
-            <div class="legend-rule"><strong>Regla:</strong> Q1 = Solo Compromiso | Q2-Q4 = Compromiso > Forecast</div>
+            <div class="legend-rule"><strong>Regla:</strong> Q1 = Solo Compromiso | Q2-Q4 = Forecast (G > E)</div>
         </div>
         
         <div class="q1-box">
@@ -627,10 +635,17 @@ def login():
     return LOGIN_HTML.replace('LOGO_BASE64', logo_b64)
 
 
+# Ruta legacy para compatibilidad
 @app.route('/dashboard')
-def dashboard():
+def dashboard_redirect():
     key = request.args.get('key', '')
-    if key != DASHBOARD_PASSWORD:
+    return f"<script>window.location='/tablero?key={key}';</script>"
+
+
+@app.route('/tablero')
+def tablero():
+    key = request.args.get('key', '')
+    if key != TABLERO_PASSWORD:
         return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
     
     fintoc = FintocClient()
@@ -659,7 +674,7 @@ def dashboard():
     nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', 'active').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
     logo_b64 = get_logo_base64()
     
-    html = DASHBOARD_HTML.replace('LOGO_BASE64', logo_b64)
+    html = TABLERO_HTML.replace('LOGO_BASE64', logo_b64)
     html = html.replace('NAV_PLACEHOLDER', nav)
     html = html.replace('FECHA_PLACEHOLDER', datetime.now().strftime('%d-%m-%Y %H:%M'))
     html = html.replace('ROWS_PLACEHOLDER', rows)
@@ -679,7 +694,7 @@ def dashboard():
 @app.route('/cashflow')
 def cashflow_anual():
     key = request.args.get('key', '')
-    if key != DASHBOARD_PASSWORD:
+    if key != TABLERO_PASSWORD:
         return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
     
     try:
@@ -755,7 +770,7 @@ def cashflow_anual():
 @app.route('/cashflow/semanal')
 def cashflow_semanal():
     key = request.args.get('key', '')
-    if key != DASHBOARD_PASSWORD:
+    if key != TABLERO_PASSWORD:
         return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
     
     # Obtener saldo Fintoc

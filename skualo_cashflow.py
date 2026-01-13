@@ -118,6 +118,26 @@ class SkualoCashFlow:
         else:
             return ">90"
 
+    def _mover_a_viernes(self, fecha):
+        """
+        Si la fecha no es viernes, moverla al viernes más próximo.
+        - Lunes a Jueves → siguiente viernes
+        - Sábado/Domingo → viernes anterior
+        """
+        if fecha is None:
+            return None
+        
+        dia_semana = fecha.weekday()  # 0=Lunes, 4=Viernes, 6=Domingo
+        
+        if dia_semana == 4:  # Ya es viernes
+            return fecha
+        elif dia_semana < 4:  # Lunes a Jueves → siguiente viernes
+            dias_hasta_viernes = 4 - dia_semana
+            return fecha + timedelta(days=dias_hasta_viernes)
+        else:  # Sábado (5) o Domingo (6) → viernes anterior
+            dias_desde_viernes = dia_semana - 4
+            return fecha - timedelta(days=dias_desde_viernes)
+
     # =========================================================================
     # CUENTAS POR COBRAR - Con fecha de cobro ajustada
     # =========================================================================
@@ -146,6 +166,9 @@ class SkualoCashFlow:
                 fecha_cobro = fecha_base + timedelta(days=dias_pago)
             else:
                 fecha_cobro = self._parse_fecha(doc.get("vencimiento"))
+            
+            # Mover cobro al viernes más próximo
+            fecha_cobro = self._mover_a_viernes(fecha_cobro)
             
             resultado.append({
                 "cliente": cliente,
