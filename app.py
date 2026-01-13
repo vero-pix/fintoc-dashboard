@@ -65,6 +65,23 @@ DIAS_SEMANA_ES = {
     'Fri': 'Vie', 'Sat': 'Sáb', 'Sun': 'Dom'
 }
 
+MESES_ES = {
+    'Jan': 'Ene', 'Feb': 'Feb', 'Mar': 'Mar', 'Apr': 'Abr',
+    'May': 'May', 'Jun': 'Jun', 'Jul': 'Jul', 'Aug': 'Ago',
+    'Sep': 'Sep', 'Oct': 'Oct', 'Nov': 'Nov', 'Dec': 'Dic'
+}
+
+def fecha_es(fecha):
+    """Convierte fecha a formato dd-Mes en español"""
+    if not fecha:
+        return '-'
+    if hasattr(fecha, 'strftime'):
+        fecha_str = fecha.strftime('%d-%b')
+        for en, es in MESES_ES.items():
+            fecha_str = fecha_str.replace(en, es)
+        return fecha_str
+    return str(fecha)[:6]
+
 def parse_clp(val):
     if pd.isna(val) or val == '' or val == '$0':
         return 0
@@ -860,7 +877,7 @@ def cashflow_semanal():
         neto_signo = '+' if d['neto'] >= 0 else ''
         
         rows_diario += f'''<tr class="{clase}">
-            <td>{d['fecha'].strftime('%d-%b')}</td>
+            <td>{fecha_es(d['fecha'])}</td>
             <td>{d['dia']}</td>
             <td class="right verde">{fmt_full(d['entradas'])}</td>
             <td class="center">{fuente}</td>
@@ -869,18 +886,19 @@ def cashflow_semanal():
             <td class="right">{fmt_full(d['saldo'])}</td>
         </tr>'''
     
-    # Top entradas
+    # Top entradas con documento
     top_entradas = sorted(cxc_detalle, key=lambda x: x['saldo'], reverse=True)[:5]
     rows_top_entradas = ""
     for e in top_entradas:
-        fecha_str = e['fecha_cobro_esperada'].strftime('%d-%b') if e['fecha_cobro_esperada'] else '-'
+        fecha_str = fecha_es(e['fecha_cobro_esperada'])
+        doc_str = e.get('documento', '')[:12] if e.get('documento') else ''
         rows_top_entradas += f'''<tr>
-            <td>{e['cliente'][:30]} <span class="badge badge-dias">{e['dias_pago_config']}d</span></td>
+            <td>{e['cliente'][:25]} <span class="badge badge-dias">{e['dias_pago_config']}d</span>{f' <small style="color:#888">{doc_str}</small>' if doc_str else ''}</td>
             <td class="center">{fecha_str}</td>
             <td class="right verde">{fmt_full(e['saldo'])}</td>
         </tr>'''
     
-    # Top salidas (recurrentes + CxP) con fecha
+    # Top salidas (recurrentes + CxP) con fecha y documento
     hoy = now_chile().date()
     salidas_todas = []
     for r in RECURRENTES:
@@ -894,26 +912,29 @@ def cashflow_semanal():
                 fecha_rec = hoy.replace(year=hoy.year+1, month=1, day=dia_rec)
             else:
                 fecha_rec = hoy.replace(month=hoy.month+1, day=dia_rec)
-        salidas_todas.append({'concepto': r['concepto'], 'monto': r['monto'], 'tipo': 'rec', 'fecha': fecha_rec})
+        salidas_todas.append({'concepto': r['concepto'], 'monto': r['monto'], 'tipo': 'rec', 'fecha': fecha_rec, 'documento': ''})
     for c in cxp_detalle:
         fecha_cxp = c.get('vencimiento') or hoy
-        salidas_todas.append({'concepto': c['proveedor'], 'monto': c['saldo'], 'tipo': 'cxp', 'fecha': fecha_cxp})
+        doc_cxp = c.get('documento', '')
+        salidas_todas.append({'concepto': c['proveedor'], 'monto': c['saldo'], 'tipo': 'cxp', 'fecha': fecha_cxp, 'documento': doc_cxp})
     
     top_salidas = sorted(salidas_todas, key=lambda x: x['monto'], reverse=True)[:5]
     rows_top_salidas = ""
     for s in top_salidas:
         badge_class = 'badge-rec' if s['tipo'] == 'rec' else 'badge-cxp'
         bg = 'style="background:#fff5f5"' if s['monto'] > 50000000 else ''
-        fecha_str = s['fecha'].strftime('%d-%b') if hasattr(s['fecha'], 'strftime') else str(s['fecha'])[:6]
+        fecha_str = fecha_es(s['fecha'])
+        doc_str = s.get('documento', '')[:12] if s.get('documento') else ''
+        concepto_display = f"{s['concepto'][:30]}{f' <small style=color:#888>{doc_str}</small>' if doc_str else ''}"
         rows_top_salidas += f'''<tr {bg}>
-            <td>{s['concepto'][:35]}</td>
+            <td>{concepto_display}</td>
             <td class="center">{fecha_str}</td>
             <td class="center"><span class="badge {badge_class}">{s['tipo']}</span></td>
             <td class="right">{fmt_full(s['monto'])}</td>
         </tr>'''
     
-    # Datos para gráfico
-    chart_labels = [d['fecha'].strftime('%d-%b') for d in dias_data]
+    # Datos para gráfico (fechas en español)
+    chart_labels = [fecha_es(d['fecha']) for d in dias_data]
     chart_entradas = [d['entradas'] for d in dias_data]
     chart_salidas = [-d['salidas'] for d in dias_data]
     chart_saldos = [d['saldo'] for d in dias_data]

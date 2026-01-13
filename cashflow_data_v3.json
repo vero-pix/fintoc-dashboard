@@ -1,0 +1,830 @@
+{
+  "generado": "2026-01-13T08:46:49.640877",
+  "version": "v3",
+  "horizonte_dias": 90,
+  "saldo_inicial": 160148998,
+  "proyeccion": [
+    {
+      "fecha": "2026-01-13",
+      "dia": "Mar",
+      "entradas": 17384550,
+      "salidas": 0,
+      "neto": 17384550,
+      "saldo": 177533548,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-14",
+      "dia": "Mié",
+      "entradas": 17384550,
+      "salidas": 0,
+      "neto": 17384550,
+      "saldo": 194918098,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-15",
+      "dia": "Jue",
+      "entradas": 17384550,
+      "salidas": 5000000,
+      "neto": 12384550,
+      "saldo": 207302648,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-16",
+      "dia": "Vie",
+      "entradas": 52153649,
+      "salidas": 115000000,
+      "neto": -62846351,
+      "saldo": 144456297,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-17",
+      "dia": "Sáb",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 144456297,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-18",
+      "dia": "Dom",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 144456297,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-19",
+      "dia": "Lun",
+      "entradas": 17384550,
+      "salidas": 0,
+      "neto": 17384550,
+      "saldo": 161840847,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-20",
+      "dia": "Mar",
+      "entradas": 17384550,
+      "salidas": 0,
+      "neto": 17384550,
+      "saldo": 179225397,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-21",
+      "dia": "Mié",
+      "entradas": 17384550,
+      "salidas": 0,
+      "neto": 17384550,
+      "saldo": 196609947,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-22",
+      "dia": "Jue",
+      "entradas": 17384550,
+      "salidas": 0,
+      "neto": 17384550,
+      "saldo": 213994497,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-23",
+      "dia": "Vie",
+      "entradas": 52153649,
+      "salidas": 0,
+      "neto": 52153649,
+      "saldo": 266148146,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-24",
+      "dia": "Sáb",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 266148146,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-25",
+      "dia": "Dom",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 266148146,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-26",
+      "dia": "Lun",
+      "entradas": 17384550,
+      "salidas": 0,
+      "neto": 17384550,
+      "saldo": 283532696,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-27",
+      "dia": "Mar",
+      "entradas": 17384550,
+      "salidas": 105000000,
+      "neto": -87615450,
+      "saldo": 195917246,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-28",
+      "dia": "Mié",
+      "entradas": 17384550,
+      "salidas": 0,
+      "neto": 17384550,
+      "saldo": 213301796,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-29",
+      "dia": "Jue",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 213301796,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-30",
+      "dia": "Vie",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 213301796,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-31",
+      "dia": "Sáb",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 213301796,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-01",
+      "dia": "Dom",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 213301796,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-02",
+      "dia": "Lun",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 213301796,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-03",
+      "dia": "Mar",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 213301796,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-04",
+      "dia": "Mié",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 213301796,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-05",
+      "dia": "Jue",
+      "entradas": 0,
+      "salidas": 5000000,
+      "neto": -5000000,
+      "saldo": 208301796,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-06",
+      "dia": "Vie",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 208301796,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-07",
+      "dia": "Sáb",
+      "entradas": 0,
+      "salidas": 32000000,
+      "neto": -32000000,
+      "saldo": 176301796,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-08",
+      "dia": "Dom",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 176301796,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-09",
+      "dia": "Lun",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 176301796,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-10",
+      "dia": "Mar",
+      "entradas": 19512895,
+      "salidas": 1229177,
+      "neto": 18283718,
+      "saldo": 194585514,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-11",
+      "dia": "Mié",
+      "entradas": 19512895,
+      "salidas": 0,
+      "neto": 19512895,
+      "saldo": 214098409,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-12",
+      "dia": "Jue",
+      "entradas": 19512895,
+      "salidas": 0,
+      "neto": 19512895,
+      "saldo": 233611304,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-13",
+      "dia": "Vie",
+      "entradas": 58538686,
+      "salidas": 0,
+      "neto": 58538686,
+      "saldo": 292149990,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-14",
+      "dia": "Sáb",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 292149990,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-15",
+      "dia": "Dom",
+      "entradas": 0,
+      "salidas": 5000000,
+      "neto": -5000000,
+      "saldo": 287149990,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-16",
+      "dia": "Lun",
+      "entradas": 19512895,
+      "salidas": 115000000,
+      "neto": -95487105,
+      "saldo": 191662885,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-17",
+      "dia": "Mar",
+      "entradas": 19512895,
+      "salidas": 0,
+      "neto": 19512895,
+      "saldo": 211175780,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-18",
+      "dia": "Mié",
+      "entradas": 19512895,
+      "salidas": 0,
+      "neto": 19512895,
+      "saldo": 230688675,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-19",
+      "dia": "Jue",
+      "entradas": 19512895,
+      "salidas": 0,
+      "neto": 19512895,
+      "saldo": 250201570,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-20",
+      "dia": "Vie",
+      "entradas": 58538686,
+      "salidas": 0,
+      "neto": 58538686,
+      "saldo": 308740256,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-21",
+      "dia": "Sáb",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 308740256,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-22",
+      "dia": "Dom",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 308740256,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-23",
+      "dia": "Lun",
+      "entradas": 19512895,
+      "salidas": 0,
+      "neto": 19512895,
+      "saldo": 328253151,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-24",
+      "dia": "Mar",
+      "entradas": 19512895,
+      "salidas": 0,
+      "neto": 19512895,
+      "saldo": 347766046,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-25",
+      "dia": "Mié",
+      "entradas": 19512895,
+      "salidas": 0,
+      "neto": 19512895,
+      "saldo": 367278941,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-26",
+      "dia": "Jue",
+      "entradas": 19512895,
+      "salidas": 0,
+      "neto": 19512895,
+      "saldo": 386791836,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-27",
+      "dia": "Vie",
+      "entradas": 39025791,
+      "salidas": 105000000,
+      "neto": -65974209,
+      "saldo": 320817627,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-28",
+      "dia": "Sáb",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 320817627,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-01",
+      "dia": "Dom",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 320817627,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-02",
+      "dia": "Lun",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 320817627,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-03",
+      "dia": "Mar",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 320817627,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-04",
+      "dia": "Mié",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 320817627,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-05",
+      "dia": "Jue",
+      "entradas": 0,
+      "salidas": 5000000,
+      "neto": -5000000,
+      "saldo": 315817627,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-06",
+      "dia": "Vie",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 315817627,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-07",
+      "dia": "Sáb",
+      "entradas": 0,
+      "salidas": 32000000,
+      "neto": -32000000,
+      "saldo": 283817627,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-08",
+      "dia": "Dom",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 283817627,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-09",
+      "dia": "Lun",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 283817627,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-10",
+      "dia": "Mar",
+      "entradas": 22422768,
+      "salidas": 1229177,
+      "neto": 21193591,
+      "saldo": 305011218,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-11",
+      "dia": "Mié",
+      "entradas": 22422768,
+      "salidas": 0,
+      "neto": 22422768,
+      "saldo": 327433986,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-12",
+      "dia": "Jue",
+      "entradas": 22422768,
+      "salidas": 0,
+      "neto": 22422768,
+      "saldo": 349856754,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-13",
+      "dia": "Vie",
+      "entradas": 67268302,
+      "salidas": 0,
+      "neto": 67268302,
+      "saldo": 417125056,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-14",
+      "dia": "Sáb",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 417125056,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-15",
+      "dia": "Dom",
+      "entradas": 0,
+      "salidas": 5000000,
+      "neto": -5000000,
+      "saldo": 412125056,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-16",
+      "dia": "Lun",
+      "entradas": 22422768,
+      "salidas": 115000000,
+      "neto": -92577232,
+      "saldo": 319547824,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-17",
+      "dia": "Mar",
+      "entradas": 22422768,
+      "salidas": 0,
+      "neto": 22422768,
+      "saldo": 341970592,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-18",
+      "dia": "Mié",
+      "entradas": 22422768,
+      "salidas": 0,
+      "neto": 22422768,
+      "saldo": 364393360,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-19",
+      "dia": "Jue",
+      "entradas": 22422768,
+      "salidas": 0,
+      "neto": 22422768,
+      "saldo": 386816128,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-20",
+      "dia": "Vie",
+      "entradas": 67268302,
+      "salidas": 0,
+      "neto": 67268302,
+      "saldo": 454084430,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-21",
+      "dia": "Sáb",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 454084430,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-22",
+      "dia": "Dom",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 454084430,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-23",
+      "dia": "Lun",
+      "entradas": 22422768,
+      "salidas": 0,
+      "neto": 22422768,
+      "saldo": 476507198,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-24",
+      "dia": "Mar",
+      "entradas": 22422768,
+      "salidas": 0,
+      "neto": 22422768,
+      "saldo": 498929966,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-25",
+      "dia": "Mié",
+      "entradas": 22422768,
+      "salidas": 0,
+      "neto": 22422768,
+      "saldo": 521352734,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-26",
+      "dia": "Jue",
+      "entradas": 22422768,
+      "salidas": 0,
+      "neto": 22422768,
+      "saldo": 543775502,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-27",
+      "dia": "Vie",
+      "entradas": 44845535,
+      "salidas": 105000000,
+      "neto": -60154465,
+      "saldo": 483621037,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-28",
+      "dia": "Sáb",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 483621037,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-29",
+      "dia": "Dom",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 483621037,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-30",
+      "dia": "Lun",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 483621037,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-03-31",
+      "dia": "Mar",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 483621037,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-04-01",
+      "dia": "Mié",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 483621037,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-04-02",
+      "dia": "Jue",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 483621037,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-04-03",
+      "dia": "Vie",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 483621037,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-04-04",
+      "dia": "Sáb",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 483621037,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-04-05",
+      "dia": "Dom",
+      "entradas": 0,
+      "salidas": 5000000,
+      "neto": -5000000,
+      "saldo": 478621037,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-04-06",
+      "dia": "Lun",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 478621037,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-04-07",
+      "dia": "Mar",
+      "entradas": 0,
+      "salidas": 32000000,
+      "neto": -32000000,
+      "saldo": 446621037,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-04-08",
+      "dia": "Mié",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 446621037,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-04-09",
+      "dia": "Jue",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 446621037,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-04-10",
+      "dia": "Vie",
+      "entradas": 76458833,
+      "salidas": 1229177,
+      "neto": 75229656,
+      "saldo": 521850693,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-04-11",
+      "dia": "Sáb",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 521850693,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-04-12",
+      "dia": "Dom",
+      "entradas": 0,
+      "salidas": 0,
+      "neto": 0,
+      "saldo": 521850693,
+      "alerta": false
+    }
+  ],
+  "resumen": {
+    "total_entradas": 1151389226,
+    "total_salidas": 789687531,
+    "saldo_final": 521850693,
+    "saldo_minimo": 144456297,
+    "dias_alerta": 0
+  },
+  "fuentes": [
+    "Fintoc (saldo)",
+    "Google Sheet (Compromiso > Forecast)",
+    "Config (recurrentes)"
+  ]
+}

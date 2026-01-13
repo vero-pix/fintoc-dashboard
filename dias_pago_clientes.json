@@ -1,0 +1,13 @@
+{
+  "fecha_analisis": "2026-01-12T21:23:40.151933",
+  "periodo": "últimos 6 meses",
+  "metodo": "matching por RUT",
+  "clientes": {
+    "SOCIEDAD NACIONAL DE OLEODUCTOS S.A.": {
+      "promedio": 3,
+      "min": 3,
+      "max": 3,
+      "n_pagos": 1
+    }
+  }
+}

@@ -1,0 +1,4358 @@
+{
+  "generado": "2026-01-13T00:14:24.383580",
+  "horizonte_dias": 90,
+  "saldo_inicial": 160000000,
+  "config": {
+    "defaultDias": 30,
+    "clientes": [
+      {
+        "nombre": "CENTINELA",
+        "dias": 10
+      },
+      {
+        "nombre": "CODELCO",
+        "dias": 30
+      },
+      {
+        "nombre": "COLLAHUASI",
+        "dias": 10
+      },
+      {
+        "nombre": "COPEC",
+        "dias": 15
+      },
+      {
+        "nombre": "ENAP",
+        "dias": 30
+      },
+      {
+        "nombre": "MINERA LOS PELAMBRES",
+        "dias": 15
+      },
+      {
+        "nombre": "MONTEC",
+        "dias": 60
+      },
+      {
+        "nombre": "TECHINT",
+        "dias": 30
+      }
+    ],
+    "recurrentes": [
+      {
+        "concepto": "ARRIENDO OFICINA",
+        "dia": 5,
+        "monto": 1800000,
+        "frecuencia": "mensual"
+      },
+      {
+        "concepto": "Leasing BCI1",
+        "dia": 5,
+        "monto": 3200000,
+        "frecuencia": "mensual"
+      },
+      {
+        "concepto": "PREVIRED",
+        "dia": 7,
+        "monto": 32000000,
+        "frecuencia": "mensual"
+      },
+      {
+        "concepto": "Leasing Oficina",
+        "dia": 10,
+        "monto": 1229177,
+        "frecuencia": "mensual"
+      },
+      {
+        "concepto": "LEASING BCI",
+        "dia": 15,
+        "monto": 3200000,
+        "frecuencia": "mensual"
+      },
+      {
+        "concepto": "Leaseback",
+        "dia": 15,
+        "monto": 1800000,
+        "frecuencia": "mensual"
+      },
+      {
+        "concepto": "SII - IVA",
+        "dia": 16,
+        "monto": 115000000,
+        "frecuencia": "mensual"
+      },
+      {
+        "concepto": "REMUNERACIONES",
+        "dia": 27,
+        "monto": 105000000,
+        "frecuencia": "mensual"
+      }
+    ]
+  },
+  "proyeccion": [
+    {
+      "fecha": "2026-01-13",
+      "dia_semana": "Mar",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 110574.0,
+        "cxp": 110574.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "TELEFONICA CHILE S.A.",
+            "documento": "FACE 53981837",
+            "monto": 61272.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "TELEFONICA CHILE S.A.",
+            "documento": "FACE 53981324",
+            "monto": 49302.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -110574.0,
+      "saldo_proyectado": 159889426.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-14",
+      "dia_semana": "Mié",
+      "entradas": {
+        "total": 87918413.0,
+        "detalle": [
+          {
+            "cliente": "MINERA LOS PELAMBRES",
+            "documento": "FAVA 1631",
+            "monto": 87918413.0,
+            "dias_config": 15
+          }
+        ]
+      },
+      "salidas": {
+        "total": 2786714.0,
+        "cxp": 2786714.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "EL ARRAYAN FERRETERIA LTDA ",
+            "documento": "FACE 445170",
+            "monto": 61511.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "MOBILTEX",
+            "documento": "INV 122325",
+            "monto": 2725203.0,
+            "origen": "internacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 85131699.0,
+      "saldo_proyectado": 245021125.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-15",
+      "dia_semana": "Jue",
+      "entradas": {
+        "total": 15144522.0,
+        "detalle": [
+          {
+            "cliente": "SOCIEDAD NACIONAL DE OLEODUCTOS S.A.",
+            "documento": "FAVA 1607",
+            "monto": 15144522.0,
+            "dias_config": 30
+          }
+        ]
+      },
+      "salidas": {
+        "total": 6195701.0,
+        "cxp": 1195701.0,
+        "recurrentes": 5000000,
+        "detalle_cxp": [
+          {
+            "proveedor": "BIIX INGENIERIA SPA",
+            "documento": "FACE 1335",
+            "monto": 755325.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "ENTEL PCS",
+            "documento": "FACE 52493971",
+            "monto": 440376.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": [
+          {
+            "concepto": "LEASING BCI",
+            "monto": 3200000
+          },
+          {
+            "concepto": "Leaseback",
+            "monto": 1800000
+          }
+        ]
+      },
+      "flujo_neto": 8948821.0,
+      "saldo_proyectado": 253969946.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-16",
+      "dia_semana": "Vie",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 125622424.0,
+        "cxp": 10622424.0,
+        "recurrentes": 115000000,
+        "detalle_cxp": [
+          {
+            "proveedor": "TRANSPORTES TRANSMAC SPA",
+            "documento": "FACE 470",
+            "monto": 2142000.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "TRANSPORTES TRANSMAC SPA",
+            "documento": "FACE 469",
+            "monto": 2142000.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "SOCIEDAD CONCESIONARIA RUTA 5 TALCA-CHILLAN S.A.",
+            "documento": "FXCE 1629876",
+            "monto": 13200.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "IMPORTADORA Y EXPORTADORA COMEX LTDA",
+            "documento": "FACE 75327",
+            "monto": 38556.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "ELECTRICIDAD GOBANTES S A",
+            "documento": "FACE 6779458",
+            "monto": 3221925.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "Empresa Nacional de Telecomunicaciones S.A.",
+            "documento": "FACE 20898207",
+            "monto": 497297.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "Dictuc SA",
+            "documento": "FACE 191087",
+            "monto": 2567446.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": [
+          {
+            "concepto": "SII - IVA",
+            "monto": 115000000
+          }
+        ]
+      },
+      "flujo_neto": -125622424.0,
+      "saldo_proyectado": 128347522.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-17",
+      "dia_semana": "Sáb",
+      "entradas": {
+        "total": 5267694.0,
+        "detalle": [
+          {
+            "cliente": "EMPRESA NACIONAL DEL PETRÓLEO (ENAP MAGALLANES)",
+            "documento": "FAVA 1609",
+            "monto": 5267694.0,
+            "dias_config": 30
+          }
+        ]
+      },
+      "salidas": {
+        "total": 10518721.0,
+        "cxp": 10518721.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "RENTAS Y SERVICIOS SA ",
+            "documento": "FACE 261876",
+            "monto": 211855.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "PONTIFICIA UNIVERSIDAD CATOLICA DE CHILE",
+            "documento": "FXCE 545325",
+            "monto": 420000.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "LATAM AIRLINES GROUP S A ",
+            "documento": "FXCE 6962555",
+            "monto": 1127074.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "LATAM AIRLINES GROUP S A ",
+            "documento": "FXCE 6962372",
+            "monto": 8759792.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -5251027.0,
+      "saldo_proyectado": 123096495.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-18",
+      "dia_semana": "Dom",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 120261.0,
+        "cxp": 120261.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "IMPORTADORA Y EXPORTADORA COMEX LTDA",
+            "documento": "FACE 75423",
+            "monto": 120261.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -120261.0,
+      "saldo_proyectado": 122976234.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-19",
+      "dia_semana": "Lun",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": 122976234.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-20",
+      "dia_semana": "Mar",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 223150.0,
+        "cxp": 223150.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "SOC CONCESIONARIA VESPUCIO NORTE EXPRESS S A ",
+            "documento": "FACE 4722572",
+            "monto": 223150.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -223150.0,
+      "saldo_proyectado": 122753084.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-21",
+      "dia_semana": "Mié",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 86918.0,
+        "cxp": 86918.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "ELECTRICIDAD GOBANTES S A",
+            "documento": "FACE 6783834",
+            "monto": 86918.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -86918.0,
+      "saldo_proyectado": 122666166.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-22",
+      "dia_semana": "Jue",
+      "entradas": {
+        "total": 12043975.0,
+        "detalle": [
+          {
+            "cliente": "SOCIEDAD SERVICIOS INGENIERIA Y MANTENCION INTEGRAL MPM LTDA",
+            "documento": "FAVA 1614",
+            "monto": 3839600.0,
+            "dias_config": 30
+          },
+          {
+            "cliente": "SOCIEDAD DE INVERSIONES DE AVIACION LTDA",
+            "documento": "FAVA 1615",
+            "monto": 8204375.0,
+            "dias_config": 30
+          }
+        ]
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 12043975.0,
+      "saldo_proyectado": 134710141.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-23",
+      "dia_semana": "Vie",
+      "entradas": {
+        "total": 17865231.0,
+        "detalle": [
+          {
+            "cliente": "ESMAX DISTRIBUCION SPA",
+            "documento": "FAVA 1618",
+            "monto": 5550363.0,
+            "dias_config": 30
+          },
+          {
+            "cliente": "ESMAX DISTRIBUCION SPA",
+            "documento": "FAVA 1619",
+            "monto": 1214142.0,
+            "dias_config": 30
+          },
+          {
+            "cliente": "ESMAX DISTRIBUCION SPA",
+            "documento": "FAVA 1620",
+            "monto": 5550363.0,
+            "dias_config": 30
+          },
+          {
+            "cliente": "ESMAX DISTRIBUCION SPA",
+            "documento": "FAVA 1621",
+            "monto": 5550363.0,
+            "dias_config": 30
+          }
+        ]
+      },
+      "salidas": {
+        "total": 852672.0,
+        "cxp": 852672.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "APCIS. SPA",
+            "documento": "FXCE 34",
+            "monto": 750000.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "AUTORENTAS DEL PACIFICO SPA",
+            "documento": "FACE 1318674",
+            "monto": 102672.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 17012559.0,
+      "saldo_proyectado": 151722700.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-24",
+      "dia_semana": "Sáb",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": 151722700.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-25",
+      "dia_semana": "Dom",
+      "entradas": {
+        "total": 43440166.0,
+        "detalle": [
+          {
+            "cliente": "ENAEX S.A.",
+            "documento": "FAVA 1624",
+            "monto": 43440166.0,
+            "dias_config": 30
+          }
+        ]
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 43440166.0,
+      "saldo_proyectado": 195162866.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-26",
+      "dia_semana": "Lun",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 90940.0,
+        "cxp": 90940.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "Soc. Conc. Autopista Nueva Vespucio Sur S.A.",
+            "documento": "FACE 1538624",
+            "monto": 4344.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "Soc. Conc. Autopista Nueva Vespucio Sur S.A.",
+            "documento": "FXCE 14386199",
+            "monto": 22665.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "Soc. Conc. Autopista Nueva Vespucio Sur S.A.",
+            "documento": "FXCE 14397296",
+            "monto": 1000.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "Soc. Conc. Autopista Nueva Vespucio Sur S.A.",
+            "documento": "FXCE 14385252",
+            "monto": 52432.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "Soc. Conc. Autopista Nueva Vespucio Sur S.A.",
+            "documento": "FXCE 14377198",
+            "monto": 10499.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -90940.0,
+      "saldo_proyectado": 195071926.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-27",
+      "dia_semana": "Mar",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 105000000,
+        "cxp": 0,
+        "recurrentes": 105000000,
+        "detalle_cxp": [],
+        "detalle_recurrentes": [
+          {
+            "concepto": "REMUNERACIONES",
+            "monto": 105000000
+          }
+        ]
+      },
+      "flujo_neto": -105000000,
+      "saldo_proyectado": 90071926.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-28",
+      "dia_semana": "Mié",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 147512.0,
+        "cxp": 147512.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "Sociedad Comercial de Marketing MV SPA",
+            "documento": "FACE 113744",
+            "monto": 147512.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -147512.0,
+      "saldo_proyectado": 89924414.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-29",
+      "dia_semana": "Jue",
+      "entradas": {
+        "total": 190822972.0,
+        "detalle": [
+          {
+            "cliente": "SERVICIOS ECOS SPA",
+            "documento": "FAVA 1633",
+            "monto": 5595102.0,
+            "dias_config": 30
+          },
+          {
+            "cliente": "TECHINT CHILE S.A.",
+            "documento": "FAVA 1628",
+            "monto": 31114003.0,
+            "dias_config": 30
+          },
+          {
+            "cliente": "TECHINT CHILE S.A.",
+            "documento": "FAVA 1629",
+            "monto": 19655013.0,
+            "dias_config": 30
+          },
+          {
+            "cliente": "TECHINT CHILE S.A.",
+            "documento": "FAVA 1630",
+            "monto": 96756535.0,
+            "dias_config": 30
+          },
+          {
+            "cliente": "EMPRESA NACIONAL DEL PETRÓLEO (ENAP MAGALLANES)",
+            "documento": "FAVA 1627",
+            "monto": 35519615.0,
+            "dias_config": 30
+          },
+          {
+            "cliente": "GASVALPO SPA",
+            "documento": "FAVA 1632",
+            "monto": 2182704.0,
+            "dias_config": 30
+          }
+        ]
+      },
+      "salidas": {
+        "total": 11526651.0,
+        "cxp": 11526651.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "SAMEX SPA",
+            "documento": "FACE 170595",
+            "monto": 3226084.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "FULTER LOGISTICS CHILE SPA.",
+            "documento": "FXCE 6948",
+            "monto": 266330.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "SPORTLIFE S.A.",
+            "documento": "FACE 9264",
+            "monto": 1330800.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "ELECTRICIDAD GOBANTES S A",
+            "documento": "FACE 6790717",
+            "monto": 6703437.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 179296321.0,
+      "saldo_proyectado": 269220735.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-30",
+      "dia_semana": "Vie",
+      "entradas": {
+        "total": 3711188.0,
+        "detalle": [
+          {
+            "cliente": "JRI INGENIERIA S A",
+            "documento": "FAVA 1625",
+            "monto": 3711188.0,
+            "dias_config": 30
+          }
+        ]
+      },
+      "salidas": {
+        "total": 568674.0,
+        "cxp": 568674.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "FULTER LOGISTICS CHILE SPA.",
+            "documento": "FXCE 6949",
+            "monto": 449886.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "SERVICIOS EQUIFAX CHILE LIMITADA",
+            "documento": "FACE 4032589",
+            "monto": 46330.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "EMPRESA NACIONAL DE ENERGIA ENEX S.A.",
+            "documento": "FACE 3767492",
+            "monto": 48820.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "ARTIKOS CHILE S.A.",
+            "documento": "FACE 211467",
+            "monto": 23638.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 3142514.0,
+      "saldo_proyectado": 272363249.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-01-31",
+      "dia_semana": "Sáb",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 1019894.0,
+        "cxp": 1019894.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "Skualo Spa",
+            "documento": "FACE 23968",
+            "monto": 553186.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "COMUNICACIONES GEOAUSTRAL LTDA",
+            "documento": "FACE 27723",
+            "monto": 227141.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "Operadora de Sistemas Electros SPA",
+            "documento": "FXCE 2425131",
+            "monto": 13053.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "Operadora de Sistemas Electros SPA",
+            "documento": "FXCE 2422399",
+            "monto": 5200.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "Operadora de Sistemas Electros SPA",
+            "documento": "FXCE 2469479",
+            "monto": 221314.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -1019894.0,
+      "saldo_proyectado": 271343355.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-01",
+      "dia_semana": "Dom",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 59994.0,
+        "cxp": 59994.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "Megacentro Carrascal SpA ",
+            "documento": "FACE 9558",
+            "monto": 59994.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -59994.0,
+      "saldo_proyectado": 271283361.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-02",
+      "dia_semana": "Lun",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 107031.0,
+        "cxp": 107031.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "SOC  CONCESIONARIA AUTOPISTA CENTRAL S A ",
+            "documento": "FXCE 19127453",
+            "monto": 30061.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "SOC  CONCESIONARIA AUTOPISTA CENTRAL S A ",
+            "documento": "FACE 12579935",
+            "monto": 76970.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -107031.0,
+      "saldo_proyectado": 271176330.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-03",
+      "dia_semana": "Mar",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": 271176330.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-04",
+      "dia_semana": "Mié",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 36278.0,
+        "cxp": 36278.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "COMERCIALIZADORA DE ART DE PROTECCION Y SEGURIDAD INDUSTRIA",
+            "documento": "FACE 3531308",
+            "monto": 36278.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -36278.0,
+      "saldo_proyectado": 271140052.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-05",
+      "dia_semana": "Jue",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 5537017.0,
+        "cxp": 537017.0,
+        "recurrentes": 5000000,
+        "detalle_cxp": [
+          {
+            "proveedor": "ROSSELOT Y FIGUEROA LIMITADA",
+            "documento": "FACE 275157",
+            "monto": 537017.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": [
+          {
+            "concepto": "ARRIENDO OFICINA",
+            "monto": 1800000
+          },
+          {
+            "concepto": "Leasing BCI1",
+            "monto": 3200000
+          }
+        ]
+      },
+      "flujo_neto": -5537017.0,
+      "saldo_proyectado": 265603035.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-06",
+      "dia_semana": "Vie",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 338197.0,
+        "cxp": 338197.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "IMPORTADORA Y EXPORTADORA COMEX LTDA",
+            "documento": "FACE 75609",
+            "monto": 230057.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "DIMERC S  A ",
+            "documento": "FACE 12049372",
+            "monto": 108140.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -338197.0,
+      "saldo_proyectado": 265264838.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-07",
+      "dia_semana": "Sáb",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 32390705.0,
+        "cxp": 390705.0,
+        "recurrentes": 32000000,
+        "detalle_cxp": [
+          {
+            "proveedor": "SAMEX SPA",
+            "documento": "FACE 171005",
+            "monto": 3570.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "BUK SPA",
+            "documento": "FACE 267309",
+            "monto": 370404.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "IMPORTADORA Y EXPORTADORA COMEX LTDA",
+            "documento": "FACE 75627",
+            "monto": 16731.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": [
+          {
+            "concepto": "PREVIRED",
+            "monto": 32000000
+          }
+        ]
+      },
+      "flujo_neto": -32390705.0,
+      "saldo_proyectado": 232874133.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-08",
+      "dia_semana": "Dom",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": 232874133.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-09",
+      "dia_semana": "Lun",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 27400.0,
+        "cxp": 27400.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "RUTA DEL MAIPO SOCIEDAD CONCESIONARIA  S A ",
+            "documento": "FXCE 7546672",
+            "monto": 14800.0,
+            "origen": "nacional"
+          },
+          {
+            "proveedor": "RUTA DEL MAIPO SOCIEDAD CONCESIONARIA  S A ",
+            "documento": "FXCE 7552871",
+            "monto": 12600.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -27400.0,
+      "saldo_proyectado": 232846733.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-10",
+      "dia_semana": "Mar",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 1229177,
+        "cxp": 0,
+        "recurrentes": 1229177,
+        "detalle_cxp": [],
+        "detalle_recurrentes": [
+          {
+            "concepto": "Leasing Oficina",
+            "monto": 1229177
+          }
+        ]
+      },
+      "flujo_neto": -1229177,
+      "saldo_proyectado": 231617556.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-11",
+      "dia_semana": "Mié",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 22812.0,
+        "cxp": 22812.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "Distribuidora Regalogar Ltda.",
+            "documento": "FACE 267517",
+            "monto": 22812.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -22812.0,
+      "saldo_proyectado": 231594744.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-12",
+      "dia_semana": "Jue",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": 231594744.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-13",
+      "dia_semana": "Vie",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 15770765.0,
+        "cxp": 15770765.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "DAIRYLAND ELECTRICAL INDUSTRIES",
+            "documento": "INV 23847",
+            "monto": 15770765.0,
+            "origen": "internacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -15770765.0,
+      "saldo_proyectado": 215823979.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-14",
+      "dia_semana": "Sáb",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 1871870.0,
+        "cxp": 1871870.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "TRANSPORTES TRANSMAC SPA",
+            "documento": "FACE 478",
+            "monto": 1871870.0,
+            "origen": "nacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -1871870.0,
+      "saldo_proyectado": 213952109.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-15",
+      "dia_semana": "Dom",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 5000000,
+        "cxp": 0,
+        "recurrentes": 5000000,
+        "detalle_cxp": [],
+        "detalle_recurrentes": [
+          {
+            "concepto": "LEASING BCI",
+            "monto": 3200000
+          },
+          {
+            "concepto": "Leaseback",
+            "monto": 1800000
+          }
+        ]
+      },
+      "flujo_neto": -5000000,
+      "saldo_proyectado": 208952109.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-16",
+      "dia_semana": "Lun",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 115000000,
+        "cxp": 0,
+        "recurrentes": 115000000,
+        "detalle_cxp": [],
+        "detalle_recurrentes": [
+          {
+            "concepto": "SII - IVA",
+            "monto": 115000000
+          }
+        ]
+      },
+      "flujo_neto": -115000000,
+      "saldo_proyectado": 93952109.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-17",
+      "dia_semana": "Mar",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": 93952109.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-18",
+      "dia_semana": "Mié",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": 93952109.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-19",
+      "dia_semana": "Jue",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": 93952109.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-20",
+      "dia_semana": "Vie",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": 93952109.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-21",
+      "dia_semana": "Sáb",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": 93952109.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-22",
+      "dia_semana": "Dom",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": 93952109.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-23",
+      "dia_semana": "Lun",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": 93952109.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-24",
+      "dia_semana": "Mar",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": 93952109.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-25",
+      "dia_semana": "Mié",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": 93952109.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-26",
+      "dia_semana": "Jue",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 3956854.0,
+        "cxp": 3956854.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "CERANODE VV",
+            "documento": "INV 330089",
+            "monto": 3956854.0,
+            "origen": "internacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": -3956854.0,
+      "saldo_proyectado": 89995255.0,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-02-27",
+      "dia_semana": "Vie",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 105000000,
+        "cxp": 0,
+        "recurrentes": 105000000,
+        "detalle_cxp": [],
+        "detalle_recurrentes": [
+          {
+            "concepto": "REMUNERACIONES",
+            "monto": 105000000
+          }
+        ]
+      },
+      "flujo_neto": -105000000,
+      "saldo_proyectado": -15004745.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-02-28",
+      "dia_semana": "Sáb",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -15004745.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-01",
+      "dia_semana": "Dom",
+      "entradas": {
+        "total": 5509333.0,
+        "detalle": [
+          {
+            "cliente": "MONTAJES INDUSTRIALES MONTEC S.A.",
+            "documento": "FAVA 1626",
+            "monto": 5509333.0,
+            "dias_config": 60
+          }
+        ]
+      },
+      "salidas": {
+        "total": 4327194.0,
+        "cxp": 4327194.0,
+        "recurrentes": 0,
+        "detalle_cxp": [
+          {
+            "proveedor": "DAIRYLAND ELECTRICAL INDUSTRIES",
+            "documento": "INV 23794",
+            "monto": 4327194.0,
+            "origen": "internacional"
+          }
+        ],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 1182139.0,
+      "saldo_proyectado": -13822606.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-02",
+      "dia_semana": "Lun",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -13822606.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-03",
+      "dia_semana": "Mar",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -13822606.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-04",
+      "dia_semana": "Mié",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -13822606.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-05",
+      "dia_semana": "Jue",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 5000000,
+        "cxp": 0,
+        "recurrentes": 5000000,
+        "detalle_cxp": [],
+        "detalle_recurrentes": [
+          {
+            "concepto": "ARRIENDO OFICINA",
+            "monto": 1800000
+          },
+          {
+            "concepto": "Leasing BCI1",
+            "monto": 3200000
+          }
+        ]
+      },
+      "flujo_neto": -5000000,
+      "saldo_proyectado": -18822606.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-06",
+      "dia_semana": "Vie",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -18822606.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-07",
+      "dia_semana": "Sáb",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 32000000,
+        "cxp": 0,
+        "recurrentes": 32000000,
+        "detalle_cxp": [],
+        "detalle_recurrentes": [
+          {
+            "concepto": "PREVIRED",
+            "monto": 32000000
+          }
+        ]
+      },
+      "flujo_neto": -32000000,
+      "saldo_proyectado": -50822606.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-08",
+      "dia_semana": "Dom",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -50822606.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-09",
+      "dia_semana": "Lun",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -50822606.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-10",
+      "dia_semana": "Mar",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 1229177,
+        "cxp": 0,
+        "recurrentes": 1229177,
+        "detalle_cxp": [],
+        "detalle_recurrentes": [
+          {
+            "concepto": "Leasing Oficina",
+            "monto": 1229177
+          }
+        ]
+      },
+      "flujo_neto": -1229177,
+      "saldo_proyectado": -52051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-11",
+      "dia_semana": "Mié",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -52051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-12",
+      "dia_semana": "Jue",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -52051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-13",
+      "dia_semana": "Vie",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -52051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-14",
+      "dia_semana": "Sáb",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -52051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-15",
+      "dia_semana": "Dom",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 5000000,
+        "cxp": 0,
+        "recurrentes": 5000000,
+        "detalle_cxp": [],
+        "detalle_recurrentes": [
+          {
+            "concepto": "LEASING BCI",
+            "monto": 3200000
+          },
+          {
+            "concepto": "Leaseback",
+            "monto": 1800000
+          }
+        ]
+      },
+      "flujo_neto": -5000000,
+      "saldo_proyectado": -57051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-16",
+      "dia_semana": "Lun",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 115000000,
+        "cxp": 0,
+        "recurrentes": 115000000,
+        "detalle_cxp": [],
+        "detalle_recurrentes": [
+          {
+            "concepto": "SII - IVA",
+            "monto": 115000000
+          }
+        ]
+      },
+      "flujo_neto": -115000000,
+      "saldo_proyectado": -172051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-17",
+      "dia_semana": "Mar",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -172051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-18",
+      "dia_semana": "Mié",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -172051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-19",
+      "dia_semana": "Jue",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -172051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-20",
+      "dia_semana": "Vie",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -172051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-21",
+      "dia_semana": "Sáb",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -172051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-22",
+      "dia_semana": "Dom",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -172051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-23",
+      "dia_semana": "Lun",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -172051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-24",
+      "dia_semana": "Mar",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -172051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-25",
+      "dia_semana": "Mié",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -172051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-26",
+      "dia_semana": "Jue",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -172051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-27",
+      "dia_semana": "Vie",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 105000000,
+        "cxp": 0,
+        "recurrentes": 105000000,
+        "detalle_cxp": [],
+        "detalle_recurrentes": [
+          {
+            "concepto": "REMUNERACIONES",
+            "monto": 105000000
+          }
+        ]
+      },
+      "flujo_neto": -105000000,
+      "saldo_proyectado": -277051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-28",
+      "dia_semana": "Sáb",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -277051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-29",
+      "dia_semana": "Dom",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -277051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-30",
+      "dia_semana": "Lun",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -277051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-03-31",
+      "dia_semana": "Mar",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -277051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-04-01",
+      "dia_semana": "Mié",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -277051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-04-02",
+      "dia_semana": "Jue",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -277051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-04-03",
+      "dia_semana": "Vie",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -277051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-04-04",
+      "dia_semana": "Sáb",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -277051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-04-05",
+      "dia_semana": "Dom",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 5000000,
+        "cxp": 0,
+        "recurrentes": 5000000,
+        "detalle_cxp": [],
+        "detalle_recurrentes": [
+          {
+            "concepto": "ARRIENDO OFICINA",
+            "monto": 1800000
+          },
+          {
+            "concepto": "Leasing BCI1",
+            "monto": 3200000
+          }
+        ]
+      },
+      "flujo_neto": -5000000,
+      "saldo_proyectado": -282051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-04-06",
+      "dia_semana": "Lun",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -282051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-04-07",
+      "dia_semana": "Mar",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 32000000,
+        "cxp": 0,
+        "recurrentes": 32000000,
+        "detalle_cxp": [],
+        "detalle_recurrentes": [
+          {
+            "concepto": "PREVIRED",
+            "monto": 32000000
+          }
+        ]
+      },
+      "flujo_neto": -32000000,
+      "saldo_proyectado": -314051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-04-08",
+      "dia_semana": "Mié",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -314051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-04-09",
+      "dia_semana": "Jue",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -314051783.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-04-10",
+      "dia_semana": "Vie",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 1229177,
+        "cxp": 0,
+        "recurrentes": 1229177,
+        "detalle_cxp": [],
+        "detalle_recurrentes": [
+          {
+            "concepto": "Leasing Oficina",
+            "monto": 1229177
+          }
+        ]
+      },
+      "flujo_neto": -1229177,
+      "saldo_proyectado": -315280960.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-04-11",
+      "dia_semana": "Sáb",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -315280960.0,
+      "alerta": true
+    },
+    {
+      "fecha": "2026-04-12",
+      "dia_semana": "Dom",
+      "entradas": {
+        "total": 0,
+        "detalle": []
+      },
+      "salidas": {
+        "total": 0,
+        "cxp": 0,
+        "recurrentes": 0,
+        "detalle_cxp": [],
+        "detalle_recurrentes": []
+      },
+      "flujo_neto": 0,
+      "saldo_proyectado": -315280960.0,
+      "alerta": true
+    }
+  ],
+  "aging": {
+    "cxc": {
+      "vigente": 0,
+      "1-30": 381723494.0,
+      "31-60": 28554594.0,
+      "61-90": 6514008.0,
+      ">90": 0,
+      "total": 416792096.0
+    },
+    "cxp": {
+      "vigente": 67206349.0,
+      "1-30": 21850606.0,
+      "31-60": 2525968.0,
+      "61-90": 8600792.0,
+      ">90": 6962124.0,
+      "total": 107145839.0
+    }
+  },
+  "resumen": {
+    "total_entradas": 381723494.0,
+    "total_salidas": 857004454.0,
+    "saldo_final": -315280960.0,
+    "saldo_minimo": -315280960.0,
+    "dias_alerta": 45,
+    "total_cxc": 416792096.0,
+    "total_cxp": 107145839.0
+  },
+  "cxc_detalle": [
+    {
+      "cliente": "SOCIEDAD SERVICIOS INGENIERIA Y MANTENCION INTEGRAL MPM LTDA",
+      "documento": "FAVA 1596",
+      "emision": "2025-11-28",
+      "fecha_cobro": "2025-12-28",
+      "saldo": 19838035.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "SOCIEDAD SERVICIOS INGENIERIA Y MANTENCION INTEGRAL MPM LTDA",
+      "documento": "FAVA 1614",
+      "emision": "2025-12-23",
+      "fecha_cobro": "2026-01-22",
+      "saldo": 3839600.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "SERVICIOS ECOS SPA",
+      "documento": "FAVA 1633",
+      "emision": "2025-12-30",
+      "fecha_cobro": "2026-01-29",
+      "saldo": 5595102.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "ESMAX DISTRIBUCION SPA",
+      "documento": "FAVA 1618",
+      "emision": "2025-12-24",
+      "fecha_cobro": "2026-01-23",
+      "saldo": 5550363.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "ESMAX DISTRIBUCION SPA",
+      "documento": "FAVA 1619",
+      "emision": "2025-12-24",
+      "fecha_cobro": "2026-01-23",
+      "saldo": 1214142.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "ESMAX DISTRIBUCION SPA",
+      "documento": "FAVA 1620",
+      "emision": "2025-12-24",
+      "fecha_cobro": "2026-01-23",
+      "saldo": 5550363.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "ESMAX DISTRIBUCION SPA",
+      "documento": "FAVA 1621",
+      "emision": "2025-12-24",
+      "fecha_cobro": "2026-01-23",
+      "saldo": 5550363.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "SOCIEDAD NACIONAL DE OLEODUCTOS S.A.",
+      "documento": "FAVA 1607",
+      "emision": "2025-12-16",
+      "fecha_cobro": "2026-01-15",
+      "saldo": 15144522.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "SOCIEDAD DE INVERSIONES DE AVIACION LTDA",
+      "documento": "FAVA 1615",
+      "emision": "2025-12-23",
+      "fecha_cobro": "2026-01-22",
+      "saldo": 8204375.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "ENAEX S.A.",
+      "documento": "FAVA 1624",
+      "emision": "2025-12-26",
+      "fecha_cobro": "2026-01-25",
+      "saldo": 43440166.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "TECHINT CHILE S.A.",
+      "documento": "FAVA 1562",
+      "emision": "2025-10-15",
+      "fecha_cobro": "2025-11-14",
+      "saldo": 6514008.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "TECHINT CHILE S.A.",
+      "documento": "NDVE 8",
+      "emision": "2025-11-20",
+      "fecha_cobro": "2025-12-20",
+      "saldo": 3529237.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "TECHINT CHILE S.A.",
+      "documento": "FAVA 1594",
+      "emision": "2025-11-25",
+      "fecha_cobro": "2025-12-25",
+      "saldo": 5187322.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "TECHINT CHILE S.A.",
+      "documento": "FAVA 1628",
+      "emision": "2025-12-30",
+      "fecha_cobro": "2026-01-29",
+      "saldo": 31114003.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "TECHINT CHILE S.A.",
+      "documento": "FAVA 1629",
+      "emision": "2025-12-30",
+      "fecha_cobro": "2026-01-29",
+      "saldo": 19655013.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "TECHINT CHILE S.A.",
+      "documento": "FAVA 1630",
+      "emision": "2025-12-30",
+      "fecha_cobro": "2026-01-29",
+      "saldo": 96756535.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "EMPRESA NACIONAL DEL PETRÓLEO (ENAP MAGALLANES)",
+      "documento": "FAVA 1609",
+      "emision": "2025-12-18",
+      "fecha_cobro": "2026-01-17",
+      "saldo": 5267694.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "EMPRESA NACIONAL DEL PETRÓLEO (ENAP MAGALLANES)",
+      "documento": "FAVA 1627",
+      "emision": "2025-12-30",
+      "fecha_cobro": "2026-01-29",
+      "saldo": 35519615.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "JRI INGENIERIA S A",
+      "documento": "FAVA 1625",
+      "emision": "2025-12-31",
+      "fecha_cobro": "2026-01-30",
+      "saldo": 3711188.0,
+      "dias_config": 30
+    },
+    {
+      "cliente": "MONTAJES INDUSTRIALES MONTEC S.A.",
+      "documento": "FAVA 1626",
+      "emision": "2025-12-31",
+      "fecha_cobro": "2026-03-01",
+      "saldo": 5509333.0,
+      "dias_config": 60
+    },
+    {
+      "cliente": "MINERA LOS PELAMBRES",
+      "documento": "FAVA 1631",
+      "emision": "2025-12-30",
+      "fecha_cobro": "2026-01-14",
+      "saldo": 87918413.0,
+      "dias_config": 15
+    },
+    {
+      "cliente": "GASVALPO SPA",
+      "documento": "FAVA 1632",
+      "emision": "2025-12-30",
+      "fecha_cobro": "2026-01-29",
+      "saldo": 2182704.0,
+      "dias_config": 30
+    }
+  ],
+  "cxp_detalle": [
+    {
+      "proveedor": "SELMA GALVEZ",
+      "documento": "FACE 1694",
+      "vencimiento": "2025-11-19",
+      "saldo": 2428.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SELMA GALVEZ",
+      "documento": "FACE 1701",
+      "vencimiento": "2025-12-01",
+      "saldo": 4046.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "AG. ADUANA ALBERTO MORAGA FERNANDEZ",
+      "documento": "FACE 3086",
+      "vencimiento": "2025-12-31",
+      "saldo": 265382.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "PEDRO OMAR NUNEZ FERNANDEZ",
+      "documento": "FXCE 353",
+      "vencimiento": "2025-10-16",
+      "saldo": 50000.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "VICTOR MORALES QUINTEROS",
+      "documento": "FACE 420",
+      "vencimiento": "2026-01-02",
+      "saldo": 464100.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "HERMAN JAVIER RIVERA CHACANA",
+      "documento": "FACE 408722",
+      "vencimiento": "2026-01-10",
+      "saldo": 15200.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "BLANCA CRISTINA TAPIA CONTRERAS",
+      "documento": "FACE 3080",
+      "vencimiento": "2026-01-02",
+      "saldo": 681394.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "DOMINGA DE LAS NIEVES CABRERA VERA",
+      "documento": "FACE 604",
+      "vencimiento": "2025-11-27",
+      "saldo": 8330.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "CRISTIAN MARCELO ZUNIGA ARTEAGA",
+      "documento": "FXCE 1220",
+      "vencimiento": "2025-11-26",
+      "saldo": 30000.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "FELIPE SAMUEL MERY ROZAS",
+      "documento": "FACE 14881",
+      "vencimiento": "2025-05-29",
+      "saldo": 89730.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "GRACIELA CAMPOS APABLAZA",
+      "documento": "FACE 7653",
+      "vencimiento": "2026-01-02",
+      "saldo": 101150.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "BRAULIO ARANDA ZAPATA",
+      "documento": "FACE 2524",
+      "vencimiento": "2025-08-14",
+      "saldo": 879648.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "BRAULIO ARANDA ZAPATA",
+      "documento": "FACE 2705",
+      "vencimiento": "2026-01-09",
+      "saldo": 228099.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "LENOVO AGENCIA EN CHILE",
+      "documento": "FACE 91643",
+      "vencimiento": "2025-09-20",
+      "saldo": 265175.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "COMERCIAL EL TORREON LTDA",
+      "documento": "FACE 134772",
+      "vencimiento": "2025-12-10",
+      "saldo": 104500.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Soc. Conc. Autopista Nueva Vespucio Sur S.A.",
+      "documento": "FACE 1538624",
+      "vencimiento": "2026-01-26",
+      "saldo": 4344.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "Soc. Conc. Autopista Nueva Vespucio Sur S.A.",
+      "documento": "FXCE 14386199",
+      "vencimiento": "2026-01-26",
+      "saldo": 22665.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "Soc. Conc. Autopista Nueva Vespucio Sur S.A.",
+      "documento": "FXCE 14397296",
+      "vencimiento": "2026-01-26",
+      "saldo": 1000.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "Soc. Conc. Autopista Nueva Vespucio Sur S.A.",
+      "documento": "FXCE 14385252",
+      "vencimiento": "2026-01-26",
+      "saldo": 52432.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "Soc. Conc. Autopista Nueva Vespucio Sur S.A.",
+      "documento": "FXCE 14377198",
+      "vencimiento": "2026-01-26",
+      "saldo": 10499.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "LAYEX CHILE MATERIALES ELECTRICOS LIMITADA",
+      "documento": "FACE 846",
+      "vencimiento": "2026-01-09",
+      "saldo": 446250.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "EDGE SPA",
+      "documento": "FACE 172652",
+      "vencimiento": "2025-10-09",
+      "saldo": 1707602.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "EDGE SPA",
+      "documento": "FACE 178438",
+      "vencimiento": "2025-11-28",
+      "saldo": 827910.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "RENTAS Y SERVICIOS SA ",
+      "documento": "FACE 261876",
+      "vencimiento": "2026-01-17",
+      "saldo": 211855.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "VTR Comunicaciones SpA",
+      "documento": "FACE 10196004",
+      "vencimiento": "2025-07-13",
+      "saldo": 11517.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ADMIN  DE SUPERMERCADOS HIPER LIMITADA",
+      "documento": "FACE 79043059",
+      "vencimiento": "2025-11-03",
+      "saldo": 37713.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ADMIN  DE SUPERMERCADOS HIPER LIMITADA",
+      "documento": "FACE 79251267",
+      "vencimiento": "2025-12-14",
+      "saldo": 52505.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ADMIN  DE SUPERMERCADOS HIPER LIMITADA",
+      "documento": "FACE 79250654",
+      "vencimiento": "2025-12-15",
+      "saldo": 46022.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ADMIN  DE SUPERMERCADOS HIPER LIMITADA",
+      "documento": "FACE 79321750",
+      "vencimiento": "2025-12-28",
+      "saldo": 118160.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ADMIN  DE SUPERMERCADOS HIPER LIMITADA",
+      "documento": "FACE 79333032",
+      "vencimiento": "2026-01-05",
+      "saldo": 107940.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ADMIN  DE SUPERMERCADOS HIPER LIMITADA",
+      "documento": "FACE 79328584",
+      "vencimiento": "2026-01-05",
+      "saldo": 67762.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ADMIN  DE SUPERMERCADOS HIPER LIMITADA",
+      "documento": "FACE 79354149",
+      "vencimiento": "2026-01-05",
+      "saldo": 30675.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ADMIN  DE SUPERMERCADOS HIPER LIMITADA",
+      "documento": "FACE 79360567",
+      "vencimiento": "2026-01-09",
+      "saldo": 75733.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ADMIN  DE SUPERMERCADOS HIPER LIMITADA",
+      "documento": "FACE 79376913",
+      "vencimiento": "2026-01-09",
+      "saldo": 23381.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ADMIN  DE SUPERMERCADOS HIPER LIMITADA",
+      "documento": "FACE 79388174",
+      "vencimiento": "2026-01-11",
+      "saldo": 58155.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ADMIN  DE SUPERMERCADOS HIPER LIMITADA",
+      "documento": "FACE 79388169",
+      "vencimiento": "2026-01-12",
+      "saldo": 27160.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ADMIN  DE SUPERMERCADOS HIPER LIMITADA",
+      "documento": "FACE 79388190",
+      "vencimiento": "2026-01-12",
+      "saldo": 44992.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SERVICIO DE SALUD OCUPACIONAL SPA",
+      "documento": "FACE 42849",
+      "vencimiento": "2026-01-04",
+      "saldo": 303243.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "INMOBILIARIA AGRICOLA TRANSPORTES Y TURISMO HERNANDEZ LIMITADA",
+      "documento": "FACE 5437",
+      "vencimiento": "2025-07-20",
+      "saldo": 39865.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "INMOBILIARIA AGRICOLA TRANSPORTES Y TURISMO HERNANDEZ LIMITADA",
+      "documento": "FACE 5450",
+      "vencimiento": "2025-07-23",
+      "saldo": 41001.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "INMOBILIARIA AGRICOLA TRANSPORTES Y TURISMO HERNANDEZ LIMITADA",
+      "documento": "FACE 5458",
+      "vencimiento": "2025-07-25",
+      "saldo": 41055.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "INMOBILIARIA AGRICOLA TRANSPORTES Y TURISMO HERNANDEZ LIMITADA",
+      "documento": "FACE 5544",
+      "vencimiento": "2025-08-16",
+      "saldo": 32844.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "INMOBILIARIA AGRICOLA TRANSPORTES Y TURISMO HERNANDEZ LIMITADA",
+      "documento": "FACE 5575",
+      "vencimiento": "2025-09-01",
+      "saldo": 41412.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "INMOBILIARIA AGRICOLA TRANSPORTES Y TURISMO HERNANDEZ LIMITADA",
+      "documento": "FACE 5576",
+      "vencimiento": "2025-09-03",
+      "saldo": 41412.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "INMOBILIARIA AGRICOLA TRANSPORTES Y TURISMO HERNANDEZ LIMITADA",
+      "documento": "FACE 5748",
+      "vencimiento": "2025-11-17",
+      "saldo": 16422.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "INMOBILIARIA AGRICOLA TRANSPORTES Y TURISMO HERNANDEZ LIMITADA",
+      "documento": "FACE 5747",
+      "vencimiento": "2025-11-17",
+      "saldo": 32801.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "INMOBILIARIA AGRICOLA TRANSPORTES Y TURISMO HERNANDEZ LIMITADA",
+      "documento": "FACE 5784",
+      "vencimiento": "2025-12-01",
+      "saldo": 16422.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "INMOBILIARIA AGRICOLA TRANSPORTES Y TURISMO HERNANDEZ LIMITADA",
+      "documento": "FACE 5774",
+      "vencimiento": "2025-12-02",
+      "saldo": 16422.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "INMOBILIARIA AGRICOLA TRANSPORTES Y TURISMO HERNANDEZ LIMITADA",
+      "documento": "FACE 5785",
+      "vencimiento": "2025-12-03",
+      "saldo": 16422.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Megacentro Carrascal SpA ",
+      "documento": "FACE 9677",
+      "vencimiento": "2026-01-06",
+      "saldo": 1691236.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Megacentro Carrascal SpA ",
+      "documento": "FACE 9558",
+      "vencimiento": "2026-02-01",
+      "saldo": 59994.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "Simpson Strong-Tie Chile Ltda",
+      "documento": "FACE 26502",
+      "vencimiento": "2025-10-29",
+      "saldo": 88017.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "CHILENA DE REV. TECNICAS",
+      "documento": "FACE 284814",
+      "vencimiento": "2026-01-08",
+      "saldo": 20350.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "LUKASIAN HOLDINGS SPA",
+      "documento": "FACE 65",
+      "vencimiento": "2025-11-14",
+      "saldo": 2000000.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Inmobiliaria. consultora y operadora iF SpA.",
+      "documento": "FACE 19947",
+      "vencimiento": "2025-12-01",
+      "saldo": 611740.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "KIOSCLUB AMERICAN SUPERMARKET SPA",
+      "documento": "FACE 49930",
+      "vencimiento": "2025-08-26",
+      "saldo": 32990.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ELASTIX ONLINE SPA",
+      "documento": "FACE 25063",
+      "vencimiento": "2026-01-02",
+      "saldo": 53550.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "BIIX INGENIERIA SPA",
+      "documento": "FACE 1335",
+      "vencimiento": "2026-01-15",
+      "saldo": 755325.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "Skualo Spa",
+      "documento": "FACE 23968",
+      "vencimiento": "2026-01-31",
+      "saldo": 553186.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "FLANNERYS TOBALABA SA",
+      "documento": "FACE 1401",
+      "vencimiento": "2025-08-28",
+      "saldo": 406000.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "EL ARRAYAN FERRETERIA LTDA ",
+      "documento": "FACE 445170",
+      "vencimiento": "2026-01-14",
+      "saldo": 61511.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "FERRETERIA SAN SEBASTIAN",
+      "documento": "FACE 33896",
+      "vencimiento": "2025-11-11",
+      "saldo": 22600.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "COMERCIAL Y SERVICIOS CAV LTDA",
+      "documento": "FACE 226056",
+      "vencimiento": "2025-11-23",
+      "saldo": 70705.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "COMERC. ARRIENDO SERVICIO ELECTRONICA Y TELECOMUNICACIONES ALFREDO MEYNET",
+      "documento": "FACE 8570",
+      "vencimiento": "2025-12-30",
+      "saldo": 105018.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SEGURIDAD FLORES QUIROZ SEGURIDAD ELECTRONICA EIRL",
+      "documento": "FACE 6003",
+      "vencimiento": "2026-01-05",
+      "saldo": 9508.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SEGUROS CLC S A ",
+      "documento": "FACE 61947",
+      "vencimiento": "2026-01-05",
+      "saldo": 223987.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SAMEX SPA",
+      "documento": "FACE 170595",
+      "vencimiento": "2026-01-29",
+      "saldo": 3226084.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "SAMEX SPA",
+      "documento": "FACE 171005",
+      "vencimiento": "2026-02-07",
+      "saldo": 3570.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "COMUNICACIONES GEOAUSTRAL LTDA",
+      "documento": "FACE 27723",
+      "vencimiento": "2026-01-31",
+      "saldo": 227141.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "BUK SPA",
+      "documento": "FACE 258643",
+      "vencimiento": "2026-01-08",
+      "saldo": 369439.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "BUK SPA",
+      "documento": "FACE 267309",
+      "vencimiento": "2026-02-07",
+      "saldo": 370404.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "Comercial Vectis SpA.",
+      "documento": "FACE 9869",
+      "vencimiento": "2026-01-09",
+      "saldo": 47005.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "TRANSPORTES TRANSMAC SPA",
+      "documento": "FACE 470",
+      "vencimiento": "2026-01-16",
+      "saldo": 2142000.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "TRANSPORTES TRANSMAC SPA",
+      "documento": "FACE 469",
+      "vencimiento": "2026-01-16",
+      "saldo": 2142000.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "TRANSPORTES TRANSMAC SPA",
+      "documento": "FACE 478",
+      "vencimiento": "2026-02-14",
+      "saldo": 1871870.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "CART PAPER LIMITADA",
+      "documento": "FACE 50320",
+      "vencimiento": "2025-04-29",
+      "saldo": 20208.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "TERRA INCA SPA",
+      "documento": "FACE 1629",
+      "vencimiento": "2025-07-07",
+      "saldo": 18000.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "TERRA INCA SPA",
+      "documento": "FACE 1634",
+      "vencimiento": "2025-08-18",
+      "saldo": 90960.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "TERRA INCA SPA",
+      "documento": "FACE 1636",
+      "vencimiento": "2025-08-18",
+      "saldo": 77980.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "TERRA INCA SPA",
+      "documento": "FACE 1729",
+      "vencimiento": "2025-09-16",
+      "saldo": 42980.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "MAESTRANZA GUERRERO LIMITADA",
+      "documento": "FACE 663",
+      "vencimiento": "2025-10-03",
+      "saldo": 17850.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "MAHE SPA",
+      "documento": "FACE 154",
+      "vencimiento": "2025-11-07",
+      "saldo": 25000.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "MAHE SPA",
+      "documento": "FACE 161",
+      "vencimiento": "2025-12-30",
+      "saldo": 25000.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "CENTRO DE EVALUACION Y CERTIFICACION DE COMPETENCIAS LABORALES JES & D",
+      "documento": "FACE 1175",
+      "vencimiento": "2026-01-09",
+      "saldo": 238000.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "STUDIO GROUP SPA",
+      "documento": "FACE 230051",
+      "vencimiento": "2025-11-03",
+      "saldo": 20700.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SOCIEDAD COMERCIAL ALCAPLUS LTDA",
+      "documento": "FACE 42242",
+      "vencimiento": "2025-04-30",
+      "saldo": 177900.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SOLUCIONES MODULARES Y ESTRUCTURALES LTDA (SOLMEX)",
+      "documento": "FACE 243792",
+      "vencimiento": "2025-12-30",
+      "saldo": 650048.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "INVERSIONES GASTRONOMICAS CALAMA SPA",
+      "documento": "FACE 1319",
+      "vencimiento": "2025-10-14",
+      "saldo": 60200.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Importadora y Comercializadora MIC Spa",
+      "documento": "FACE 31967",
+      "vencimiento": "2025-07-11",
+      "saldo": 14200.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "STARLINK CHILE SPA",
+      "documento": "FACE 2099277",
+      "vencimiento": "2025-12-18",
+      "saldo": 152400.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "FULTER LOGISTICS CHILE SPA.",
+      "documento": "FXCE 6792",
+      "vencimiento": "2026-01-08",
+      "saldo": 614413.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "FULTER LOGISTICS CHILE SPA.",
+      "documento": "FXCE 6948",
+      "vencimiento": "2026-01-29",
+      "saldo": 266330.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "FULTER LOGISTICS CHILE SPA.",
+      "documento": "FXCE 6949",
+      "vencimiento": "2026-01-30",
+      "saldo": 449886.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "COMERCIAL TODOFILM SPA",
+      "documento": "FACE 8778",
+      "vencimiento": "2026-01-09",
+      "saldo": 139944.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "COMERCIAL TODOFILM SPA",
+      "documento": "FACE 8781",
+      "vencimiento": "2026-01-08",
+      "saldo": 44625.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "AUTOGLASS SPA",
+      "documento": "FACE 466",
+      "vencimiento": "2026-01-07",
+      "saldo": 258230.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ALFONSO TRANSPORTES SPA",
+      "documento": "FACE 469",
+      "vencimiento": "2026-01-09",
+      "saldo": 596904.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ALFONSO TRANSPORTES SPA",
+      "documento": "FACE 475",
+      "vencimiento": "2026-01-06",
+      "saldo": 889049.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SOCIEDAD DE SERVICIOS LOGISTICOS SBP SPA",
+      "documento": "FACE 497",
+      "vencimiento": "2025-12-22",
+      "saldo": 214200.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "LASERLANDCL SPA",
+      "documento": "FACE 512",
+      "vencimiento": "2025-06-13",
+      "saldo": 45000.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "DISTIBUIDORA LA TROPA SPA",
+      "documento": "FACE 674",
+      "vencimiento": "2025-10-02",
+      "saldo": 5712.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "DISTIBUIDORA LA TROPA SPA",
+      "documento": "FACE 713",
+      "vencimiento": "2025-12-30",
+      "saldo": 5712.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "DISTIBUIDORA LA TROPA SPA",
+      "documento": "FACE 736",
+      "vencimiento": "2025-12-31",
+      "saldo": 8568.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "FERRETERIA FRONTERA SPA",
+      "documento": "FACE 58961",
+      "vencimiento": "2025-11-24",
+      "saldo": 11990.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Supermercado Frontera SPA",
+      "documento": "FACE 28305",
+      "vencimiento": "2025-08-20",
+      "saldo": 11400.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Supermercado Frontera SPA",
+      "documento": "FACE 30627",
+      "vencimiento": "2025-11-28",
+      "saldo": 15900.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Supermercado Frontera SPA",
+      "documento": "FACE 30697",
+      "vencimiento": "2025-12-01",
+      "saldo": 16140.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "HOTELERA MARIELLA CARVELLINO WELSCH E.I.R.L",
+      "documento": "FACE 364",
+      "vencimiento": "2025-07-24",
+      "saldo": 143999.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "HOTELERA MARIELLA CARVELLINO WELSCH E.I.R.L",
+      "documento": "FACE 416",
+      "vencimiento": "2025-11-04",
+      "saldo": 424901.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SPORTLIFE S.A.",
+      "documento": "FACE 9264",
+      "vencimiento": "2026-01-29",
+      "saldo": 1330800.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "ROMERO SPA [ZONACAR]",
+      "documento": "FACE 3468",
+      "vencimiento": "2025-09-10",
+      "saldo": 69999.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ROMERO SPA [ZONACAR]",
+      "documento": "FACE 3621",
+      "vencimiento": "2025-11-11",
+      "saldo": 30000.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ROMERO SPA [ZONACAR]",
+      "documento": "FACE 3736",
+      "vencimiento": "2025-12-01",
+      "saldo": 60000.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "PRISMA ESTACIONES DE SERVICIOS LIMITADA",
+      "documento": "FACE 88405",
+      "vencimiento": "2025-09-23",
+      "saldo": 9483.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SOCIEDAD CONCESIONARIA RUTA 5 TALCA-CHILLAN S.A.",
+      "documento": "FXCE 1629876",
+      "vencimiento": "2026-01-16",
+      "saldo": 13200.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "FERRETERIA LA CASA DEL ELECTRICO LIMITADA",
+      "documento": "FACE 7065",
+      "vencimiento": "2025-04-28",
+      "saldo": 24750.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "MercadoLibre Chile LTDA",
+      "documento": "FACE 8350333",
+      "vencimiento": "2025-06-18",
+      "saldo": 1102.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "MercadoLibre Chile LTDA",
+      "documento": "FACE 8345195",
+      "vencimiento": "2025-06-18",
+      "saldo": 29995.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "MercadoLibre Chile LTDA",
+      "documento": "FACE 8345194",
+      "vencimiento": "2025-06-18",
+      "saldo": 7368.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "MercadoLibre Chile LTDA",
+      "documento": "FACE 11052828",
+      "vencimiento": "2025-12-02",
+      "saldo": 28990.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "MercadoLibre Chile LTDA",
+      "documento": "FACE 11055918",
+      "vencimiento": "2025-12-02",
+      "saldo": 8700.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "MercadoLibre Chile LTDA",
+      "documento": "FACE 11055927",
+      "vencimiento": "2025-12-02",
+      "saldo": 25211.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "MercadoLibre Chile LTDA",
+      "documento": "FACE 11055915",
+      "vencimiento": "2025-12-02",
+      "saldo": 8700.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "MercadoLibre Chile LTDA",
+      "documento": "FACE 11055919",
+      "vencimiento": "2025-12-02",
+      "saldo": 25211.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Equipamientos y Repuestos Automotrices Lujan SPA",
+      "documento": "FACE 28218",
+      "vencimiento": "2025-04-28",
+      "saldo": 22967.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "EL CONGRESO SPA",
+      "documento": "FACE 524",
+      "vencimiento": "2025-08-18",
+      "saldo": 43500.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "EL CONGRESO SPA",
+      "documento": "FACE 609",
+      "vencimiento": "2025-10-24",
+      "saldo": 42500.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "COMERCIAL GLOBEX SPA",
+      "documento": "FACE 17520",
+      "vencimiento": "2025-07-14",
+      "saldo": 23960.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SOC COMERCIAL VENEGAS Y CIA LIMITADA",
+      "documento": "FACE 121473",
+      "vencimiento": "2026-01-09",
+      "saldo": 33900.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Operadora de Sistemas Electros SPA",
+      "documento": "FXCE 2425131",
+      "vencimiento": "2026-01-31",
+      "saldo": 13053.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "Operadora de Sistemas Electros SPA",
+      "documento": "FXCE 2422399",
+      "vencimiento": "2026-01-31",
+      "saldo": 5200.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "Operadora de Sistemas Electros SPA",
+      "documento": "FXCE 2469479",
+      "vencimiento": "2026-01-31",
+      "saldo": 221314.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "COMERCIALIZADORA ACEITON LTDA",
+      "documento": "FACE 5276",
+      "vencimiento": "2026-01-07",
+      "saldo": 18760.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "HMG SPA",
+      "documento": "FACE 1268",
+      "vencimiento": "2025-12-26",
+      "saldo": 128002.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "CYS PROYECTOS MINEROS SPA",
+      "documento": "FACE 2342",
+      "vencimiento": "2025-07-12",
+      "saldo": 33320.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SALERNO SA",
+      "documento": "FACE 6768",
+      "vencimiento": "2025-11-03",
+      "saldo": 82500.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Sociedad Comercial de Marketing MV SPA",
+      "documento": "FACE 98805",
+      "vencimiento": "2025-03-13",
+      "saldo": 3201.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Sociedad Comercial de Marketing MV SPA",
+      "documento": "FACE 113744",
+      "vencimiento": "2026-01-28",
+      "saldo": 147512.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "RESTAURANT GASTRONOMICO ROBERTO OSVALDO SALAS CORTES EMPRESA INDIVIDUA",
+      "documento": "FACE 133",
+      "vencimiento": "2025-08-14",
+      "saldo": 30100.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "RESTAURANT GASTRONOMICO ROBERTO OSVALDO SALAS CORTES EMPRESA INDIVIDUA",
+      "documento": "FACE 135",
+      "vencimiento": "2025-08-16",
+      "saldo": 22700.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "EQUIPA CHILE EQUIPAMIENTO MINERO SPA",
+      "documento": "FACE 1541",
+      "vencimiento": "2025-12-22",
+      "saldo": 359570.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "EQUIPA CHILE EQUIPAMIENTO MINERO SPA",
+      "documento": "FACE 1815",
+      "vencimiento": "2026-01-05",
+      "saldo": 258420.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "APCIS. SPA",
+      "documento": "FXCE 34",
+      "vencimiento": "2026-01-23",
+      "saldo": 750000.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "EPP MULTISERVIC SPA",
+      "documento": "FACE 2594",
+      "vencimiento": "2025-12-16",
+      "saldo": 20706.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ESTUDIO BAUM ARQUITECTOS SPA",
+      "documento": "FACE 41",
+      "vencimiento": "2026-01-08",
+      "saldo": 3571052.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Supermercado del Neumático Ltda.",
+      "documento": "FACE 586833",
+      "vencimiento": "2025-06-30",
+      "saldo": 11155.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "HIPERMERCADOS TOTTUS S.A.",
+      "documento": "FACE 10936252",
+      "vencimiento": "2025-11-26",
+      "saldo": 18533.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "HIPERMERCADOS TOTTUS S.A.",
+      "documento": "FACE 11014607",
+      "vencimiento": "2025-12-22",
+      "saldo": 51230.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ROSSELOT Y FIGUEROA LIMITADA",
+      "documento": "FACE 275157",
+      "vencimiento": "2026-02-05",
+      "saldo": 537017.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "IMPORTADORA Y EXPORTADORA COMEX LTDA",
+      "documento": "FACE 73223",
+      "vencimiento": "2025-09-12",
+      "saldo": 53276.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "IMPORTADORA Y EXPORTADORA COMEX LTDA",
+      "documento": "FACE 75270",
+      "vencimiento": "2026-01-08",
+      "saldo": 175525.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "IMPORTADORA Y EXPORTADORA COMEX LTDA",
+      "documento": "FACE 75327",
+      "vencimiento": "2026-01-16",
+      "saldo": 38556.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "IMPORTADORA Y EXPORTADORA COMEX LTDA",
+      "documento": "FACE 75423",
+      "vencimiento": "2026-01-18",
+      "saldo": 120261.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "IMPORTADORA Y EXPORTADORA COMEX LTDA",
+      "documento": "FACE 75609",
+      "vencimiento": "2026-02-06",
+      "saldo": 230057.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "IMPORTADORA Y EXPORTADORA COMEX LTDA",
+      "documento": "FACE 75627",
+      "vencimiento": "2026-02-07",
+      "saldo": 16731.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "BOTTAI HERMANOS S.A.",
+      "documento": "FACE 167093",
+      "vencimiento": "2025-10-10",
+      "saldo": 16727.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ELECTRICIDAD GOBANTES S A",
+      "documento": "FACE 6771723",
+      "vencimiento": "2026-01-08",
+      "saldo": 2793168.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ELECTRICIDAD GOBANTES S A",
+      "documento": "FACE 6775045",
+      "vencimiento": "2026-01-11",
+      "saldo": 429352.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ELECTRICIDAD GOBANTES S A",
+      "documento": "FACE 6779458",
+      "vencimiento": "2026-01-16",
+      "saldo": 3221925.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "ELECTRICIDAD GOBANTES S A",
+      "documento": "FACE 6783834",
+      "vencimiento": "2026-01-21",
+      "saldo": 86918.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "ELECTRICIDAD GOBANTES S A",
+      "documento": "FACE 6790717",
+      "vencimiento": "2026-01-29",
+      "saldo": 6703437.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "ELECTRICIDAD GOBANTES S A",
+      "documento": "FACE 6793291",
+      "vencimiento": "2026-01-06",
+      "saldo": 54383.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "RENDIC HERMANOS S.A.",
+      "documento": "FACE 42447872",
+      "vencimiento": "2025-06-30",
+      "saldo": 24560.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "RENDIC HERMANOS S.A.",
+      "documento": "FACE 42447873",
+      "vencimiento": "2025-06-30",
+      "saldo": 27479.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "RENDIC HERMANOS S.A.",
+      "documento": "FACE 42447874",
+      "vencimiento": "2025-06-30",
+      "saldo": 32244.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "RENDIC HERMANOS S.A.",
+      "documento": "FACE 42448300",
+      "vencimiento": "2025-06-30",
+      "saldo": 14196.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "RENDIC HERMANOS S.A.",
+      "documento": "FACE 43405886",
+      "vencimiento": "2025-12-04",
+      "saldo": 28103.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "RENDIC HERMANOS S.A.",
+      "documento": "FACE 43408319",
+      "vencimiento": "2025-12-04",
+      "saldo": 2050.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "PONTIFICIA UNIVERSIDAD CATOLICA DE CHILE",
+      "documento": "FXCE 545325",
+      "vencimiento": "2026-01-17",
+      "saldo": 420000.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "VETO Y CIA LTDA",
+      "documento": "FACE 886304",
+      "vencimiento": "2025-09-03",
+      "saldo": 13179.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "CHILEMAT",
+      "documento": "FACE 319675",
+      "vencimiento": "2025-12-31",
+      "saldo": 4384.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "AUTORENTAS DEL PACIFICO SPA",
+      "documento": "FACE 1318674",
+      "vencimiento": "2026-01-23",
+      "saldo": 102672.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "AUTORENTAS DEL PACIFICO SPA",
+      "documento": "FACE 1316246",
+      "vencimiento": "2026-01-03",
+      "saldo": 273488.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Distribuidora Regalogar Ltda.",
+      "documento": "FACE 267517",
+      "vencimiento": "2026-02-11",
+      "saldo": 22812.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "SERVICIOS EQUIFAX CHILE LIMITADA",
+      "documento": "FACE 4032589",
+      "vencimiento": "2026-01-30",
+      "saldo": 46330.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "COMERCIALIZADORA DE ART DE PROTECCION Y SEGURIDAD INDUSTRIA",
+      "documento": "FACE 3512781",
+      "vencimiento": "2026-01-02",
+      "saldo": 44658.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "COMERCIALIZADORA DE ART DE PROTECCION Y SEGURIDAD INDUSTRIA",
+      "documento": "FACE 3531308",
+      "vencimiento": "2026-02-04",
+      "saldo": 36278.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "COMERCIALIZADORA DE ART DE PROTECCION Y SEGURIDAD INDUSTRIA",
+      "documento": "FACE 3537781",
+      "vencimiento": "2026-01-09",
+      "saldo": 89956.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "DHL Express Ltda",
+      "documento": "FACE 4635533",
+      "vencimiento": "2025-12-22",
+      "saldo": 38771.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "LATAM AIRLINES GROUP S A ",
+      "documento": "FXCE 6447952",
+      "vencimiento": "2025-04-18",
+      "saldo": 688303.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "LATAM AIRLINES GROUP S A ",
+      "documento": "FACE 2466409",
+      "vencimiento": "2025-11-11",
+      "saldo": 50000.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "LATAM AIRLINES GROUP S A ",
+      "documento": "FXCE 6962555",
+      "vencimiento": "2026-01-17",
+      "saldo": 1127074.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "LATAM AIRLINES GROUP S A ",
+      "documento": "FXCE 6962372",
+      "vencimiento": "2026-01-17",
+      "saldo": 8759792.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "TELEFONICA CHILE S.A.",
+      "documento": "FACE 53583798",
+      "vencimiento": "2025-10-14",
+      "saldo": 48980.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "TELEFONICA CHILE S.A.",
+      "documento": "FACE 53584476",
+      "vencimiento": "2025-10-14",
+      "saldo": 60950.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "TELEFONICA CHILE S.A.",
+      "documento": "FACE 53981837",
+      "vencimiento": "2026-01-13",
+      "saldo": 61272.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "TELEFONICA CHILE S.A.",
+      "documento": "FACE 53981324",
+      "vencimiento": "2026-01-13",
+      "saldo": 49302.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "EMPRESA NACIONAL DE ENERGIA ENEX S.A.",
+      "documento": "FACE 3767492",
+      "vencimiento": "2026-01-30",
+      "saldo": 48820.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "RHONA S A ",
+      "documento": "FACE 2809027",
+      "vencimiento": "2025-08-28",
+      "saldo": 4213.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Empresa Nacional de Telecomunicaciones S.A.",
+      "documento": "FACE 20898207",
+      "vencimiento": "2026-01-16",
+      "saldo": 497297.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "SODEXO CHILE SPA",
+      "documento": "FACE 786183",
+      "vencimiento": "2025-10-25",
+      "saldo": 1649522.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SODEXO CHILE SPA",
+      "documento": "FACE 801504",
+      "vencimiento": "2026-01-08",
+      "saldo": 64486.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "DIMERC S  A ",
+      "documento": "FACE 12021949",
+      "vencimiento": "2026-01-11",
+      "saldo": 71217.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "DIMERC S  A ",
+      "documento": "FACE 12049372",
+      "vencimiento": "2026-02-06",
+      "saldo": 108140.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "Dictuc SA",
+      "documento": "FACE 191087",
+      "vencimiento": "2026-01-16",
+      "saldo": 2567446.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "SODIMAC S.A.",
+      "documento": "FACE 143122665",
+      "vencimiento": "2025-11-04",
+      "saldo": 14773.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SODIMAC S.A.",
+      "documento": "FACE 143900523",
+      "vencimiento": "2025-12-02",
+      "saldo": 38440.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SODIMAC S.A.",
+      "documento": "FACE 144380795",
+      "vencimiento": "2026-01-07",
+      "saldo": 15969.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SODIMAC S.A.",
+      "documento": "FACE 144352557",
+      "vencimiento": "2026-01-09",
+      "saldo": 45780.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SODIMAC S.A.",
+      "documento": "FACE 144678504",
+      "vencimiento": "2026-01-09",
+      "saldo": 30178.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "LOS GANADEROS S A",
+      "documento": "FACE 4584",
+      "vencimiento": "2025-11-14",
+      "saldo": 78000.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "DARTEL S A",
+      "documento": "FACE 4300601",
+      "vencimiento": "2025-09-17",
+      "saldo": 4718.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "DARTEL S A",
+      "documento": "FACE 4402537",
+      "vencimiento": "2025-12-23",
+      "saldo": 29352.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ENTEL PCS",
+      "documento": "FACE 50670490",
+      "vencimiento": "2025-01-31",
+      "saldo": 1253321.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "ENTEL PCS",
+      "documento": "FACE 52493971",
+      "vencimiento": "2026-01-15",
+      "saldo": 440376.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "RUTA DEL MAIPO SOCIEDAD CONCESIONARIA  S A ",
+      "documento": "FXCE 7546672",
+      "vencimiento": "2026-02-09",
+      "saldo": 14800.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "RUTA DEL MAIPO SOCIEDAD CONCESIONARIA  S A ",
+      "documento": "FXCE 7552871",
+      "vencimiento": "2026-02-09",
+      "saldo": 12600.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "DIFOR CHILE S.A.",
+      "documento": "FACE 613223",
+      "vencimiento": "2026-01-07",
+      "saldo": 2100.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "EMPRESA NACIONAL DE CERTIFICACION ELECTRONICA SPA",
+      "documento": "FACE 2879103",
+      "vencimiento": "2025-03-17",
+      "saldo": 29738.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SOC  CONCESIONARIA AUTOPISTA CENTRAL S A ",
+      "documento": "FXCE 19127453",
+      "vencimiento": "2026-02-02",
+      "saldo": 30061.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "SOC  CONCESIONARIA AUTOPISTA CENTRAL S A ",
+      "documento": "FACE 12579935",
+      "vencimiento": "2026-02-02",
+      "saldo": 76970.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "ARTIKOS CHILE S.A.",
+      "documento": "FACE 211467",
+      "vencimiento": "2026-01-30",
+      "saldo": 23638.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "SOC CONCESIONARIA VESPUCIO NORTE EXPRESS S A ",
+      "documento": "FACE 4722572",
+      "vencimiento": "2026-01-20",
+      "saldo": 223150.0,
+      "origen": "nacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "KITCHEN CENTER",
+      "documento": "FACE 11354867",
+      "vencimiento": "2025-10-20",
+      "saldo": 109980.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Banco de Chile",
+      "documento": "FXCE 27559243",
+      "vencimiento": "2025-10-30",
+      "saldo": 563346.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Banco de Chile",
+      "documento": "FXCE 27948827",
+      "vencimiento": "2025-12-28",
+      "saldo": 563346.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SANTANDER",
+      "documento": "FACE 53707667",
+      "vencimiento": "2025-11-13",
+      "saldo": 38833.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SANTANDER",
+      "documento": "FACE 53984673",
+      "vencimiento": "2025-12-04",
+      "saldo": 27354.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SANTANDER",
+      "documento": "FACE 54065962",
+      "vencimiento": "2025-12-18",
+      "saldo": 38212.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "CHUBB SEGUROS CHILE S.A",
+      "documento": "FACE 3943364",
+      "vencimiento": "2025-12-15",
+      "saldo": 66041.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "MetLife Chile Seguros de Vida S.A.",
+      "documento": "FACE 1633288",
+      "vencimiento": "2026-01-09",
+      "saldo": 3006042.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "Huawei (Chile) S.A.",
+      "documento": "FACE 52667",
+      "vencimiento": "2025-12-11",
+      "saldo": 399993.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "NORCONTROL CHILE S.A.",
+      "documento": "FACE 10947",
+      "vencimiento": "2025-11-10",
+      "saldo": 2975000.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "SOLUCIONES CONSTRUCTIVAS",
+      "documento": "FACE 130621",
+      "vencimiento": "2025-11-11",
+      "saldo": 67550.0,
+      "origen": "nacional",
+      "vencido": true
+    },
+    {
+      "proveedor": "MOBILTEX",
+      "documento": "INV 122325",
+      "vencimiento": "2026-01-14",
+      "saldo": 2725203.0,
+      "origen": "internacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "CERANODE VV",
+      "documento": "INV 330089",
+      "vencimiento": "2026-02-26",
+      "saldo": 3956854.0,
+      "origen": "internacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "DAIRYLAND ELECTRICAL INDUSTRIES",
+      "documento": "INV 23847",
+      "vencimiento": "2026-02-13",
+      "saldo": 15770765.0,
+      "origen": "internacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "DAIRYLAND ELECTRICAL INDUSTRIES",
+      "documento": "INV 23794",
+      "vencimiento": "2026-03-01",
+      "saldo": 4327194.0,
+      "origen": "internacional",
+      "vencido": false
+    },
+    {
+      "proveedor": "PRO-MARK UTILITY SUPPLY. INC.",
+      "documento": "INV 43236",
+      "vencimiento": "2025-10-28",
+      "saldo": 229857.0,
+      "origen": "internacional",
+      "vencido": true
+    }
+  ]
+}

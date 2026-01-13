@@ -1,0 +1,92 @@
+{
+  "generado": "2026-01-13T08:46:49.640137",
+  "año": 2026,
+  "logica": "Q1: Solo Compromiso | Q2-Q4: Compromiso > Forecast",
+  "por_mes": {
+    "1": {
+      "nombre": "Enero",
+      "compromiso": 312921896,
+      "forecast": 419375650,
+      "usar": 312921896,
+      "regla": "Solo C"
+    },
+    "2": {
+      "nombre": "Febrero",
+      "compromiso": 351232115,
+      "forecast": 407806015,
+      "usar": 351232115,
+      "regla": "Solo C"
+    },
+    "3": {
+      "nombre": "Marzo",
+      "compromiso": 403609815,
+      "forecast": 484609815,
+      "usar": 403609815,
+      "regla": "Solo C"
+    },
+    "4": {
+      "nombre": "Abril",
+      "compromiso": 281753000,
+      "forecast": 410753000,
+      "usar": 458753000,
+      "regla": "C>F"
+    },
+    "5": {
+      "nombre": "Mayo",
+      "compromiso": 175406000,
+      "forecast": 402406000,
+      "usar": 402406000,
+      "regla": "C>F"
+    },
+    "6": {
+      "nombre": "Junio",
+      "compromiso": 60500000,
+      "forecast": 442500000,
+      "usar": 442500000,
+      "regla": "C>F"
+    },
+    "7": {
+      "nombre": "Julio",
+      "compromiso": 179193500,
+      "forecast": 436193500,
+      "usar": 436193500,
+      "regla": "C>F"
+    },
+    "8": {
+      "nombre": "Agosto",
+      "compromiso": 132673000,
+      "forecast": 461673000,
+      "usar": 461673000,
+      "regla": "C>F"
+    },
+    "9": {
+      "nombre": "Septiembre",
+      "compromiso": 135316000,
+      "forecast": 584316000,
+      "usar": 584316000,
+      "regla": "C>F"
+    },
+    "10": {
+      "nombre": "Octubre",
+      "compromiso": 252257500,
+      "forecast": 588257500,
+      "usar": 588257500,
+      "regla": "C>F"
+    },
+    "11": {
+      "nombre": "Noviembre",
+      "compromiso": 130352000,
+      "forecast": 706352000,
+      "usar": 706352000,
+      "regla": "C>F"
+    },
+    "12": {
+      "nombre": "Diciembre",
+      "compromiso": 102540000,
+      "forecast": 733540000,
+      "usar": 733540000,
+      "regla": "C>F"
+    }
+  },
+  "total": 5881754826
+}
