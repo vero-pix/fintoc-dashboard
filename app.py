@@ -61,8 +61,12 @@ def get_forecast_2026():
         df = pd.read_excel(BytesIO(response.content))
         df_año = df[df['Año'] == 2026].copy()
         
-        df_año['Forecast'] = df_año['Forecast'].apply(parse_clp)
-        df_año['Compromiso'] = df_año['Compromiso'].apply(parse_clp)
+        # Nombres de columnas actualizados
+        col_forecast = 'Forecast del mes\n(Se modifica del día 3 de cada mes)'
+        col_compromiso = 'Compromiso Inicio Mes'
+        
+        df_año['Forecast'] = df_año[col_forecast].apply(parse_clp)
+        df_año['Compromiso'] = df_año[col_compromiso].apply(parse_clp)
         
         resultado = []
         for mes in MESES_ORDEN:

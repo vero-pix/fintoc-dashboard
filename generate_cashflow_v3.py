@@ -103,9 +103,13 @@ def get_forecast_from_sheet():
         print(f"⚠️  No hay datos para {AÑO_FORECAST}")
         return None
     
+    # Nombres de columnas actualizados
+    col_forecast = 'Forecast del mes\n(Se modifica del día 3 de cada mes)'
+    col_compromiso = 'Compromiso Inicio Mes'
+    
     # Parsear montos
-    df_año['Forecast'] = df_año['Forecast'].apply(parse_clp)
-    df_año['Compromiso'] = df_año['Compromiso'].apply(parse_clp)
+    df_año['Forecast'] = df_año[col_forecast].apply(parse_clp)
+    df_año['Compromiso'] = df_año[col_compromiso].apply(parse_clp)
     
     # Aplicar lógica por fila
     def calcular_usar(row):
