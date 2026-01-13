@@ -414,17 +414,27 @@ CASHFLOW_SEMANAL_HTML = """
                 </table>
             </div>
             <div>
-                <h3 class="section">Top 5 Salidas</h3>
+                <h3 class="section">Salidas Semana <span class="badge badge-rec">Rec + CxP 7d</span></h3>
                 <table>
                     <thead>
-                <tr><th>Concepto</th><th class="center">Fecha</th><th class="center">Tipo</th><th class="right">Monto</th></tr>
+                        <tr><th>Concepto</th><th class="center">Fecha</th><th class="center">Tipo</th><th class="right">Monto</th></tr>
                     </thead>
                     <tbody>
-                        ROWS_TOP_SALIDAS
+                        ROWS_SALIDAS_SEMANA
                     </tbody>
                 </table>
             </div>
         </div>
+        
+        <h3 class="section">Top 5 CxP Pendientes <span class="badge badge-cxp">Todas las fechas</span></h3>
+        <table>
+            <thead>
+                <tr><th>Proveedor</th><th>Documento</th><th class="center">Vencimiento</th><th class="center">Días</th><th class="right">Monto</th></tr>
+            </thead>
+            <tbody>
+                ROWS_CXP_PENDIENTES
+            </tbody>
+        </table>
         
         <div class="footer">
             Cash Flow CathPro | ApiVV + Skualo CxC/CxP + Recurrentes | FECHA_PLACEHOLDER
@@ -898,39 +908,66 @@ def cashflow_semanal():
             <td class="right verde">{fmt_full(e['saldo'])}</td>
         </tr>'''
     
-    # Top salidas (recurrentes + CxP) con fecha y documento
+    # Top salidas SEMANA (recurrentes + CxP que vencen en 7 días)
     hoy = now_chile().date()
-    salidas_todas = []
+    fin_semana = hoy + timedelta(days=7)
+    salidas_semana = []
+    
+    # Recurrentes de la semana
     for r in RECURRENTES:
-        # Calcular próxima fecha del recurrente
         dia_rec = r['dia']
         if hoy.day <= dia_rec:
             fecha_rec = hoy.replace(day=dia_rec)
         else:
-            # Siguiente mes
             if hoy.month == 12:
                 fecha_rec = hoy.replace(year=hoy.year+1, month=1, day=dia_rec)
             else:
                 fecha_rec = hoy.replace(month=hoy.month+1, day=dia_rec)
-        salidas_todas.append({'concepto': r['concepto'], 'monto': r['monto'], 'tipo': 'rec', 'fecha': fecha_rec, 'documento': ''})
-    for c in cxp_detalle:
-        fecha_cxp = c.get('vencimiento') or hoy
-        doc_cxp = c.get('documento', '')
-        salidas_todas.append({'concepto': c['proveedor'], 'monto': c['saldo'], 'tipo': 'cxp', 'fecha': fecha_cxp, 'documento': doc_cxp})
+        # Solo si cae en los próximos 7 días
+        if hoy <= fecha_rec <= fin_semana:
+            salidas_semana.append({'concepto': r['concepto'], 'monto': r['monto'], 'tipo': 'rec', 'fecha': fecha_rec})
     
-    top_salidas = sorted(salidas_todas, key=lambda x: x['monto'], reverse=True)[:5]
-    rows_top_salidas = ""
-    for s in top_salidas:
+    # CxP que vencen en los próximos 7 días
+    for c in cxp_detalle:
+        fecha_cxp = c.get('vencimiento')
+        if fecha_cxp and hoy <= fecha_cxp <= fin_semana:
+            salidas_semana.append({'concepto': c['proveedor'], 'monto': c['saldo'], 'tipo': 'cxp', 'fecha': fecha_cxp, 'documento': c.get('documento', '')})
+    
+    salidas_semana = sorted(salidas_semana, key=lambda x: x['monto'], reverse=True)[:5]
+    rows_salidas_semana = ""
+    for s in salidas_semana:
         badge_class = 'badge-rec' if s['tipo'] == 'rec' else 'badge-cxp'
         bg = 'style="background:#fff5f5"' if s['monto'] > 50000000 else ''
         fecha_str = fecha_es(s['fecha'])
-        doc_str = s.get('documento', '')[:12] if s.get('documento') else ''
-        concepto_display = f"{s['concepto'][:30]}{f' <small style=color:#888>{doc_str}</small>' if doc_str else ''}"
-        rows_top_salidas += f'''<tr {bg}>
-            <td>{concepto_display}</td>
+        rows_salidas_semana += f'''<tr {bg}>
+            <td>{s['concepto'][:35]}</td>
             <td class="center">{fecha_str}</td>
             <td class="center"><span class="badge {badge_class}">{s['tipo']}</span></td>
             <td class="right">{fmt_full(s['monto'])}</td>
+        </tr>'''
+    
+    if not rows_salidas_semana:
+        rows_salidas_semana = '<tr><td colspan="4" style="text-align:center;color:#888">Sin salidas CxP en los próximos 7 días</td></tr>'
+    
+    # Top 5 CxP Pendientes (TODAS, sin importar fecha)
+    top_cxp_pendientes = sorted(cxp_detalle, key=lambda x: x['saldo'], reverse=True)[:5]
+    rows_cxp_pendientes = ""
+    for c in top_cxp_pendientes:
+        fecha_str = fecha_es(c.get('vencimiento'))
+        dias_venc = c.get('dias_vencido', 0)
+        if dias_venc > 0:
+            dias_str = f'<span style="color:#dc3545">+{dias_venc}d</span>'
+        elif dias_venc < 0:
+            dias_str = f'<span style="color:#28a745">{dias_venc}d</span>'
+        else:
+            dias_str = 'Hoy'
+        doc_str = c.get('documento', '')[:15]
+        rows_cxp_pendientes += f'''<tr>
+            <td>{c['proveedor'][:30]}</td>
+            <td><small>{doc_str}</small></td>
+            <td class="center">{fecha_str}</td>
+            <td class="center">{dias_str}</td>
+            <td class="right">{fmt_full(c['saldo'])}</td>
         </tr>'''
     
     # Datos para gráfico (fechas en español)
@@ -959,7 +996,8 @@ def cashflow_semanal():
     html = html.replace('TAGS_DIAS_PAGO', tags_html)
     html = html.replace('ROWS_DIARIO', rows_diario)
     html = html.replace('ROWS_TOP_ENTRADAS', rows_top_entradas)
-    html = html.replace('ROWS_TOP_SALIDAS', rows_top_salidas)
+    html = html.replace('ROWS_SALIDAS_SEMANA', rows_salidas_semana)
+    html = html.replace('ROWS_CXP_PENDIENTES', rows_cxp_pendientes)
     html = html.replace('CHART_LABELS', str(chart_labels))
     html = html.replace('CHART_ENTRADAS', str(chart_entradas))
     html = html.replace('CHART_SALIDAS', str(chart_salidas))
