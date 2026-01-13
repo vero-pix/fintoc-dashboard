@@ -26,6 +26,8 @@ def main():
         'total_eur': total_eur,
         'fondos_mutuos': saldos_skualo['fondos_mutuos'],
         'por_cobrar': saldos_skualo['por_cobrar'],
+        'por_pagar_nacional': saldos_skualo['por_pagar_nacional'],
+        'por_pagar_internacional': saldos_skualo['por_pagar_internacional'],
         'por_pagar_total': saldos_skualo['por_pagar_total'],
     }
     
@@ -35,12 +37,13 @@ def main():
     mailer = Mailer()
     mailer.send_daily_balances(balances, saldos_skualo, variaciones)
     
-    # Guardar saldos actuales DESPUÉS de enviar
+    # Guardar saldos actuales DESPUÉS de enviar (ahora con nacional/internacional separado)
     historico.guardar_saldos(
         total_clp, total_usd, total_eur,
         saldos_skualo['fondos_mutuos'],
         saldos_skualo['por_cobrar'],
-        saldos_skualo['por_pagar_total']
+        saldos_skualo['por_pagar_nacional'],
+        saldos_skualo['por_pagar_internacional']
     )
     
     # Verificar alertas

@@ -1,0 +1,87 @@
+{
+  "defaultDias": 30,
+  "clientes": [
+    {
+      "nombre": "CENTINELA",
+      "dias": 10
+    },
+    {
+      "nombre": "CODELCO",
+      "dias": 30
+    },
+    {
+      "nombre": "COLLAHUASI",
+      "dias": 10
+    },
+    {
+      "nombre": "COPEC",
+      "dias": 15
+    },
+    {
+      "nombre": "ENAP",
+      "dias": 30
+    },
+    {
+      "nombre": "MINERA LOS PELAMBRES",
+      "dias": 15
+    },
+    {
+      "nombre": "MONTEC",
+      "dias": 60
+    },
+    {
+      "nombre": "TECHINT",
+      "dias": 30
+    }
+  ],
+  "recurrentes": [
+    {
+      "concepto": "ARRIENDO OFICINA",
+      "dia": 5,
+      "monto": 1800000,
+      "frecuencia": "mensual"
+    },
+    {
+      "concepto": "Leasing BCI1",
+      "dia": 5,
+      "monto": 3200000,
+      "frecuencia": "mensual"
+    },
+    {
+      "concepto": "PREVIRED",
+      "dia": 7,
+      "monto": 32000000,
+      "frecuencia": "mensual"
+    },
+    {
+      "concepto": "Leasing Oficina",
+      "dia": 10,
+      "monto": 1229177,
+      "frecuencia": "mensual"
+    },
+    {
+      "concepto": "LEASING BCI",
+      "dia": 15,
+      "monto": 3200000,
+      "frecuencia": "mensual"
+    },
+    {
+      "concepto": "Leaseback",
+      "dia": 15,
+      "monto": 1800000,
+      "frecuencia": "mensual"
+    },
+    {
+      "concepto": "SII - IVA",
+      "dia": 16,
+      "monto": 115000000,
+      "frecuencia": "mensual"
+    },
+    {
+      "concepto": "REMUNERACIONES",
+      "dia": 27,
+      "monto": 105000000,
+      "frecuencia": "mensual"
+    }
+  ]
+}

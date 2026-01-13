@@ -22,7 +22,11 @@ class Mailer:
         body = self._build_body(balances, saldos_skualo, variaciones)
         return self._send_email(subject, body)
 
-    def _formato_variacion(self, valor, moneda='CLP'):
+    def _formato_variacion(self, valor, moneda='CLP', invertir=False):
+        """
+        Formatea variación con flecha y color.
+        invertir=True para CxP (subir es malo = rojo, bajar es bueno = verde)
+        """
         if valor is None or valor == 0:
             return ""
         
@@ -36,10 +40,18 @@ class Mailer:
             simbolo = "$"
             formato = f"{abs(valor):,.0f}"
         
-        if valor > 0:
-            return f"<span style='color:#55b245;font-size:12px'>▲ +{simbolo}{formato}</span>"
+        if invertir:
+            # Para CxP: subir es malo (rojo), bajar es bueno (verde)
+            if valor > 0:
+                return f"<span style='color:#e74c3c;font-size:12px'>▲ +{simbolo}{formato}</span>"
+            else:
+                return f"<span style='color:#55b245;font-size:12px'>▼ -{simbolo}{formato}</span>"
         else:
-            return f"<span style='color:#e74c3c;font-size:12px'>▼ -{simbolo}{formato}</span>"
+            # Normal: subir es bueno (verde), bajar es malo (rojo)
+            if valor > 0:
+                return f"<span style='color:#55b245;font-size:12px'>▲ +{simbolo}{formato}</span>"
+            else:
+                return f"<span style='color:#e74c3c;font-size:12px'>▼ -{simbolo}{formato}</span>"
 
     def _build_body(self, balances, saldos_skualo, variaciones=None):
         total_clp = sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
@@ -50,13 +62,16 @@ class Mailer:
         posicion_neta = saldos_skualo['por_cobrar'] - saldos_skualo['por_pagar_total']
         posicion_color = "#55b245" if posicion_neta >= 0 else "#e74c3c"
         
-        # Variaciones
+        # Variaciones - activos (subir = verde)
         var_clp = self._formato_variacion(variaciones.get('total_clp'), 'CLP') if variaciones else ""
         var_usd = self._formato_variacion(variaciones.get('total_usd'), 'USD') if variaciones else ""
         var_eur = self._formato_variacion(variaciones.get('total_eur'), 'EUR') if variaciones else ""
         var_fondos = self._formato_variacion(variaciones.get('fondos_mutuos'), 'CLP') if variaciones else ""
         var_cobrar = self._formato_variacion(variaciones.get('por_cobrar'), 'CLP') if variaciones else ""
-        var_pagar = self._formato_variacion(variaciones.get('por_pagar_total'), 'CLP') if variaciones else ""
+        
+        # Variaciones - pasivos (subir = rojo, invertir=True)
+        var_pagar_nac = self._formato_variacion(variaciones.get('por_pagar_nacional'), 'CLP', invertir=True) if variaciones else ""
+        var_pagar_int = self._formato_variacion(variaciones.get('por_pagar_internacional'), 'CLP', invertir=True) if variaciones else ""
 
         rows = ""
         for b in balances:
@@ -98,7 +113,8 @@ class Mailer:
                 </td>
                 <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #9b59b6">
                     <span style="color:#7f8c8d;font-size:11px;font-weight:600">FONDOS MUTUOS</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">${saldos_skualo['fondos_mutuos']:,.0f}</span><br>{var_fondos}
+                    <span style="font-size:20px;font-weight:800;color:#242625">${saldos_skualo['fondos_mutuos']:,.0f}</span><br>
+                    <span style="color:#9b59b6;font-size:10px">* Cierre mes anterior</span>
                 </td>
             </tr>
         </table>
@@ -112,11 +128,11 @@ class Mailer:
                 </td>
                 <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #e74c3c;width:33%">
                     <span style="color:#7f8c8d;font-size:11px;font-weight:600">POR PAGAR NACIONAL</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">${saldos_skualo['por_pagar_nacional']:,.0f}</span>
+                    <span style="font-size:20px;font-weight:800;color:#242625">${saldos_skualo['por_pagar_nacional']:,.0f}</span><br>{var_pagar_nac}
                 </td>
                 <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #f46302;width:33%">
                     <span style="color:#7f8c8d;font-size:11px;font-weight:600">POR PAGAR INTERNACIONAL</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">${saldos_skualo['por_pagar_internacional']:,.0f}</span>
+                    <span style="font-size:20px;font-weight:800;color:#242625">${saldos_skualo['por_pagar_internacional']:,.0f}</span><br>{var_pagar_int}
                 </td>
             </tr>
         </table>
@@ -142,6 +158,13 @@ class Mailer:
         
         <div style="background:#e8f5e9;border-left:4px solid #55b245;padding:12px;border-radius:5px;margin-top:20px;text-align:center">
             <span style="color:#2e7d32;font-size:12px">Envío automático diario 8:00 y 18:00</span>
+        </div>
+        
+        <div style="margin-top:25px;text-align:center;padding:20px;background:#f8f9fa;border-radius:10px">
+            <span style="font-size:14px;font-weight:600;color:#242625">📊 Ver Dashboards en Línea</span><br><br>
+            <a href="https://fintoc-dashboard.onrender.com/dashboard?key=Ale234de" style="display:inline-block;background:#55b245;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;font-size:13px;margin:5px">Saldos Diarios</a>
+            <a href="https://fintoc-dashboard.onrender.com/cashflow?key=Ale234de" style="display:inline-block;background:#17a2b8;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;font-size:13px;margin:5px">Cash Flow Anual</a>
+            <a href="https://fintoc-dashboard.onrender.com/cashflow/semanal?key=Ale234de" style="display:inline-block;background:#f7941d;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;font-size:13px;margin:5px">Cash Flow Semanal</a>
         </div>
     </div>
 </body>
