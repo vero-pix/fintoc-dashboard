@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Flow Corto Plazo - CathPro</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #242625;
+        }
+        
+        .header {
+            background: #242625;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .header img {
+            height: 50px;
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 22px;
+            font-weight: 500;
+        }
+        
+        .header .update-info {
+            margin-left: auto;
+            text-align: right;
+        }
+        
+        .header .update-time {
+            color: #888;
+            font-size: 13px;
+        }
+        
+        .header .saldo-inicial {
+            color: #55b245;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 25px;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 25px;
+        }
+        
+        .tab {
+            padding: 12px 30px;
+            background: #e0e0e0;
+            border: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #55b245;
+        }
+        
+        .tab:hover:not(.active) {
+            background: #d0d0d0;
+        }
+        
+        .panel {
+            display: none;
+        }
+        
+        .panel.active {
+            display: block;
+        }
+        
+        /* Alert */
+        .alert-banner {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .alert-banner.warning {
+            background: linear-gradient(135deg, #f7941d, #e8850a);
+        }
+        
+        .alert-banner.success {
+            background: linear-gradient(135deg, #55b245, #449636);
+        }
+        
+        .alert-banner .icon { font-size: 24px; }
+        
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid #55b245;
+        }
+        
+        .card.orange { border-left-color: #f7941d; }
+        .card.red { border-left-color: #dc3545; }
+        .card.blue { border-left-color: #17a2b8; }
+        .card.purple { border-left-color: #6f42c1; }
+        
+        .card-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        
+        .card-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #242625;
+        }
+        
+        .card-value.positive { color: #55b245; }
+        .card-value.negative { color: #dc3545; }
+        
+        .card-subtitle {
+            font-size: 11px;
+            color: #888;
+            margin-top: 4px;
+        }
+        
+        /* Chart */
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+        
+        .chart-container h3 {
+            font-size: 15px;
+            color: #242625;
+            margin-bottom: 15px;
+        }
+        
+        /* Tables */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        @media (max-width: 900px) {
+            .two-columns { grid-template-columns: 1fr; }
+        }
+        
+        .section-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #242625;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #55b245;
+        }
+        
+        .data-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .data-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th {
+            background: #242625;
+            color: white;
+            padding: 10px 12px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .data-table th:last-child,
+        .data-table td:last-child {
+            text-align: right;
+        }
+        
+        .data-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+        
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover { background: #f9f9f9; }
+        .data-table tr.critical { background: #fff5f5; }
+        .data-table tr.highlight { background: #f0fff0; }
+        
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        .badge.recurrente { background: #e8f5e9; color: #2e7d32; }
+        .badge.cxp { background: #e3f2fd; color: #1976d2; }
+        .badge.dias { background: #f3e5f5; color: #7b1fa2; }
+        .badge.estimado { background: #fff3e0; color: #e65100; }
+        
+        .amount { font-family: 'SF Mono', Monaco, monospace; font-size: 12px; }
+        .amount.positive { color: #55b245; }
+        .amount.negative { color: #dc3545; }
+        
+        /* Aging bars */
+        .aging-container {
+            background: white;
+            border-radius: 10px;
+            padding: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .aging-bar { margin-bottom: 12px; }
+        .aging-bar:last-child { margin-bottom: 0; }
+        
+        .aging-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            font-size: 12px;
+        }
+        
+        .aging-track {
+            height: 20px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .aging-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .aging-fill.vigente { background: #55b245; }
+        .aging-fill.days-30 { background: #f7941d; }
+        .aging-fill.days-60 { background: #fd7e14; }
+        .aging-fill.days-90 { background: #dc3545; }
+        .aging-fill.days-90plus { background: #721c24; }
+        
+        /* Config summary */
+        .config-summary {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .config-summary h4 {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .config-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .config-tag {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            padding: 4px 12px;
+            font-size: 11px;
+        }
+        
+        .config-tag strong { color: #55b245; }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 11px;
+        }
+        
+        /* Saldo line indicator */
+        .saldo-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .saldo-indicator .line {
+            width: 30px;
+            height: 3px;
+            background: #f7941d;
+        }
+        
+        .saldo-indicator span {
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="data:image/png;base64,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" alt="CathPro Logo">
+        <h1>Cash Flow Corto Plazo</h1>
+        <div class="update-info">
+            <div class="saldo-inicial" id="headerSaldo">Saldo: $160.153.363</div>
+            <div class="update-time" id="headerTime">Actualizado: 13-01-2026 00:15</div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="showPanel('semanal')">Vista Semanal</button>
+            <button class="tab" onclick="showPanel('mensual')">Vista Mensual</button>
+            <button class="tab" onclick="showPanel('anual')">Vista Anual</button>
+        </div>
+        
+        <!-- ============================================================ -->
+        <!-- PANEL SEMANAL -->
+        <!-- ============================================================ -->
+        <div id="panel-semanal" class="panel active">
+            <!-- Alerta -->
+            <div class="alert-banner warning" id="alertaSemanal">
+                <span class="icon">⚠️</span>
+                <div>
+                    <strong>Atención 16-ene:</strong> Salidas de $125.6M (SII $115M + CxP). Confirmar cobro de Minera Los Pelambres ($87.9M) y ENAEX ($43.4M) antes de esa fecha.
+                </div>
+            </div>
+            
+            <!-- KPIs -->
+            <div class="cards-grid">
+                <div class="card blue">
+                    <div class="card-label">Saldo Inicial Hoy</div>
+                    <div class="card-value" id="kpiSaldoInicial">$160.153.363</div>
+                    <div class="card-subtitle">Fintoc - Solo CLP</div>
+                </div>
+                <div class="card">
+                    <div class="card-label">Entradas Semana</div>
+                    <div class="card-value positive" id="kpiEntradas">$161.267.785</div>
+                    <div class="card-subtitle">Cobranzas esperadas</div>
+                </div>
+                <div class="card orange">
+                    <div class="card-label">Salidas Semana</div>
+                    <div class="card-value" id="kpiSalidas">$145.426.547</div>
+                    <div class="card-subtitle">CxP + Recurrentes</div>
+                </div>
+                <div class="card purple">
+                    <div class="card-label">Saldo Final Esperado</div>
+                    <div class="card-value positive" id="kpiSaldoFinal">$175.994.601</div>
+                    <div class="card-subtitle">Proyección día 7</div>
+                </div>
+            </div>
+            
+            <!-- Gráfico -->
+            <div class="chart-container">
+                <h3>Evolución del Saldo Proyectado</h3>
+                <div class="saldo-indicator">
+                    <div class="line"></div>
+                    <span>Línea naranja = Saldo esperado (debe mantenerse > $0)</span>
+                </div>
+                <canvas id="chartSemanal" height="90"></canvas>
+            </div>
+            
+            <!-- Config -->
+            <div class="config-summary">
+                <h4>📋 Días de Pago Configurados (Default: 20 días)</h4>
+                <div class="config-tags">
+                    <span class="config-tag">CENTINELA <strong>10d</strong></span>
+                    <span class="config-tag">COLLAHUASI <strong>10d</strong></span>
+                    <span class="config-tag">COPEC <strong>15d</strong></span>
+                    <span class="config-tag">PELAMBRES <strong>15d</strong></span>
+                    <span class="config-tag">ENAP <strong>20d</strong></span>
+                    <span class="config-tag">CODELCO <strong>30d</strong></span>
+                    <span class="config-tag">TECHINT <strong>30d</strong></span>
+                    <span class="config-tag">MONTEC <strong>60d</strong></span>
+                </div>
+            </div>
+            
+            <!-- Detalle diario -->
+            <h3 class="section-title">Detalle Diario</h3>
+            <div class="data-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Entradas</th>
+                            <th>Salidas</th>
+                            <th>Neto Día</th>
+                            <th>Saldo Proyectado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaDetalleSemanal">
+                        <tr class="highlight">
+                            <td><strong>Hoy 12-ene</strong></td>
+                            <td class="amount">-</td>
+                            <td class="amount">-</td>
+                            <td class="amount">-</td>
+                            <td class="amount"><strong>$160.153.363</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Lun 13-ene</td>
+                            <td class="amount positive">$17.865.231</td>
+                            <td class="amount">$110.574</td>
+                            <td class="amount positive">+$17.754.657</td>
+                            <td class="amount">$177.908.020</td>
+                        </tr>
+                        <tr>
+                            <td>Mar 14-ene</td>
+                            <td class="amount positive">$87.918.413</td>
+                            <td class="amount">$2.786.714</td>
+                            <td class="amount positive">+$85.131.699</td>
+                            <td class="amount">$263.039.719</td>
+                        </tr>
+                        <tr>
+                            <td>Mié 15-ene</td>
+                            <td class="amount positive">$43.440.166</td>
+                            <td class="amount">$6.195.701</td>
+                            <td class="amount positive">+$37.244.465</td>
+                            <td class="amount">$300.284.184</td>
+                        </tr>
+                        <tr class="critical">
+                            <td><strong>Jue 16-ene</strong></td>
+                            <td class="amount">$0</td>
+                            <td class="amount negative">$125.622.424</td>
+                            <td class="amount negative"><strong>-$125.622.424</strong></td>
+                            <td class="amount"><strong>$174.661.760</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Vie 17-ene</td>
+                            <td class="amount">$0</td>
+                            <td class="amount">$10.518.721</td>
+                            <td class="amount negative">-$10.518.721</td>
+                            <td class="amount">$164.143.039</td>
+                        </tr>
+                        <tr>
+                            <td>Sáb 18-ene</td>
+                            <td class="amount">$0</td>
+                            <td class="amount">$120.261</td>
+                            <td class="amount negative">-$120.261</td>
+                            <td class="amount">$164.022.778</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Top movimientos -->
+            <div class="two-columns">
+                <div>
+                    <h3 class="section-title">Top 5 Salidas</h3>
+                    <div class="data-table">
+                        <table>
+                            <thead>
+                                <tr><th>Concepto</th><th>Fecha</th><th>Monto</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>SII - IVA <span class="badge recurrente">rec</span></td><td>16-ene</td><td>$115.000.000</td></tr>
+                                <tr><td>LATAM AIRLINES <span class="badge cxp">cxp</span></td><td>17-ene</td><td>$8.759.792</td></tr>
+                                <tr><td>ELECTRICIDAD GOBANTES <span class="badge cxp">cxp</span></td><td>16-ene</td><td>$3.221.925</td></tr>
+                                <tr><td>LEASING BCI <span class="badge recurrente">rec</span></td><td>15-ene</td><td>$3.200.000</td></tr>
+                                <tr><td>MOBILTEX <span class="badge cxp">cxp</span></td><td>14-ene</td><td>$2.725.203</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="section-title">Top 3 Entradas</h3>
+                    <div class="data-table">
+                        <table>
+                            <thead>
+                                <tr><th>Cliente</th><th>Fecha</th><th>Monto</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>MINERA LOS PELAMBRES <span class="badge dias">15d</span></td><td>14-ene</td><td>$87.918.413</td></tr>
+                                <tr><td>ENAEX S.A. <span class="badge dias">20d</span></td><td>15-ene</td><td>$43.440.166</td></tr>
+                                <tr><td>SOC. INV. AVIACIÓN <span class="badge dias">20d</span></td><td>13-ene</td><td>$8.204.375</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ============================================================ -->
+        <!-- PANEL MENSUAL -->
+        <!-- ============================================================ -->
+        <div id="panel-mensual" class="panel">
+            <div class="cards-grid">
+                <div class="card blue">
+                    <div class="card-label">Saldo Inicial</div>
+                    <div class="card-value">$160.153.363</div>
+                </div>
+                <div class="card">
+                    <div class="card-label">Entradas Mes</div>
+                    <div class="card-value positive">$285.000.000</div>
+                    <div class="card-subtitle">Estimación</div>
+                </div>
+                <div class="card orange">
+                    <div class="card-label">Salidas Mes</div>
+                    <div class="card-value">$263.229.177</div>
+                    <div class="card-subtitle">Recurrentes + CxP</div>
+                </div>
+                <div class="card purple">
+                    <div class="card-label">Saldo Final Mes</div>
+                    <div class="card-value positive">$181.924.186</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>Proyección Mensual por Semana</h3>
+                <canvas id="chartMensual" height="80"></canvas>
+            </div>
+            
+            <h3 class="section-title">Detalle por Semana</h3>
+            <div class="data-table">
+                <table>
+                    <thead>
+                        <tr><th>Semana</th><th>Período</th><th>Entradas</th><th>Salidas</th><th>Neto</th><th>Saldo</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>12-ene al 18-ene</td><td class="amount positive">$161.267.785</td><td class="amount">$145.426.547</td><td class="amount positive">+$15.841.238</td><td class="amount">$175.994.601</td></tr>
+                        <tr><td>2</td><td>19-ene al 25-ene</td><td class="amount positive">$45.000.000</td><td class="amount">$38.000.000</td><td class="amount positive">+$7.000.000</td><td class="amount">$182.994.601</td></tr>
+                        <tr class="critical"><td>3</td><td>26-ene al 01-feb</td><td class="amount positive">$50.000.000</td><td class="amount negative">$155.000.000</td><td class="amount negative">-$105.000.000</td><td class="amount">$77.994.601</td></tr>
+                        <tr><td>4</td><td>02-feb al 08-feb</td><td class="amount positive">$65.000.000</td><td class="amount">$42.000.000</td><td class="amount positive">+$23.000.000</td><td class="amount">$100.994.601</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3 class="section-title">Pagos Recurrentes Mensuales</h3>
+            <div class="data-table">
+                <table>
+                    <thead><tr><th>Día</th><th>Concepto</th><th>Monto</th></tr></thead>
+                    <tbody>
+                        <tr><td>5</td><td>ARRIENDO + Leasing BCI1</td><td>$5.000.000</td></tr>
+                        <tr><td>7</td><td>PREVIRED</td><td>$32.000.000</td></tr>
+                        <tr><td>10</td><td>Leasing Oficina</td><td>$1.229.177</td></tr>
+                        <tr><td>15</td><td>LEASING BCI + Leaseback</td><td>$5.000.000</td></tr>
+                        <tr class="critical"><td>16</td><td>SII - IVA</td><td><strong>$115.000.000</strong></td></tr>
+                        <tr class="critical"><td>27</td><td>REMUNERACIONES</td><td><strong>$105.000.000</strong></td></tr>
+                    </tbody>
+                    <tfoot><tr style="background:#f5f5f5"><td colspan="2"><strong>TOTAL</strong></td><td><strong>$263.229.177</strong></td></tr></tfoot>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ============================================================ -->
+        <!-- PANEL ANUAL -->
+        <!-- ============================================================ -->
+        <div id="panel-anual" class="panel">
+            <div class="alert-banner success">
+                <span class="icon">📊</span>
+                <div>Vista anual basada en proyección de recurrentes ($263M/mes) e ingresos estimados. Los datos son indicativos.</div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>Proyección Anual - Saldo Esperado por Mes</h3>
+                <canvas id="chartAnual" height="80"></canvas>
+            </div>
+            
+            <h3 class="section-title">Detalle Mensual</h3>
+            <div class="data-table">
+                <table>
+                    <thead><tr><th>Mes</th><th>Entradas</th><th>Salidas</th><th>Neto</th><th>Saldo</th><th></th></tr></thead>
+                    <tbody id="tablaAnual">
+                        <tr><td>Ene 2026</td><td class="amount positive">$285.000.000</td><td class="amount">$263.229.177</td><td class="amount positive">+$21.770.823</td><td class="amount">$181.924.186</td><td></td></tr>
+                        <tr><td>Feb 2026</td><td class="amount positive">$280.000.000</td><td class="amount">$263.229.177</td><td class="amount positive">+$16.770.823</td><td class="amount">$198.695.009</td><td><span class="badge estimado">est</span></td></tr>
+                        <tr><td>Mar 2026</td><td class="amount positive">$290.000.000</td><td class="amount">$263.229.177</td><td class="amount positive">+$26.770.823</td><td class="amount">$225.465.832</td><td><span class="badge estimado">est</span></td></tr>
+                        <tr><td>Abr 2026</td><td class="amount positive">$275.000.000</td><td class="amount">$263.229.177</td><td class="amount positive">+$11.770.823</td><td class="amount">$237.236.655</td><td><span class="badge estimado">est</span></td></tr>
+                        <tr><td>May 2026</td><td class="amount positive">$285.000.000</td><td class="amount">$263.229.177</td><td class="amount positive">+$21.770.823</td><td class="amount">$259.007.478</td><td><span class="badge estimado">est</span></td></tr>
+                        <tr><td>Jun 2026</td><td class="amount positive">$270.000.000</td><td class="amount">$263.229.177</td><td class="amount positive">+$6.770.823</td><td class="amount">$265.778.301</td><td><span class="badge estimado">est</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Aging -->
+            <div class="two-columns">
+                <div>
+                    <h3 class="section-title">Aging CxC</h3>
+                    <div class="aging-container">
+                        <div class="aging-bar"><div class="aging-label"><span>Vigente</span><span>$381.7M (91.6%)</span></div><div class="aging-track"><div class="aging-fill vigente" style="width:91.6%"></div></div></div>
+                        <div class="aging-bar"><div class="aging-label"><span>1-30 días</span><span>$28.5M (6.9%)</span></div><div class="aging-track"><div class="aging-fill days-30" style="width:6.9%"></div></div></div>
+                        <div class="aging-bar"><div class="aging-label"><span>31-60 días</span><span>$6.5M (1.6%)</span></div><div class="aging-track"><div class="aging-fill days-60" style="width:1.6%"></div></div></div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="section-title">Aging CxP</h3>
+                    <div class="aging-container">
+                        <div class="aging-bar"><div class="aging-label"><span>Vigente</span><span>$67.3M (62.8%)</span></div><div class="aging-track"><div class="aging-fill vigente" style="width:62.8%"></div></div></div>
+                        <div class="aging-bar"><div class="aging-label"><span>1-30 días</span><span>$21.8M (20.3%)</span></div><div class="aging-track"><div class="aging-fill days-30" style="width:20.3%"></div></div></div>
+                        <div class="aging-bar"><div class="aging-label"><span>31-60 días</span><span>$4.5M (4.2%)</span></div><div class="aging-track"><div class="aging-fill days-60" style="width:4.2%"></div></div></div>
+                        <div class="aging-bar"><div class="aging-label"><span>61-90 días</span><span>$6.5M (6.1%)</span></div><div class="aging-track"><div class="aging-fill days-90" style="width:6.1%"></div></div></div>
+                        <div class="aging-bar"><div class="aging-label"><span>+90 días</span><span>$7.0M (6.5%)</span></div><div class="aging-track"><div class="aging-fill days-90plus" style="width:6.5%"></div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        Cash Flow Corto Plazo CathPro | Saldo inicial: Fintoc | Proyecciones: Skualo + Configuración | <code>python cashflow_generator.py</code> para actualizar
+    </div>
+
+    <script>
+        // Tabs
+        function showPanel(panel) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('panel-' + panel).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        // Chart Semanal
+        const ctxSemanal = document.getElementById('chartSemanal').getContext('2d');
+        new Chart(ctxSemanal, {
+            type: 'bar',
+            data: {
+                labels: ['12-ene\n(Hoy)', '13-ene', '14-ene', '15-ene', '16-ene', '17-ene', '18-ene'],
+                datasets: [
+                    {
+                        label: 'Entradas',
+                        data: [12043975, 17865231, 87918413, 43440166, 0, 0, 0],
+                        backgroundColor: '#55b245',
+                        borderRadius: 4,
+                        order: 2
+                    },
+                    {
+                        label: 'Salidas',
+                        data: [-72152, -110574, -2786714, -6195701, -125622424, -10518721, -120261],
+                        backgroundColor: '#dc3545',
+                        borderRadius: 4,
+                        order: 3
+                    },
+                    {
+                        label: 'Saldo Proyectado',
+                        data: [160153363, 177908020, 263039719, 300284184, 174661760, 164143039, 164022778],
+                        type: 'line',
+                        borderColor: '#f7941d',
+                        backgroundColor: 'rgba(247, 148, 29, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#f7941d',
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        fill: true,
+                        tension: 0.2,
+                        yAxisID: 'y1',
+                        order: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                interaction: { intersect: false, mode: 'index' },
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                return ctx.dataset.label + ': $' + Math.abs(ctx.raw).toLocaleString('es-CL');
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        title: { display: true, text: 'Flujo Diario' },
+                        ticks: { callback: v => '$' + (v/1000000).toFixed(0) + 'M' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        title: { display: true, text: 'Saldo' },
+                        grid: { drawOnChartArea: false },
+                        ticks: { callback: v => '$' + (v/1000000).toFixed(0) + 'M' },
+                        min: 0
+                    }
+                }
+            }
+        });
+        
+        // Chart Mensual
+        const ctxMensual = document.getElementById('chartMensual').getContext('2d');
+        new Chart(ctxMensual, {
+            type: 'bar',
+            data: {
+                labels: ['Sem 1\n12-18 ene', 'Sem 2\n19-25 ene', 'Sem 3\n26 ene-1 feb', 'Sem 4\n2-8 feb'],
+                datasets: [
+                    {
+                        label: 'Entradas',
+                        data: [161267785, 45000000, 50000000, 65000000],
+                        backgroundColor: '#55b245',
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'Salidas',
+                        data: [145426547, 38000000, 155000000, 42000000],
+                        backgroundColor: '#dc3545',
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'Saldo',
+                        data: [175994601, 182994601, 77994601, 100994601],
+                        type: 'line',
+                        borderColor: '#f7941d',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#f7941d',
+                        pointRadius: 6,
+                        fill: false,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } },
+                scales: {
+                    y: { ticks: { callback: v => '$' + (v/1000000).toFixed(0) + 'M' } },
+                    y1: { position: 'right', grid: { drawOnChartArea: false }, ticks: { callback: v => '$' + (v/1000000).toFixed(0) + 'M' }, min: 0 }
+                }
+            }
+        });
+        
+        // Chart Anual
+        const ctxAnual = document.getElementById('chartAnual').getContext('2d');
+        new Chart(ctxAnual, {
+            type: 'line',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                datasets: [{
+                    label: 'Saldo Proyectado',
+                    data: [181924186, 198695009, 225465832, 237236655, 259007478, 265778301, 280000000, 295000000, 310000000, 325000000, 340000000, 355000000],
+                    borderColor: '#f7941d',
+                    backgroundColor: 'rgba(247, 148, 29, 0.1)',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#f7941d',
+                    pointRadius: 5,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: {
+                        ticks: { callback: v => '$' + (v/1000000).toFixed(0) + 'M' },
+                        min: 0
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

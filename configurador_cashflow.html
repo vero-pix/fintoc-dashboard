@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurador Cash Flow - CathPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #242625;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: #242625;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 22px;
+            font-weight: 500;
+        }
+        
+        .header .logo {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #55b245, #f7941d);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: #e0e0e0;
+            border: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #55b245;
+        }
+        
+        .tab:hover:not(.active) {
+            background: #d0d0d0;
+        }
+        
+        .panel {
+            background: white;
+            border-radius: 0 12px 12px 12px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: none;
+        }
+        
+        .panel.active {
+            display: block;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #242625;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #55b245;
+        }
+        
+        .default-config {
+            background: #e8f5e9;
+            border-left: 4px solid #55b245;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .default-config label {
+            font-weight: 500;
+        }
+        
+        .default-config input {
+            width: 80px;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .add-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .add-form input, .add-form select {
+            padding: 10px 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .add-form input[name="cliente"] {
+            flex: 2;
+            min-width: 200px;
+        }
+        
+        .add-form input[name="dias"], .add-form input[name="monto"] {
+            width: 120px;
+        }
+        
+        .add-form select {
+            width: 150px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #55b245;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #449636;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        
+        .btn-export {
+            background: #f7941d;
+            color: white;
+        }
+        
+        .btn-export:hover {
+            background: #e8850a;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        th {
+            background: #242625;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        th:last-child {
+            width: 80px;
+            text-align: center;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        
+        tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+        
+        /* Panel Proyección */
+        .projection-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .kpi-card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid #55b245;
+        }
+        
+        .kpi-card.orange { border-left-color: #f7941d; }
+        .kpi-card.red { border-left-color: #dc3545; }
+        .kpi-card.blue { border-left-color: #17a2b8; }
+        
+        .kpi-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .kpi-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        .kpi-value.positive { color: #55b245; }
+        .kpi-value.negative { color: #dc3545; }
+        
+        .timeline {
+            margin-top: 20px;
+        }
+        
+        .timeline-row {
+            display: grid;
+            grid-template-columns: 100px 1fr 120px 120px 120px;
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+        
+        .timeline-row.header {
+            background: #242625;
+            color: white;
+            font-weight: 500;
+            font-size: 12px;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .timeline-row:not(.header):hover {
+            background: #f5f5f5;
+        }
+        
+        .bar-container {
+            height: 24px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        
+        .bar {
+            height: 100%;
+            border-radius: 3px;
+            min-width: 2px;
+        }
+        
+        .bar.entrada { background: #55b245; }
+        .bar.salida { background: #dc3545; }
+        
+        .amount {
+            text-align: right;
+            font-family: monospace;
+        }
+        
+        .amount.positive { color: #55b245; }
+        .amount.negative { color: #dc3545; }
+        
+        .actions-bar {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #f7941d;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #856404;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .badge.mensual { background: #e3f2fd; color: #1976d2; }
+        .badge.quincenal { background: #f3e5f5; color: #7b1fa2; }
+        .badge.semanal { background: #e8f5e9; color: #388e3c; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">CP</div>
+        <h1>Configurador de Cash Flow</h1>
+    </div>
+    
+    <div class="container">
+        <div class="tabs">
+            <button class="tab active" onclick="showPanel('clientes')">Días Pago Clientes</button>
+            <button class="tab" onclick="showPanel('recurrentes')">Pagos Recurrentes</button>
+            <button class="tab" onclick="showPanel('proyeccion')">Proyección</button>
+        </div>
+        
+        <!-- Panel Clientes -->
+        <div id="panel-clientes" class="panel active">
+            <h3 class="section-title">Configuración de Días de Pago por Cliente</h3>
+            
+            <div class="default-config">
+                <label>📊 Default (Days Sales Outstanding):</label>
+                <input type="number" id="default-dias" value="7" min="1" max="180" onchange="actualizarDefault()">
+                <span>días para clientes sin configuración específica</span>
+            </div>
+            
+            <p style="margin-bottom:15px; color:#666;">Agrega excepciones para clientes con comportamiento de pago diferente al default:</p>
+            
+            <div class="add-form">
+                <input type="text" name="cliente" id="input-cliente" placeholder="Nombre del cliente (ej: COPEC)">
+                <input type="number" name="dias" id="input-dias" placeholder="Días" min="1" max="180">
+                <button class="btn btn-primary" onclick="agregarCliente()">+ Agregar</button>
+            </div>
+            
+            <table id="tabla-clientes">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Días de Pago</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-clientes">
+                </tbody>
+            </table>
+            
+            <div class="note">
+                💡 Los clientes no listados usarán el default de <strong id="note-default">7</strong> días.
+            </div>
+        </div>
+        
+        <!-- Panel Recurrentes -->
+        <div id="panel-recurrentes" class="panel">
+            <h3 class="section-title">Pagos Recurrentes</h3>
+            
+            <p style="margin-bottom:15px; color:#666;">Configura pagos fijos que se repiten cada mes (nómina, arriendos, servicios, etc.):</p>
+            
+            <div class="add-form">
+                <input type="text" name="concepto" id="input-concepto" placeholder="Concepto (ej: Nómina)">
+                <input type="number" name="dia" id="input-dia" placeholder="Día del mes" min="1" max="31">
+                <input type="number" name="monto" id="input-monto" placeholder="Monto CLP">
+                <select id="input-frecuencia">
+                    <option value="mensual">Mensual</option>
+                    <option value="quincenal">Quincenal</option>
+                    <option value="semanal">Semanal</option>
+                </select>
+                <button class="btn btn-primary" onclick="agregarRecurrente()">+ Agregar</button>
+            </div>
+            
+            <table id="tabla-recurrentes">
+                <thead>
+                    <tr>
+                        <th>Concepto</th>
+                        <th>Día</th>
+                        <th>Monto</th>
+                        <th>Frecuencia</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-recurrentes">
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Panel Proyección -->
+        <div id="panel-proyeccion" class="panel">
+            <div class="projection-header">
+                <h3 class="section-title" style="border:none; margin:0; padding:0;">Proyección Cash Flow - Próximos 14 días</h3>
+                <button class="btn btn-primary" onclick="calcularProyeccion()">🔄 Recalcular</button>
+            </div>
+            
+            <div class="kpi-row">
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Entradas</div>
+                    <div class="kpi-value positive" id="kpi-entradas">$0</div>
+                </div>
+                <div class="kpi-card orange">
+                    <div class="kpi-label">Total Salidas</div>
+                    <div class="kpi-value" id="kpi-salidas">$0</div>
+                </div>
+                <div class="kpi-card blue">
+                    <div class="kpi-label">Flujo Neto</div>
+                    <div class="kpi-value" id="kpi-neto">$0</div>
+                </div>
+                <div class="kpi-card red">
+                    <div class="kpi-label">Día Más Crítico</div>
+                    <div class="kpi-value" id="kpi-critico">-</div>
+                </div>
+            </div>
+            
+            <div class="timeline" id="timeline">
+                <div class="timeline-row header">
+                    <div>Fecha</div>
+                    <div>Flujo</div>
+                    <div>Entradas</div>
+                    <div>Salidas</div>
+                    <div>Neto</div>
+                </div>
+            </div>
+            
+            <div class="actions-bar">
+                <button class="btn btn-export" onclick="exportarConfig()">📥 Exportar Configuración</button>
+                <button class="btn btn-primary" onclick="copiarJSON()">📋 Copiar JSON</button>
+            </div>
+            
+            <div class="note">
+                ⚠️ Esta proyección usa datos de ejemplo. Para datos reales, integra con el módulo <code>skualo_cashflow.py</code>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =====================================================================
+        // DATA STORE
+        // =====================================================================
+        let config = {
+            defaultDias: 7,
+            clientes: [
+                { nombre: "COPEC", dias: 15 },
+                { nombre: "COLLAHUASI", dias: 45 },
+                { nombre: "CENTINELA", dias: 45 },
+                { nombre: "TECHINT", dias: 30 },
+                { nombre: "ENAP", dias: 20 },
+                { nombre: "CODELCO", dias: 60 },
+            ],
+            recurrentes: [
+                { concepto: "Nómina", dia: 30, monto: 85000000, frecuencia: "mensual" },
+                { concepto: "Arriendo Oficina", dia: 5, monto: 3500000, frecuencia: "mensual" },
+                { concepto: "Previred", dia: 13, monto: 30000000, frecuencia: "mensual" },
+                { concepto: "SII - IVA", dia: 20, monto: 15000000, frecuencia: "mensual" },
+                { concepto: "Servicios Básicos", dia: 15, monto: 1200000, frecuencia: "mensual" },
+            ]
+        };
+        
+        // Datos de ejemplo para proyección (simula output de skualo_cashflow.py)
+        let datosProyeccion = {
+            cobranzas: [
+                { cliente: "SONACOL", monto: 15144522, fechaFactura: "2025-01-12" },
+                { cliente: "ENAP", monto: 5267694, fechaFactura: "2025-01-10" },
+                { cliente: "TECHINT", monto: 96756535, fechaFactura: "2025-01-05" },
+                { cliente: "COPEC", monto: 45000000, fechaFactura: "2025-01-08" },
+                { cliente: "ENAEX", monto: 43440166, fechaFactura: "2025-01-10" },
+            ],
+            pagos: [
+                { proveedor: "LATAM", monto: 8759792, vencimiento: "2025-01-17" },
+                { proveedor: "ELECTRICIDAD GOBANTES", monto: 3221925, vencimiento: "2025-01-16" },
+                { proveedor: "MOBILTEX", monto: 2725203, vencimiento: "2025-01-14" },
+                { proveedor: "DICTUC", monto: 2567446, vencimiento: "2025-01-16" },
+            ]
+        };
+
+        // =====================================================================
+        // UI FUNCTIONS
+        // =====================================================================
+        function showPanel(panel) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            
+            document.getElementById('panel-' + panel).classList.add('active');
+            event.target.classList.add('active');
+            
+            if (panel === 'proyeccion') {
+                calcularProyeccion();
+            }
+        }
+        
+        function renderClientes() {
+            const tbody = document.getElementById('tbody-clientes');
+            
+            if (config.clientes.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="3" class="empty-state">No hay clientes configurados. Todos usarán el default.</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = config.clientes.map((c, i) => `
+                <tr>
+                    <td><strong>${c.nombre}</strong></td>
+                    <td>${c.dias} días</td>
+                    <td style="text-align:center">
+                        <button class="btn btn-danger" onclick="eliminarCliente(${i})">✕</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function renderRecurrentes() {
+            const tbody = document.getElementById('tbody-recurrentes');
+            
+            if (config.recurrentes.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No hay pagos recurrentes configurados.</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = config.recurrentes.map((r, i) => `
+                <tr>
+                    <td><strong>${r.concepto}</strong></td>
+                    <td>Día ${r.dia}</td>
+                    <td>$${r.monto.toLocaleString('es-CL')}</td>
+                    <td><span class="badge ${r.frecuencia}">${r.frecuencia}</span></td>
+                    <td style="text-align:center">
+                        <button class="btn btn-danger" onclick="eliminarRecurrente(${i})">✕</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function agregarCliente() {
+            const nombre = document.getElementById('input-cliente').value.trim().toUpperCase();
+            const dias = parseInt(document.getElementById('input-dias').value);
+            
+            if (!nombre || !dias) {
+                alert('Completa nombre y días');
+                return;
+            }
+            
+            // Verificar duplicado
+            if (config.clientes.some(c => c.nombre === nombre)) {
+                alert('Este cliente ya está configurado');
+                return;
+            }
+            
+            config.clientes.push({ nombre, dias });
+            config.clientes.sort((a, b) => a.nombre.localeCompare(b.nombre));
+            
+            document.getElementById('input-cliente').value = '';
+            document.getElementById('input-dias').value = '';
+            
+            renderClientes();
+            guardarLocal();
+        }
+        
+        function eliminarCliente(index) {
+            config.clientes.splice(index, 1);
+            renderClientes();
+            guardarLocal();
+        }
+        
+        function agregarRecurrente() {
+            const concepto = document.getElementById('input-concepto').value.trim();
+            const dia = parseInt(document.getElementById('input-dia').value);
+            const monto = parseInt(document.getElementById('input-monto').value);
+            const frecuencia = document.getElementById('input-frecuencia').value;
+            
+            if (!concepto || !dia || !monto) {
+                alert('Completa todos los campos');
+                return;
+            }
+            
+            config.recurrentes.push({ concepto, dia, monto, frecuencia });
+            config.recurrentes.sort((a, b) => a.dia - b.dia);
+            
+            document.getElementById('input-concepto').value = '';
+            document.getElementById('input-dia').value = '';
+            document.getElementById('input-monto').value = '';
+            
+            renderRecurrentes();
+            guardarLocal();
+        }
+        
+        function eliminarRecurrente(index) {
+            config.recurrentes.splice(index, 1);
+            renderRecurrentes();
+            guardarLocal();
+        }
+        
+        function actualizarDefault() {
+            config.defaultDias = parseInt(document.getElementById('default-dias').value) || 7;
+            document.getElementById('note-default').textContent = config.defaultDias;
+            guardarLocal();
+        }
+        
+        // =====================================================================
+        // PROYECCIÓN
+        // =====================================================================
+        function getDiasPagoCliente(cliente) {
+            const clienteUpper = cliente.toUpperCase();
+            const found = config.clientes.find(c => clienteUpper.includes(c.nombre));
+            return found ? found.dias : config.defaultDias;
+        }
+        
+        function calcularProyeccion() {
+            const hoy = new Date();
+            const proyeccion = {};
+            
+            // Inicializar 14 días
+            for (let i = 0; i < 14; i++) {
+                const fecha = new Date(hoy);
+                fecha.setDate(fecha.getDate() + i);
+                const key = fecha.toISOString().split('T')[0];
+                proyeccion[key] = { entradas: 0, salidas: 0, detalleEntradas: [], detalleSalidas: [] };
+            }
+            
+            // Calcular entradas (cobranzas ajustadas)
+            datosProyeccion.cobranzas.forEach(c => {
+                const diasPago = getDiasPagoCliente(c.cliente);
+                const fechaFactura = new Date(c.fechaFactura);
+                const fechaCobro = new Date(fechaFactura);
+                fechaCobro.setDate(fechaCobro.getDate() + diasPago);
+                
+                const key = fechaCobro.toISOString().split('T')[0];
+                if (proyeccion[key]) {
+                    proyeccion[key].entradas += c.monto;
+                    proyeccion[key].detalleEntradas.push(c.cliente);
+                }
+            });
+            
+            // Calcular salidas (pagos programados)
+            datosProyeccion.pagos.forEach(p => {
+                const key = p.vencimiento;
+                if (proyeccion[key]) {
+                    proyeccion[key].salidas += p.monto;
+                    proyeccion[key].detalleSalidas.push(p.proveedor);
+                }
+            });
+            
+            // Agregar pagos recurrentes del mes actual
+            const mesActual = hoy.getMonth();
+            const anioActual = hoy.getFullYear();
+            
+            config.recurrentes.forEach(r => {
+                if (r.frecuencia === 'mensual') {
+                    const fechaPago = new Date(anioActual, mesActual, r.dia);
+                    const key = fechaPago.toISOString().split('T')[0];
+                    if (proyeccion[key]) {
+                        proyeccion[key].salidas += r.monto;
+                        proyeccion[key].detalleSalidas.push(r.concepto);
+                    }
+                }
+            });
+            
+            // Renderizar
+            renderProyeccion(proyeccion);
+        }
+        
+        function renderProyeccion(proyeccion) {
+            const timeline = document.getElementById('timeline');
+            let totalEntradas = 0;
+            let totalSalidas = 0;
+            let diaCritico = null;
+            let netoMinimo = Infinity;
+            
+            // Calcular máximo para escala de barras
+            let maxMonto = 0;
+            Object.values(proyeccion).forEach(d => {
+                maxMonto = Math.max(maxMonto, d.entradas, d.salidas);
+            });
+            
+            let html = `
+                <div class="timeline-row header">
+                    <div>Fecha</div>
+                    <div>Flujo Visual</div>
+                    <div style="text-align:right">Entradas</div>
+                    <div style="text-align:right">Salidas</div>
+                    <div style="text-align:right">Neto</div>
+                </div>
+            `;
+            
+            Object.entries(proyeccion).forEach(([fecha, data]) => {
+                const neto = data.entradas - data.salidas;
+                totalEntradas += data.entradas;
+                totalSalidas += data.salidas;
+                
+                if (neto < netoMinimo) {
+                    netoMinimo = neto;
+                    diaCritico = fecha;
+                }
+                
+                const barEntrada = maxMonto > 0 ? (data.entradas / maxMonto * 100) : 0;
+                const barSalida = maxMonto > 0 ? (data.salidas / maxMonto * 100) : 0;
+                
+                const fechaObj = new Date(fecha + 'T12:00:00');
+                const fechaStr = fechaObj.toLocaleDateString('es-CL', { weekday: 'short', day: 'numeric', month: 'short' });
+                
+                html += `
+                    <div class="timeline-row">
+                        <div>${fechaStr}</div>
+                        <div class="bar-container">
+                            <div class="bar entrada" style="width:${barEntrada}%" title="${data.detalleEntradas.join(', ')}"></div>
+                            <div class="bar salida" style="width:${barSalida}%" title="${data.detalleSalidas.join(', ')}"></div>
+                        </div>
+                        <div class="amount positive">$${data.entradas > 0 ? data.entradas.toLocaleString('es-CL') : '-'}</div>
+                        <div class="amount negative">$${data.salidas > 0 ? data.salidas.toLocaleString('es-CL') : '-'}</div>
+                        <div class="amount ${neto >= 0 ? 'positive' : 'negative'}">$${neto.toLocaleString('es-CL')}</div>
+                    </div>
+                `;
+            });
+            
+            timeline.innerHTML = html;
+            
+            // KPIs
+            const netoTotal = totalEntradas - totalSalidas;
+            document.getElementById('kpi-entradas').textContent = '$' + totalEntradas.toLocaleString('es-CL');
+            document.getElementById('kpi-salidas').textContent = '$' + totalSalidas.toLocaleString('es-CL');
+            
+            const kpiNeto = document.getElementById('kpi-neto');
+            kpiNeto.textContent = '$' + netoTotal.toLocaleString('es-CL');
+            kpiNeto.className = 'kpi-value ' + (netoTotal >= 0 ? 'positive' : 'negative');
+            
+            if (diaCritico) {
+                const fechaCritica = new Date(diaCritico + 'T12:00:00');
+                document.getElementById('kpi-critico').textContent = fechaCritica.toLocaleDateString('es-CL', { day: 'numeric', month: 'short' });
+            }
+        }
+        
+        // =====================================================================
+        // PERSISTENCIA
+        // =====================================================================
+        function guardarLocal() {
+            localStorage.setItem('cathpro_cashflow_config', JSON.stringify(config));
+        }
+        
+        function cargarLocal() {
+            const saved = localStorage.getItem('cathpro_cashflow_config');
+            if (saved) {
+                config = JSON.parse(saved);
+                document.getElementById('default-dias').value = config.defaultDias;
+                document.getElementById('note-default').textContent = config.defaultDias;
+            }
+        }
+        
+        function exportarConfig() {
+            const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'cashflow_config.json';
+            a.click();
+        }
+        
+        function copiarJSON() {
+            navigator.clipboard.writeText(JSON.stringify(config, null, 2));
+            alert('Configuración copiada al portapapeles');
+        }
+        
+        // =====================================================================
+        // INIT
+        // =====================================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarLocal();
+            renderClientes();
+            renderRecurrentes();
+        });
+    </script>
+</body>
+</html>
