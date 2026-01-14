@@ -204,7 +204,7 @@ class SkualoCashFlow:
     # =========================================================================
     
     def get_cxp_detalle(self, tipo="todas"):
-        """Obtiene detalle de CxP"""
+        """Obtiene detalle de CxP con fecha de pago ajustada al viernes"""
         resultado = []
         
         cuentas_a_consultar = []
@@ -220,12 +220,18 @@ class SkualoCashFlow:
                 saldo = doc.get("saldo", 0)
                 if saldo >= 0:
                     continue
+                
+                # Fecha de vencimiento original
+                venc_original = self._parse_fecha(doc.get("vencimiento"))
+                # Mover al viernes más próximo (igual que CxC)
+                venc_viernes = self._mover_a_viernes(venc_original)
                     
                 resultado.append({
                     "proveedor": doc.get("auxiliar", ""),
                     "rut": doc.get("idAuxiliar", ""),
                     "documento": f"{doc.get('idTipoDoc', '')} {doc.get('numDoc', '')}",
-                    "vencimiento": self._parse_fecha(doc.get("vencimiento")),
+                    "vencimiento_original": venc_original,
+                    "vencimiento": venc_viernes,  # Fecha ajustada al viernes
                     "dias_vencido": doc.get("diasVencido", 0),
                     "saldo": abs(saldo),
                     "vencido": doc.get("estaVencido", False),
