@@ -1006,5 +1006,315 @@ def cashflow_semanal():
     return html
 
 
+# ============================================
+# EXPORTACIÓN NÓMINA SCOTIABANK
+# ============================================
+
+def load_maestro_proveedores():
+    """Cargar maestro de proveedores desde JSON"""
+    try:
+        with open('maestro_proveedores.json', 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except:
+        return {}
+
+def normalizar_rut(rut):
+    """Normalizar RUT para búsqueda en maestro"""
+    if not rut:
+        return ''
+    rut = str(rut).upper().replace('.', '').replace('-', '').replace(' ', '')
+    return rut
+
+def get_proximo_viernes():
+    """Obtener fecha del próximo viernes"""
+    hoy = now_chile().date()
+    dias_hasta_viernes = (4 - hoy.weekday()) % 7
+    if dias_hasta_viernes == 0 and hoy.weekday() == 4:
+        return hoy  # Hoy es viernes
+    return hoy + timedelta(days=dias_hasta_viernes if dias_hasta_viernes > 0 else 7)
+
+@app.route('/nomina/scotiabank')
+def nomina_scotiabank():
+    """Página de generación de nómina Scotiabank"""
+    key = request.args.get('key', '')
+    if key != TABLERO_PASSWORD:
+        return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
+    
+    # Obtener CxP pendientes
+    try:
+        cf = SkualoCashFlow()
+        cxp_detalle = cf.get_cxp_detalle()
+    except Exception as e:
+        return f"<h1>Error cargando CxP: {e}</h1>"
+    
+    # Cargar maestro proveedores
+    maestro = load_maestro_proveedores()
+    
+    # Próximo viernes
+    viernes = get_proximo_viernes()
+    viernes_str = viernes.strftime('%d-%b-%Y')
+    for en, es in MESES_ES.items():
+        viernes_str = viernes_str.replace(en, es)
+    
+    # Filtrar CxP para el viernes (aplicando regla de viernes)
+    hoy = now_chile().date()
+    cxp_viernes = []
+    
+    for c in cxp_detalle:
+        venc = c.get('vencimiento')
+        if venc:
+            # Aplicar regla viernes: si vence entre hoy y viernes, pagar el viernes
+            if hoy <= venc <= viernes:
+                rut_limpio = normalizar_rut(c.get('rut', ''))
+                datos_banco = maestro.get(rut_limpio, {})
+                
+                # Determinar tipo documento
+                doc = c.get('documento', '')
+                if 'BH' in str(doc).upper() or 'HONORARIO' in str(doc).upper():
+                    tipo_doc = 'HONORARIO'
+                else:
+                    tipo_doc = 'FACTURA'
+                
+                cxp_viernes.append({
+                    'rut': c.get('rut', ''),
+                    'proveedor': c.get('proveedor', ''),
+                    'documento': doc,
+                    'monto': int(c.get('saldo', 0)),
+                    'vencimiento': venc,
+                    'banco': datos_banco.get('banco', ''),
+                    'cuenta': datos_banco.get('cuenta', ''),
+                    'forma_pago': datos_banco.get('forma_pago', 'CUENTA OTRO BANCO'),
+                    'email': datos_banco.get('email', ''),
+                    'tipo_doc': tipo_doc,
+                    'en_maestro': bool(datos_banco)
+                })
+    
+    # Ordenar por monto descendente
+    cxp_viernes = sorted(cxp_viernes, key=lambda x: x['monto'], reverse=True)
+    total_nomina = sum(c['monto'] for c in cxp_viernes)
+    
+    # Contar proveedores sin datos bancarios
+    sin_datos = sum(1 for c in cxp_viernes if not c['en_maestro'])
+    
+    fmt_full = lambda x: f"${x:,.0f}"
+    
+    # Generar filas HTML
+    rows = ""
+    for i, c in enumerate(cxp_viernes, 1):
+        status_class = '' if c['en_maestro'] else 'style="background:#fff3cd"'
+        status_icon = '✓' if c['en_maestro'] else '⚠️'
+        rows += f'''<tr {status_class}>
+            <td>{i}</td>
+            <td>{c['rut']}</td>
+            <td>{c['proveedor'][:30]}</td>
+            <td>{c['documento']}</td>
+            <td>{c['tipo_doc']}</td>
+            <td class="right">{fmt_full(c['monto'])}</td>
+            <td>{c['banco'][:20] if c['banco'] else '-'}</td>
+            <td>{c['cuenta'] if c['cuenta'] else '-'}</td>
+            <td class="center">{status_icon}</td>
+        </tr>'''
+    
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
+    logo_b64 = get_logo_base64()
+    
+    html = f'''<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CathPro - Nómina Scotiabank</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        *{{margin:0;padding:0;box-sizing:border-box}}
+        body{{font-family:'Segoe UI',sans-serif;background:#f5f5f5;color:#242625}}
+        .header{{background:#242625;padding:15px 30px;display:flex;align-items:center;gap:20px}}
+        .header img{{height:50px}}
+        .header h1{{color:#fff;font-size:20px;font-weight:500}}
+        .header-sub{{color:#888;font-size:12px}}
+        .nav-links{{display:flex;gap:10px;margin-left:20px}}
+        .nav-links a{{color:#888;text-decoration:none;padding:8px 15px;border-radius:5px;font-size:13px}}
+        .nav-links a:hover,.nav-links a.active{{background:#55b245;color:white}}
+        .container{{max-width:1400px;margin:0 auto;padding:25px}}
+        .kpis{{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:25px}}
+        .kpi{{background:#fff;border-radius:10px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border-left:4px solid #55b245}}
+        .kpi.azul{{border-left-color:#17a2b8}}
+        .kpi.naranja{{border-left-color:#f7941d}}
+        .kpi.rojo{{border-left-color:#dc3545}}
+        .kpi-label{{font-size:11px;color:#666;text-transform:uppercase;margin-bottom:6px}}
+        .kpi-value{{font-size:22px;font-weight:700}}
+        .kpi-sub{{font-size:11px;color:#888;margin-top:4px}}
+        .btn{{display:inline-block;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;border:none}}
+        .btn-primary{{background:#55b245;color:white}}
+        .btn-primary:hover{{background:#449636}}
+        .btn-secondary{{background:#6c757d;color:white}}
+        .actions{{margin-bottom:25px;display:flex;gap:15px;align-items:center}}
+        table{{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08)}}
+        th{{background:#242625;color:#fff;padding:12px 10px;font-size:11px;font-weight:500;text-align:left}}
+        th.right{{text-align:right}}
+        th.center{{text-align:center}}
+        td{{padding:10px;font-size:12px;border-bottom:1px solid #eee}}
+        td.right{{text-align:right;font-family:monospace}}
+        td.center{{text-align:center}}
+        .alert{{background:#fff3cd;border:1px solid #ffc107;padding:15px;border-radius:8px;margin-bottom:20px}}
+        .alert-danger{{background:#f8d7da;border-color:#f5c6cb}}
+        .footer{{text-align:center;padding:20px;color:#888;font-size:11px}}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="data:image/png;base64,{logo_b64}" alt="CathPro">
+        <div>
+            <h1>Nómina Proveedores Scotiabank</h1>
+            <div class="header-sub">Pagos Viernes {viernes_str}</div>
+        </div>
+        {nav}
+    </div>
+    
+    <div class="container">
+        <div class="kpis">
+            <div class="kpi azul">
+                <div class="kpi-label">Fecha Pago</div>
+                <div class="kpi-value">{viernes_str}</div>
+                <div class="kpi-sub">Próximo viernes</div>
+            </div>
+            <div class="kpi">
+                <div class="kpi-label">Proveedores</div>
+                <div class="kpi-value">{len(cxp_viernes)}</div>
+                <div class="kpi-sub">En nómina</div>
+            </div>
+            <div class="kpi naranja">
+                <div class="kpi-label">Total Nómina</div>
+                <div class="kpi-value">{fmt_full(total_nomina)}</div>
+                <div class="kpi-sub">A pagar</div>
+            </div>
+            <div class="kpi {'rojo' if sin_datos > 0 else ''}">
+                <div class="kpi-label">Sin Datos Banco</div>
+                <div class="kpi-value">{sin_datos}</div>
+                <div class="kpi-sub">{'Requieren actualización' if sin_datos > 0 else 'Todo OK'}</div>
+            </div>
+        </div>
+        
+        {'<div class="alert alert-danger">⚠️ <strong>Atención:</strong> Hay ' + str(sin_datos) + ' proveedores sin datos bancarios en el maestro. Actualizar antes de exportar.</div>' if sin_datos > 0 else ''}
+        
+        <div class="actions">
+            <a href="/nomina/scotiabank/exportar?key={key}" class="btn btn-primary">📥 Exportar Excel Scotiabank</a>
+            <a href="/cashflow/semanal?key={key}" class="btn btn-secondary">← Volver al Cash Flow</a>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>RUT</th>
+                    <th>Proveedor</th>
+                    <th>Documento</th>
+                    <th>Tipo</th>
+                    <th class="right">Monto</th>
+                    <th>Banco</th>
+                    <th>Cuenta</th>
+                    <th class="center">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {rows}
+            </tbody>
+        </table>
+        
+        <div class="footer">
+            Nómina Scotiabank CathPro | Generada {now_chile().strftime('%d-%m-%Y %H:%M')}
+        </div>
+    </div>
+</body>
+</html>'''
+    
+    return html
+
+
+@app.route('/nomina/scotiabank/exportar')
+def exportar_nomina_scotiabank():
+    """Exportar nómina en formato Excel compatible con macro Scotiabank"""
+    from flask import Response
+    
+    key = request.args.get('key', '')
+    if key != TABLERO_PASSWORD:
+        return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
+    
+    # Obtener CxP pendientes
+    try:
+        cf = SkualoCashFlow()
+        cxp_detalle = cf.get_cxp_detalle()
+    except Exception as e:
+        return f"<h1>Error cargando CxP: {e}</h1>"
+    
+    # Cargar maestro proveedores
+    maestro = load_maestro_proveedores()
+    
+    # Próximo viernes
+    viernes = get_proximo_viernes()
+    hoy = now_chile().date()
+    
+    # Filtrar y preparar datos
+    datos_nomina = []
+    for c in cxp_detalle:
+        venc = c.get('vencimiento')
+        if venc and hoy <= venc <= viernes:
+            rut_limpio = normalizar_rut(c.get('rut', ''))
+            datos_banco = maestro.get(rut_limpio, {})
+            
+            doc = c.get('documento', '')
+            if 'BH' in str(doc).upper() or 'HONORARIO' in str(doc).upper():
+                tipo_doc = 'HONORARIO'
+            else:
+                tipo_doc = 'FACTURA'
+            
+            datos_nomina.append({
+                'Rut\nProveedor': c.get('rut', ''),
+                'Nombre\nProveedor': c.get('proveedor', ''),
+                'Banco\nProveedor': datos_banco.get('banco', ''),
+                'Cuenta\nProveedor': datos_banco.get('cuenta', ''),
+                'Tipo Documento': tipo_doc,
+                'Nº Documento': doc,
+                'Monto': int(c.get('saldo', 0)),
+                'Forma Pago': datos_banco.get('forma_pago', 'CUENTA OTRO BANCO'),
+                'Cód. Suc': '',
+                'email aviso': datos_banco.get('email', '')
+            })
+    
+    # Ordenar por monto descendente
+    datos_nomina = sorted(datos_nomina, key=lambda x: x['Monto'], reverse=True)
+    
+    # Crear DataFrame
+    df = pd.DataFrame(datos_nomina)
+    
+    # Generar Excel
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='openpyxl') as writer:
+        df.to_excel(writer, sheet_name='Proveedores', index=False, startrow=3)
+        
+        # Agregar encabezado con datos de la empresa
+        ws = writer.sheets['Proveedores']
+        ws['A1'] = 'Scotiabank'
+        ws['B1'] = 'Nombre empresa'
+        ws['C1'] = 'CATHPRO LTDA'
+        ws['D1'] = 'Rut empresa:'
+        ws['E1'] = '76243957-3'
+        ws['F1'] = 'N° Convenio'
+        ws['G1'] = '3'
+        ws['F2'] = 'Fecha nómina:'
+        ws['G2'] = viernes.strftime('%Y-%m-%d')
+    
+    output.seek(0)
+    
+    # Nombre del archivo
+    fecha_str = viernes.strftime('%d_%m_%y')
+    filename = f'Nomina_Scotiabank_{fecha_str}.xlsx'
+    
+    return Response(
+        output.getvalue(),
+        mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        headers={'Content-Disposition': f'attachment; filename={filename}'}
+    )
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5001)
