@@ -1,1 +1,5426 @@
-{}
+{
+  "771593887": {
+    "rut": "771593887",
+    "nombre": "1276 MCM SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-6397563-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTOS@1276MCM.CL"
+  },
+  "768035032": {
+    "rut": "768035032",
+    "nombre": "SRTICKERSHOP SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "91626560",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ANDRES@STICKERSHOP.CL"
+  },
+  "771087140": {
+    "rut": "771087140",
+    "nombre": "AUTOGLASS SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "98501487",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PARABRISASPUNTAARENAS@GMAIL.COM"
+  },
+  "100477882": {
+    "rut": "100477882",
+    "nombre": "OSCAR CAYO MAUMA",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "230575141",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "OSCAR.CAYO@GMAIL.COM"
+  },
+  "76267548K": {
+    "rut": "76267548K",
+    "nombre": "MEGACENTRO CARRASCAL SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "8000272103",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FACTURACION@MEGACENTRO.COM"
+  },
+  "96595810K": {
+    "rut": "96595810K",
+    "nombre": "UNDERFIRE SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "3240610",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CFERNANDEZ@UNDERFIRE.CL"
+  },
+  "776196312": {
+    "rut": "776196312",
+    "nombre": "REPRES Y DESARROLL TECNICOS SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1350768210",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "TESORERIA@RDT.CL"
+  },
+  "138808467": {
+    "rut": "138808467",
+    "nombre": "HECTOR RIQUELME",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "981239199",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "RICARDORIQUELME7@GMAIL.COM"
+  },
+  "79580580K": {
+    "rut": "79580580K",
+    "nombre": "SOC COMERCIAL SERVICIOS INTERSERVICE",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "7638601",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "IESPINOZA@ASI.CL"
+  },
+  "767029225": {
+    "rut": "767029225",
+    "nombre": "COWORKINPEOPLE SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "93380797",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "Cristopher@executiveoutplacement.net"
+  },
+  "70017820K": {
+    "rut": "70017820K",
+    "nombre": "CAMARA DE COMERCIO DE SANTIAGO AG",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "10543201",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@REDNEGOCIOS.CL"
+  },
+  "77740248K": {
+    "rut": "77740248K",
+    "nombre": "COMERCIALIZADORA WELD METAL SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "90933680",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS1@WELDMETAL.CL"
+  },
+  "742523004": {
+    "rut": "742523004",
+    "nombre": "CENTRO INTERMEDIO PARA CAPACITACION",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "39925397",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "equipoco@PROFORMA.CL"
+  },
+  "76752255K": {
+    "rut": "76752255K",
+    "nombre": "COMERCIAL VECTIS SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "52574903",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTABILIDAD@AROMATECH.CL"
+  },
+  "761783602": {
+    "rut": "761783602",
+    "nombre": "RESTAURANTES ARAMARK",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "4720252404",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MORENO-KEYLA@ARAMARK.CL"
+  },
+  "779623025": {
+    "rut": "779623025",
+    "nombre": "MULTISERVIC PRINT SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "94702992",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "SPEEDSERVICSPA@GMAIL.COM"
+  },
+  "761885871": {
+    "rut": "761885871",
+    "nombre": "VICTORIA SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "8001204108",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRANZA@GEOVICTORIA.COM"
+  },
+  "76222867K": {
+    "rut": "76222867K",
+    "nombre": "LOYOLA Y CIA LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "67190742",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "RESERVAS.HOTELTERRA@GMAIL.COM"
+  },
+  "774550143": {
+    "rut": "774550143",
+    "nombre": "INVERSIONES Y RENTAS SAN CARLOS SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "84198730",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@AMCBODEGAJE.CL"
+  },
+  "780072563": {
+    "rut": "780072563",
+    "nombre": "EQUIPA CHILE EQUIPAMIENTO MINERO SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "84839159",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JECY.QUITAN@EQUIPACHILE.COM"
+  },
+  "76400275K": {
+    "rut": "76400275K",
+    "nombre": "REDCAPITAL SPA",
+    "banco": "BANCO DE CEREDITO E INVERSIONES",
+    "cuenta": "30247918",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRAZA@REDCAPITAL.CL"
+  },
+  "784756300": {
+    "rut": "784756300",
+    "nombre": "COMERCIAL SERVIDEM LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1420119901",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "SERVIDEM@GMAIL.COM"
+  },
+  "763708640": {
+    "rut": "763708640",
+    "nombre": "AGEM INGENIERIA Y CINSTEUCCION LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "99453796",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "M.ASTUDILLO@AIYC.CL"
+  },
+  "72538056": {
+    "rut": "72538056",
+    "nombre": "MARCO ANTONIO ROJAS ESCOBAR",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "86460137",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MARCOROJAS1855@GMAIL.COM"
+  },
+  "780309172": {
+    "rut": "780309172",
+    "nombre": "APCIS SPA",
+    "banco": "BANCO SCOTIABANK CHILE",
+    "cuenta": "990646309",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MVILLAGRA@APCIS.CL"
+  },
+  "183301721": {
+    "rut": "183301721",
+    "nombre": "PABLO ORTEGA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "18330172",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PBLORTEGAMESTICA@GMAIL.COM"
+  },
+  "609100001": {
+    "rut": "609100001",
+    "nombre": "UNIVERSIDAD DE CHILE",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "67114949",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "fgonzalez@unegocios.cl"
+  },
+  "773799717": {
+    "rut": "773799717",
+    "nombre": "GENECTRA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "93444019",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@GENECTRA.CL"
+  },
+  "78069677K": {
+    "rut": "78069677K",
+    "nombre": "NABIS SPA",
+    "banco": "BANCO SCOTIABANK CHILE",
+    "cuenta": "992134952",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS@NABIS.CL"
+  },
+  "52072840": {
+    "rut": "52072840",
+    "nombre": "SELMA GALVEZ",
+    "banco": "BANCO ESTADO",
+    "cuenta": "6324266",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "BORDATEL@GMAIL.COM"
+  },
+  "778252902": {
+    "rut": "778252902",
+    "nombre": "SALERNO SA",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "202188996",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "NICOLAS@LAMPARASBOSCO.CL"
+  },
+  "164636976": {
+    "rut": "164636976",
+    "nombre": "JONATHAN SILVA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1646369-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "jonathan16463@gmail.com"
+  },
+  "184211912": {
+    "rut": "184211912",
+    "nombre": "YERKO MARCHANT",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "15841616437",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "YMARCHANT@CATHPRO.CL"
+  },
+  "774790632": {
+    "rut": "774790632",
+    "nombre": "MOTORES DE LOS ANDES",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "85602020",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "DIEGO.REVOLLO@ANDESMOTOR.CL"
+  },
+  "778068265": {
+    "rut": "778068265",
+    "nombre": "EVENTOS TERRANO SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "93917367",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "RESERVAS@HOTELTERRANO.CL"
+  },
+  "76882584K": {
+    "rut": "76882584K",
+    "nombre": "MODULAR EXPRESS HOTEL CALAMA SPA",
+    "banco": "BANCO CHILE",
+    "cuenta": "8002926707",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MARIETTA.VANETTI@MODULAREXPRESS.CL"
+  },
+  "775795670": {
+    "rut": "775795670",
+    "nombre": "ENTRE SOMBRAS SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1551362400",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ENTRESOMBRASSPA@GMAIL.COM"
+  },
+  "771326994": {
+    "rut": "771326994",
+    "nombre": "ALFONSO TRANSPORTES SPA",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "979226799",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "A.ALFONSO@LIVE.CL"
+  },
+  "770592321": {
+    "rut": "770592321",
+    "nombre": "ECOLOGIC ELECTRIC SPA",
+    "banco": "BANCO CHILE",
+    "cuenta": "1960794809",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS@ECOELECTRIC.CL"
+  },
+  "777691929": {
+    "rut": "777691929",
+    "nombre": "DEFONTANA FINTECH SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "91928230",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRANZAS@FINZ.CL"
+  },
+  "741719002": {
+    "rut": "741719002",
+    "nombre": "COMUNIDAD EDIF LA PIRAMIDE I Y II",
+    "banco": "BANCO CHILE",
+    "cuenta": "795695001",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "LAPIRAMIDEUNOYDOS@CBRE.CL"
+  },
+  "127218374": {
+    "rut": "127218374",
+    "nombre": "IGNACIO CONTRERAS",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "18912371",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ICONTRERAS@CATHPRO.CL"
+  },
+  "778158183": {
+    "rut": "778158183",
+    "nombre": "TRANSPORTES S&D SPA",
+    "banco": "BANCO CHILE",
+    "cuenta": "1602730506",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "DANNYBARRIGABRAVO@ICLOUD.COM"
+  },
+  "968323008": {
+    "rut": "968323008",
+    "nombre": "PETROFLEX SA",
+    "banco": "BANCO CHILE",
+    "cuenta": "1409307",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS@PETROFLEX.CL"
+  },
+  "769841989": {
+    "rut": "769841989",
+    "nombre": "SOLUCIONES ELECTRICAS LUZ SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "89977203",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@LUZCHILE.COM"
+  },
+  "777812602": {
+    "rut": "777812602",
+    "nombre": "TRANSWORLD SUPPLY AUTOMOTRIZ LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "621722",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cbenavides@cathpro.cl"
+  },
+  "71762408": {
+    "rut": "71762408",
+    "nombre": "David Saul",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000002-2066990-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pago@cpprint.cl"
+  },
+  "799964201": {
+    "rut": "799964201",
+    "nombre": "MARSELLA SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "5965268",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRANZAS@GGH.CL"
+  },
+  "772384394": {
+    "rut": "772384394",
+    "nombre": "SAFETRUCK SPA",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "220627288",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS@SAFETRUCK.CL"
+  },
+  "763181065": {
+    "rut": "763181065",
+    "nombre": "INMOBILIARIA BALMACEDA SPA",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "211284788",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "H9409-RE@ACCOR.COM"
+  },
+  "780689986": {
+    "rut": "780689986",
+    "nombre": "ESTUDIO BAUM ARQUITECTOS SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "96610734",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "BAUMESTUDIO.WO@GMAIL.COM"
+  },
+  "168221681": {
+    "rut": "168221681",
+    "nombre": "PATRICIA ALEJANDRA ROJAS GODOY",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "13000153278",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PATRICIA.JFR@HOTMAIL.COM"
+  },
+  "763815706": {
+    "rut": "763815706",
+    "nombre": "INTERFACTOR SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "13314402",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRANZA@INTERFACTOR.CL"
+  },
+  "68544025": {
+    "rut": "68544025",
+    "nombre": "PEDRO NUNEZ FERNANDEZ",
+    "banco": "BANCO ESTADO",
+    "cuenta": "13900071986",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "TRANSPORTESPNUNEZ@GMAIL.COM"
+  },
+  "77356020K": {
+    "rut": "77356020K",
+    "nombre": "COMERCIAL DE VALORES SERVICIOS FINANCIERO SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "141194",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRANZAS@COVAL.CL"
+  },
+  "969125900": {
+    "rut": "969125900",
+    "nombre": "TANNER LEASING SA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "10539212",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "LEASING.SAC@TANNER.CL"
+  },
+  "760835072": {
+    "rut": "760835072",
+    "nombre": "CAPITAL EXPRESS SERVICIOS FINANC SA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "68158303",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ISABEL.CARDENAS@CAPITALEXPRESS.CL"
+  },
+  "774603506": {
+    "rut": "774603506",
+    "nombre": "PEREZ NANJARI ARQUITECTOS LTDA",
+    "banco": "BANCO SECURITY",
+    "cuenta": "116447301",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "bperez@pereznanjari.cl"
+  },
+  "968582909": {
+    "rut": "968582909",
+    "nombre": "PROPIEDADES PALACIO RIESCO SA",
+    "banco": "BANCO SECURITY",
+    "cuenta": "18542601",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "SECRETARIA@PALACIORIESCO.CL"
+  },
+  "85646397": {
+    "rut": "85646397",
+    "nombre": "ERICK SILVA MENA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "1460084160",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ERICK.SILVAMENA@GMAIL.COM"
+  },
+  "768828059": {
+    "rut": "768828059",
+    "nombre": "MACS SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "85641220",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MACS@ALOJAMIENTOMINETO.CL"
+  },
+  "770920043": {
+    "rut": "770920043",
+    "nombre": "SOCIEDAD FILOPER LTDA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "27896714",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "KAREN.GALLARDO@SERVMAQLTDA.CL"
+  },
+  "775673575": {
+    "rut": "775673575",
+    "nombre": "METROLOGIA Y CALIDAD SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "87456358",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FINANZAS@METROCAL.CL"
+  },
+  "768767483": {
+    "rut": "768767483",
+    "nombre": "JES & DOR LTDA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "89458028",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FINANZAS@HOLDINGJESYDOR.CL"
+  },
+  "777532626": {
+    "rut": "777532626",
+    "nombre": "TRANSPORTES ALONARI  SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "90271733291",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "TRANSPORTESALONARI@GMAIL.COM"
+  },
+  "779325202": {
+    "rut": "779325202",
+    "nombre": "EMPRESA TRANSPORTE VALENZUELA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "19560141",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MSILVA@TRANSPORTESVYS.CL"
+  },
+  "186352610": {
+    "rut": "186352610",
+    "nombre": "BENJAMIN CRUZ",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "8810539503",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "BJCRUZ@UC.CL"
+  },
+  "88723155": {
+    "rut": "88723155",
+    "nombre": "LUIS FERNANDO IBAR ECHEVERRIA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "54003393",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "inversionesohiggins@gmail.com"
+  },
+  "782395602": {
+    "rut": "782395602",
+    "nombre": "SUPERMERCADO DEL NEUMATICO LTDA",
+    "banco": "BANCO CHILE",
+    "cuenta": "6799205",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FHURTADO@SDN.CL"
+  },
+  "763183343": {
+    "rut": "763183343",
+    "nombre": "ASESORIAS E INVERSIONES A&P LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "67331230",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ADMINISTRACION@AYLWINESTUDIO.CL"
+  },
+  "770691761": {
+    "rut": "770691761",
+    "nombre": "TRANSPORTE JESUS EIRL",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "91444445",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "TAXITURISMOAV@GMAIL.COM"
+  },
+  "821206006": {
+    "rut": "821206006",
+    "nombre": "RECASUR LTDA",
+    "banco": "BANCO CHILE",
+    "cuenta": "878513975",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CUENTASPORCOBRAR@RECASUR.CL"
+  },
+  "212380083": {
+    "rut": "212380083",
+    "nombre": "DANTE FIGUEROA GONZALEZ",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "81702640",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "DFIGUEROAG@FEN.UCHILE.CL"
+  },
+  "126560400": {
+    "rut": "126560400",
+    "nombre": "DAVID HUERTA MANDUJANO",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "10013088377",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "DLHM1974@GMAIL.COM"
+  },
+  "770785146": {
+    "rut": "770785146",
+    "nombre": "COMERCIAL INDUS ORION CHILE",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "46907921",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRANZA@ORIONSAFETY.CL"
+  },
+  "777452045": {
+    "rut": "777452045",
+    "nombre": "FINCAP SOLUCIONES FINANC",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "91076462",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "BMORALES@FINCAP.CL"
+  },
+  "766919197": {
+    "rut": "766919197",
+    "nombre": "INNOVACAP CAPACITACIONES SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "1770080378",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COORDINACIONES@INNOVACAPCHILE.CL"
+  },
+  "60639752": {
+    "rut": "60639752",
+    "nombre": "MARTA RIESCO SAEZ",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "3326934",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MATTY.ELI.RIESCO@GMAIL.COM"
+  },
+  "769175423": {
+    "rut": "769175423",
+    "nombre": "NEGOCIOS INTEGRALES Y CIA SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "73292760",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FACTURACION@AM3BODEGAS.CL"
+  },
+  "768036039": {
+    "rut": "768036039",
+    "nombre": "FRANCISCO JAVIER VASQUEZ",
+    "banco": "BANCO ESTADO",
+    "cuenta": "35100015283",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ALEJANDRA.MGCWELD@GMAIL.COM"
+  },
+  "780629010": {
+    "rut": "780629010",
+    "nombre": "MULTISERVIC EPP SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "96414960",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CATALINA.MULTISERVIC@GMAIL.COM"
+  },
+  "775009845": {
+    "rut": "775009845",
+    "nombre": "MICROKITS SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "95085556",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MMORENO@MICROKITS.CL"
+  },
+  "773040311": {
+    "rut": "773040311",
+    "nombre": "MCL MULTISERVIC SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "80342470",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTASMULTISERVIC@GMAIL.COM"
+  },
+  "764357612": {
+    "rut": "764357612",
+    "nombre": "TOOLTEK SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "1283944",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CLAUDIO.ACOSTA@TOOLTEK.CL"
+  },
+  "773188467": {
+    "rut": "773188467",
+    "nombre": "MAGALLANES CARGO SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "81074470",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@MAGALLANESCARGO.CL"
+  },
+  "766534805": {
+    "rut": "766534805",
+    "nombre": "CDC ACADEMIA LTDA",
+    "banco": "BANCO BICE",
+    "cuenta": "7016832",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MAGDALENA.MIGRYK@COMPUTERDESIGN.CL"
+  },
+  "780159596": {
+    "rut": "780159596",
+    "nombre": "WONDER MERCHANDISING SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "95545009",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FINANZAS@WONDER-MERCH.COM"
+  },
+  "776013005": {
+    "rut": "776013005",
+    "nombre": "COMPAN LTDA",
+    "banco": "BANCO CHILE",
+    "cuenta": "1731725200",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "INFO@GPSAVENTURA.COM"
+  },
+  "76672891K": {
+    "rut": "76672891K",
+    "nombre": "CONSULTORIA Y SERVICIOS MIGRATORIOS",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "987981857",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "FINANZAS@CSMGLOBALS.COM"
+  },
+  "762542137": {
+    "rut": "762542137",
+    "nombre": "EB CONSULTORES SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "70086991",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "GZAVALA@EBCONSULTING.CL"
+  },
+  "76902185K": {
+    "rut": "76902185K",
+    "nombre": "VAXPROSALUD SPA",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "976136756",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "CLAUDIO.ROJAS@VAXPROSALUD.COM"
+  },
+  "99511870K": {
+    "rut": "99511870K",
+    "nombre": "EXTRUDER CHILE SA",
+    "banco": "BANCO INTERNACIONAL",
+    "cuenta": "9017630",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ALESAIDDAUD@GMAIL.COM"
+  },
+  "795888705": {
+    "rut": "795888705",
+    "nombre": "ESMAX DISTRIBUCION SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "63737275",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "IGNACIO.SOTO@ESMAX.CL"
+  },
+  "767877498": {
+    "rut": "767877498",
+    "nombre": "THE NINJA COMPANY SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "76834890",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PAGOSCLIENTES@NINJAEXCEL.COM"
+  },
+  "761114530": {
+    "rut": "761114530",
+    "nombre": "GO FACTORING SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "64264524",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VVEJAR@GO.CL"
+  },
+  "781113166": {
+    "rut": "781113166",
+    "nombre": "ELAM VITAL SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "96975465",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS@ELAMVITAL.CL"
+  },
+  "777907654": {
+    "rut": "777907654",
+    "nombre": "PLUSS SERVICIOS FINANCIEROS SA",
+    "banco": "BANCO SECURITY",
+    "cuenta": "924814350",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JAZMIN.ESPINOZA@PLUSSFACTORING.CL"
+  },
+  "773151768": {
+    "rut": "773151768",
+    "nombre": "ROMERO SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "85727036",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ZONACAR96@GMAIL.COM"
+  },
+  "764292006": {
+    "rut": "764292006",
+    "nombre": "UBERLINDA OVANDO CALAMA SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "4937864",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JEFVENTAS@MOISESCALAMA.CL"
+  },
+  "766238807": {
+    "rut": "766238807",
+    "nombre": "ARTELEC SA",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "45016285",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "ARTELECSA@ARTELECSA.CL"
+  },
+  "760349011": {
+    "rut": "760349011",
+    "nombre": "CONCON IMPREGNA MADERAS LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1011896506",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PBRAVO@CONCONMADERAS.CL"
+  },
+  "762835223": {
+    "rut": "762835223",
+    "nombre": "SIMPSON STRONG TIE CHILE LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "67158857",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MBARRIA@STRONGTIE.CL"
+  },
+  "789280304": {
+    "rut": "789280304",
+    "nombre": "EECOL ELECTRIC",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1800033702",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "TEF21@EECOL.CL"
+  },
+  "779908305": {
+    "rut": "779908305",
+    "nombre": "SOC COMERCIAL DE MARKETING M&V SPA",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "200286599",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS@EXOSET.CL"
+  },
+  "761931881": {
+    "rut": "761931881",
+    "nombre": "COMERCIAL MOTORSHOP SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "67647793",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "TRANSFERENCIAS@MOTORSHOP.CL"
+  },
+  "77437874K": {
+    "rut": "77437874K",
+    "nombre": "NORTH CENTER GPS SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "83735260",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "L.OLIVARES@NORTHCENTERGPS.CL"
+  },
+  "779249042": {
+    "rut": "779249042",
+    "nombre": "MINEGROUP SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "95117741",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "AQUEZADA@MINEGROUP.CL"
+  },
+  "181755709": {
+    "rut": "181755709",
+    "nombre": "JEAN ANGELO MARKIC ROJAS",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "15060117319",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JMARKIC@GMAIL.COM"
+  },
+  "768343489": {
+    "rut": "768343489",
+    "nombre": "CONECTA RADIOCOMUNICACIONES SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "8012308906",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "LREYES@CONECTARADIOCOM.CL"
+  },
+  "764628225": {
+    "rut": "764628225",
+    "nombre": "SKUALO",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "4080573109",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRANZAS@SKUALO.CL"
+  },
+  "767434928": {
+    "rut": "767434928",
+    "nombre": "REALE CHILE SEGUROS GENERALES",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "71573656",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "RECAUDACION.POLIZAS@REALE.CL"
+  },
+  "760070726": {
+    "rut": "760070726",
+    "nombre": "COMERCIAL A MARSHALL MOFFAT LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "61635270",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JOSELUIS@MARSHALLMOFFAT.COM"
+  },
+  "775555726": {
+    "rut": "775555726",
+    "nombre": "ARR EQUIP JOSE SANCHEZ CABELLO EIRL",
+    "banco": "BANCO ESTADO",
+    "cuenta": "90271176511",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "gruassanchez96@gmail.com"
+  },
+  "770774837": {
+    "rut": "770774837",
+    "nombre": "FULTER LOGISTICS CHILE SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "3561068405",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "NADIA.BALCARSE@FULTER.NET"
+  },
+  "764546946": {
+    "rut": "764546946",
+    "nombre": "AYRES EVENT PLANNER SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "72535065",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ADMINISTRACION@AYRESDELSAUZAL.CL"
+  },
+  "773020396": {
+    "rut": "773020396",
+    "nombre": "TOKSTOCK SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "46609172",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "s.madrigal@tokstock.cl"
+  },
+  "137999803": {
+    "rut": "137999803",
+    "nombre": "JOEL VALENZUELA",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "11270056106",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JOELVALENZUELA1978@GMAIL.COM"
+  },
+  "995332809": {
+    "rut": "995332809",
+    "nombre": "INMOBILIARIA NUEVA MIRAMAR SA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "10570420",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "RESERVAS.MIRAMAR@SHERATON.COM"
+  },
+  "67319141": {
+    "rut": "67319141",
+    "nombre": "LUZ GONZALEZ PALMA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "71268578",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS@CUADERNOSPARAEMPRESAS.CL"
+  },
+  "769516964": {
+    "rut": "769516964",
+    "nombre": "SAN ANTONIO HOTELES II",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "74247598",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "RESERVAS@ENJOY.CL"
+  },
+  "763924548": {
+    "rut": "763924548",
+    "nombre": "IMPORTADORA BULDER SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "19203204",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS@BULDER.CL"
+  },
+  "210907785": {
+    "rut": "210907785",
+    "nombre": "ANTONIA MARINA MORAGA VALVERDE",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "84071170",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "AMORAGA@CATHPRO.CL"
+  },
+  "765073138": {
+    "rut": "765073138",
+    "nombre": "SHIPPTER SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "69745822",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FACTURACION@SHIPPPPTER.COM"
+  },
+  "7250173K": {
+    "rut": "7250173K",
+    "nombre": "ROBERTO PATRICIO CHAVEZ TEUBER",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "55019773",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ROBCHATEU@GMAIL.COM"
+  },
+  "779478653": {
+    "rut": "779478653",
+    "nombre": "SEROCOM SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "29063043",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CCASTROSEROCOM.COM"
+  },
+  "778760533": {
+    "rut": "778760533",
+    "nombre": "ESPINOZAC GARAGE SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "700424248",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "GARAGE.ESPINOZA@GMAIL.COM"
+  },
+  "96651910K": {
+    "rut": "96651910K",
+    "nombre": "COMPASS CATERING SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "13299600",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CAMILA.ROJAS@COMPASS-GROUP.CL"
+  },
+  "760813532": {
+    "rut": "760813532",
+    "nombre": "SOCIAL INVERSIONES MIL SA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "1039091",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PAGOS@ALMASURHOTELES.CL"
+  },
+  "777835955": {
+    "rut": "777835955",
+    "nombre": "MANTENCION Y REPARACION CAMARAS JORCAR",
+    "banco": "BANCO ESTADO",
+    "cuenta": "36471639243",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mvalverde@cathpro.cl"
+  },
+  "775006013": {
+    "rut": "775006013",
+    "nombre": "MECANICA AUTOMOTRIZ MA JOSE",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "86095092",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MARIAJOSEMJCONTRERAS@GMAIL.COM"
+  },
+  "77780314K": {
+    "rut": "77780314K",
+    "nombre": "ADDITIVE MANUFACTURING SPA",
+    "banco": "BANCO BICE",
+    "cuenta": "15030216",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "SBERTONATI@AMTEK.CL"
+  },
+  "100301229": {
+    "rut": "100301229",
+    "nombre": "CRISTIAN BROUDISSOND ESPINOZA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1550933701",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mvalverde@cathpro.cl"
+  },
+  "103771730": {
+    "rut": "103771730",
+    "nombre": "DANIELA ANDREA KASPARIK MIÑO",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1380091309",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "DANIELA@KASPARIK.CL"
+  },
+  "76771632K": {
+    "rut": "76771632K",
+    "nombre": "CART PAPER LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "74016650",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@CARTPAPER.CL"
+  },
+  "766721176": {
+    "rut": "766721176",
+    "nombre": "CLUSTER CENTRO DE CERTIFICACIONES",
+    "banco": "BANCO ESTADO",
+    "cuenta": "2100181820",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "p.utreras@clusterimpulsa.com"
+  },
+  "772787782": {
+    "rut": "772787782",
+    "nombre": "GLOBE STORE SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "37571290007",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PAGOS@KITANTIDERRAME.CL"
+  },
+  "798815709": {
+    "rut": "798815709",
+    "nombre": "PLASTICOS AMERICA LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "7400571842",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PMPLASTICOSAMERICA@GMAIL.COM"
+  },
+  "96949020K": {
+    "rut": "96949020K",
+    "nombre": "ORSAN FACTORING SA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "159050",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PAGOS.FACTORING@ORSAN.CL"
+  },
+  "968703706": {
+    "rut": "968703706",
+    "nombre": "ACCOR CHILE SOCIEDAD ANONIMA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "74924662",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "h8227-gl@accor.com"
+  },
+  "995802406": {
+    "rut": "995802406",
+    "nombre": "ACF CAPITAL SA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "3633853",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MSANCHEZ@ACFCAPITAL.CL"
+  },
+  "703601006": {
+    "rut": "703601006",
+    "nombre": "ACHS",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "12868736",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "sergio.espina@remesa.cl"
+  },
+  "968201700": {
+    "rut": "968201700",
+    "nombre": "ADECCO RECURSOS HUMANOS S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6122475-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cobranza@adecco.cl"
+  },
+  "76492780K": {
+    "rut": "76492780K",
+    "nombre": "ASE DESARROLLO E IMPEMENTACION DE SOLUC",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "5931193",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mroman@adischile.cl"
+  },
+  "650816269": {
+    "rut": "650816269",
+    "nombre": "Adm macrolote 4",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-7053024-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "adminitracion@macrolote4.com"
+  },
+  "773124809": {
+    "rut": "773124809",
+    "nombre": "ADMINISTRADORA DE SERVICIOS CENCOSUD LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7420858-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "paula.munozflores@externos-cl.cencosud.com"
+  },
+  "769694382": {
+    "rut": "769694382",
+    "nombre": "Administradora Hotelera y de servicios spa",
+    "banco": "BANCO BICE",
+    "cuenta": "1355384",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "dtranamil@hotelnodo.com"
+  },
+  "150704251": {
+    "rut": "150704251",
+    "nombre": "ADRIANA VEGA KITTSTEIN",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-070-0093576-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "avega@cathpro.cl"
+  },
+  "760592439": {
+    "rut": "760592439",
+    "nombre": "AG AD LUIS VARGAS FIGUEROA T CIA LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000016-1026151-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "agenciadeaduanas@lvargas.cl"
+  },
+  "64203371": {
+    "rut": "64203371",
+    "nombre": "Ag Aduana Alberto moraga",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "209561022",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "tramiteaduanapatriciocifuentes@gmail.com"
+  },
+  "761455095": {
+    "rut": "761455095",
+    "nombre": "AGENCIA DE TURISMO E-TRAVEL LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7112273-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "jirubinjirubin@gmail.com"
+  },
+  "809894002": {
+    "rut": "809894002",
+    "nombre": "AGENCIA DE VIAJES TURAVION SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "927821",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRANZA@TURAVION.COM"
+  },
+  "767118228": {
+    "rut": "767118228",
+    "nombre": "AGRICONTEC SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000023-4012390-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "AGRICONTEC@GMAIL.COM"
+  },
+  "764523830": {
+    "rut": "764523830",
+    "nombre": "AGROCOR SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7193681-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "lecord@vtr.net"
+  },
+  "177820431": {
+    "rut": "177820431",
+    "nombre": "JAVIERA ANDREA AGUIRRE SEPOULVEDA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-4686433-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JAGUIRRE@QUIMYCOR.CL"
+  },
+  "770250218": {
+    "rut": "770250218",
+    "nombre": "Aksiom Tecnologia",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000011-1047360-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "finanzas@aksiom.cl"
+  },
+  "768202419": {
+    "rut": "768202419",
+    "nombre": "ALCOSAFE CHILE SPA",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "975758419",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PAGOS@GRUPOALCOSAFE.CL"
+  },
+  "115276883": {
+    "rut": "115276883",
+    "nombre": "Alejandro Ulloa",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1152768-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "indusolspa@gmail.com"
+  },
+  "116204630": {
+    "rut": "116204630",
+    "nombre": "Alex Marin",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1046449-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "jtapia@alexmarin.cl"
+  },
+  "760526495": {
+    "rut": "760526495",
+    "nombre": "ALTO DEL SOL S.A",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "65775298",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "reservas.plaza@hoteldelsol.com"
+  },
+  "968241109": {
+    "rut": "968241109",
+    "nombre": "AMBIPAR ENVIRONMENT CHILE LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1780087808",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "scobranzas@ambipar.cl"
+  },
+  "770680425": {
+    "rut": "770680425",
+    "nombre": "Andino SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000013-0028102-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "administracion@andino.cl"
+  },
+  "131847769": {
+    "rut": "131847769",
+    "nombre": "Andres Badani",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000013-5018470-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "hotelgenovachile@gmail.com"
+  },
+  "156719846": {
+    "rut": "156719846",
+    "nombre": "Andres Oyarzun",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000080-0199850-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contabilidad@agenciaoyarzun.cl"
+  },
+  "145969360": {
+    "rut": "145969360",
+    "nombre": "ANTHONY VALENCIA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1459693-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "avalanecia@cathpro.cl"
+  },
+  "763280837": {
+    "rut": "763280837",
+    "nombre": "APART HOTEL LOMAS DE SAN ANDRES",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "74526594",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "apartlomas@gmail.com"
+  },
+  "868872004": {
+    "rut": "868872004",
+    "nombre": "APRO LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "8214000793",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CARMEN.FUENTES@APRO.CL"
+  },
+  "769220119": {
+    "rut": "769220119",
+    "nombre": "Aquanet",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-2195123-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ventas@aquanet.cl"
+  },
+  "761101706": {
+    "rut": "761101706",
+    "nombre": "AQUILES CHILE SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-0298163-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JESUS.MARQUEZ@ACHILLES.CL"
+  },
+  "765109663": {
+    "rut": "765109663",
+    "nombre": "Aquiles Revello",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "61830089",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "arevello@arcaingenieria.cl"
+  },
+  "118377974": {
+    "rut": "118377974",
+    "nombre": "Aquiles Revello",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-3675898-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "arevello@arcaingenieria.cl"
+  },
+  "76117696K": {
+    "rut": "76117696K",
+    "nombre": "ARAMARK SERVICIOS MINEROS Y REMOTOS LTDA",
+    "banco": "BANCO CHILE",
+    "cuenta": "4720252208",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "gutierrez-viviana@aramark.cl"
+  },
+  "182623350": {
+    "rut": "182623350",
+    "nombre": "Ariel rojas",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1826233-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "arielrojas473@gmail.com"
+  },
+  "96953410K": {
+    "rut": "96953410K",
+    "nombre": "ARTIKOS CHILE S.A.",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "10472894",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ALICIA.VILLEGAS@ARTIKOS.CL"
+  },
+  "764427289": {
+    "rut": "764427289",
+    "nombre": "Asesoria y Consultoria alster",
+    "banco": "BANCO BICE",
+    "cuenta": "000-000000-1500282-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "finanzas@alsterlegal.com"
+  },
+  "765224071": {
+    "rut": "765224071",
+    "nombre": "ASESORIAS SALAZAR ALVARADO SPA",
+    "banco": "BANCO SECURITY",
+    "cuenta": "919471970",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MARIA.MORALES@RESOLUTIONS.CL"
+  },
+  "783230607": {
+    "rut": "783230607",
+    "nombre": "ASISTENCIA POST VENTA SOCIEDAD ANONIMA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "68021022",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "transferencias@apv.cl"
+  },
+  "966611405": {
+    "rut": "966611405",
+    "nombre": "Asistencia Técnica Universidad Antofagasta",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-8137354-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "patricia.castillo@uantof.cl"
+  },
+  "703725007": {
+    "rut": "703725007",
+    "nombre": "ASOCIACION DE INDUSTRIALES ANTOFAGASTA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-8001756-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "sicep@sicep.cl"
+  },
+  "771260055": {
+    "rut": "771260055",
+    "nombre": "ATME SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000336-7043684-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "GERENCIA@ATME.CL"
+  },
+  "769721444": {
+    "rut": "769721444",
+    "nombre": "AUDYCGROUP ASESORIAS CONTABLES Y TRIBUTARIAS SPA",
+    "banco": "BANCO CREDITO E INVERSIONES",
+    "cuenta": "95090860",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JORGE.OYARZUN.CORREA@GMAIL.COM"
+  },
+  "965541500": {
+    "rut": "965541500",
+    "nombre": "AUTOMOTRIZ AUTOFIX S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "30910265",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ramon.delafuente@auto-fx.cl"
+  },
+  "795444009": {
+    "rut": "795444009",
+    "nombre": "AUTOMOTRIZ DANIEL ACHONDO S.A.",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1620258203",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "SPOBLETE@AUTOSACHONDO.CL"
+  },
+  "765096456": {
+    "rut": "765096456",
+    "nombre": "AUTOMOTRIZ MBUSTOS LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "69933270",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MBUSTOSLTDA@GMAIL.COM"
+  },
+  "96502140K": {
+    "rut": "96502140K",
+    "nombre": "AUTOMOTRIZ ROSSELOT S.A.",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1480320600",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "E.CARTAGENA@ROSSELOT.CL"
+  },
+  "835471004": {
+    "rut": "835471004",
+    "nombre": "AUTORENTAS DEL PACIFICO SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "25107306",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pagos@mitta.cl"
+  },
+  "77813389K": {
+    "rut": "77813389K",
+    "nombre": "AZUR SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "95098739",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "AZUR.PROYECTS@GMAIL.COM"
+  },
+  "772855400": {
+    "rut": "772855400",
+    "nombre": "BAPER LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000014-5060280-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "losorio@baper.net"
+  },
+  "767866860": {
+    "rut": "767866860",
+    "nombre": "BAZZ SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "2572363573",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "RMARTINEZ@BAZZ.CL"
+  },
+  "967208302": {
+    "rut": "967208302",
+    "nombre": "BCI FACTORING",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "10314466",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRANZAS@REDCAPITAL.CL"
+  },
+  "99147000K": {
+    "rut": "99147000K",
+    "nombre": "BCI Seguros Generales",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "10203273",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pagos@bciseguros.com"
+  },
+  "109320838": {
+    "rut": "109320838",
+    "nombre": "Beatriz Echeverria",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-2105872-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "becheverria@clc.cl"
+  },
+  "198602213": {
+    "rut": "198602213",
+    "nombre": "Benjamin Fajardo",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1986022-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "benjaminfalajrdo.m@gmail.com"
+  },
+  "214693585": {
+    "rut": "214693585",
+    "nombre": "BENJAMIN IGNACIO MORAGA BARRUETO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-8602027-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MODAGITACANDY@GMAIL.COM"
+  },
+  "764239989": {
+    "rut": "764239989",
+    "nombre": "Biix Ingeniería",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000013-8049090-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@biix.cl"
+  },
+  "763075532": {
+    "rut": "763075532",
+    "nombre": "BK SPA",
+    "banco": "BANCO SECURITY",
+    "cuenta": "922001395",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "HECTOR.FARINA@BKSF.CL"
+  },
+  "801204007": {
+    "rut": "801204007",
+    "nombre": "BOLIVAR INDUSTRIAL Y COMPAÑÍA LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-1260048-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS1@BOLCO.CL"
+  },
+  "161275891": {
+    "rut": "161275891",
+    "nombre": "BRAULIO ARANDA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "29850975",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "juanpabloaranda@hotmail.com"
+  },
+  "76691442K": {
+    "rut": "76691442K",
+    "nombre": "BUK SPA",
+    "banco": "BANCO BICE",
+    "cuenta": "22001418",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PAGOCLIENTES@BUK.CL"
+  },
+  "766208509": {
+    "rut": "766208509",
+    "nombre": "Cable Magico",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-4532645-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pagos@cablemagicoestelar.cl"
+  },
+  "254793205": {
+    "rut": "254793205",
+    "nombre": "CARLA BENAVIDES",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "73021553",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cbenavides@cathpro.cl"
+  },
+  "174523312": {
+    "rut": "174523312",
+    "nombre": "Carlos Barrios",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1745233-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "barriosarayacarlos@gmail.com"
+  },
+  "16741253K": {
+    "rut": "16741253K",
+    "nombre": "Carlos Bonet",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1674125-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "carlos.bonet.escorza@gmail.com"
+  },
+  "199035789": {
+    "rut": "199035789",
+    "nombre": "CARLOS CARRION VALDES",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-8035063-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "C.CARRIONVALDES@GMAIL.COM"
+  },
+  "150992826": {
+    "rut": "150992826",
+    "nombre": "Carlos Gajardo",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-3767675-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cbgajardo@gmail.com"
+  },
+  "134286776": {
+    "rut": "134286776",
+    "nombre": "Carlos Hernandez",
+    "banco": "BANCO RIPLEY",
+    "cuenta": "000-000040-4176759-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mueblescahf@gmail.com"
+  },
+  "101155706": {
+    "rut": "101155706",
+    "nombre": "Carlos Nuñez",
+    "banco": "BANCO ESTADO",
+    "cuenta": "10115570",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "carlossnunez70@hotmail.com"
+  },
+  "78171626": {
+    "rut": "78171626",
+    "nombre": "CARLOS RICHARD PAVEZ GARAY",
+    "banco": "BANCO CREDITO E INVERSIONES",
+    "cuenta": "12917435",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "AVELLO.PAVEZ@HOTMAIL.COM"
+  },
+  "766280315": {
+    "rut": "766280315",
+    "nombre": "Carlos Roberts",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000236-7019916-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@cathpro.cl"
+  },
+  "153604207": {
+    "rut": "153604207",
+    "nombre": "CAROLA MORENO",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000007-2752113-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "GLOBOSCONHELIOVREGION@gmail.com"
+  },
+  "25795403K": {
+    "rut": "25795403K",
+    "nombre": "CARRASCO COLMENARES CYNTHIA CAROLINA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7443484-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "yvargas@tractopipe.com"
+  },
+  "936890008": {
+    "rut": "936890008",
+    "nombre": "CASA MUSA SA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "73204380",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ygonzalez@casamusa.cl"
+  },
+  "760247227": {
+    "rut": "760247227",
+    "nombre": "Casamayor y Miralles ltda",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-4590014-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ventas@hosting.cl"
+  },
+  "762439573": {
+    "rut": "762439573",
+    "nombre": "COMERCIAL Y SERVICIOS CATHPRO LTDA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-7679886-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "rmoraga@cathpro.cl"
+  },
+  "761971018": {
+    "rut": "761971018",
+    "nombre": "CBP FINANCIA CAPITAL CAPITAL FACTORING S.A.",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "9727700",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CBAEZ@FINANCIACAPITAL.CL"
+  },
+  "533105726": {
+    "rut": "533105726",
+    "nombre": "CCS Cuenta en participacion sector Privado",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1060769-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "gelgueta-ext@rednegocios.cl"
+  },
+  "764269225": {
+    "rut": "764269225",
+    "nombre": "CCS SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "68590221",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "TESORERIA@WHEREX.COM"
+  },
+  "768261806": {
+    "rut": "768261806",
+    "nombre": "CEBALLOS E HIJO LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000016-9345030-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@CEDIPER.CL"
+  },
+  "764357264": {
+    "rut": "764357264",
+    "nombre": "Cerm Vertisub CHILE",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000016-2241310-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "amelia.garnelo@vertisub.com"
+  },
+  "164663558": {
+    "rut": "164663558",
+    "nombre": "CESAR EDUARDO FUENTES",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "972445382",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "CESARFUENTES.TM@GMAIL.COM"
+  },
+  "760155926": {
+    "rut": "760155926",
+    "nombre": "CESCE CHILE ASEGURADORA S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6196963-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "Claus.Thorun@marsh.com"
+  },
+  "77980500K": {
+    "rut": "77980500K",
+    "nombre": "CESO",
+    "banco": "BANCO BICE",
+    "cuenta": "000-000000-0302294-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ceso@ceso.cl"
+  },
+  "761270729": {
+    "rut": "761270729",
+    "nombre": "CHILENAZO SANTIAGO LTDA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1062834-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "RESERVAS@CHILENAZOSANTIAGO.CL"
+  },
+  "765500818": {
+    "rut": "765500818",
+    "nombre": "CHIPAX SPA",
+    "banco": "BANCO DE CHIILE",
+    "cuenta": "8480045704",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FACTURACION@chipax.com"
+  },
+  "186644891": {
+    "rut": "186644891",
+    "nombre": "Christian Gongora",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-000000-1866448-9",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "cgongora@cathpro.cl"
+  },
+  "150123437": {
+    "rut": "150123437",
+    "nombre": "Christian Ramirez",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000011-5035210-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "iquique@neumafranca.cl"
+  },
+  "179963620": {
+    "rut": "179963620",
+    "nombre": "Christopher ahumada",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "000-000199-9161303-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cahumada@cathpro.cl"
+  },
+  "760104698": {
+    "rut": "760104698",
+    "nombre": "Ciredeksa",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-4562912-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "servicios@ciredeksa.cl"
+  },
+  "102374908": {
+    "rut": "102374908",
+    "nombre": "Claudia Parilo",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "000-000103-4013045-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cparilos@yahoo.es"
+  },
+  "11815875K": {
+    "rut": "11815875K",
+    "nombre": "CLAUDIO ENRIQUE QUIROGA LEGAUTT",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "15842352520",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CLAUDIO19QUIROGA@GMAIL.COM"
+  },
+  "173766351": {
+    "rut": "173766351",
+    "nombre": "CLAUDIO VILLALOBOS",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000010-7203930-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "villalobos.vidal@gmail.com"
+  },
+  "763351548": {
+    "rut": "763351548",
+    "nombre": "CLF INVERSIONES LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1071579108",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "IMONTILLA@CIFRENTAL.CL"
+  },
+  "768094179": {
+    "rut": "768094179",
+    "nombre": "CLM GROUP SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "90270688941",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRANZAS@CLMGROUP.CL"
+  },
+  "760953768": {
+    "rut": "760953768",
+    "nombre": "COMERC IMPORT Y EXPORT FULL S",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6374647-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "administracion@fullsafety.cl"
+  },
+  "773145407": {
+    "rut": "773145407",
+    "nombre": "Comercial Alessandrini",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-000007-2370340-5",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "comercial@alessandrini.cl"
+  },
+  "787706304": {
+    "rut": "787706304",
+    "nombre": "Comercial Automotriz siglo XXI Ltda",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-2527975-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pulloa@xxi.cl"
+  },
+  "762250721": {
+    "rut": "762250721",
+    "nombre": "COMERCIAL CONELECTRIC SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6688273-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "crivera@conelectric.cl"
+  },
+  "763577996": {
+    "rut": "763577996",
+    "nombre": "Comercial DRM Chile Ltda",
+    "banco": "BANCO BICE",
+    "cuenta": "000-000000-0189328-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "transferencias@drmchile.cl"
+  },
+  "765082692": {
+    "rut": "765082692",
+    "nombre": "Comercial Ecogreen chile",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000023-7053610-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "jfuentes@ecogreenchile.cl"
+  },
+  "76140640K": {
+    "rut": "76140640K",
+    "nombre": "COMERCIAL RAMIREZ Y VERGARA LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-0362793-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "vramirez@servipal.cl"
+  },
+  "766803970": {
+    "rut": "766803970",
+    "nombre": "Comercial Safetruck",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000121-0014709-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ventas@safetruck.cl"
+  },
+  "773130604": {
+    "rut": "773130604",
+    "nombre": "Comercial Serpan Ltda",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000017-3046830-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cmontt@econorent.cl"
+  },
+  "770832683": {
+    "rut": "770832683",
+    "nombre": "COMERCIAL TODO FILM SPA",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "976417801",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "cobranza@todofilm.cl"
+  },
+  "765025117": {
+    "rut": "765025117",
+    "nombre": "Comercial VYT spa",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000014-8187090-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@nibble.cl"
+  },
+  "764860543": {
+    "rut": "764860543",
+    "nombre": "COMERCIAL Y SERVICIOS HIDRAULICOS METALBLUE LTDA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "27570138184",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "METALBLUE01@GMAIL.COM"
+  },
+  "797442208": {
+    "rut": "797442208",
+    "nombre": "Comex Ltda",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1483614407",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "claudiaespinoza@comex.cl"
+  },
+  "965655808": {
+    "rut": "965655808",
+    "nombre": "COMPAÑIA DE LEASING TATTERSALL",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "10402373",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cbarra@tattersall.cl"
+  },
+  "995200007": {
+    "rut": "995200007",
+    "nombre": "COMPAÑIA DE PETROLEOS CHILE COPEC S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6134308-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cavega@copec.cl"
+  },
+  "771788076": {
+    "rut": "771788076",
+    "nombre": "Computación y Musica Spa",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000344-7090233-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "fmarquez@computacionymusica.cl"
+  },
+  "766801501": {
+    "rut": "766801501",
+    "nombre": "COMUNICACIONES GEOAUSTRAL LTDA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "2500132691",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "h.marchant@geoaustralchile.cl"
+  },
+  "560642008": {
+    "rut": "560642008",
+    "nombre": "COMUNIDAD EDIFICIO MARCHANT PEREIRA",
+    "banco": "BANCO BICE",
+    "cuenta": "000-000000-1500062-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "edificiomarchantpereira@usurbanrealty.com"
+  },
+  "533145779": {
+    "rut": "533145779",
+    "nombre": "Comunidad Edificio parque Devis",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-6113909-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contactoparquedavis@gmail.com"
+  },
+  "761781294": {
+    "rut": "761781294",
+    "nombre": "Conec Company Ltda",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-000009-7199638-2",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "info@camas.cl"
+  },
+  "966770104": {
+    "rut": "966770104",
+    "nombre": "CONFERENCE S.A.",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "671254312",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MFUENTES@HBDR.CL"
+  },
+  "769391185": {
+    "rut": "769391185",
+    "nombre": "Constructira CAB spa",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-4623365-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cazocar1962@gmail.com"
+  },
+  "763264521": {
+    "rut": "763264521",
+    "nombre": "LUKASIAN HOLDINGS SPA",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "990738599",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "VERO@ECONOMICS.CL"
+  },
+  "96927700K": {
+    "rut": "96927700K",
+    "nombre": "CONTALINE S A",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-0020864-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "kerices@contaline.cl"
+  },
+  "150351758": {
+    "rut": "150351758",
+    "nombre": "CONTRERAS BERMUDEZ RICARDO HERNAN",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6809736-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "rcontreras@cathpro.cl"
+  },
+  "65078281K": {
+    "rut": "65078281K",
+    "nombre": "Costa Algarrobo norte",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1920421703",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "adm.costa.algarrobo@gmail.com"
+  },
+  "8234611": {
+    "rut": "82346-11",
+    "nombre": "Cristian Lopez",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "000-000002-1428555-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "clopez@cathpro.cl"
+  },
+  "122551970": {
+    "rut": "122551970",
+    "nombre": "CRISTIAN MARCELO ZUNIGA ARTEAGA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "84062801",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "czuniga.turismo@gmail.com"
+  },
+  "157212877": {
+    "rut": "157212877",
+    "nombre": "Cristian Norambuena",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "360221229",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cnorambuena@cathpro.cl"
+  },
+  "113491302": {
+    "rut": "113491302",
+    "nombre": "Cristian Riveros",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1134913-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "baltafer1121@gmail.com"
+  },
+  "160068582": {
+    "rut": "160068582",
+    "nombre": "Cristina Diaz",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1600685-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "prevencion.diaz@gmail-com"
+  },
+  "767838832": {
+    "rut": "767838832",
+    "nombre": "Cronos Automotriz",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000011-8109930-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "sergio@cronosautomotriz.com"
+  },
+  "781303704": {
+    "rut": "781303704",
+    "nombre": "CRT LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000000-0300850-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "OMANZO@CRT.CL"
+  },
+  "764043030": {
+    "rut": "764043030",
+    "nombre": "CUMBRES SA",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-000009-7364370-3",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "ventas@safelockout.cl"
+  },
+  "138882713": {
+    "rut": "138882713",
+    "nombre": "Daniel Fuentev...",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "37511050",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "fysmultiservice@gmail.com"
+  },
+  "163725215": {
+    "rut": "163725215",
+    "nombre": "Daniel Garrido",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1637252-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "danielgarridogalaz@gmail.com"
+  },
+  "141790307": {
+    "rut": "141790307",
+    "nombre": "Daniel Salas",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1417903-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "danieluretasalas@gmail.com"
+  },
+  "183811606": {
+    "rut": "183811606",
+    "nombre": "Daniela Adriana Jaramillo Vilvhes",
+    "banco": "BANCO ESTADO",
+    "cuenta": "18381160",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "danielaj23@live.cl"
+  },
+  "64620KK": {
+    "rut": "64620-KK",
+    "nombre": "Danilo Latorre",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000121-0000877-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "luislatorre@lospimientos.cl"
+  },
+  "176679190": {
+    "rut": "176679190",
+    "nombre": "Danitza Hernandez",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "000-000100-9011717-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "dani.hernandezn@gmail.com"
+  },
+  "130391206": {
+    "rut": "130391206",
+    "nombre": "Dario Mendez",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-6976682-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "darmensal@gmail.com"
+  },
+  "786451000": {
+    "rut": "786451000",
+    "nombre": "Dartel Iquique Ltda",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000017-1023460-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cmunozp@dartel.cl"
+  },
+  "968061100": {
+    "rut": "968061100",
+    "nombre": "Dartel SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000017-1012410-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "atorres@dartel.cl"
+  },
+  "16141915K": {
+    "rut": "16141915K",
+    "nombre": "David Alvarez",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-8196450-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "dalvarez@cathpro.cl"
+  },
+  "772054491": {
+    "rut": "772054491",
+    "nombre": "DAVID CAR SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-6346398-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contactodavidcar@gmail.com"
+  },
+  "10151742K": {
+    "rut": "10151742K",
+    "nombre": "David Molina",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "000-000100-7028286-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "demopublicidad@gmail.com"
+  },
+  "7017655": {
+    "rut": "70176-55",
+    "nombre": "David Saul",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000002-2066990-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pago@cpprint.cl"
+  },
+  "764484940": {
+    "rut": "764484940",
+    "nombre": "DEC-HAUS SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-5245825-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pagos@dehaus.cl"
+  },
+  "765755921": {
+    "rut": "765755921",
+    "nombre": "DEPARTAMENTOS COSTANERA SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000017-3246410-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@DEPARTAMENTOCOSTANERA.COM"
+  },
+  "869661007": {
+    "rut": "869661007",
+    "nombre": "DHL EXPRESS CHILE",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "105580002",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cobranzachile@dhl.com"
+  },
+  "270487513": {
+    "rut": "270487513",
+    "nombre": "Jose Diaz",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-2704875-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "diazdiazalejandro280@gmail.com"
+  },
+  "966913304": {
+    "rut": "966913304",
+    "nombre": "DICTUC S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-4011489-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cobranza@dictuc.cl"
+  },
+  "206767987": {
+    "rut": "206767987",
+    "nombre": "Diego Merida",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-2067679-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "beatrizm2763@gmail.com"
+  },
+  "189274025": {
+    "rut": "189274025",
+    "nombre": "DIEGO PANIAGUA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "7003194811",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FINANZAS@DIWEPRO.CL"
+  },
+  "969183005": {
+    "rut": "969183005",
+    "nombre": "DIFOR CHILE S.A",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6499903-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "amoena@difor.cl"
+  },
+  "966708409": {
+    "rut": "966708409",
+    "nombre": "DIMERC S.A.",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1680268604",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ELIMAR.SILVA@DIMERC.CL"
+  },
+  "615020001": {
+    "rut": "615020001",
+    "nombre": "Dirección del Trabajo",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-0902157-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pvalverde@cathpro.cl"
+  },
+  "826388005": {
+    "rut": "826388005",
+    "nombre": "DISTRIBUIDORA CONICO LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "25556852",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONICO@CONICO.CL"
+  },
+  "771934161": {
+    "rut": "771934161",
+    "nombre": "DISTRIBUIDORA LA TROPA SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "35070379935",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "AGUAPURIFICADALATROPA@GMAIL.COM"
+  },
+  "763620069": {
+    "rut": "763620069",
+    "nombre": "DIWEPRO SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1593666410",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "finanzas@diwepro.cl"
+  },
+  "150040221": {
+    "rut": "150040221",
+    "nombre": "Domingo Marin",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1500402-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "domingetee@gmail.com"
+  },
+  "761403702": {
+    "rut": "761403702",
+    "nombre": "eClass Limitada",
+    "banco": "BANCO SECURITY",
+    "cuenta": "000-000001-3683030-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "gdiaz@eclass.cl"
+  },
+  "650930096": {
+    "rut": "650930096",
+    "nombre": "EDIFICIO OFC",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "4190468905",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "EDIFICIOOFC@GMAIL.COM"
+  },
+  "157194186": {
+    "rut": "157194186",
+    "nombre": "EILEEN JAEL GARRIGA DORFMAN",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "61633936",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "EILEENGARRIGAD@GMAIL.COM"
+  },
+  "764832809": {
+    "rut": "764832809",
+    "nombre": "EL ARRAYAN FERRETERIA LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "5051932",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "fgoycoloea@arrayanltda.cl"
+  },
+  "768882312": {
+    "rut": "768882312",
+    "nombre": "El Portazo SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-2771670-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cristian@fuywines.com"
+  },
+  "763639398": {
+    "rut": "763639398",
+    "nombre": "Elastix Online SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "4020224204",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "administracion@elastixonline.cl"
+  },
+  "968964801": {
+    "rut": "968964801",
+    "nombre": "SONEPAR CHILE  SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "4720013100",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "hernan.sagredo@SONEPAR.cl"
+  },
+  "804098003": {
+    "rut": "804098003",
+    "nombre": "ELECTRICIDAD GOBANTES S.A.",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "11369621",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "epuga@gobantes.cl"
+  },
+  "260057162": {
+    "rut": "260057162",
+    "nombre": "IRAUSQUIN REVILLA ELIEZER",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7557551-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "eirausquin@cathpro.cl"
+  },
+  "126061080": {
+    "rut": "126061080",
+    "nombre": "Elizabeth Saavedra",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1260610-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "lineros493@gmail.com"
+  },
+  "920110002": {
+    "rut": "920110002",
+    "nombre": "ENEX SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "6772506",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "formulariodepagos@enex.cl"
+  },
+  "765139171": {
+    "rut": "765139171",
+    "nombre": "EMPRESAS ACTITUD SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7035053-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@leanglobal.cl"
+  },
+  "760389633": {
+    "rut": "760389633",
+    "nombre": "ENDCHILE LTDA",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-000009-7052163-1",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "ERICFIGUEROA@ENDCHILE.CL"
+  },
+  "968069802": {
+    "rut": "968069802",
+    "nombre": "Entel PCS",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1043425-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ejecutivocobranza9@entel.cl"
+  },
+  "995875802": {
+    "rut": "995875802",
+    "nombre": "EQUIPO CONTRA INCENDIOS RALLY S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "3796345",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS@RALLYSA.CL"
+  },
+  "770740495": {
+    "rut": "770740495",
+    "nombre": "Equirad SpA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000017-1135140-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@equiposderadio.cl"
+  },
+  "86932KK": {
+    "rut": "86932-KK",
+    "nombre": "Erico Medina",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1363285-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "emedinab60@gmail.com"
+  },
+  "774907599": {
+    "rut": "774907599",
+    "nombre": "Estafeta Cargo Express Ltda",
+    "banco": "BANCO INTERNACIONAL",
+    "cuenta": "000-000000-0919314-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "facturacion@estafetaexpress.cl"
+  },
+  "76037041K": {
+    "rut": "76037041K",
+    "nombre": "ESTANCIA EL CUADRO S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6240352-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "vvalenzuela@elcuadro.cl"
+  },
+  "761685341": {
+    "rut": "761685341",
+    "nombre": "ESTUDIO JURIDICO CORREA Y CRUZAT ASOCIADOS",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6613543-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "dcorrea@correaycruzat.cl"
+  },
+  "174106134": {
+    "rut": "174106134",
+    "nombre": "Evelyn Aravena",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000010-7198330-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "evee.aravena@gmail.com"
+  },
+  "761347942": {
+    "rut": "761347942",
+    "nombre": "FABRICACION VISTA LIBRE LTDA",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "203869343",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@VISTALIBRE.CL"
+  },
+  "760724726": {
+    "rut": "760724726",
+    "nombre": "FACTORING BANINTER S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "66203280",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "fcortez@baninterfactoring.cl"
+  },
+  "966558601": {
+    "rut": "966558601",
+    "nombre": "FACTORING SECURITY S.A.",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000000-0110930-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FACTORINGCOBRANZA@SECURIY.CL"
+  },
+  "777227602": {
+    "rut": "777227602",
+    "nombre": "Factoriza SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "6001201",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ssaavedra@factoriza.cl"
+  },
+  "763218465": {
+    "rut": "763218465",
+    "nombre": "PRONTOCAPITAL S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6744692-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "irojas@prontocapital.cl"
+  },
+  "768053278": {
+    "rut": "768053278",
+    "nombre": "FACTORPRO S.A.",
+    "banco": "BANCO SECURITY",
+    "cuenta": "917238199",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JCLUNA@FACTORPRO.CL"
+  },
+  "966607904": {
+    "rut": "966607904",
+    "nombre": "FACTOTAL S A",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-9997271-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "nnunez@ft.cl"
+  },
+  "255547623": {
+    "rut": "255547623",
+    "nombre": "Favio esquivel",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-2555476-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "maesto-@hotmail.com"
+  },
+  "760321079": {
+    "rut": "760321079",
+    "nombre": "FDD INNOVACION Y CRECIMIENTO S.A.",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "86249584",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "c.calderon@amipass.com"
+  },
+  "767542968": {
+    "rut": "767542968",
+    "nombre": "FEDEX EXPRESS",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000001-1194605-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "transferencia_bancaria@mail.fedex.com"
+  },
+  "767764626": {
+    "rut": "767764626",
+    "nombre": "Feldes Ltda",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-000009-7539439-5",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "dpalmanavarro@gmail.com"
+  },
+  "181718005": {
+    "rut": "181718005",
+    "nombre": "Fernanda Avendano",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000031-1007280-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "flavendano@uc.cl"
+  },
+  "141833685": {
+    "rut": "141833685",
+    "nombre": "FERNANDO CORNEJO",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "000-000199-9131599-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FERNANDOCORNEJO0312@GMAIL.COM"
+  },
+  "767414331": {
+    "rut": "767414331",
+    "nombre": "Ferretek",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000080-0259090-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "carolina.ponce@ferretek.cl"
+  },
+  "776170771": {
+    "rut": "776170771",
+    "nombre": "FERREVOLT MYG SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "88074068",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JORGEGARCIA@FERREVOLT.CL"
+  },
+  "119925509": {
+    "rut": "119925509",
+    "nombre": "FIGUEROA RIVEROS ALEXIS ROLANDO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "88002121",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "alexis.manic@gmail.com"
+  },
+  "914890004": {
+    "rut": "914890004",
+    "nombre": "FINNING CHILE S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-0093885-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "maria.dacosta@finning.com"
+  },
+  "210388443": {
+    "rut": "210388443",
+    "nombre": "FLORENCIA MORAGA BARRUETO",
+    "banco": "BANCO CHILE",
+    "cuenta": "8173043701",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "fmoragab@udd.cl"
+  },
+  "765158168": {
+    "rut": "765158168",
+    "nombre": "Fodor SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-6159868-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ivan@fodor.cl"
+  },
+  "59972197": {
+    "rut": "59972197",
+    "nombre": "FRANCISCO ANTONIO ARANCIBIA CARVAJAL",
+    "banco": "BANCO CREDITO E INVERSIONES",
+    "cuenta": "14080443",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "elcoraldebahia@gmail.com"
+  },
+  "5997977": {
+    "rut": "59979-77",
+    "nombre": "Francisco Arancibia",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1408044-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "elcoraldebahia@gmail.com"
+  },
+  "126364687": {
+    "rut": "126364687",
+    "nombre": "FRANCISCO LEIVA CARVAJAL",
+    "banco": "BANCO BICE",
+    "cuenta": "1545140",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "NDIAZ@NOTARIALEIVA.CL"
+  },
+  "141076515": {
+    "rut": "141076515",
+    "nombre": "Francisco Lozan",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1410765-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "modularq.arquitectura@gmail.com"
+  },
+  "128248617": {
+    "rut": "128248617",
+    "nombre": "FRANCISCO NUNEZ",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1282486-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "braneken@gmail.com"
+  },
+  "174394202": {
+    "rut": "174394202",
+    "nombre": "FRANCO DEVIA HUGUENO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7097090-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "fdevia@cathpro.cl"
+  },
+  "172854303": {
+    "rut": "172854303",
+    "nombre": "Franco Pedraza",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1594848200",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "fpedraza@cathpro.cl"
+  },
+  "705436002": {
+    "rut": "705436002",
+    "nombre": "FUNDACION LAS ROSAS DE AYUDA FRATERNA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000007-3335201-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PRODUCTOS@FLROSAS.CL"
+  },
+  "766993788": {
+    "rut": "766993788",
+    "nombre": "Fuy Wines",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-2752299-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cristian@fuywines.com"
+  },
+  "130979246": {
+    "rut": "130979246",
+    "nombre": "Gabriel Gilberto",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-6196098-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ggilberto@cathpro.cl"
+  },
+  "176651296": {
+    "rut": "176651296",
+    "nombre": "Gabriel Navarrete",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "000-000145-1011081-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "gnavarrete@cathpro.cl"
+  },
+  "13284366K": {
+    "rut": "13284366K",
+    "nombre": "Gerardo Ñancullef",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1328436-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "litogernansep@gmail.com"
+  },
+  "165820495": {
+    "rut": "165820495",
+    "nombre": "Gerardo Pinto",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-8187591-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "gpinto@terrabahia.cl"
+  },
+  "770864267": {
+    "rut": "770864267",
+    "nombre": "Geron Care",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000367-7245593-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "matiasvillagra@geroncare.cl"
+  },
+  "762920557": {
+    "rut": "762920557",
+    "nombre": "GLOBAL TRADE CHILE LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "67375629",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "YVILLANUEVA@CMHCHILE.CL"
+  },
+  "770626781": {
+    "rut": "770626781",
+    "nombre": "GO MOTORS SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7890299-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ignaciocarrasco@gomotors.cl"
+  },
+  "765729882": {
+    "rut": "765729882",
+    "nombre": "GOETZ Y LAKIN LTDA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "61775801",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "billing@dyneng.cl"
+  },
+  "144804112": {
+    "rut": "144804112",
+    "nombre": "GONZALEZ ARTEAGA ALEXI ROBERTO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6753125-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ALEXIGONZALEZARTEAGA@GMAIL.COM"
+  },
+  "136862480": {
+    "rut": "136862480",
+    "nombre": "LEAL JIL GONZALO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6622870-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "gleal@cathpro.cl"
+  },
+  "969419602": {
+    "rut": "969419602",
+    "nombre": "GPS CHILE SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "4963942544",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRANZAS@GPSCHILE.COM"
+  },
+  "150030889": {
+    "rut": "150030889",
+    "nombre": "GRACIELA CAMPOS APABLAZA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "19580061",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "GERENCIA@RAPALO.CL"
+  },
+  "169650799": {
+    "rut": "169650799",
+    "nombre": "GRUBSIC LAVIN VICENTE FRANCISCO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6744793-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "vgrubsic@cabralesgrubsic.cl"
+  },
+  "76205292K": {
+    "rut": "76205292K",
+    "nombre": "Grupo Apolo",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "000-000002-0648675-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "finanzas@pcradomicilio.cl"
+  },
+  "770679036": {
+    "rut": "770679036",
+    "nombre": "GRUPO HOTELERO CORTES JOFRE SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7496294-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "reservas@hotelarenasblancas.cl"
+  },
+  "765964830": {
+    "rut": "765964830",
+    "nombre": "GRUPO VERDIER Y REYES",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "70757494",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CREYES@BLUETTISTORE.CL"
+  },
+  "151709125": {
+    "rut": "151709125",
+    "nombre": "Guillermo Grandon",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1517091-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "guillermo.grandon.gg@gmail.com"
+  },
+  "78000678": {
+    "rut": "78000678",
+    "nombre": "Liliana Rivera",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-0780006-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "lilianariverac4@gmail.com"
+  },
+  "7176088": {
+    "rut": "71760-88",
+    "nombre": "Guillermo Leon",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "000-000002-0218055-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "galh@galh.cl"
+  },
+  "155109610": {
+    "rut": "155109610",
+    "nombre": "GUILLERMO SEBASTIAN PEREZ CUEVAS",
+    "banco": "BANCO RIPLEY",
+    "cuenta": "4011981201",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "GMO.DREAD@GMAIL.COM"
+  },
+  "43422936": {
+    "rut": "43422936",
+    "nombre": "HECTOR DEL ROSARIO VARELA DIAZ",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "207455857",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "HECTORVARELAD@GMAIL.COM"
+  },
+  "8861066": {
+    "rut": "88610-66",
+    "nombre": "Heriberto Larrain",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000015-7522260-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "larrainhijos@gmail.com"
+  },
+  "788599005": {
+    "rut": "788599005",
+    "nombre": "Hernan Bosaans y cia Ltda",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "6460810975",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@hbosaans.cl"
+  },
+  "262600025": {
+    "rut": "262600025",
+    "nombre": "MANUEL HERNANDEZ",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-2626000-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mhernandez@cathpro.cl"
+  },
+  "765489237": {
+    "rut": "765489237",
+    "nombre": "High Rental",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "000-000002-0350891-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@highrental.cl"
+  },
+  "160916869": {
+    "rut": "160916869",
+    "nombre": "HIZMERI AGURTO CHRISTIAN SIMON",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6406122-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "christian.hizmeri@gmail.com"
+  },
+  "769457933": {
+    "rut": "769457933",
+    "nombre": "Hostal Salt and pepper",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000239-7201701-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "administracion@saltandpepper.cl"
+  },
+  "766850170": {
+    "rut": "766850170",
+    "nombre": "Soc Inv Rucaru",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000030-7004328-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "hotel.rucaru@gmail.com"
+  },
+  "763549232": {
+    "rut": "763549232",
+    "nombre": "Hotel Terrasol",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000013-7180987-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contactohotelterrasol@gmail.com"
+  },
+  "783512009": {
+    "rut": "783512009",
+    "nombre": "Hotel Vento",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000011-8110890-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "recepcion@hotelvento.cl"
+  },
+  "76483688K": {
+    "rut": "76483688K",
+    "nombre": "Hotelera Acua",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1515239-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "apumpin@radisson.cl"
+  },
+  "760298743": {
+    "rut": "760298743",
+    "nombre": "HOTELERA COSTA DEL SOL MEJILLONES SA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "63246166",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contabilidad@hotelmejillones.cl"
+  },
+  "776631507": {
+    "rut": "776631507",
+    "nombre": "HOTELERA DIEGO DE ALMAGRO LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "1621777",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CENTRALDERESERVAS@DAHOTELES.COM"
+  },
+  "772330332": {
+    "rut": "772330332",
+    "nombre": "HOTELERA MARIELLA CARVELLINO",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "220637978",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "RESERVAS@RESORTSANTAROSA.CL"
+  },
+  "762655144": {
+    "rut": "762655144",
+    "nombre": "HOTELERA Y TURISMO SEMBLER TRONCOSO LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6720345-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "hotelera.estancia.limitada@gmail.com"
+  },
+  "776013676": {
+    "rut": "776013676",
+    "nombre": "HTM CHILE SPA",
+    "banco": "BANCO SECURITY",
+    "cuenta": "922941649",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "INFO@HTMCHILE.CL"
+  },
+  "76794697K": {
+    "rut": "76794697K",
+    "nombre": "Hydroseal Ltda",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000016-6122340-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "hydroseal@hydroseal.cl"
+  },
+  "10951408K": {
+    "rut": "10951408K",
+    "nombre": "Ignacio Diaz",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000041-9003500-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ldiazrivadenerira@yahoo.cl"
+  },
+  "212926477": {
+    "rut": "212926477",
+    "nombre": "IGNACIO VITTORIO MORALES",
+    "banco": "BANCO ESTADO",
+    "cuenta": "21292647",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "IGNACIOMM27@GMAIL.COM"
+  },
+  "79877820K": {
+    "rut": "79877820K",
+    "nombre": "Impomak SA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-2500478-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "impomak@impomak.com"
+  },
+  "761066366": {
+    "rut": "761066366",
+    "nombre": "IMPORTADORA HN SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7201947-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cobranza@inporthn.com"
+  },
+  "77113520K": {
+    "rut": "77113520K",
+    "nombre": "Importadora Imprecin",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1140928-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ventas@imprecin.cl"
+  },
+  "760122785": {
+    "rut": "760122785",
+    "nombre": "IMPORTADORA SPEED T LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "8000389705",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "IMP.EXP.SPEEDR@GMAIL.COM"
+  },
+  "764404904": {
+    "rut": "764404904",
+    "nombre": "IMPROTEK LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "5353602",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS@IMPROTEK.CL"
+  },
+  "765898943": {
+    "rut": "765898943",
+    "nombre": "Inatrans SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000080-0205571-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pagos@inatrans.cl"
+  },
+  "766209440": {
+    "rut": "766209440",
+    "nombre": "INCHCAPE CHILE S.A.",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1067040-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "david.farias@inchcape.CL"
+  },
+  "852634006": {
+    "rut": "852634006",
+    "nombre": "INEX Chile SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1696800503",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ventas@inexchile.com"
+  },
+  "772071671": {
+    "rut": "772071671",
+    "nombre": "INFORMÁTICA LYA SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "84253537",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "salvador.meza@informaticalya.cl"
+  },
+  "768297266": {
+    "rut": "768297266",
+    "nombre": "ING ELECTRICA Y CONSTRUCCIONES TESYCA SP",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7307121-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "rodrigonelis@gmail.com"
+  },
+  "764115821": {
+    "rut": "764115821",
+    "nombre": "INGENIERIA 3D ACEMIN SPA",
+    "banco": "BANCO CHILE",
+    "cuenta": "8140085304",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "gmf@3dacemin.cl"
+  },
+  "78131420K": {
+    "rut": "78131420K",
+    "nombre": "INGENIERIA DESIMAT LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "94016630",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FACTURACION@DESIMAT.CL"
+  },
+  "798823604": {
+    "rut": "798823604",
+    "nombre": "INGENIERIA E INFORMATICA ASOCIADA LTDA",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "215674042",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PAGOS@TECNOMAS.CL"
+  },
+  "760211877": {
+    "rut": "760211877",
+    "nombre": "INGENIERIA Y SERVICIOS VENTO LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "2900759810",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "RUBENVARG@GMAIL.COM"
+  },
+  "763475999": {
+    "rut": "763475999",
+    "nombre": "Inm e Inv Falcon EIRL",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000517-7036578-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "waldo.mora.r@gmail.com"
+  },
+  "768447519": {
+    "rut": "768447519",
+    "nombre": "INMOBILIARIA BAHIA MAGICA SPA",
+    "banco": "BANCO BICE",
+    "cuenta": "1391526",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS@BAHIAMAGICA.CL"
+  },
+  "762309785": {
+    "rut": "762309785",
+    "nombre": "Inmobiliaria Colipi Spa",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "000-000002-1049813-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "h8922-re@accor.com"
+  },
+  "763288366": {
+    "rut": "763288366",
+    "nombre": "INMOBILIARIA CONSULTORA Y OPERADORA IF SPA",
+    "banco": "BANCO BICE",
+    "cuenta": "2032716",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTABLES@IFCHILE.COM"
+  },
+  "764795954": {
+    "rut": "764795954",
+    "nombre": "INMOBILIARIA CORMA SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6946716-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@fullbodega.cl"
+  },
+  "765738903": {
+    "rut": "765738903",
+    "nombre": "INMOBILIARIA E INVERSIONES RODAS LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6308024-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "eitanszewkis@gmail.com"
+  },
+  "878452003": {
+    "rut": "878452003",
+    "nombre": "INST SUP DE ARTES Y CIENCIAS DE LA COMUNICACIONES",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-0283255-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "alejandra.contreras@iacc.cl"
+  },
+  "966924306": {
+    "rut": "966924306",
+    "nombre": "INSTRUMENTACION ELECTRONICA LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "2826062",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "servicio@intronica.com"
+  },
+  "762471477": {
+    "rut": "762471477",
+    "nombre": "Inv y Ase Centro medico",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000080-0006161-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "laserena@cmtsalud.cl"
+  },
+  "771445594": {
+    "rut": "771445594",
+    "nombre": "INVERSIONES E TRADING S.A.",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "46296239",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "LINO@ANDES-TEC.CL"
+  },
+  "762001012": {
+    "rut": "762001012",
+    "nombre": "INVERSIONES NEW PORTAL SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000015-9386120-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ELIZABETH@SPACIOCREATIVO.CL"
+  },
+  "761659626": {
+    "rut": "761659626",
+    "nombre": "INVERSIONES RIÑIHUE LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "3680233003",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "daniela@kasparik.cl"
+  },
+  "761190008": {
+    "rut": "761190008",
+    "nombre": "INVERSIONES Y ANALISIS CLINICOS LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-0430676-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "direccion_tecnica@laboratoriosiac.cl"
+  },
+  "768241511": {
+    "rut": "768241511",
+    "nombre": "Inversiones y Servicios Dribulk",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000005-3070420-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "sebastian.drybulk@gmail.com"
+  },
+  "79733720K": {
+    "rut": "79733720K",
+    "nombre": "IPROM INGENIERIA DE PROYECTOS Y MONTAJE",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-0583788-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ventas@starshop.cl"
+  },
+  "6828566": {
+    "rut": "68285-66",
+    "nombre": "Irma Yolanda Almonacid",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-9501391-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "reservas@queitaopatagonia.cl"
+  },
+  "968567802": {
+    "rut": "968567802",
+    "nombre": "Isapre Consalud",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-000008-9002097-7",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "g.hermosilla@asencobchile.cl"
+  },
+  "766451985": {
+    "rut": "766451985",
+    "nombre": "Isoprevent",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000015-6041380-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ventas@isiprevent.cl"
+  },
+  "136403117": {
+    "rut": "136403117",
+    "nombre": "Ivan Mamani",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-000000-3603346-0",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "trans.ivanmamani@gmail.com"
+  },
+  "763752674": {
+    "rut": "763752674",
+    "nombre": "Ivan Ulloa",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-6169043-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ivan.ulloa@patagontec.cl"
+  },
+  "118190300": {
+    "rut": "118190300",
+    "nombre": "JAIME LARA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1181903-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "LARAJAIME2005@YAHOO.ES"
+  },
+  "191155246": {
+    "rut": "191155246",
+    "nombre": "JAVIERA MORAGA VALVERDE",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000080-1109140-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JBMORAGA@UC.CL"
+  },
+  "763123243": {
+    "rut": "763123243",
+    "nombre": "JEMZA SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "81534965",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "esteban.marin@jemzaspa.com"
+  },
+  "258793714": {
+    "rut": "258793714",
+    "nombre": "JHOLIANNYS BONALDE",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000012-0007800-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JBONALDE@CATHPRO.CL"
+  },
+  "225758905": {
+    "rut": "225758905",
+    "nombre": "jhon reyes",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-2257589-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@cathpro.cl"
+  },
+  "156860050": {
+    "rut": "156860050",
+    "nombre": "MIRANDA ZAMORA JONATHAN MICHEL",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-070-5829079-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "jmirandaz201884@gmail.com"
+  },
+  "197562943": {
+    "rut": "197562943",
+    "nombre": "JORDAN LOBOS",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000018-0070150-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JORDANLOBOS2@GMAIL.COM"
+  },
+  "136814214": {
+    "rut": "136814214",
+    "nombre": "JORGE ALEJANDRO OYARZUN CORREA",
+    "banco": "BANCO CREDITO E INVERSIONES",
+    "cuenta": "777913681421",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JORGE.OYARZUN.CORREA@GMAIL.COM"
+  },
+  "258813936": {
+    "rut": "258813936",
+    "nombre": "JORGE GARCIA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-2588139-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JGARCIA@CATHPRO.CL"
+  },
+  "36493380": {
+    "rut": "36493380",
+    "nombre": "JORGE GONZALEZ",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "000-000002-0748297-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "jgonzalezs@quimycor.cl"
+  },
+  "3649800": {
+    "rut": "36498-00",
+    "nombre": "Jorge Horen Gonzalez",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-3654596-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JGONZALEZS@QUIMYCOR.CL"
+  },
+  "152810555": {
+    "rut": "152810555",
+    "nombre": "Jorge Sanchez",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1528105-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "orlandokammel@gmail.com"
+  },
+  "96866400K": {
+    "rut": "96866400K",
+    "nombre": "JORPA INGENIERIA SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000023-6254198-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MANDRADE@JORPA.CL"
+  },
+  "5717566": {
+    "rut": "57175-66",
+    "nombre": "Jose Carroza Gaete",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1291651-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@cathpro.cl"
+  },
+  "115371320": {
+    "rut": "115371320",
+    "nombre": "Jose Cisternas",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1153713-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cristian.cisternas.pineda@gmail.com"
+  },
+  "767575106": {
+    "rut": "767575106",
+    "nombre": "Jose Toro",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000291-0000027-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "rmoraga@cathpro.cl"
+  },
+  "135517364": {
+    "rut": "135517364",
+    "nombre": "JOSEFINA HERRERA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "86990322",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JOSE.HERRERAV@GMAIL.COM"
+  },
+  "180672109": {
+    "rut": "180672109",
+    "nombre": "Juan Arevalo",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "000-000199-9388865-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "eduardoarevaloovalle22@gmail.com"
+  },
+  "768089639": {
+    "rut": "768089639",
+    "nombre": "Juan Gonzalez",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000325-7046315-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "abrahan.agmc@gmail.com"
+  },
+  "170967208": {
+    "rut": "170967208",
+    "nombre": "Juan Rodriguez",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1709672-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "juan_rodriguezrivas@Hotmail.com"
+  },
+  "101311090": {
+    "rut": "101311090",
+    "nombre": "JUAN TORO",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1013110-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "juantoroloncon@gmail.com"
+  },
+  "7857788": {
+    "rut": "78577-88",
+    "nombre": "Juan Ugalde",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-000009-7458857-9",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "info@hostalbarrosluco.cl"
+  },
+  "61534849": {
+    "rut": "61534849",
+    "nombre": "Juan Zamora",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000123-0005413-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "zamorajuaneduardo6@gmail.com"
+  },
+  "6153499": {
+    "rut": "61534-99",
+    "nombre": "Juan Zamora",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000123-0005413-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "zamorajuaneduardo6@gmail.com"
+  },
+  "126438885": {
+    "rut": "126438885",
+    "nombre": "JULIO MARCELO MORAGA TORRES",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6860556-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mmoraga@cathpro.cl"
+  },
+  "769820736": {
+    "rut": "769820736",
+    "nombre": "JV ASESORES FINANCIEROS TRIBUTARIOS",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "223011747",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "SNAVARRETE@ACASESORIAS.CL"
+  },
+  "124448794": {
+    "rut": "124448794",
+    "nombre": "KARINNE TRASLAVIÑA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "44169965",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "KARINNE73@GMAIL.COM"
+  },
+  "264403464": {
+    "rut": "264403464",
+    "nombre": "Kevin Lira",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-2644034-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "lirakev@gmail.com"
+  },
+  "908440005": {
+    "rut": "908440005",
+    "nombre": "KUPFER HNOS SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "146005",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "gtephi@kupfer.cl"
+  },
+  "769488111": {
+    "rut": "769488111",
+    "nombre": "LA BUENA TIERRA SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "90270980685",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@LABUENATIERRAPICA.CL"
+  },
+  "77531916K": {
+    "rut": "77531916K",
+    "nombre": "LAB MINING SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "87128016",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FINANZAS@ADTRIUM.CL"
+  },
+  "968810405": {
+    "rut": "968810405",
+    "nombre": "Laboratorio Clinica",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-006501-0002911-6",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "transferencias@laboratorioinsi.cl"
+  },
+  "783459302": {
+    "rut": "783459302",
+    "nombre": "LABORATORIO CONTROL Y ENSAYOS DE MATERIALES SA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "4110455",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "LACEM@LACEM.CL"
+  },
+  "772309902": {
+    "rut": "772309902",
+    "nombre": "Laboratorio Dialab",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000010-5005280-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "dialabarica@gmail.com"
+  },
+  "898622002": {
+    "rut": "898622002",
+    "nombre": "LATAM AIRLINES GROUP S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "5666856",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "recaudación@fi-latam.com"
+  },
+  "760606804": {
+    "rut": "760606804",
+    "nombre": "LAYEX CHILE LTDA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "1718835",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "jherrera@layex.cl"
+  },
+  "761578480": {
+    "rut": "761578480",
+    "nombre": "Life&Medical",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-000005-6016063-9",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "contacto@cathpro.cl"
+  },
+  "7800788": {
+    "rut": "78007-88",
+    "nombre": "Liliana Rivera",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-0780006-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "lilianariverac4@gmail.com"
+  },
+  "8914788": {
+    "rut": "89147-88",
+    "nombre": "Lucy del Carmen olea",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000092-3023150-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "lucy.olve@gmail.com"
+  },
+  "8402155": {
+    "rut": "84021-55",
+    "nombre": "Luis Ananias",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1403609-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "publimagenchile@gmail.com"
+  },
+  "44342529": {
+    "rut": "44342529",
+    "nombre": "Luis Araneda",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1196720-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "jherrera@layex.cl"
+  },
+  "4434299": {
+    "rut": "44342-99",
+    "nombre": "Luis Araneda",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1196720-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "jherrera@layex.cl"
+  },
+  "195132984": {
+    "rut": "195132984",
+    "nombre": "LUIS BLANCO",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-000006-4004763-1",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "LBASTY10@GMAIL.COM"
+  },
+  "159736881": {
+    "rut": "159736881",
+    "nombre": "LUIS DELGADO",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000527-7305786-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "LUIS.DELGADO85@GMAIL.com"
+  },
+  "6254208K": {
+    "rut": "6254208K",
+    "nombre": "LUIS FERNANDO MOSCOSO PULJEZEVIC",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "81402279",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "LUIS.MOSCOSO@COMERCIALDAYTONA.CL"
+  },
+  "13769462K": {
+    "rut": "13769462K",
+    "nombre": "LUIS ITURRA SOBARZO",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "254524162",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "LITURRASOBARZO2@GMAIL.COM"
+  },
+  "182436739": {
+    "rut": "182436739",
+    "nombre": "Luis Saez",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "000-000500-6033683-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "neumaticos_nvs@hotmail.com"
+  },
+  "118439981": {
+    "rut": "118439981",
+    "nombre": "LUIS SANCHEZ MODACA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "93619537",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MAZZIVAPRO@GMAIL.COM"
+  },
+  "7558622": {
+    "rut": "75586-22",
+    "nombre": "Luis Varela",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000236-0007994-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "servicios5estrellas@gmail.com"
+  },
+  "260592254": {
+    "rut": "260592254",
+    "nombre": "Manuel Castillo Rodriguez",
+    "banco": "BANCO ESTADO",
+    "cuenta": "26059225",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cbenavides@cathpro.cl"
+  },
+  "150041155": {
+    "rut": "150041155",
+    "nombre": "Manuel Reyes",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "000-000002-1315831-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mreyes@cathpro.cl"
+  },
+  "965082107": {
+    "rut": "965082107",
+    "nombre": "MAPFRE CIA DE SEGUROS GENERALES DE CHILE",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6269337-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "claus.thorun@marsh.com"
+  },
+  "760164267": {
+    "rut": "760164267",
+    "nombre": "MAQUINARIAS Y SONDAJES R MUNOZ LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1201017707",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "HSANTANDER@MUNOZMAQUINARIAS.CL"
+  },
+  "127985391": {
+    "rut": "127985391",
+    "nombre": "MARCELO JOSE ROMERO OSORIO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "62191182427",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MARCELO.ROMERO.O@GMAIL.COM"
+  },
+  "205034943": {
+    "rut": "205034943",
+    "nombre": "PEZO REYES MARCELO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-8691136-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MARCELOPEZO199@GMAIL.COM"
+  },
+  "7051422": {
+    "rut": "70514-22",
+    "nombre": "María de Luz cerda",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000003-2024090-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "luzmoreno3@hotmail.com"
+  },
+  "7051311": {
+    "rut": "70513-11",
+    "nombre": "maria del rosa cerda moreno",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-002501-0002805-7",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "mcerda@hotmail.com"
+  },
+  "136346369": {
+    "rut": "136346369",
+    "nombre": "Maria Ester Contreras",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-2675658-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mcontreras@cathpro.cl"
+  },
+  "263251342": {
+    "rut": "263251342",
+    "nombre": "Maria Lamas",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-2632513-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "lamasmaria0@gmail.com"
+  },
+  "257303586": {
+    "rut": "257303586",
+    "nombre": "Maria Mojica",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "000-000002-1070531-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mvmojica@gmail.com"
+  },
+  "106096635": {
+    "rut": "106096635",
+    "nombre": "Maria vejar",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-2940123-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mm.vejar@gmail.com"
+  },
+  "132728534": {
+    "rut": "132728534",
+    "nombre": "Mario Valverde",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "000-000154-9002516-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mvalverde@cathpro.cl"
+  },
+  "12583941K": {
+    "rut": "12583941K",
+    "nombre": "MARISEL KARIN FUENTES FARIAS",
+    "banco": "BANCO ESTADO",
+    "cuenta": "12583941",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "KARIN.FUENTES.F@GMAIL.COM"
+  },
+  "760905305": {
+    "rut": "760905305",
+    "nombre": "Maritex SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-8505794-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ventas03@maritex.cl"
+  },
+  "101956334": {
+    "rut": "101956334",
+    "nombre": "Maritza Ortuño",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-2207558-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "maritza.ortuno.f@gmail.com"
+  },
+  "180261524": {
+    "rut": "180261524",
+    "nombre": "Martin Costa",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000000-9025700-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mcosta@cathpro.cl"
+  },
+  "798899104": {
+    "rut": "798899104",
+    "nombre": "Martin G SPA",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "214219516",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "projas@martin-g.cl"
+  },
+  "785954106": {
+    "rut": "785954106",
+    "nombre": "MARUBENI HOLDING LTDA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "10681621",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pagosleasing@marubeni.cl"
+  },
+  "770634482": {
+    "rut": "770634482",
+    "nombre": "Master Service Spa",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-000009-7628504-2",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "contabilidad@masterservices.cl"
+  },
+  "180496629": {
+    "rut": "180496629",
+    "nombre": "Matias Rivera",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "14510111978",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mrivera@cathpro.cl"
+  },
+  "190258602": {
+    "rut": "190258602",
+    "nombre": "Matias Toledo",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1902586-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@CATHPRO.cl"
+  },
+  "166192129": {
+    "rut": "166192129",
+    "nombre": "Matias Villagra",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1661921-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "matiasvillagra@geroncare.cl"
+  },
+  "768612366": {
+    "rut": "768612366",
+    "nombre": "MECANICA INTEGRAL TEAMWORK 7 EIRL",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7314897-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@mecanicaw7.cl"
+  },
+  "767689330": {
+    "rut": "767689330",
+    "nombre": "Mentoris SpA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1622752108",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ccruz@mentoris.cl"
+  },
+  "169366217": {
+    "rut": "169366217",
+    "nombre": "MERIDA MALDONADO FERNANDA BEATRIZ",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-070-0914428-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "beatrizm2763@gmail.com"
+  },
+  "992890002": {
+    "rut": "992890002",
+    "nombre": "Metlife SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000000-0116280-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pbarrueto@metlife.cl"
+  },
+  "177156361": {
+    "rut": "177156361",
+    "nombre": "MEZA CISTERNAS MONICA SILVANA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6553451-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "monica.mezacisternas17@gmail.com"
+  },
+  "762723891": {
+    "rut": "762723891",
+    "nombre": "MIGPS SA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "67321880",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "katherine.mendez@migps.cl"
+  },
+  "201717132": {
+    "rut": "201717132",
+    "nombre": "MONSERRAT CISTERNAS",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-2017171-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cnorambuena@cathpro.cl"
+  },
+  "769516123": {
+    "rut": "769516123",
+    "nombre": "Moonk Factoring spa",
+    "banco": "BANCO BICE",
+    "cuenta": "22002546",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "recaudaciones@moonk.cl"
+  },
+  "761025643": {
+    "rut": "761025643",
+    "nombre": "Morken Chile SA",
+    "banco": "BANCO SECURITY",
+    "cuenta": "128614501",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "opoblete@morkengroup.cl"
+  },
+  "768177589": {
+    "rut": "768177589",
+    "nombre": "MULTIALARMAS SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "83551712",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CLAUDIO.MUNOZ@MULTIALARMAS.CL"
+  },
+  "702851009": {
+    "rut": "702851009",
+    "nombre": "MUTUAL DE SEGURIDAD CCHC",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "12347396",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MFACTURA1@COBROEXPERT.CL"
+  },
+  "124831237": {
+    "rut": "124831237",
+    "nombre": "Myriam Pizarro",
+    "banco": "BANCO ESTADO",
+    "cuenta": "12483123",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@cathpro.cl"
+  },
+  "777125699": {
+    "rut": "777125699",
+    "nombre": "NAL MAIPU SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "90075071",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mvalverde@cathpro.cl"
+  },
+  "171901030": {
+    "rut": "171901030",
+    "nombre": "NAVARRO VASQUEZ FRANCISCA ANDREA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-070-0917833-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "fcanavas@gmail.com"
+  },
+  "76807092K": {
+    "rut": "76807092K",
+    "nombre": "Negocios Inmobiliarios spa",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000017-6049800-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "yeremi.ortegat@gmail.com"
+  },
+  "270493637": {
+    "rut": "270493637",
+    "nombre": "NERIO OJEDA",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "000-000151-7013478-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ojedanerio@gmail.com"
+  },
+  "771577679": {
+    "rut": "771577679",
+    "nombre": "Neuralis SpA",
+    "banco": "BANCO BICE",
+    "cuenta": "15019999",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "claudia.lara@neuralis.cl"
+  },
+  "154816216": {
+    "rut": "154816216",
+    "nombre": "Nicolas Abarca",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "3917240",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "nicoabarca088@gmail.com"
+  },
+  "208094157": {
+    "rut": "208094157",
+    "nombre": "NICOLAS ANDRES GALLEGO GONZALEZ",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "92843289",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "gallegonicolas12345@gmail.com"
+  },
+  "160915870": {
+    "rut": "160915870",
+    "nombre": "Nicolas Carcamo",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000000-1703950-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ncarcamo@cathpro.cl"
+  },
+  "212420190": {
+    "rut": "212420190",
+    "nombre": "NICOLAS MOLINA MUÑOZ",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-2124201-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cbenavides@cathpro.cl"
+  },
+  "167470394": {
+    "rut": "167470394",
+    "nombre": "NICOLAS PANIAGUA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000016-9199700-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "npaniagua@cathpro.cl"
+  },
+  "995818108": {
+    "rut": "995818108",
+    "nombre": "NORCONTROL CHILE S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "3593681",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "emilia.ramirez@applus.com"
+  },
+  "769087400": {
+    "rut": "769087400",
+    "nombre": "NORERO RUBIO LTDA",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "000-000002-0060472-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MEM@ALMOTORS.CL"
+  },
+  "8246011": {
+    "rut": "82460-11",
+    "nombre": "Norma Guzman",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "000-000112-7004510-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "hotelterrasol@chileagenda.cl"
+  },
+  "160974117": {
+    "rut": "160974117",
+    "nombre": "NOVOA CARBONE MATIAS HORACIO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6212984-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "sdominguez.legal@gmail.com"
+  },
+  "763379876": {
+    "rut": "763379876",
+    "nombre": "ODE LIOI GESTION INMOBILIARIA EIRL",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "67666399",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@REMAX-ACCION.CL"
+  },
+  "150014158": {
+    "rut": "150014158",
+    "nombre": "ODILIA GARCIA LOZA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "68977800",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "dilia.garcia458@gmail.com"
+  },
+  "769468560": {
+    "rut": "769468560",
+    "nombre": "Omega Servicios SPA",
+    "banco": "BANCO CHILE",
+    "cuenta": "1623281303",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MEDINA.M@OMEGASERVICIOS.CL"
+  },
+  "116487705": {
+    "rut": "116487705",
+    "nombre": "OÑATE CONTRERAS CLAUDIO ALBERTO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6155349-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@equiposderadio.cl"
+  },
+  "772282508": {
+    "rut": "772282508",
+    "nombre": "Open World",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-2980831-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "vrendon@openworldtatam.com"
+  },
+  "764211855": {
+    "rut": "764211855",
+    "nombre": "ORGANISMO TECNICO DE CAPACITACION",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "972751553",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "LESCOBAR@ACHS.CL"
+  },
+  "118275691": {
+    "rut": "118275691",
+    "nombre": "Oscar Salinas",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1182756-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "osalinas@cathpro.cl"
+  },
+  "140302619": {
+    "rut": "140302619",
+    "nombre": "Pablo Henriquez",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000001-4030261-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pablohenriquezsandoval@gmail.com"
+  },
+  "140267147": {
+    "rut": "140267147",
+    "nombre": "Pamela Rivas",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000013-0007841-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pamcarolina@gmail.com"
+  },
+  "109178470": {
+    "rut": "109178470",
+    "nombre": "PANOZO BARRIA RENE GONZALO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-8791158-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "rgpanozo@gmail.com"
+  },
+  "763767647": {
+    "rut": "763767647",
+    "nombre": "PAOLA GONZALEZ MALATESTA CORRETAJE EN GENERAL EIRL",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1103395804",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@ROMAINMOBILIARIA.CL"
+  },
+  "134574178": {
+    "rut": "134574178",
+    "nombre": "PATRICIA ALEJANDRA LUCO CALLEALTA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-710-0208708-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PLUCOCALLE@GMAIL.COM"
+  },
+  "125547184": {
+    "rut": "125547184",
+    "nombre": "Patricio Campos",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1255471-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "infoteledata@gmail.com"
+  },
+  "153745471": {
+    "rut": "153745471",
+    "nombre": "Patricio Diaz",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1537454-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pdiaz@cathpro.cl"
+  },
+  "151780601": {
+    "rut": "151780601",
+    "nombre": "Paula Barria Leal",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000001-6132104-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pbarria@cathpro.cl"
+  },
+  "13041981K": {
+    "rut": "13041981K",
+    "nombre": "PAULINA LEIVA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "20518099",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "paulinaleivach@gmail.com"
+  },
+  "13856956K": {
+    "rut": "13856956K",
+    "nombre": "PAULO ESTEBAN MORALES QUIROZ",
+    "banco": "BANCO CREDITO E INVERSIONES",
+    "cuenta": "50051181",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "AUDITORPMQ@GMAIL.COM"
+  },
+  "10854662K": {
+    "rut": "10854662K",
+    "nombre": "Paz Nuñez",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-0549287-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@labuenatierrapica.cl"
+  },
+  "128278842": {
+    "rut": "128278842",
+    "nombre": "Pedro Nuñez",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1282788-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "carlossnunez70@gmail.com"
+  },
+  "131925867": {
+    "rut": "131925867",
+    "nombre": "Pedro Vera",
+    "banco": "BANCO FALABELLA",
+    "cuenta": "000-000199-9298697-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contacto@cathpro.cl"
+  },
+  "125803121": {
+    "rut": "125803121",
+    "nombre": "PEREZ CLAVERO BRAULIO MARCELO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6747974-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "braulio@grupochecker.com"
+  },
+  "77584020K": {
+    "rut": "77584020K",
+    "nombre": "Petrinovic Centro de evaluacion Psicosensometrica ltda",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000016-4134761-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "evaluaciones@petrinovic.cl"
+  },
+  "966421606": {
+    "rut": "966421606",
+    "nombre": "Piamonte SA",
+    "banco": "BANCO BICE",
+    "cuenta": "000-000000-0201684-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "marianela.gonzalez@piamonte.cl"
+  },
+  "767342888": {
+    "rut": "767342888",
+    "nombre": "Pipeline Inteligence",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000080-1042700-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "rafael.videla@pipelint.com"
+  },
+  "772966547": {
+    "rut": "772966547",
+    "nombre": "PMG OUTLET SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "79880108",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pmgoutletseguridad@gmail.com"
+  },
+  "816989000": {
+    "rut": "816989000",
+    "nombre": "PONTIFICIE UNIVERSIDAD CATOLICA DE CHILE",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "801041908",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "andres.prado@ing.puc.cl"
+  },
+  "795572406": {
+    "rut": "795572406",
+    "nombre": "PORT O LET INGENIERIA SANITARIA LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "901501976",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "DTEPORTOLET@DESIS.CL"
+  },
+  "773589402": {
+    "rut": "773589402",
+    "nombre": "PPE LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1800207801",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "crm@jemo.cl"
+  },
+  "772974973": {
+    "rut": "772974973",
+    "nombre": "PREFABRICADOS VARAS SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-4674529-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "AVARAS@PREFABRICADOSVARAS.CL"
+  },
+  "763609774": {
+    "rut": "763609774",
+    "nombre": "PRIMUS CAPITAL S.A.",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "8000565007",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRANZA@PRIMUSCAPITAL.CL"
+  },
+  "767859058": {
+    "rut": "767859058",
+    "nombre": "PRODEIM IMPORTADORA SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7269084-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "oralys.perez@chileneumaticos.cl"
+  },
+  "769427635": {
+    "rut": "769427635",
+    "nombre": "PRODUCTOS DE ACERO SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000282-0025861-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS@ESPACIORACK.CL"
+  },
+  "761486969": {
+    "rut": "761486969",
+    "nombre": "PRODUCTOS&SERVICIOS WEBSUMINISTROS LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "67076818",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "fmateluna@websuministros.cl"
+  },
+  "761982486": {
+    "rut": "761982486",
+    "nombre": "PROFESIONALES DE LA INGENIERIA ELECTRICA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7077046-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cherrera@proingelec.cl"
+  },
+  "762992442": {
+    "rut": "762992442",
+    "nombre": "PROTEKNICA SA",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "212444738",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "RURIBE@PROTEKNICA.CL"
+  },
+  "764378490": {
+    "rut": "764378490",
+    "nombre": "PUBLICIDAD Y BORDADOS FADIS SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "35171194693",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "fadispublicidad@gmail.com"
+  },
+  "761704664": {
+    "rut": "761704664",
+    "nombre": "PUREXHAUST S.A.",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "2701140009",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MONICA@PUREXHAUST.COM"
+  },
+  "775461403": {
+    "rut": "775461403",
+    "nombre": "Quadrem",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1053400-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "juan.munoz@sap.com"
+  },
+  "766684491": {
+    "rut": "766684491",
+    "nombre": "Quezada y Conti",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000019-5107640-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "juan.quezada@qcconsultores.cl"
+  },
+  "764692837": {
+    "rut": "764692837",
+    "nombre": "Radio Punto",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "21268011",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "radiospuntocom@gmail.com"
+  },
+  "776435902": {
+    "rut": "776435902",
+    "nombre": "RECOTONER LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1621003710",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@RECOTONER.CL"
+  },
+  "767106297": {
+    "rut": "767106297",
+    "nombre": "REDCOM SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000253-0012127-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mabarca@redcomspa.cl"
+  },
+  "969247801": {
+    "rut": "969247801",
+    "nombre": "Reliper SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000011-0032510-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "priscilla.jara@reliper.cl"
+  },
+  "64008900": {
+    "rut": "64008900",
+    "nombre": "RENE GONZALEZ",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "000-000002-0302969-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "libreriajulieta@gmail.com"
+  },
+  "6400000": {
+    "rut": "64000-00",
+    "nombre": "RENE GONZALEZ",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "000-000002-0302969-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "libreriajulieta@gmail.com"
+  },
+  "761834649": {
+    "rut": "761834649",
+    "nombre": "RENT A CONT SPA",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "1050003989",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cobranzas@rentacont.com"
+  },
+  "760952672": {
+    "rut": "760952672",
+    "nombre": "RENTAS Y SERVICIOS S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "63804304",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "SANDRA.ARIAS@AVISBUDGET.CL"
+  },
+  "760839914": {
+    "rut": "760839914",
+    "nombre": "RENTCO SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "8722808",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mriesco@redmegacentro.cl"
+  },
+  "260628143": {
+    "rut": "260628143",
+    "nombre": "REYES URQUIOLA VICTOR DANIEL",
+    "banco": "BANCO ESTADO",
+    "cuenta": "26062814",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "vreyesurq@gmail.com"
+  },
+  "923070001": {
+    "rut": "923070001",
+    "nombre": "RHONA SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000014-8609320-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MGONZALEZ@RHONA.CL"
+  },
+  "238360803": {
+    "rut": "238360803",
+    "nombre": "RIASCOS PANAMEÑO CRISTINA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7358742-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "criasco@cathpro.cl"
+  },
+  "113428155": {
+    "rut": "113428155",
+    "nombre": "RICARDO EVANS NICULCAR",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-8077522-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "C.EVANSIQ29@GMAIL.COM"
+  },
+  "762719487": {
+    "rut": "762719487",
+    "nombre": "RIDEGASTOS SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "70082987",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "PAGOS@RINDEGASTOS.COM"
+  },
+  "151244726": {
+    "rut": "151244726",
+    "nombre": "RODRIGO ARIEL ORELLANA MALDONADO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "61561846",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "raominversionescl@gmail.com"
+  },
+  "11843451K": {
+    "rut": "11843451K",
+    "nombre": "RODRIGO MORAGA TORRES",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6816686-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "RMORAGAT@hotmail.com"
+  },
+  "15083046K": {
+    "rut": "15083046K",
+    "nombre": "Rodrigo Vergara",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1508304-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "rodrigovergara206@gmail.com"
+  },
+  "164409015": {
+    "rut": "164409015",
+    "nombre": "ROMINA CANCINO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6432054-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "rcancino@cathpro.cl"
+  },
+  "796155906": {
+    "rut": "796155906",
+    "nombre": "Rosselot y Figueroa ltda",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "15066983",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "caja.vicuna@rosselot.cl"
+  },
+  "774466541": {
+    "rut": "774466541",
+    "nombre": "RP COACHING & CONSULTING SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "85065394",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "rene.panozo@bramica.cl"
+  },
+  "102622650": {
+    "rut": "102622650",
+    "nombre": "RUBEN JESUS GARCIA CHALLAPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "27352226",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "SEBASTIAN.G3136@GMAIL.COM"
+  },
+  "915020003": {
+    "rut": "915020003",
+    "nombre": "SALINAS Y FABRES S.A.",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "25001281",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mvalverde@cathpro.cl"
+  },
+  "2776766": {
+    "rut": "27767-66",
+    "nombre": "Salomon Dahud",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-8198330-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cnorambuena@cathpro.cl"
+  },
+  "761738763": {
+    "rut": "761738763",
+    "nombre": "San Francisco Construcción y Servicios Ltda",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "66206882",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "SANFRANCISCOSERVICIOS@LIVE.CL"
+  },
+  "766296009": {
+    "rut": "766296009",
+    "nombre": "SANTA MARTA COURIER AND CARGO SA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "4979591",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRANZAS@SAMEX.CL"
+  },
+  "761085565": {
+    "rut": "761085565",
+    "nombre": "Santepharma",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "000-000002-0371759-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "rmoraga@cathpro.cl"
+  },
+  "773428875": {
+    "rut": "773428875",
+    "nombre": "SB Servicios de mantencion y Construccion SPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000902-7088077-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "Carlos.Salazar@sbchilespa.com"
+  },
+  "765558514": {
+    "rut": "765558514",
+    "nombre": "SCS EQUIPMENT LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7397042-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "jcarrasco@scsequipos.com"
+  },
+  "176779241": {
+    "rut": "176779241",
+    "nombre": "Sebastian Vilches",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-8645099-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "sebastianvilchezmeza@gmail.com"
+  },
+  "777923552": {
+    "rut": "777923552",
+    "nombre": "SECURITY FILMS CHILE SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "92173542",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "SECU.FILMS.CHILE.ADM@GMAIL.COM"
+  },
+  "765839106": {
+    "rut": "765839106",
+    "nombre": "Seemann y Cia Ltda",
+    "banco": "BANCO INTERNACIONAL",
+    "cuenta": "67042260788",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "finanzas@seemanngroup.com"
+  },
+  "76520769K": {
+    "rut": "76520769K",
+    "nombre": "SEGURIDAD ELEC ORTEGA Y FLORES LTDA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "34170371145",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "administracion@fose.cl"
+  },
+  "767567685": {
+    "rut": "767567685",
+    "nombre": "SEGURIDAD INDUSTRIAL SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1760561801",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "felipe.rivera@maxservice.cl"
+  },
+  "995109107": {
+    "rut": "995109107",
+    "nombre": "Segurycel SA",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "971693223",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "npinones@segurycel.cl"
+  },
+  "191507444": {
+    "rut": "191507444",
+    "nombre": "SERGIO BAEZA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1915074-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "SERGIO.BAEZA.F@GMAIL.COM"
+  },
+  "141087193": {
+    "rut": "141087193",
+    "nombre": "SERGIO OLIVARES",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1120492300",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "SERGIO.OLIVARES1@GMAIL.COM"
+  },
+  "768891427": {
+    "rut": "768891427",
+    "nombre": "SERV DE BUCEO PROFESIONAL CHILE",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "73031109",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ADMINISTRACION@SERBUPRO.CL"
+  },
+  "767681453": {
+    "rut": "767681453",
+    "nombre": "SERV PORTUARIOS Y LOGISTICA SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7196747-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "contabilidad@spyl.cl"
+  },
+  "764920708": {
+    "rut": "764920708",
+    "nombre": "SERV PROF DE SALUD MAURICIO DEL CANTO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-0516935-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "expressamedica@gmail.com"
+  },
+  "769030255": {
+    "rut": "769030255",
+    "nombre": "SERV TERAPEUTICO Y CAP. OSTEKIP LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7307293-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ventas@osteokip.cl"
+  },
+  "760353248": {
+    "rut": "760353248",
+    "nombre": "Serviall SA",
+    "banco": "BANCO BICE",
+    "cuenta": "000-000000-0401087-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ventas@serviall.cl"
+  },
+  "761599208": {
+    "rut": "761599208",
+    "nombre": "Servicio de Metrologia integral",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "13514806",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cobranza@smilab.cl"
+  },
+  "760954578": {
+    "rut": "760954578",
+    "nombre": "SERVICIO HOTELERO HDS LIMITADA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6374220-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "providencia@hotelsonsantiago.cl"
+  },
+  "775608013": {
+    "rut": "775608013",
+    "nombre": "SERVICIO TURISTICO GOMEZ DURAN LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "92264181",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "SECTOR.CENTRO.BR@GMAIL.COM"
+  },
+  "776551732": {
+    "rut": "776551732",
+    "nombre": "SERVICIOS DE BUCEO PROFESIONAL CHILE SPA",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "225955124",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "vcole@sbpchile.cl"
+  },
+  "761567934": {
+    "rut": "761567934",
+    "nombre": "SERVICIOS DE SALUD OCUPACIONAL SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "67884604",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cobranzas@workmed.cl"
+  },
+  "761763776": {
+    "rut": "761763776",
+    "nombre": "Tresvias Ltda",
+    "banco": "BANCO SECURITY",
+    "cuenta": "000-000001-6027210-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "facturacion@tr3svias.cl"
+  },
+  "858961009": {
+    "rut": "858961009",
+    "nombre": "Servicios Equifax Chile",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "166143017",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "pagos.clientes@equifax.cl"
+  },
+  "901460000": {
+    "rut": "901460000",
+    "nombre": "SERVICIOS FINANCIEROS PROGRESO S.A.",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "169273845",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ANA.SILVA@PROGRESO.CL"
+  },
+  "760142697": {
+    "rut": "760142697",
+    "nombre": "SERVICIOS MEDICOS ERGOMEDICA LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "64458620",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "centromedico@ergomedica.cl"
+  },
+  "771935508": {
+    "rut": "771935508",
+    "nombre": "Servigral Ltda",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-8505475-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "tesoreria@servigral.cl"
+  },
+  "968120301": {
+    "rut": "968120301",
+    "nombre": "DITALCAR SERVICIOS SA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "11802201",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FVERGARA@SERVITAL.CL"
+  },
+  "765211093": {
+    "rut": "765211093",
+    "nombre": "Seymaq Ltda",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000122-7006802-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "gburgos@seymaqltda.cl"
+  },
+  "766930832": {
+    "rut": "766930832",
+    "nombre": "SIETE CUMBRES SERVICIOS FINANCIEROS SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "71381439",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "YFLORES@7CUMBRES.CL"
+  },
+  "186365860": {
+    "rut": "186365860",
+    "nombre": "SILVIO BERTONATI RUIZ",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7038714-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "sbertonati@cathpro.cl"
+  },
+  "768179794": {
+    "rut": "768179794",
+    "nombre": "SIMPLETECH SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7237268-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "claudio@simpltech.cl"
+  },
+  "968729306": {
+    "rut": "968729306",
+    "nombre": "SOC ADM DE CASINOS Y SERVICIOS ALISE",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "3230147",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "KARINA.POVEDA@ALISERVICE.CL"
+  },
+  "768250952": {
+    "rut": "768250952",
+    "nombre": "Soc Axtell y Axtell",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000011-0283850-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "tesoreria@prevenirsalud.com"
+  },
+  "76025441K": {
+    "rut": "76025441K",
+    "nombre": "Soc Comercial Fenix Ltda",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-2004765-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mbrizuela.hla@gmail.com"
+  },
+  "763876411": {
+    "rut": "763876411",
+    "nombre": "Soc Grupo Datta",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-4645963-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "finanzas@datta.cl"
+  },
+  "762618990": {
+    "rut": "762618990",
+    "nombre": "Soc Jimenez y Morales",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000013-0016243-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "chachawarmi.hospedajes@gmail.com"
+  },
+  "771728596": {
+    "rut": "771728596",
+    "nombre": "SOC SERVICIOS LOGISTICOS SBP",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1602156706",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "DBARRIGA@LOGISTICASBP.cl"
+  },
+  "776512753": {
+    "rut": "776512753",
+    "nombre": "SOC SERVICIOS LOGISTICOS TERRESTRE SBP",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1602433305",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "DBARRIGA@LOGISTICASBP.CL"
+  },
+  "853858005": {
+    "rut": "853858005",
+    "nombre": "Sociedad Cadenas Industriales",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "190217752",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "bleal@socadin.cl"
+  },
+  "762578484": {
+    "rut": "762578484",
+    "nombre": "SOCIEDAD COMERCIAL ELECTRIGOM LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "66718220",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "SAMUEL.ALISTE@ELECTRIGOM.CL"
+  },
+  "763859037": {
+    "rut": "763859037",
+    "nombre": "SOCIEDAD COMERCIAL ELQUI SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "2650259508",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "VENTAS@CONTENEDORESELQUI.CL"
+  },
+  "763509362": {
+    "rut": "763509362",
+    "nombre": "Sociedad Hotel Saint John ltda",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000125-0012895-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "reservas.huasco@solaris.cl"
+  },
+  "76759819K": {
+    "rut": "76759819K",
+    "nombre": "SOCIEDAD OCETRONICS SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7174527-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "michelbasaure@yahoo.com"
+  },
+  "946230006": {
+    "rut": "946230006",
+    "nombre": "Sodexo Chile SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1716758806",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mariana.navarro@sodexo.com"
+  },
+  "763784533": {
+    "rut": "763784533",
+    "nombre": "Solmatek",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000035-0000154-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ccisternas@solmatek.cl"
+  },
+  "770039509": {
+    "rut": "770039509",
+    "nombre": "SOLMEX LTDA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-8003727-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cesar.duran@solmex.cl"
+  },
+  "787768008": {
+    "rut": "787768008",
+    "nombre": "SOLUCIONES INTEGRALES DE EMBALAJES MILLA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "25608267",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ventas@soitem.cl"
+  },
+  "777917285": {
+    "rut": "777917285",
+    "nombre": "SOLUCIONES TECNOLOGIAS BARCHA LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "91921707",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CONTACTO@FULLSMARTHOUSE.CL"
+  },
+  "775920637": {
+    "rut": "775920637",
+    "nombre": "SPACIO CREATIVO SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "88181280",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "7"
+  },
+  "772655002": {
+    "rut": "772655002",
+    "nombre": "SPORTLIFE S.A.",
+    "banco": "BANCO ITAÚ CHILE",
+    "cuenta": "212614407",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "JVIDAL@SPORTLIFE.CL"
+  },
+  "764483367": {
+    "rut": "764483367",
+    "nombre": "ST SECURITY",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000347-7099701-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "info@seguridadtransparente.cl"
+  },
+  "765251400": {
+    "rut": "765251400",
+    "nombre": "Suatrans Training",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1061384-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mariela.yanez@suatrans.com"
+  },
+  "966856904": {
+    "rut": "966856904",
+    "nombre": "Talbot Hotels SA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "1127908",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "carolina.troncoso@talbot.cl"
+  },
+  "766092063": {
+    "rut": "766092063",
+    "nombre": "Tatiana Gomez",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000533-7197037-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "reservastatiana@gmail.com"
+  },
+  "762621878": {
+    "rut": "762621878",
+    "nombre": "Taxi Don Victor",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000121-7111482-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "taxidonvictor@gmail.com"
+  },
+  "965267409": {
+    "rut": "965267409",
+    "nombre": "TECNOLOGIA MARITIMA S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-032-5800900-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "finanzas@tecnomar.cl"
+  },
+  "773024405": {
+    "rut": "773024405",
+    "nombre": "TECNORED S.A.",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "15066011",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "547"
+  },
+  "995398109": {
+    "rut": "995398109",
+    "nombre": "TELETEL CHILE SA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-0191201-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "adminchile@callip.cl"
+  },
+  "770054095": {
+    "rut": "770054095",
+    "nombre": "Tenpo Paypal",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000080-0341200-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "tefpaypal@tenpo.cl"
+  },
+  "969088703": {
+    "rut": "969088703",
+    "nombre": "TERMINAL PACIFICO SUR VALPARAISO S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-0308888-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "facturacion@tpsv.cl"
+  },
+  "760195537": {
+    "rut": "760195537",
+    "nombre": "TERRACON INGENIERIA Y SERVICIOS LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "62068299",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CAGUILERA@TERRACON.CL"
+  },
+  "968804405": {
+    "rut": "968804405",
+    "nombre": "TESAM CHILE SA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "40435352",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "buribe@tesacom.net"
+  },
+  "76366807K": {
+    "rut": "76366807K",
+    "nombre": "TH PARTNERS SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "76451028",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "DAYANA.BARRIA@THPARTNERS.CL"
+  },
+  "780423501": {
+    "rut": "780423501",
+    "nombre": "THOR LTDA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000019-2090430-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "paztapia@thorltda.cl"
+  },
+  "770097304": {
+    "rut": "770097304",
+    "nombre": "TRABAJANDO COM",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "5070139",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "lbenderesky@trabajando.com"
+  },
+  "761503804": {
+    "rut": "761503804",
+    "nombre": "Transmac Ltda",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "20047231",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "roberto.rojas@transmac.cl"
+  },
+  "761301373": {
+    "rut": "761301373",
+    "nombre": "TRANSP Y GRUAS JUSTINA MAMANI MAMANI EIRL",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7574751-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "gruassanfelipe@hotmail.com"
+  },
+  "768830827": {
+    "rut": "768830827",
+    "nombre": "Transporte Fernando Gutierrez",
+    "banco": "BANCO ESTADO",
+    "cuenta": "27570176221",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "fgutierrezguajar@gmail.com"
+  },
+  "770541921": {
+    "rut": "770541921",
+    "nombre": "TRANSPORTES DE CARGA DCSPA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "85470006728",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "icerda@dcspa.cl"
+  },
+  "761192000": {
+    "rut": "761192000",
+    "nombre": "TRANSPORTES GUIDO CHIAPPACASSE LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "61806768",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cobranzas@tgsciappacasse.cl"
+  },
+  "776174157": {
+    "rut": "776174157",
+    "nombre": "TRANSPORTES JVA SPA",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "914223263",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CESAR.VILLAMAN@GMAIL.COM"
+  },
+  "767661584": {
+    "rut": "767661584",
+    "nombre": "TRANSPORTES TRANSMAC SPA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "52692442",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MARLENE.VASQUEZ@TRANSMAC.CL"
+  },
+  "764390091": {
+    "rut": "764390091",
+    "nombre": "TRANSVERSAL CAPACITACIONES LTDA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "32570439790",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "OCARRASCO2014@OUTLOCK.COM"
+  },
+  "761339907": {
+    "rut": "761339907",
+    "nombre": "Turismo Bahía Magica",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000012-0094290-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ventas@bahiamagica.cl"
+  },
+  "8974299": {
+    "rut": "89742-99",
+    "nombre": "Turismo Liliana contreras",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000028-0009920-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "francisco@ayelenpatagonia.cl"
+  },
+  "966846305": {
+    "rut": "966846305",
+    "nombre": "TUV RHEINLAND CHILE LTDA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "3541249-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cobranzas@cl.tuv.com"
+  },
+  "204162379": {
+    "rut": "204162379",
+    "nombre": "UNISSE JAUREGUI",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-6727969-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "UJAUREGUILEIVA@GMAIL.COM"
+  },
+  "590615404": {
+    "rut": "590615404",
+    "nombre": "United Airlines Agencia en Chile",
+    "banco": "BANCO DE CHILE",
+    "cuenta": "000-000001-1155006-9",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "oficinadeboletos@united.com"
+  },
+  "716140008": {
+    "rut": "716140008",
+    "nombre": "UNIVERSIDAD DE LOS ANDES",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-2567133-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "facturacionycobranza@uandes.cl"
+  },
+  "773582203": {
+    "rut": "773582203",
+    "nombre": "VALENCIA DONOSO CONSULTORES COMPAÑÍA LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6939207-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "sergio.valencia@vdconsultores.net"
+  },
+  "130681441": {
+    "rut": "130681441",
+    "nombre": "VALVERDE OLIVARES CRISTIAN",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6559642-3",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cristianovalverde76@gmail.com"
+  },
+  "770703271": {
+    "rut": "770703271",
+    "nombre": "Van Beek SpA",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-2774795-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ventas@vanbeek.cl"
+  },
+  "760586471": {
+    "rut": "760586471",
+    "nombre": "VERISURE CHILE SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6470769-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "mn.lecarosgonzalez@verisure.cl"
+  },
+  "190552241": {
+    "rut": "190552241",
+    "nombre": "VICENTE ARIEL VARAS BARRIGA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7330884-4",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "varas.vicenteariel@gmail.com"
+  },
+  "775331526": {
+    "rut": "775331526",
+    "nombre": "VICENTEC INGENIERIA AUTOMOTRIZ SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "90846272",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "MV.AUTOMOTIVERCHILE@GMAIL.COM"
+  },
+  "78352655": {
+    "rut": "78352655",
+    "nombre": "Victor Morales",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "16844637",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "vmoralesq@gmail.com"
+  },
+  "7835555": {
+    "rut": "78355-55",
+    "nombre": "Victor Morales",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1684463-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "vmoralesq@gmail.com"
+  },
+  "810311002": {
+    "rut": "810311002",
+    "nombre": "VIELVA COMERCIAL SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-082-2001561-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ventas.online@vielva.cl"
+  },
+  "760806250": {
+    "rut": "760806250",
+    "nombre": "Vignola Ingenieria",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "000-000000-1514166-7",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "jplastra@vignola.cl"
+  },
+  "153854254": {
+    "rut": "153854254",
+    "nombre": "VILLARREAL LUCI MARIA CONSTANZA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-6232306-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "conienf@gmail.com"
+  },
+  "965313907": {
+    "rut": "965313907",
+    "nombre": "VINOS SANTA EMA S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-2585369-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "tcartagena@santander.cl"
+  },
+  "768879451": {
+    "rut": "768879451",
+    "nombre": "VIRACOCHA SERVICIOS FINANCIEROS SPA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "72913531",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "FINANZAS@VIRACOCHA.CL"
+  },
+  "893969004": {
+    "rut": "893969004",
+    "nombre": "VITEL S.A.",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "5266211",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "COBRANZAS@VITEL.CL"
+  },
+  "775894504": {
+    "rut": "775894504",
+    "nombre": "VIZCAYA S.A.",
+    "banco": "BANCO DE CREDITO E INVERSIONES",
+    "cuenta": "19523769",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "serviciotecnico@automotrizvizcaya.cl"
+  },
+  "122185524": {
+    "rut": "122185524",
+    "nombre": "Waldo Traslaviña",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1221855-2",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "wtraslavina@cathpro.cl"
+  },
+  "767823738": {
+    "rut": "767823738",
+    "nombre": "WALLACE TRONCOZO LTDA",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000018-7063073-1",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "CENTROMEDICOWALLACE@GMAIL.COM"
+  },
+  "76997346K": {
+    "rut": "76997346K",
+    "nombre": "Work Medical",
+    "banco": "SCOTIABANK CHILE",
+    "cuenta": "000-000009-7575917-2",
+    "forma_pago": "CTACTE SCOTIABANK",
+    "email": "danilo@wkm.cl"
+  },
+  "766318762": {
+    "rut": "766318762",
+    "nombre": "WORLD TRANSPORT COURIER LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7354195-6",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cobranzas@wtcourier.cl"
+  },
+  "764462904": {
+    "rut": "764462904",
+    "nombre": "WORLD TRANSPORT INTERNATIONAL LTDA",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-000-7335208-8",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "cobranzas4@wtcourier.cl"
+  },
+  "108380179": {
+    "rut": "108380179",
+    "nombre": "YANEZ SALAS RODRIGO",
+    "banco": "BANCO SANTANDER-CHILE",
+    "cuenta": "0-074-0125923-0",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "ryanez@turismorays.cl"
+  },
+  "182654450": {
+    "rut": "182654450",
+    "nombre": "Yianko Pastenes",
+    "banco": "BANCO ESTADO",
+    "cuenta": "000-000000-1826544-5",
+    "forma_pago": "CUENTA OTRO BANCO",
+    "email": "bronson2793@gmail.com"
+  }
+}
