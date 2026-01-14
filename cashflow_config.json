@@ -82,6 +82,30 @@
       "dia": 27,
       "monto": 105000000,
       "frecuencia": "mensual"
+    },
+    {
+      "concepto": "Crédito Hipotecario",
+      "dia": 1,
+      "monto": 1000000,
+      "frecuencia": "mensual"
+    },
+    {
+      "concepto": "Leasing Progreso",
+      "dia": 7,
+      "monto": 1500000,
+      "frecuencia": "mensual"
+    },
+    {
+      "concepto": "Crédito Santander",
+      "dia": 19,
+      "monto": 6000000,
+      "frecuencia": "mensual"
+    },
+    {
+      "concepto": "Honorarios",
+      "dia": 28,
+      "monto": 2100000,
+      "frecuencia": "mensual"
     }
   ]
 }

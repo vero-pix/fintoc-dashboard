@@ -27,14 +27,18 @@ MESES_ORDEN = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
 RECURRENTES = [
+    {'dia': 1, 'concepto': 'Crédito Hipotecario', 'monto': 1000000},
     {'dia': 5, 'concepto': 'ARRIENDO OFICINA', 'monto': 1800000},
     {'dia': 5, 'concepto': 'Leasing BCI1', 'monto': 3200000},
     {'dia': 7, 'concepto': 'PREVIRED', 'monto': 32000000},
+    {'dia': 7, 'concepto': 'Leasing Progreso', 'monto': 1500000},
     {'dia': 10, 'concepto': 'Leasing Oficina', 'monto': 1229177},
     {'dia': 15, 'concepto': 'LEASING BCI', 'monto': 3200000},
     {'dia': 15, 'concepto': 'Leaseback', 'monto': 1800000},
     {'dia': 16, 'concepto': 'SII - IVA', 'monto': 115000000},
+    {'dia': 19, 'concepto': 'Crédito Santander', 'monto': 6000000},
     {'dia': 27, 'concepto': 'REMUNERACIONES', 'monto': 105000000},
+    {'dia': 28, 'concepto': 'Honorarios', 'monto': 2100000},
 ]
 TOTAL_RECURRENTES = sum(r['monto'] for r in RECURRENTES)
 

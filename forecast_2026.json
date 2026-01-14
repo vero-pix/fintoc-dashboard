@@ -1,92 +1,92 @@
 {
-  "generado": "2026-01-13T08:46:49.640137",
+  "generado": "2026-01-14T06:26:57.053546",
   "año": 2026,
   "logica": "Q1: Solo Compromiso | Q2-Q4: Compromiso > Forecast",
   "por_mes": {
     "1": {
       "nombre": "Enero",
-      "compromiso": 312921896,
-      "forecast": 419375650,
-      "usar": 312921896,
+      "compromiso": 321728107,
+      "forecast": 261096902,
+      "usar": 321728107,
       "regla": "Solo C"
     },
     "2": {
       "nombre": "Febrero",
       "compromiso": 351232115,
-      "forecast": 407806015,
+      "forecast": 351232115,
       "usar": 351232115,
       "regla": "Solo C"
     },
     "3": {
       "nombre": "Marzo",
       "compromiso": 403609815,
-      "forecast": 484609815,
+      "forecast": 403609815,
       "usar": 403609815,
       "regla": "Solo C"
     },
     "4": {
       "nombre": "Abril",
-      "compromiso": 281753000,
-      "forecast": 410753000,
-      "usar": 458753000,
+      "compromiso": 245753500,
+      "forecast": 281753500,
+      "usar": 245753500,
       "regla": "C>F"
     },
     "5": {
       "nombre": "Mayo",
       "compromiso": 175406000,
-      "forecast": 402406000,
-      "usar": 402406000,
+      "forecast": 175406000,
+      "usar": 175406000,
       "regla": "C>F"
     },
     "6": {
       "nombre": "Junio",
       "compromiso": 60500000,
-      "forecast": 442500000,
-      "usar": 442500000,
+      "forecast": 60500000,
+      "usar": 60500000,
       "regla": "C>F"
     },
     "7": {
       "nombre": "Julio",
-      "compromiso": 179193500,
-      "forecast": 436193500,
-      "usar": 436193500,
+      "compromiso": 143993500,
+      "forecast": 179193500,
+      "usar": 143993500,
       "regla": "C>F"
     },
     "8": {
       "nombre": "Agosto",
       "compromiso": 132673000,
-      "forecast": 461673000,
-      "usar": 461673000,
+      "forecast": 132673000,
+      "usar": 132673000,
       "regla": "C>F"
     },
     "9": {
       "nombre": "Septiembre",
       "compromiso": 135316000,
-      "forecast": 584316000,
-      "usar": 584316000,
+      "forecast": 135316000,
+      "usar": 135316000,
       "regla": "C>F"
     },
     "10": {
       "nombre": "Octubre",
-      "compromiso": 252257500,
-      "forecast": 588257500,
-      "usar": 588257500,
+      "compromiso": 219457500,
+      "forecast": 252257500,
+      "usar": 219457500,
       "regla": "C>F"
     },
     "11": {
       "nombre": "Noviembre",
       "compromiso": 130352000,
-      "forecast": 706352000,
-      "usar": 706352000,
+      "forecast": 130352000,
+      "usar": 130352000,
       "regla": "C>F"
     },
     "12": {
       "nombre": "Diciembre",
       "compromiso": 102540000,
-      "forecast": 733540000,
-      "usar": 733540000,
+      "forecast": 102540000,
+      "usar": 102540000,
       "regla": "C>F"
     }
   },
-  "total": 5881754826
+  "total": 2422561537
 }

@@ -1,43 +1,34 @@
 {
-  "generado": "2026-01-13T08:46:49.640877",
+  "generado": "2026-01-14T06:26:57.054623",
   "version": "v3",
   "horizonte_dias": 90,
   "saldo_inicial": 160148998,
   "proyeccion": [
     {
-      "fecha": "2026-01-13",
-      "dia": "Mar",
-      "entradas": 17384550,
-      "salidas": 0,
-      "neto": 17384550,
-      "saldo": 177533548,
-      "alerta": false
-    },
-    {
       "fecha": "2026-01-14",
       "dia": "Mié",
-      "entradas": 17384550,
+      "entradas": 17873784,
       "salidas": 0,
-      "neto": 17384550,
-      "saldo": 194918098,
+      "neto": 17873784,
+      "saldo": 178022782,
       "alerta": false
     },
     {
       "fecha": "2026-01-15",
       "dia": "Jue",
-      "entradas": 17384550,
+      "entradas": 17873784,
       "salidas": 5000000,
-      "neto": 12384550,
-      "saldo": 207302648,
+      "neto": 12873784,
+      "saldo": 190896566,
       "alerta": false
     },
     {
       "fecha": "2026-01-16",
       "dia": "Vie",
-      "entradas": 52153649,
+      "entradas": 53621351,
       "salidas": 115000000,
-      "neto": -62846351,
-      "saldo": 144456297,
+      "neto": -61378649,
+      "saldo": 129517917,
       "alerta": false
     },
     {
@@ -46,7 +37,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 144456297,
+      "saldo": 129517917,
       "alerta": false
     },
     {
@@ -55,52 +46,52 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 144456297,
+      "saldo": 129517917,
       "alerta": false
     },
     {
       "fecha": "2026-01-19",
       "dia": "Lun",
-      "entradas": 17384550,
+      "entradas": 17873784,
       "salidas": 0,
-      "neto": 17384550,
-      "saldo": 161840847,
+      "neto": 17873784,
+      "saldo": 147391701,
       "alerta": false
     },
     {
       "fecha": "2026-01-20",
       "dia": "Mar",
-      "entradas": 17384550,
+      "entradas": 17873784,
       "salidas": 0,
-      "neto": 17384550,
-      "saldo": 179225397,
+      "neto": 17873784,
+      "saldo": 165265485,
       "alerta": false
     },
     {
       "fecha": "2026-01-21",
       "dia": "Mié",
-      "entradas": 17384550,
+      "entradas": 17873784,
       "salidas": 0,
-      "neto": 17384550,
-      "saldo": 196609947,
+      "neto": 17873784,
+      "saldo": 183139269,
       "alerta": false
     },
     {
       "fecha": "2026-01-22",
       "dia": "Jue",
-      "entradas": 17384550,
+      "entradas": 17873784,
       "salidas": 0,
-      "neto": 17384550,
-      "saldo": 213994497,
+      "neto": 17873784,
+      "saldo": 201013053,
       "alerta": false
     },
     {
       "fecha": "2026-01-23",
       "dia": "Vie",
-      "entradas": 52153649,
+      "entradas": 53621351,
       "salidas": 0,
-      "neto": 52153649,
-      "saldo": 266148146,
+      "neto": 53621351,
+      "saldo": 254634404,
       "alerta": false
     },
     {
@@ -109,7 +100,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 266148146,
+      "saldo": 254634404,
       "alerta": false
     },
     {
@@ -118,34 +109,34 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 266148146,
+      "saldo": 254634404,
       "alerta": false
     },
     {
       "fecha": "2026-01-26",
       "dia": "Lun",
-      "entradas": 17384550,
+      "entradas": 17873784,
       "salidas": 0,
-      "neto": 17384550,
-      "saldo": 283532696,
+      "neto": 17873784,
+      "saldo": 272508188,
       "alerta": false
     },
     {
       "fecha": "2026-01-27",
       "dia": "Mar",
-      "entradas": 17384550,
+      "entradas": 17873784,
       "salidas": 105000000,
-      "neto": -87615450,
-      "saldo": 195917246,
+      "neto": -87126216,
+      "saldo": 185381972,
       "alerta": false
     },
     {
       "fecha": "2026-01-28",
       "dia": "Mié",
-      "entradas": 17384550,
+      "entradas": 17873784,
       "salidas": 0,
-      "neto": 17384550,
-      "saldo": 213301796,
+      "neto": 17873784,
+      "saldo": 203255756,
       "alerta": false
     },
     {
@@ -154,7 +145,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 213301796,
+      "saldo": 203255756,
       "alerta": false
     },
     {
@@ -163,7 +154,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 213301796,
+      "saldo": 203255756,
       "alerta": false
     },
     {
@@ -172,7 +163,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 213301796,
+      "saldo": 203255756,
       "alerta": false
     },
     {
@@ -181,7 +172,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 213301796,
+      "saldo": 203255756,
       "alerta": false
     },
     {
@@ -190,7 +181,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 213301796,
+      "saldo": 203255756,
       "alerta": false
     },
     {
@@ -199,7 +190,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 213301796,
+      "saldo": 203255756,
       "alerta": false
     },
     {
@@ -208,7 +199,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 213301796,
+      "saldo": 203255756,
       "alerta": false
     },
     {
@@ -217,7 +208,7 @@
       "entradas": 0,
       "salidas": 5000000,
       "neto": -5000000,
-      "saldo": 208301796,
+      "saldo": 198255756,
       "alerta": false
     },
     {
@@ -226,7 +217,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 208301796,
+      "saldo": 198255756,
       "alerta": false
     },
     {
@@ -235,7 +226,7 @@
       "entradas": 0,
       "salidas": 32000000,
       "neto": -32000000,
-      "saldo": 176301796,
+      "saldo": 166255756,
       "alerta": false
     },
     {
@@ -244,7 +235,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 176301796,
+      "saldo": 166255756,
       "alerta": false
     },
     {
@@ -253,7 +244,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 176301796,
+      "saldo": 166255756,
       "alerta": false
     },
     {
@@ -262,7 +253,7 @@
       "entradas": 19512895,
       "salidas": 1229177,
       "neto": 18283718,
-      "saldo": 194585514,
+      "saldo": 184539474,
       "alerta": false
     },
     {
@@ -271,7 +262,7 @@
       "entradas": 19512895,
       "salidas": 0,
       "neto": 19512895,
-      "saldo": 214098409,
+      "saldo": 204052369,
       "alerta": false
     },
     {
@@ -280,7 +271,7 @@
       "entradas": 19512895,
       "salidas": 0,
       "neto": 19512895,
-      "saldo": 233611304,
+      "saldo": 223565264,
       "alerta": false
     },
     {
@@ -289,7 +280,7 @@
       "entradas": 58538686,
       "salidas": 0,
       "neto": 58538686,
-      "saldo": 292149990,
+      "saldo": 282103950,
       "alerta": false
     },
     {
@@ -298,7 +289,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 292149990,
+      "saldo": 282103950,
       "alerta": false
     },
     {
@@ -307,7 +298,7 @@
       "entradas": 0,
       "salidas": 5000000,
       "neto": -5000000,
-      "saldo": 287149990,
+      "saldo": 277103950,
       "alerta": false
     },
     {
@@ -316,7 +307,7 @@
       "entradas": 19512895,
       "salidas": 115000000,
       "neto": -95487105,
-      "saldo": 191662885,
+      "saldo": 181616845,
       "alerta": false
     },
     {
@@ -325,7 +316,7 @@
       "entradas": 19512895,
       "salidas": 0,
       "neto": 19512895,
-      "saldo": 211175780,
+      "saldo": 201129740,
       "alerta": false
     },
     {
@@ -334,7 +325,7 @@
       "entradas": 19512895,
       "salidas": 0,
       "neto": 19512895,
-      "saldo": 230688675,
+      "saldo": 220642635,
       "alerta": false
     },
     {
@@ -343,7 +334,7 @@
       "entradas": 19512895,
       "salidas": 0,
       "neto": 19512895,
-      "saldo": 250201570,
+      "saldo": 240155530,
       "alerta": false
     },
     {
@@ -352,7 +343,7 @@
       "entradas": 58538686,
       "salidas": 0,
       "neto": 58538686,
-      "saldo": 308740256,
+      "saldo": 298694216,
       "alerta": false
     },
     {
@@ -361,7 +352,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 308740256,
+      "saldo": 298694216,
       "alerta": false
     },
     {
@@ -370,7 +361,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 308740256,
+      "saldo": 298694216,
       "alerta": false
     },
     {
@@ -379,7 +370,7 @@
       "entradas": 19512895,
       "salidas": 0,
       "neto": 19512895,
-      "saldo": 328253151,
+      "saldo": 318207111,
       "alerta": false
     },
     {
@@ -388,7 +379,7 @@
       "entradas": 19512895,
       "salidas": 0,
       "neto": 19512895,
-      "saldo": 347766046,
+      "saldo": 337720006,
       "alerta": false
     },
     {
@@ -397,7 +388,7 @@
       "entradas": 19512895,
       "salidas": 0,
       "neto": 19512895,
-      "saldo": 367278941,
+      "saldo": 357232901,
       "alerta": false
     },
     {
@@ -406,7 +397,7 @@
       "entradas": 19512895,
       "salidas": 0,
       "neto": 19512895,
-      "saldo": 386791836,
+      "saldo": 376745796,
       "alerta": false
     },
     {
@@ -415,7 +406,7 @@
       "entradas": 39025791,
       "salidas": 105000000,
       "neto": -65974209,
-      "saldo": 320817627,
+      "saldo": 310771587,
       "alerta": false
     },
     {
@@ -424,7 +415,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 320817627,
+      "saldo": 310771587,
       "alerta": false
     },
     {
@@ -433,7 +424,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 320817627,
+      "saldo": 310771587,
       "alerta": false
     },
     {
@@ -442,7 +433,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 320817627,
+      "saldo": 310771587,
       "alerta": false
     },
     {
@@ -451,7 +442,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 320817627,
+      "saldo": 310771587,
       "alerta": false
     },
     {
@@ -460,7 +451,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 320817627,
+      "saldo": 310771587,
       "alerta": false
     },
     {
@@ -469,7 +460,7 @@
       "entradas": 0,
       "salidas": 5000000,
       "neto": -5000000,
-      "saldo": 315817627,
+      "saldo": 305771587,
       "alerta": false
     },
     {
@@ -478,7 +469,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 315817627,
+      "saldo": 305771587,
       "alerta": false
     },
     {
@@ -487,7 +478,7 @@
       "entradas": 0,
       "salidas": 32000000,
       "neto": -32000000,
-      "saldo": 283817627,
+      "saldo": 273771587,
       "alerta": false
     },
     {
@@ -496,7 +487,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 283817627,
+      "saldo": 273771587,
       "alerta": false
     },
     {
@@ -505,7 +496,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 283817627,
+      "saldo": 273771587,
       "alerta": false
     },
     {
@@ -514,7 +505,7 @@
       "entradas": 22422768,
       "salidas": 1229177,
       "neto": 21193591,
-      "saldo": 305011218,
+      "saldo": 294965178,
       "alerta": false
     },
     {
@@ -523,7 +514,7 @@
       "entradas": 22422768,
       "salidas": 0,
       "neto": 22422768,
-      "saldo": 327433986,
+      "saldo": 317387946,
       "alerta": false
     },
     {
@@ -532,7 +523,7 @@
       "entradas": 22422768,
       "salidas": 0,
       "neto": 22422768,
-      "saldo": 349856754,
+      "saldo": 339810714,
       "alerta": false
     },
     {
@@ -541,7 +532,7 @@
       "entradas": 67268302,
       "salidas": 0,
       "neto": 67268302,
-      "saldo": 417125056,
+      "saldo": 407079016,
       "alerta": false
     },
     {
@@ -550,7 +541,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 417125056,
+      "saldo": 407079016,
       "alerta": false
     },
     {
@@ -559,7 +550,7 @@
       "entradas": 0,
       "salidas": 5000000,
       "neto": -5000000,
-      "saldo": 412125056,
+      "saldo": 402079016,
       "alerta": false
     },
     {
@@ -568,7 +559,7 @@
       "entradas": 22422768,
       "salidas": 115000000,
       "neto": -92577232,
-      "saldo": 319547824,
+      "saldo": 309501784,
       "alerta": false
     },
     {
@@ -577,7 +568,7 @@
       "entradas": 22422768,
       "salidas": 0,
       "neto": 22422768,
-      "saldo": 341970592,
+      "saldo": 331924552,
       "alerta": false
     },
     {
@@ -586,7 +577,7 @@
       "entradas": 22422768,
       "salidas": 0,
       "neto": 22422768,
-      "saldo": 364393360,
+      "saldo": 354347320,
       "alerta": false
     },
     {
@@ -595,7 +586,7 @@
       "entradas": 22422768,
       "salidas": 0,
       "neto": 22422768,
-      "saldo": 386816128,
+      "saldo": 376770088,
       "alerta": false
     },
     {
@@ -604,7 +595,7 @@
       "entradas": 67268302,
       "salidas": 0,
       "neto": 67268302,
-      "saldo": 454084430,
+      "saldo": 444038390,
       "alerta": false
     },
     {
@@ -613,7 +604,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 454084430,
+      "saldo": 444038390,
       "alerta": false
     },
     {
@@ -622,7 +613,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 454084430,
+      "saldo": 444038390,
       "alerta": false
     },
     {
@@ -631,7 +622,7 @@
       "entradas": 22422768,
       "salidas": 0,
       "neto": 22422768,
-      "saldo": 476507198,
+      "saldo": 466461158,
       "alerta": false
     },
     {
@@ -640,7 +631,7 @@
       "entradas": 22422768,
       "salidas": 0,
       "neto": 22422768,
-      "saldo": 498929966,
+      "saldo": 488883926,
       "alerta": false
     },
     {
@@ -649,7 +640,7 @@
       "entradas": 22422768,
       "salidas": 0,
       "neto": 22422768,
-      "saldo": 521352734,
+      "saldo": 511306694,
       "alerta": false
     },
     {
@@ -658,7 +649,7 @@
       "entradas": 22422768,
       "salidas": 0,
       "neto": 22422768,
-      "saldo": 543775502,
+      "saldo": 533729462,
       "alerta": false
     },
     {
@@ -667,7 +658,7 @@
       "entradas": 44845535,
       "salidas": 105000000,
       "neto": -60154465,
-      "saldo": 483621037,
+      "saldo": 473574997,
       "alerta": false
     },
     {
@@ -676,7 +667,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 483621037,
+      "saldo": 473574997,
       "alerta": false
     },
     {
@@ -685,7 +676,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 483621037,
+      "saldo": 473574997,
       "alerta": false
     },
     {
@@ -694,7 +685,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 483621037,
+      "saldo": 473574997,
       "alerta": false
     },
     {
@@ -703,7 +694,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 483621037,
+      "saldo": 473574997,
       "alerta": false
     },
     {
@@ -712,7 +703,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 483621037,
+      "saldo": 473574997,
       "alerta": false
     },
     {
@@ -721,7 +712,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 483621037,
+      "saldo": 473574997,
       "alerta": false
     },
     {
@@ -730,7 +721,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 483621037,
+      "saldo": 473574997,
       "alerta": false
     },
     {
@@ -739,7 +730,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 483621037,
+      "saldo": 473574997,
       "alerta": false
     },
     {
@@ -748,7 +739,7 @@
       "entradas": 0,
       "salidas": 5000000,
       "neto": -5000000,
-      "saldo": 478621037,
+      "saldo": 468574997,
       "alerta": false
     },
     {
@@ -757,7 +748,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 478621037,
+      "saldo": 468574997,
       "alerta": false
     },
     {
@@ -766,7 +757,7 @@
       "entradas": 0,
       "salidas": 32000000,
       "neto": -32000000,
-      "saldo": 446621037,
+      "saldo": 436574997,
       "alerta": false
     },
     {
@@ -775,7 +766,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 446621037,
+      "saldo": 436574997,
       "alerta": false
     },
     {
@@ -784,16 +775,16 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 446621037,
+      "saldo": 436574997,
       "alerta": false
     },
     {
       "fecha": "2026-04-10",
       "dia": "Vie",
-      "entradas": 76458833,
+      "entradas": 40958917,
       "salidas": 1229177,
-      "neto": 75229656,
-      "saldo": 521850693,
+      "neto": 39729740,
+      "saldo": 476304737,
       "alerta": false
     },
     {
@@ -802,7 +793,7 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 521850693,
+      "saldo": 476304737,
       "alerta": false
     },
     {
@@ -811,15 +802,24 @@
       "entradas": 0,
       "salidas": 0,
       "neto": 0,
-      "saldo": 521850693,
+      "saldo": 476304737,
+      "alerta": false
+    },
+    {
+      "fecha": "2026-04-13",
+      "dia": "Lun",
+      "entradas": 13652972,
+      "salidas": 0,
+      "neto": 13652972,
+      "saldo": 489957709,
       "alerta": false
     }
   ],
   "resumen": {
-    "total_entradas": 1151389226,
+    "total_entradas": 1119496242,
     "total_salidas": 789687531,
-    "saldo_final": 521850693,
-    "saldo_minimo": 144456297,
+    "saldo_final": 489957709,
+    "saldo_minimo": 129517917,
     "dias_alerta": 0
   },
   "fuentes": [
