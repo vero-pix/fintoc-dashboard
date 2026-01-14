@@ -342,7 +342,7 @@ CASHFLOW_SEMANAL_HTML = """
         NAV_PLACEHOLDER
         <div class="header-right">
             <div class="header-saldo">SALDO_PLACEHOLDER</div>
-            <div class="header-sub">Saldo ApiVV CLP</div>
+            <div class="header-sub">Saldo Apis CLP</div>
         </div>
     </div>
     
@@ -438,7 +438,7 @@ CASHFLOW_SEMANAL_HTML = """
         </table>
         
         <div class="footer">
-            Cash Flow CathPro | ApiVV + Skualo CxC/CxP + Recurrentes | FECHA_PLACEHOLDER
+            Cash Flow CathPro | Apis + Skualo CxC/CxP + Recurrentes | FECHA_PLACEHOLDER
         </div>
     </div>
     
@@ -584,7 +584,7 @@ CASHFLOW_ANUAL_HTML = """
         NAV_PLACEHOLDER
         <div class="header-right">
             <div class="header-saldo">SALDO_PLACEHOLDER</div>
-            <div class="header-sub">Saldo ApiVV CLP</div>
+            <div class="header-sub">Saldo Apis CLP</div>
         </div>
     </div>
     
