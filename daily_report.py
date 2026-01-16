@@ -2,7 +2,6 @@ from fintoc_client import FintocClient
 from skualo_client import SkualoClient
 from historico_client import HistoricoClient
 from mailer import Mailer
-from alerts import AlertChecker
 
 def main():
     # Obtener datos Fintoc
@@ -46,9 +45,5 @@ def main():
         saldos_skualo['por_pagar_internacional']
     )
     
-    # Verificar alertas
-    checker = AlertChecker()
-    checker.check_alerts()
-
 if __name__ == "__main__":
     main()

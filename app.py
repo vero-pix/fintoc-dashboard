@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, Response, jsonify
 from dotenv import load_dotenv
 from fintoc_client import FintocClient
 from skualo_client import SkualoClient
@@ -11,6 +11,14 @@ import json
 import requests
 import pandas as pd
 from io import BytesIO
+
+# Importar asistente de chat (lazy load para evitar error si no hay API key)
+try:
+    from chat_assistant import CathProAssistant
+    CHAT_ENABLED = True
+except Exception as e:
+    print(f"Chat assistant no disponible: {e}")
+    CHAT_ENABLED = False
 
 load_dotenv()
 
@@ -1319,6 +1327,183 @@ def exportar_nomina_scotiabank():
         mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         headers={'Content-Disposition': f'attachment; filename={filename}'}
     )
+
+
+# ============================================
+# CHAT ASISTENTE VIRTUAL
+# ============================================
+
+CHAT_HTML = """
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CathPro - Asistente Virtual</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Segoe UI',sans-serif;background:#f5f5f5;height:100vh;display:flex;flex-direction:column}
+        .header{background:#242625;padding:15px 30px;display:flex;align-items:center;gap:15px}
+        .header img{height:40px}
+        .header h1{color:#fff;font-size:18px;font-weight:500}
+        .header-sub{color:#888;font-size:11px}
+        .nav-links{display:flex;gap:10px;margin-left:20px}
+        .nav-links a{color:#888;text-decoration:none;padding:8px 15px;border-radius:5px;font-size:13px}
+        .nav-links a:hover,.nav-links a.active{background:#55b245;color:white}
+        .chat-container{flex:1;max-width:900px;margin:0 auto;width:100%;display:flex;flex-direction:column;padding:20px}
+        .messages{flex:1;overflow-y:auto;padding:20px;background:white;border-radius:10px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+        .message{margin-bottom:15px;display:flex;gap:10px}
+        .message.user{flex-direction:row-reverse}
+        .message .avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+        .message.assistant .avatar{background:#55b245;color:white}
+        .message.user .avatar{background:#242625;color:white}
+        .message .content{max-width:70%;padding:12px 16px;border-radius:12px;font-size:14px;line-height:1.5}
+        .message.assistant .content{background:#f0f0f0;border-bottom-left-radius:4px}
+        .message.user .content{background:#55b245;color:white;border-bottom-right-radius:4px}
+        .input-area{display:flex;gap:10px}
+        .input-area input{flex:1;padding:14px 18px;border:1px solid #ddd;border-radius:25px;font-size:14px;outline:none}
+        .input-area input:focus{border-color:#55b245}
+        .input-area button{padding:14px 24px;background:#55b245;color:white;border:none;border-radius:25px;cursor:pointer;font-size:14px;font-weight:500}
+        .input-area button:hover{background:#449636}
+        .input-area button:disabled{background:#ccc;cursor:not-allowed}
+        .typing{color:#888;font-style:italic;font-size:13px}
+        .suggestions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:15px}
+        .suggestion{background:#e8f5e9;border:1px solid #c8e6c9;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;transition:all 0.2s}
+        .suggestion:hover{background:#c8e6c9}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="data:image/png;base64,LOGO_BASE64" alt="CathPro">
+        <div>
+            <h1>Asistente Virtual CathPro</h1>
+            <div class="header-sub">Cash Flow & Contabilidad</div>
+        </div>
+        NAV_PLACEHOLDER
+    </div>
+    
+    <div class="chat-container">
+        <div class="suggestions">
+            <span class="suggestion" onclick="enviarSugerencia('¿Cuánto tenemos en caja hoy?')">💰 Saldo en caja</span>
+            <span class="suggestion" onclick="enviarSugerencia('¿Quiénes son los 5 clientes que más nos deben?')">📊 Top deudores</span>
+            <span class="suggestion" onclick="enviarSugerencia('¿Qué pagos tenemos esta semana?')">📅 Pagos semana</span>
+            <span class="suggestion" onclick="enviarSugerencia('¿Cuál es la posición neta?')">📈 Posición neta</span>
+            <span class="suggestion" onclick="enviarSugerencia('¿Cuánto debemos a proveedores?')">💸 CxP total</span>
+        </div>
+        
+        <div class="messages" id="messages">
+            <div class="message assistant">
+                <div class="avatar">🤖</div>
+                <div class="content">¡Hola! Soy el asistente financiero de CathPro. Puedo ayudarte con consultas sobre saldos bancarios, cuentas por cobrar/pagar, cash flow y pagos recurrentes. ¿En qué puedo ayudarte?</div>
+            </div>
+        </div>
+        
+        <div class="input-area">
+            <input type="text" id="input" placeholder="Escribe tu pregunta..." onkeypress="if(event.key==='Enter')enviar()">
+            <button onclick="enviar()" id="btnEnviar">Enviar</button>
+        </div>
+    </div>
+    
+    <script>
+        const KEY = 'KEY_PLACEHOLDER';
+        
+        function enviarSugerencia(texto) {
+            document.getElementById('input').value = texto;
+            enviar();
+        }
+        
+        async function enviar() {
+            const input = document.getElementById('input');
+            const pregunta = input.value.trim();
+            if (!pregunta) return;
+            
+            // Mostrar mensaje del usuario
+            agregarMensaje(pregunta, 'user');
+            input.value = '';
+            
+            // Mostrar typing
+            const btn = document.getElementById('btnEnviar');
+            btn.disabled = true;
+            btn.textContent = '...';
+            
+            try {
+                const response = await fetch('/chat/api?key=' + KEY, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({pregunta: pregunta})
+                });
+                
+                const data = await response.json();
+                agregarMensaje(data.respuesta || data.error, 'assistant');
+            } catch (e) {
+                agregarMensaje('Error de conexión: ' + e.message, 'assistant');
+            }
+            
+            btn.disabled = false;
+            btn.textContent = 'Enviar';
+        }
+        
+        function agregarMensaje(texto, tipo) {
+            const messages = document.getElementById('messages');
+            const avatar = tipo === 'user' ? '👤' : '🤖';
+            messages.innerHTML += `
+                <div class="message ${tipo}">
+                    <div class="avatar">${avatar}</div>
+                    <div class="content">${texto.replace(/\n/g, '<br>')}</div>
+                </div>
+            `;
+            messages.scrollTop = messages.scrollHeight;
+        }
+    </script>
+</body>
+</html>
+"""
+
+@app.route('/chat')
+def chat_ui():
+    """Interfaz de chat"""
+    key = request.args.get('key', '')
+    if key != TABLERO_PASSWORD:
+        return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
+    
+    if not CHAT_ENABLED:
+        return "<h1>Chat no disponible - Falta configurar ANTHROPIC_API_KEY</h1>"
+    
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
+    logo_b64 = get_logo_base64()
+    
+    html = CHAT_HTML.replace('LOGO_BASE64', logo_b64)
+    html = html.replace('NAV_PLACEHOLDER', nav)
+    html = html.replace('KEY_PLACEHOLDER', key)
+    
+    return html
+
+
+@app.route('/chat/api', methods=['POST'])
+def chat_api():
+    """API de chat"""
+    key = request.args.get('key', '')
+    if key != TABLERO_PASSWORD:
+        return jsonify({'error': 'No autorizado'}), 401
+    
+    if not CHAT_ENABLED:
+        return jsonify({'error': 'Chat no disponible'}), 503
+    
+    try:
+        data = request.get_json()
+        pregunta = data.get('pregunta', '')
+        
+        if not pregunta:
+            return jsonify({'error': 'Pregunta vacía'}), 400
+        
+        # Crear instancia y responder
+        assistant = CathProAssistant()
+        respuesta = assistant.responder(pregunta)
+        
+        return jsonify({'respuesta': respuesta})
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 if __name__ == '__main__':
