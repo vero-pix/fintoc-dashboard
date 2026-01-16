@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: cathpro-dashboard
+    name: fintoc-dashboard
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
@@ -20,6 +20,66 @@ services:
       - key: FINTOC_LINK_BICE
         sync: false
       - key: DASHBOARD_PASSWORD
+        sync: false
+
+  - type: cron
+    name: daily-report-morning
+    env: python
+    buildCommand: pip install -r requirements.txt
+    schedule: "0 11 * * 1-5"
+    command: python daily_report.py
+    envVars:
+      - key: FINTOC_SECRET_KEY
+        sync: false
+      - key: FINTOC_BASE_URL
+        sync: false
+      - key: FINTOC_LINK_SCOTIA
+        sync: false
+      - key: FINTOC_LINK_BCI
+        sync: false
+      - key: FINTOC_LINK_CHILE
+        sync: false
+      - key: FINTOC_LINK_SANTANDER
+        sync: false
+      - key: FINTOC_LINK_BICE
+        sync: false
+      - key: SKUALO_TOKEN
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASSWORD
+        sync: false
+      - key: EMAIL_TO
+        sync: false
+
+  - type: cron
+    name: daily-report-evening
+    env: python
+    buildCommand: pip install -r requirements.txt
+    schedule: "0 21 * * 1-5"
+    command: python daily_report.py
+    envVars:
+      - key: FINTOC_SECRET_KEY
+        sync: false
+      - key: FINTOC_BASE_URL
+        sync: false
+      - key: FINTOC_LINK_SCOTIA
+        sync: false
+      - key: FINTOC_LINK_BCI
+        sync: false
+      - key: FINTOC_LINK_CHILE
+        sync: false
+      - key: FINTOC_LINK_SANTANDER
+        sync: false
+      - key: FINTOC_LINK_BICE
+        sync: false
+      - key: SKUALO_TOKEN
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASSWORD
+        sync: false
+      - key: EMAIL_TO
         sync: false
 ```
 

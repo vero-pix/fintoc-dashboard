@@ -11,7 +11,7 @@ import json
 import requests
 import pandas as pd
 from io import BytesIO
-
+from fintoc_webhook import get_total_entradas_hoy, get_resumen_hoy, set_movimientos_hoy, procesar_evento_fintoc
 # Importar asistente de chat (lazy load para evitar error si no hay API key)
 try:
     from chat_assistant import CathProAssistant
@@ -1505,6 +1505,26 @@ def chat_api():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/webhook/fintoc', methods=['POST'])
+def webhook_fintoc():
+    """Recibe webhooks de Fintoc con movimientos bancarios reales"""
+    try:
+        evento = request.get_json()
+        if not evento:
+            return jsonify({"error": "No JSON"}), 400
+        resultado = procesar_evento_fintoc(evento)
+        print(f"[Webhook Fintoc] {resultado.get('tipo')}: {resultado.get('mensaje')}")
+        return jsonify({"status": "ok"}), 200
+    except Exception as e:
+        print(f"[Webhook Fintoc] Error: {e}")
+        return jsonify({"error": str(e)}), 500
 
+@app.route('/api/movimientos/hoy')
+def api_movimientos_hoy():
+    """API para ver movimientos reales del día"""
+    key = request.args.get('key', '')
+    if key != TABLERO_PASSWORD:
+        return jsonify({"error": "No autorizado"}), 401
+    return jsonify(get_resumen_hoy())
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5001)
