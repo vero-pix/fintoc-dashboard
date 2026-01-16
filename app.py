@@ -829,8 +829,16 @@ def cashflow_semanal():
         fintoc = FintocClient()
         balances = fintoc.get_all_balances()
         saldo_clp = sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
-    except:
+        
+        # Obtener movimientos reales de hoy
+        movimientos_hoy = fintoc.get_movimientos_hoy()
+        entradas_fintoc_hoy = movimientos_hoy.get('entradas', 0)
+        salidas_fintoc_hoy = movimientos_hoy.get('salidas', 0)
+    except Exception as e:
+        print(f"Error Fintoc: {e}")
         saldo_clp = 160000000
+        entradas_fintoc_hoy = 0
+        salidas_fintoc_hoy = 0
     
     # Obtener datos Skualo
     try:
@@ -862,9 +870,8 @@ def cashflow_semanal():
         fuente_entradas = "Skualo"
         
         if fecha == hoy:
-            entradas_fintoc = get_total_entradas_hoy()
-            if entradas_fintoc > 0:
-                entradas_dia = entradas_fintoc
+            if entradas_fintoc_hoy > 0:
+                entradas_dia = entradas_fintoc_hoy
                 fuente_entradas = "Fintoc"
         
         # Recalcular neto si cambió entradas
