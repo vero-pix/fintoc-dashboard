@@ -12,7 +12,7 @@ class FintocClient:
         self.headers = {"Authorization": f"Bearer {self.secret_key}"}
         
         self.links = {
-            "Scotia": os.getenv("FINTOC_LINK_SCOTIA"),
+            "Scotiabank": os.getenv("FINTOC_LINK_SCOTIA"),
             "BCI": os.getenv("FINTOC_LINK_BCI"),
             "Banco de Chile": os.getenv("FINTOC_LINK_CHILE"),
             "Santander": os.getenv("FINTOC_LINK_SANTANDER"),
