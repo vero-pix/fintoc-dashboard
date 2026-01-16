@@ -854,19 +854,35 @@ def cashflow_semanal():
     # Construir proyección diaria con saldo acumulado
     saldo_acum = saldo_clp
     dias_data = []
+    hoy = datetime.now(TZ_CHILE).date()
+    
     for fecha, p in proyeccion.items():
-        saldo_acum += p['neto']
+        # Para hoy: usar entradas reales de Fintoc si hay
+        entradas_dia = p['entradas']
+        fuente_entradas = "Skualo"
+        
+        if fecha.date() == hoy:
+            entradas_fintoc = get_total_entradas_hoy()
+            if entradas_fintoc > 0:
+                entradas_dia = entradas_fintoc
+                fuente_entradas = "Fintoc"
+        
+        # Recalcular neto si cambió entradas
+        neto_dia = entradas_dia - p['salidas_total']
+        saldo_acum += neto_dia
+        
         dia_en = fecha.strftime('%a')
         dia_es = DIAS_SEMANA_ES.get(dia_en, dia_en)
         dias_data.append({
             'fecha': fecha,
             'dia': dia_es,
-            'entradas': p['entradas'],
+            'entradas': entradas_dia,
+            'fuente': fuente_entradas,
             'salidas': p['salidas_total'],
-            'neto': p['neto'],
+            'neto': neto_dia,
             'saldo': saldo_acum,
             'critico': p['salidas_total'] > 100000000,
-            'tiene_entradas': p['entradas'] > 0,
+            'tiene_entradas': entradas_dia > 0,
             'tiene_recurrentes': p['salidas_recurrentes'] > 0,
         })
     
