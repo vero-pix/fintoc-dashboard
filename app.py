@@ -861,7 +861,7 @@ def cashflow_semanal():
         entradas_dia = p['entradas']
         fuente_entradas = "Skualo"
         
-       if fecha == hoy:
+    if fecha == hoy:
             entradas_fintoc = get_total_entradas_hoy()
             if entradas_fintoc > 0:
                 entradas_dia = entradas_fintoc
