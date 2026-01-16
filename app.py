@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 from fintoc_client import FintocClient
 from skualo_client import SkualoClient
 from skualo_cashflow import SkualoCashFlow
+from skualo_bancos import SkualoBancosClient
+from skualo_documentos import SkualoDocumentosClient
 from datetime import datetime, timedelta
 import pytz
 import os
@@ -192,6 +194,8 @@ LOGIN_HTML = """
 NAV_HTML = """
 <div class="nav-links">
     <a href="/tablero?key=KEY_PLACEHOLDER" class="NAV_SALDOS">Saldos</a>
+    <a href="/tesoreria?key=KEY_PLACEHOLDER" class="NAV_TESORERIA">Tesorería</a>
+    <a href="/pipeline?key=KEY_PLACEHOLDER" class="NAV_PIPELINE">Pipeline</a>
     <a href="/cashflow?key=KEY_PLACEHOLDER" class="NAV_ANUAL">Cash Flow Anual</a>
     <a href="/cashflow/semanal?key=KEY_PLACEHOLDER" class="NAV_SEMANAL">Cash Flow Semanal</a>
     <a href="/nomina/scotiabank?key=KEY_PLACEHOLDER" class="NAV_NOMINA" style="background:#dc3545;color:white">Nomina Scotiabank</a>
@@ -280,6 +284,243 @@ TABLERO_HTML = """
 </html>
 """
 
+TESORERIA_HTML = """
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CathPro - Tesorería</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="300">
+    <style>
+        body{font-family:'Segoe UI',sans-serif;margin:0;padding:0;background:#f4f4f4}
+        .header{background:#242625;padding:20px 40px;display:flex;align-items:center;gap:20px}
+        .header img{height:50px}
+        .header h1{color:#f4f4f4;margin:0;font-weight:700;font-size:24px}
+        .nav-links{margin-left:auto;display:flex;gap:10px}
+        .nav-links a{color:#888;text-decoration:none;padding:8px 15px;border-radius:5px;font-size:13px}
+        .nav-links a:hover,.nav-links a.active{background:#55b245;color:white}
+        .container{max-width:1200px;margin:0 auto;padding:20px}
+        .fecha{color:#7f8c8d;margin-bottom:20px;font-size:14px}
+        .section-title{color:#242625;font-size:18px;font-weight:700;margin:30px 0 15px}
+        .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-bottom:20px}
+        .card{background:white;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+        .card h3{margin:0;color:#7f8c8d;font-size:12px;font-weight:600;text-transform:uppercase}
+        .card p{margin:10px 0 0;font-size:24px;font-weight:800;color:#242625}
+        .card small{color:#7f8c8d;font-size:11px}
+        .card.green{border-left:4px solid #55b245}
+        .card.orange{border-left:4px solid #f46302}
+        .card.red{border-left:4px solid #e74c3c}
+        .card.blue{border-left:4px solid #3498db}
+        .card.purple{border-left:4px solid #9b59b6}
+        .alert{background:#fff3cd;border-left:4px solid #f46302;padding:15px 20px;border-radius:8px;margin-bottom:20px}
+        .alert.success{background:#d4edda;border-left-color:#55b245}
+        .alert.danger{background:#f8d7da;border-left-color:#e74c3c}
+        .alert h4{margin:0 0 5px;font-size:14px;font-weight:600}
+        .alert p{margin:0;font-size:13px;color:#856404}
+        .alert.success p{color:#155724}
+        .alert.danger p{color:#721c24}
+        table{width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1);margin-bottom:20px}
+        th{background:#242625;color:white;padding:12px 15px;text-align:left;font-weight:600;font-size:13px}
+        td{padding:10px 15px;border-bottom:1px solid #ecf0f1;font-size:13px}
+        .monto{text-align:right;font-family:monospace;font-weight:bold}
+        .monto.ingreso{color:#55b245}
+        .monto.egreso{color:#e74c3c}
+        .center{text-align:center}
+        .badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600}
+        .badge-ingreso{background:#d4edda;color:#155724}
+        .badge-egreso{background:#f8d7da;color:#721c24}
+        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        @media(max-width:768px){.cards{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="data:image/png;base64,LOGO_BASE64" alt="CathPro">
+        <h1>Tesorería CathPro</h1>
+        NAV_PLACEHOLDER
+    </div>
+    <div class="container">
+        <p class="fecha">Actualizado: FECHA_PLACEHOLDER</p>
+
+        ALERTAS_PLACEHOLDER
+
+        <div class="section-title">Resumen Consolidado (Hoy)</div>
+        <div class="cards">
+            <div class="card blue">
+                <h3>Total Movimientos</h3>
+                <p>TOTAL_MOVIMIENTOS</p>
+                <small>Todas las cuentas</small>
+            </div>
+            <div class="card green">
+                <h3>Total Ingresos</h3>
+                <p>TOTAL_INGRESOS</p>
+            </div>
+            <div class="card red">
+                <h3>Total Egresos</h3>
+                <p>TOTAL_EGRESOS</p>
+            </div>
+            <div class="card SALDO_CLASS">
+                <h3>Saldo Neto</h3>
+                <p>SALDO_NETO</p>
+            </div>
+        </div>
+
+        <div class="section-title">Movimientos por Banco (Hoy)</div>
+        <table>
+            <tr>
+                <th>Banco</th>
+                <th class="center">Cuenta</th>
+                <th class="monto">Saldo Actual</th>
+                <th class="center">Cambio</th>
+                <th class="center">Movimientos</th>
+                <th class="monto">Ingresos</th>
+                <th class="monto">Egresos</th>
+            </tr>
+            ROWS_BANCOS
+        </table>
+
+        <div class="section-title">Detalle de Movimientos (Hoy)</div>
+        <div class="two-col">
+            <div>
+                <h4 style="font-size:15px;margin-bottom:10px;color:#55b245">💰 Top 10 Ingresos</h4>
+                <table>
+                    <tr>
+                        <th>Banco</th>
+                        <th>Descripción</th>
+                        <th class="monto">Monto</th>
+                        <th class="center">Conciliado</th>
+                    </tr>
+                    ROWS_TOP_INGRESOS
+                </table>
+            </div>
+            <div>
+                <h4 style="font-size:15px;margin-bottom:10px;color:#e74c3c">💸 Top 10 Egresos</h4>
+                <table>
+                    <tr>
+                        <th>Banco</th>
+                        <th>Proveedor / Descripción</th>
+                        <th>Nº Factura</th>
+                        <th class="monto">Monto</th>
+                        <th class="center">Conciliado</th>
+                    </tr>
+                    ROWS_TOP_EGRESOS
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+"""
+
+PIPELINE_HTML = """
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CathPro - Pipeline de Compromisos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="300">
+    <style>
+        body{font-family:'Segoe UI',sans-serif;margin:0;padding:0;background:#f4f4f4}
+        .header{background:#242625;padding:20px 40px;display:flex;align-items:center;gap:20px}
+        .header img{height:50px}
+        .header h1{color:#f4f4f4;margin:0;font-weight:700;font-size:24px}
+        .nav-links{margin-left:auto;display:flex;gap:10px}
+        .nav-links a{color:#888;text-decoration:none;padding:8px 15px;border-radius:5px;font-size:13px}
+        .nav-links a:hover,.nav-links a.active{background:#55b245;color:white}
+        .container{max-width:1400px;margin:0 auto;padding:20px}
+        .fecha{color:#7f8c8d;margin-bottom:20px;font-size:14px}
+        .section-title{color:#242625;font-size:18px;font-weight:700;margin:30px 0 15px}
+        .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;margin-bottom:20px}
+        .card{background:white;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+        .card h3{margin:0;color:#7f8c8d;font-size:12px;font-weight:600;text-transform:uppercase}
+        .card p{margin:10px 0 0;font-size:24px;font-weight:800;color:#242625}
+        .card small{color:#7f8c8d;font-size:11px;display:block;margin-top:5px}
+        .card.blue{border-left:4px solid #3498db}
+        .card.orange{border-left:4px solid #f46302}
+        .card.purple{border-left:4px solid #9b59b6}
+        table{width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1);margin-bottom:20px}
+        th{background:#242625;color:white;padding:12px 15px;text-align:left;font-weight:600;font-size:13px}
+        td{padding:10px 15px;border-bottom:1px solid #ecf0f1;font-size:13px}
+        .monto{text-align:right;font-family:monospace;font-weight:bold}
+        .center{text-align:center}
+        .badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600}
+        .badge-critico{background:#f8d7da;color:#721c24}
+        .badge-alerta{background:#fff3cd;color:#856404}
+        .badge-ok{background:#d4edda;color:#155724}
+        tr.highlight{background:#fff9e6}
+        @media(max-width:768px){.cards{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="data:image/png;base64,LOGO_BASE64" alt="CathPro">
+        <h1>Pipeline de Compromisos</h1>
+        NAV_PLACEHOLDER
+    </div>
+    <div class="container">
+        <p class="fecha">Actualizado: FECHA_PLACEHOLDER</p>
+
+        <div class="section-title">Resumen Ejecutivo</div>
+        <div class="cards">
+            <div class="card blue">
+                <h3>SOLIs sin OC</h3>
+                <p>SOLI_CANTIDAD</p>
+                <small>Monto: SOLI_MONTO CLP</small>
+            </div>
+            <div class="card orange">
+                <h3>OCs sin Factura</h3>
+                <p>OC_CANTIDAD</p>
+                <small>Monto: OC_MONTO CLP</small>
+            </div>
+            <div class="card purple">
+                <h3>OCXs sin Invoice</h3>
+                <p>OCX_CANTIDAD</p>
+                <small>Monto: OCX_MONTO USD</small>
+            </div>
+        </div>
+
+        <div class="section-title">📋 SOLIs Aprobadas sin OC</div>
+        <table>
+            <tr>
+                <th>Folio</th>
+                <th>Fecha</th>
+                <th>Proveedor</th>
+                <th>Proyecto</th>
+                <th class="monto">Monto CLP</th>
+            </tr>
+            ROWS_SOLI
+        </table>
+
+        <div class="section-title">📄 OCs Aprobadas sin Factura</div>
+        <table>
+            <tr>
+                <th>Folio</th>
+                <th>Fecha</th>
+                <th>Proveedor</th>
+                <th class="center">Días Pendiente</th>
+                <th class="monto">Monto CLP</th>
+            </tr>
+            ROWS_OC
+        </table>
+
+        <div class="section-title">🌐 OCXs Aprobadas sin Invoice</div>
+        <table>
+            <tr>
+                <th>Folio</th>
+                <th>Fecha</th>
+                <th>Proveedor</th>
+                <th class="center">Días Pendiente</th>
+                <th class="monto">Monto USD</th>
+            </tr>
+            ROWS_OCX
+        </table>
+    </div>
+</body>
+</html>
+"""
+
 CASHFLOW_SEMANAL_HTML = """
 <!DOCTYPE html>
 <html lang="es">
@@ -341,7 +582,9 @@ CASHFLOW_SEMANAL_HTML = """
         .badge-dias{background:#f3e5f5;color:#7b1fa2}
         .two-col{display:grid;grid-template-columns:1fr 1fr;gap:25px}
         .footer{text-align:center;padding:20px;color:#888;font-size:11px;margin-top:20px}
-        @media(max-width:768px){.kpis{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.header{flex-wrap:wrap}.nav-links{margin:10px 0}}
+        .chat-btn{position:fixed;bottom:30px;right:30px;background:linear-gradient(135deg,#55b245,#449636);color:white;border:none;border-radius:50px;padding:15px 25px;font-size:16px;font-weight:600;box-shadow:0 4px 15px rgba(85,178,69,0.4);cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:8px;transition:all 0.3s ease;z-index:1000}
+        .chat-btn:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(85,178,69,0.6);background:linear-gradient(135deg,#449636,#55b245)}
+        @media(max-width:768px){.kpis{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.header{flex-wrap:wrap}.nav-links{margin:10px 0}.chat-btn{padding:12px 20px;font-size:14px}}
     </style>
 </head>
 <body>
@@ -378,9 +621,9 @@ CASHFLOW_SEMANAL_HTML = """
                 <div class="kpi-sub">CxP + Recurrentes</div>
             </div>
             <div class="kpi SALDO_FINAL_CLASS">
-                <div class="kpi-label">Saldo Final</div>
-                <div class="kpi-value SALDO_FINAL_COLOR">SALDO_FINAL_PLACEHOLDER</div>
-                <div class="kpi-sub">Proyección día 7</div>
+                <div class="kpi-label">Variación Neta</div>
+                <div class="kpi-value SALDO_FINAL_COLOR">VARIACION_NETA_PLACEHOLDER</div>
+                <div class="kpi-sub">Entradas - Salidas</div>
             </div>
         </div>
         
@@ -511,6 +754,10 @@ CASHFLOW_SEMANAL_HTML = """
             }
         });
     </script>
+
+    <a href="/chat?key=KEY_PLACEHOLDER" class="chat-btn">
+        💬 VeriCosas
+    </a>
 </body>
 </html>
 """
@@ -722,7 +969,7 @@ def tablero():
             monto = f"${b['disponible']:,.0f}"
         rows += f"<tr><td>{b['banco']}</td><td class='monto'>{monto}</td><td>{moneda}</td></tr>"
     
-    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', 'active').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', 'active').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
     logo_b64 = get_logo_base64()
     
     html = TABLERO_HTML.replace('LOGO_BASE64', logo_b64)
@@ -739,6 +986,435 @@ def tablero():
     html = html.replace('POSICION_NETA_PLACEHOLDER', f"${posicion_neta:,.0f}")
     html = html.replace('POSICION_CLASS', posicion_class)
     
+    return html
+
+
+# ============================================
+# FUNCIONES HISTORIAL DE SALDOS
+# ============================================
+
+def get_saldos_historicos():
+    """Lee el historial de saldos desde archivo JSON"""
+    archivo = 'saldos_historicos.json'
+    try:
+        if os.path.exists(archivo):
+            with open(archivo, 'r') as f:
+                return json.load(f)
+        return {}
+    except Exception as e:
+        print(f"Error leyendo historial: {e}")
+        return {}
+
+
+def guardar_saldo_historico(banco, saldo, moneda='CLP'):
+    """Guarda el saldo actual de un banco en el historial"""
+    archivo = 'saldos_historicos.json'
+    historial = get_saldos_historicos()
+
+    # Obtener fecha actual en Chile
+    hoy = now_chile().date().isoformat()
+
+    # Estructura: {banco: {fecha: {saldo, moneda}}}
+    if banco not in historial:
+        historial[banco] = {}
+
+    historial[banco][hoy] = {
+        'saldo': saldo,
+        'moneda': moneda,
+        'timestamp': now_chile().isoformat()
+    }
+
+    try:
+        with open(archivo, 'w') as f:
+            json.dump(historial, f, indent=2)
+    except Exception as e:
+        print(f"Error guardando historial: {e}")
+
+
+def comparar_saldo_anterior(banco, saldo_actual):
+    """
+    Compara el saldo actual con el saldo del día anterior o último registro.
+    Retorna: dict con diferencia, porcentaje y dirección (up/down/equal)
+    """
+    historial = get_saldos_historicos()
+
+    if banco not in historial or not historial[banco]:
+        return {'diferencia': 0, 'porcentaje': 0, 'direccion': 'equal', 'saldo_anterior': 0}
+
+    # Obtener fechas ordenadas (más reciente primero)
+    fechas = sorted(historial[banco].keys(), reverse=True)
+    hoy = now_chile().date().isoformat()
+
+    # Buscar el último registro que no sea de hoy
+    saldo_anterior = None
+    for fecha in fechas:
+        if fecha != hoy:
+            saldo_anterior = historial[banco][fecha]['saldo']
+            break
+
+    if saldo_anterior is None:
+        return {'diferencia': 0, 'porcentaje': 0, 'direccion': 'equal', 'saldo_anterior': 0}
+
+    # Calcular diferencia y porcentaje
+    diferencia = saldo_actual - saldo_anterior
+    porcentaje = (diferencia / saldo_anterior * 100) if saldo_anterior != 0 else 0
+
+    # Determinar dirección
+    if abs(diferencia) < 1:  # Considerar igual si diferencia < 1 CLP
+        direccion = 'equal'
+    elif diferencia > 0:
+        direccion = 'up'
+    else:
+        direccion = 'down'
+
+    return {
+        'diferencia': diferencia,
+        'porcentaje': porcentaje,
+        'direccion': direccion,
+        'saldo_anterior': saldo_anterior
+    }
+
+
+@app.route('/tesoreria')
+def tesoreria():
+    key = request.args.get('key', '')
+    if key != TABLERO_PASSWORD:
+        return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
+
+    # Obtener saldos bancarios de Fintoc
+    fintoc = FintocClient()
+    balances = fintoc.get_all_balances()
+
+    # Guardar saldos históricos y obtener comparaciones
+    comparaciones = {}
+    for balance in balances:
+        banco = balance['banco']
+        saldo_actual = balance['disponible']
+        moneda = balance['moneda']
+
+        # Guardar saldo histórico
+        guardar_saldo_historico(banco, saldo_actual, moneda)
+
+        # Comparar con saldo anterior
+        if moneda == 'CLP':  # Solo comparar CLP por ahora
+            comparacion = comparar_saldo_anterior(banco, saldo_actual)
+            comparaciones[banco] = comparacion
+
+    # Obtener resumen de todos los bancos
+    skualo_bancos = SkualoBancosClient()
+    resumen = skualo_bancos.get_resumen_todos_bancos()
+
+    # Calcular totales
+    total_movimientos = resumen['total_movimientos']
+    total_ingresos = resumen['total_ingresos']
+    total_egresos = resumen['total_egresos']
+    saldo_neto = resumen['saldo_neto']
+
+    # Determinar clase de saldo
+    saldo_class = "green" if saldo_neto >= 0 else "red"
+
+    # Generar alertas
+    alertas_html = ""
+    if saldo_neto < 0:
+        alertas_html = f'''
+        <div class="alert danger">
+            <h4>⚠️ Alerta de Tesorería</h4>
+            <p>Los egresos del día superan los ingresos en ${abs(saldo_neto):,.0f} CLP</p>
+        </div>
+        '''
+    elif total_movimientos > 30:
+        alertas_html = f'''
+        <div class="alert">
+            <h4>📊 Alta actividad bancaria</h4>
+            <p>Se han registrado {total_movimientos} movimientos en el día</p>
+        </div>
+        '''
+    else:
+        alertas_html = f'''
+        <div class="alert success">
+            <h4>✓ Operación normal</h4>
+            <p>Los ingresos superan los egresos en ${saldo_neto:,.0f} CLP</p>
+        </div>
+        '''
+
+    # Generar filas de bancos
+    rows_bancos = ""
+    for banco_info in resumen['bancos']:
+        banco_nombre = banco_info['banco']
+
+        # Obtener saldo actual de Fintoc para este banco
+        balance_actual = 0
+        for b in balances:
+            if b['banco'] == banco_nombre and b['moneda'] == 'CLP':
+                balance_actual = b['disponible']
+                break
+
+        # Generar indicador de cambio
+        cambio_html = '<span style="color:#888">-</span>'  # Default si no hay datos
+        if banco_nombre in comparaciones:
+            comp = comparaciones[banco_nombre]
+            diferencia = comp['diferencia']
+            porcentaje = comp.get('porcentaje', 0)
+
+            if comp['direccion'] == 'up':
+                cambio_html = f'<span style="color:#55b245;font-weight:bold">↑ ${abs(diferencia):,.0f} ({abs(porcentaje):.1f}%)</span>'
+            elif comp['direccion'] == 'down':
+                cambio_html = f'<span style="color:#e74c3c;font-weight:bold">↓ ${abs(diferencia):,.0f} ({abs(porcentaje):.1f}%)</span>'
+            else:
+                cambio_html = '<span style="color:#888">= Sin cambio</span>'
+
+        rows_bancos += f'''
+        <tr>
+            <td>{banco_nombre}</td>
+            <td class="center">{banco_info['cuenta']}</td>
+            <td class="monto">${balance_actual:,.0f}</td>
+            <td class="center">{cambio_html}</td>
+            <td class="center">{banco_info['num_movimientos']}</td>
+            <td class="monto ingreso">${banco_info['ingresos']:,.0f}</td>
+            <td class="monto egreso">${banco_info['egresos']:,.0f}</td>
+        </tr>
+        '''
+
+    # Obtener CxP de Skualo para vincular pagos
+    try:
+        from skualo_cashflow import SkualoCashFlow
+        cf = SkualoCashFlow()
+        cxp_detalle = cf.get_cxp_detalle()
+    except Exception as e:
+        print(f"Error obteniendo CxP: {e}")
+        cxp_detalle = []
+
+    # Obtener movimientos detallados de todos los bancos
+    todos_movimientos = []
+    for banco, cuenta_id in skualo_bancos.cuentas.items():
+        mov_banco = skualo_bancos.get_movimientos_hoy(cuenta_id)
+        for mov in mov_banco['movimientos']:
+            mov['banco'] = banco
+            todos_movimientos.append(mov)
+
+    # Separar ingresos y egresos
+    ingresos = []
+    egresos = []
+    for mov in todos_movimientos:
+        cargo = mov.get('montoCargo', 0)
+        abono = mov.get('montoAbono', 0)
+        conciliado = mov.get('conciliado', False)
+
+        if abono > 0:
+            ingresos.append({
+                'banco': mov['banco'],
+                'glosa': mov.get('glosa', 'Sin descripción'),
+                'monto': abono,
+                'conciliado': conciliado
+            })
+        if cargo > 0:
+            glosa = mov.get('glosa', 'Sin descripción')
+            glosa_upper = glosa.upper()
+
+            # Intentar vincular con CxP si es pago a proveedor
+            proveedor = None
+            num_factura = None
+            vinculado = False
+
+            if 'PAGO PROVEEDOR' in glosa_upper or 'TRANSF' in glosa_upper:
+                # Buscar coincidencia por monto en CxP
+                for cxp in cxp_detalle:
+                    # Buscar facturas con monto similar (+/- 1%)
+                    if abs(cxp['saldo'] - cargo) / cargo < 0.01:
+                        proveedor = cxp['proveedor']
+                        num_factura = cxp.get('documento', '')
+                        vinculado = True
+                        break
+
+            egresos.append({
+                'banco': mov['banco'],
+                'glosa': glosa,
+                'monto': cargo,
+                'conciliado': conciliado,
+                'proveedor': proveedor,
+                'num_factura': num_factura,
+                'vinculado': vinculado
+            })
+
+    # Ordenar y tomar top 10
+    ingresos_top = sorted(ingresos, key=lambda x: x['monto'], reverse=True)[:10]
+    egresos_top = sorted(egresos, key=lambda x: x['monto'], reverse=True)[:10]
+
+    # Generar filas de top ingresos
+    rows_top_ingresos = ""
+    for ing in ingresos_top:
+        conciliado_icon = '✓' if ing['conciliado'] else '✗'
+        conciliado_color = '#55b245' if ing['conciliado'] else '#e74c3c'
+        rows_top_ingresos += f'''
+        <tr>
+            <td>{ing['banco']}</td>
+            <td>{ing['glosa'][:50]}</td>
+            <td class="monto ingreso">${ing['monto']:,.0f}</td>
+            <td class="center" style="color:{conciliado_color}">{conciliado_icon}</td>
+        </tr>
+        '''
+
+    if not rows_top_ingresos:
+        rows_top_ingresos = '<tr><td colspan="4" style="text-align:center;color:#7f8c8d">No hay ingresos registrados hoy</td></tr>'
+
+    # Generar filas de top egresos
+    rows_top_egresos = ""
+    for egr in egresos_top:
+        conciliado_icon = '✓' if egr['conciliado'] else '✗'
+        conciliado_color = '#55b245' if egr['conciliado'] else '#e74c3c'
+
+        if egr['vinculado']:
+            proveedor_texto = egr['proveedor']
+            num_factura = egr['num_factura'][:15] if egr['num_factura'] else '-'
+        else:
+            # Mostrar glosa y marcar como sin vincular
+            proveedor_texto = egr['glosa'][:40] + ' <small style="color:#888">(Sin vincular)</small>'
+            num_factura = '-'
+
+        rows_top_egresos += f'''
+        <tr>
+            <td>{egr['banco']}</td>
+            <td>{proveedor_texto}</td>
+            <td>{num_factura}</td>
+            <td class="monto egreso">${egr['monto']:,.0f}</td>
+            <td class="center" style="color:{conciliado_color}">{conciliado_icon}</td>
+        </tr>
+        '''
+
+    if not rows_top_egresos:
+        rows_top_egresos = '<tr><td colspan="5" style="text-align:center;color:#7f8c8d">No hay egresos registrados hoy</td></tr>'
+
+    # Construir HTML
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_TESORERIA', 'active').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
+    logo_b64 = get_logo_base64()
+
+    html = TESORERIA_HTML.replace('LOGO_BASE64', logo_b64)
+    html = html.replace('NAV_PLACEHOLDER', nav)
+    html = html.replace('FECHA_PLACEHOLDER', now_chile().strftime('%d-%m-%Y %H:%M'))
+    html = html.replace('ALERTAS_PLACEHOLDER', alertas_html)
+    html = html.replace('TOTAL_MOVIMIENTOS', str(total_movimientos))
+    html = html.replace('TOTAL_INGRESOS', f"${total_ingresos:,.0f}")
+    html = html.replace('TOTAL_EGRESOS', f"${total_egresos:,.0f}")
+    html = html.replace('SALDO_NETO', f"${saldo_neto:,.0f}")
+    html = html.replace('SALDO_CLASS', saldo_class)
+    html = html.replace('ROWS_BANCOS', rows_bancos)
+    html = html.replace('ROWS_TOP_INGRESOS', rows_top_ingresos)
+    html = html.replace('ROWS_TOP_EGRESOS', rows_top_egresos)
+
+    return html
+
+
+@app.route('/pipeline')
+def pipeline():
+    key = request.args.get('key', '')
+    if key != TABLERO_PASSWORD:
+        return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
+
+    # Obtener datos del pipeline
+    try:
+        skualo_docs = SkualoDocumentosClient()
+        resumen = skualo_docs.get_resumen_pipeline()
+    except Exception as e:
+        print(f"Error obteniendo pipeline: {e}")
+        return f"<h1>Error cargando pipeline: {e}</h1>"
+
+    # KPIs
+    soli_cantidad = resumen['soli']['cantidad']
+    soli_monto = resumen['soli']['monto_total']
+    oc_cantidad = resumen['oc']['cantidad']
+    oc_monto = resumen['oc']['monto_total']
+    ocx_cantidad = resumen['ocx']['cantidad']
+    ocx_monto_usd = resumen['ocx']['monto_total_usd']
+
+    # Generar filas SOLIs
+    rows_soli = ""
+    for soli in resumen['soli']['documentos'][:50]:  # Limitar a 50
+        fecha_str = soli['fecha'].strftime('%d-%m-%Y') if soli['fecha'] else '-'
+        proyecto = soli['proyecto'] if soli['proyecto'] else '-'
+        rows_soli += f'''<tr>
+            <td>{soli['folio']}</td>
+            <td>{fecha_str}</td>
+            <td>{soli['proveedor'][:40]}</td>
+            <td>{proyecto}</td>
+            <td class="monto">${soli['monto']:,.0f}</td>
+        </tr>'''
+
+    if not rows_soli:
+        rows_soli = '<tr><td colspan="5" style="text-align:center;color:#888">No hay SOLIs pendientes</td></tr>'
+
+    # Generar filas OCs
+    rows_oc = ""
+    for oc in resumen['oc']['documentos'][:50]:  # Limitar a 50
+        fecha_str = oc['fecha'].strftime('%d-%m-%Y') if oc['fecha'] else '-'
+        dias = oc['dias_pendiente']
+
+        # Badge según días pendientes
+        if dias > 30:
+            badge = '<span class="badge badge-critico">+30d</span>'
+            highlight = 'highlight'
+        elif dias > 15:
+            badge = '<span class="badge badge-alerta">15-30d</span>'
+            highlight = ''
+        else:
+            badge = '<span class="badge badge-ok">&lt;15d</span>'
+            highlight = ''
+
+        rows_oc += f'''<tr class="{highlight}">
+            <td>{oc['folio']}</td>
+            <td>{fecha_str}</td>
+            <td>{oc['proveedor'][:40]}</td>
+            <td class="center">{dias} días {badge}</td>
+            <td class="monto">${oc['monto']:,.0f}</td>
+        </tr>'''
+
+    if not rows_oc:
+        rows_oc = '<tr><td colspan="5" style="text-align:center;color:#888">No hay OCs pendientes</td></tr>'
+
+    # Generar filas OCXs
+    rows_ocx = ""
+    for ocx in resumen['ocx']['documentos'][:50]:  # Limitar a 50
+        fecha_str = ocx['fecha'].strftime('%d-%m-%Y') if ocx['fecha'] else '-'
+        dias = ocx['dias_pendiente']
+
+        # Badge según días pendientes
+        if dias > 30:
+            badge = '<span class="badge badge-critico">+30d</span>'
+            highlight = 'highlight'
+        elif dias > 15:
+            badge = '<span class="badge badge-alerta">15-30d</span>'
+            highlight = ''
+        else:
+            badge = '<span class="badge badge-ok">&lt;15d</span>'
+            highlight = ''
+
+        rows_ocx += f'''<tr class="{highlight}">
+            <td>{ocx['folio']}</td>
+            <td>{fecha_str}</td>
+            <td>{ocx['proveedor'][:40]}</td>
+            <td class="center">{dias} días {badge}</td>
+            <td class="monto">${ocx['monto_usd']:,.2f}</td>
+        </tr>'''
+
+    if not rows_ocx:
+        rows_ocx = '<tr><td colspan="5" style="text-align:center;color:#888">No hay OCXs pendientes</td></tr>'
+
+    # Construir HTML
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', 'active').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
+    logo_b64 = get_logo_base64()
+
+    html = PIPELINE_HTML.replace('LOGO_BASE64', logo_b64)
+    html = html.replace('NAV_PLACEHOLDER', nav)
+    html = html.replace('FECHA_PLACEHOLDER', now_chile().strftime('%d-%m-%Y %H:%M'))
+    html = html.replace('SOLI_CANTIDAD', str(soli_cantidad))
+    html = html.replace('SOLI_MONTO', f"${soli_monto:,.0f}")
+    html = html.replace('OC_CANTIDAD', str(oc_cantidad))
+    html = html.replace('OC_MONTO', f"${oc_monto:,.0f}")
+    html = html.replace('OCX_CANTIDAD', str(ocx_cantidad))
+    html = html.replace('OCX_MONTO', f"${ocx_monto_usd:,.2f}")
+    html = html.replace('ROWS_SOLI', rows_soli)
+    html = html.replace('ROWS_OC', rows_oc)
+    html = html.replace('ROWS_OCX', rows_ocx)
+
     return html
 
 
@@ -799,7 +1475,7 @@ def cashflow_anual():
         <td colspan="2"></td>
     </tr>'''
     
-    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_ANUAL', 'active').replace('NAV_SEMANAL', '')
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', 'active').replace('NAV_SEMANAL', '')
     logo_b64 = get_logo_base64()
     
     html = CASHFLOW_ANUAL_HTML.replace('LOGO_BASE64', logo_b64)
@@ -829,16 +1505,20 @@ def cashflow_semanal():
         fintoc = FintocClient()
         balances = fintoc.get_all_balances()
         saldo_clp = sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
-        
-        # Obtener movimientos reales de hoy
-        movimientos_hoy = fintoc.get_movimientos_hoy()
-        entradas_fintoc_hoy = movimientos_hoy.get('entradas', 0)
-        salidas_fintoc_hoy = movimientos_hoy.get('salidas', 0)
     except Exception as e:
         print(f"Error Fintoc: {e}")
         saldo_clp = 160000000
-        entradas_fintoc_hoy = 0
-        salidas_fintoc_hoy = 0
+
+    # Obtener movimientos reales de hoy desde Skualo Bancos
+    try:
+        skualo_bancos = SkualoBancosClient()
+        resumen_bancos = skualo_bancos.get_resumen_todos_bancos()
+        entradas_bancos_hoy = resumen_bancos['total_ingresos']
+        salidas_bancos_hoy = resumen_bancos['total_egresos']
+    except Exception as e:
+        print(f"Error Skualo Bancos: {e}")
+        entradas_bancos_hoy = 0
+        salidas_bancos_hoy = 0
     
     # Obtener datos Skualo
     try:
@@ -853,29 +1533,27 @@ def cashflow_semanal():
     
     fmt = lambda x: f"${x/1e6:.0f}M"
     fmt_full = lambda x: f"${x:,.0f}"
-    
-    # Calcular KPIs
-    total_entradas = resumen['total_entradas']
-    total_salidas = resumen['total_salidas']
-    saldo_final = saldo_clp + total_entradas - total_salidas
-    
+
     # Construir proyección diaria con saldo acumulado
     saldo_acum = saldo_clp
     dias_data = []
     hoy = datetime.now(TZ_CHILE).date()
     
     for fecha, p in proyeccion.items():
-        # Para hoy: usar entradas reales de Fintoc si hay
+        # Para hoy: usar movimientos reales de bancos
         entradas_dia = p['entradas']
-        fuente_entradas = "Skualo"
-        
+        salidas_dia = p['salidas_total']
+        fuente_entradas = "Skualo CxC"
+
         if fecha == hoy:
-            if entradas_fintoc_hoy > 0:
-                entradas_dia = entradas_fintoc_hoy
-                fuente_entradas = "Fintoc"
-        
-        # Recalcular neto si cambió entradas
-        neto_dia = entradas_dia - p['salidas_total']
+            # Usar datos reales de movimientos bancarios
+            if entradas_bancos_hoy > 0 or salidas_bancos_hoy > 0:
+                entradas_dia = entradas_bancos_hoy
+                salidas_dia = salidas_bancos_hoy
+                fuente_entradas = "Bancos"
+
+        # Recalcular neto
+        neto_dia = entradas_dia - salidas_dia
         saldo_acum += neto_dia
         
         dia_en = fecha.strftime('%a')
@@ -885,14 +1563,19 @@ def cashflow_semanal():
             'dia': dia_es,
             'entradas': entradas_dia,
             'fuente': fuente_entradas,
-            'salidas': p['salidas_total'],
+            'salidas': salidas_dia,
             'neto': neto_dia,
             'saldo': saldo_acum,
-            'critico': p['salidas_total'] > 100000000,
+            'critico': salidas_dia > 100000000,
             'tiene_entradas': entradas_dia > 0,
             'tiene_recurrentes': p['salidas_recurrentes'] > 0,
         })
-    
+
+    # Calcular KPIs sumando desde dias_data (incluye datos reales de hoy)
+    total_entradas = sum(d['entradas'] for d in dias_data)
+    total_salidas = sum(d['salidas'] for d in dias_data)
+    variacion_neta = total_entradas - total_salidas
+
     # Día crítico
     dia_critico = resumen['dia_critico']
     
@@ -948,7 +1631,18 @@ def cashflow_semanal():
     hoy = now_chile().date()
     fin_semana = hoy + timedelta(days=7)
     salidas_semana = []
-    
+
+    # Obtener movimientos bancarios de hoy para detectar pagos ya ejecutados
+    try:
+        movimientos_hoy_detalle = []
+        for banco, cuenta_id in skualo_bancos.cuentas.items():
+            mov_banco = skualo_bancos.get_movimientos_hoy(cuenta_id)
+            movimientos_hoy_detalle.extend(mov_banco['movimientos'])
+        glosas_hoy = [mov.get('glosa', '').upper() for mov in movimientos_hoy_detalle]
+    except Exception as e:
+        print(f"Error obteniendo movimientos detallados: {e}")
+        glosas_hoy = []
+
     # Recurrentes de la semana
     for r in RECURRENTES:
         dia_rec = r['dia']
@@ -961,25 +1655,55 @@ def cashflow_semanal():
                 fecha_rec = hoy.replace(month=hoy.month+1, day=dia_rec)
         # Solo si cae en los próximos 7 días
         if hoy <= fecha_rec <= fin_semana:
-            salidas_semana.append({'concepto': r['concepto'], 'monto': r['monto'], 'tipo': 'rec', 'fecha': fecha_rec})
+            # Verificar si ya fue pagado hoy y obtener monto real
+            concepto_upper = r['concepto'].upper()
+            ya_pagado = False
+            monto_real = r['monto']  # Monto estimado por defecto
+
+            # Buscar palabras clave del concepto en las glosas y extraer monto real
+            palabras_clave = concepto_upper.split()
+            for mov in movimientos_hoy_detalle:
+                glosa = mov.get('glosa', '').upper()
+                if any(palabra in glosa for palabra in palabras_clave if len(palabra) > 3):
+                    ya_pagado = True
+                    # Extraer monto real del movimiento (cargo)
+                    cargo = mov.get('montoCargo', 0)
+                    if cargo > 0:
+                        monto_real = cargo
+                    break
+
+            # Si no fue pagado o es fecha futura, agregarlo
+            if not ya_pagado or fecha_rec > hoy:
+                salidas_semana.append({
+                    'concepto': r['concepto'],
+                    'monto': monto_real,  # Usar monto real si fue pagado
+                    'tipo': 'rec',
+                    'fecha': fecha_rec,
+                    'pagado': ya_pagado and fecha_rec == hoy
+                })
     
     # CxP que vencen en los próximos 7 días
     for c in cxp_detalle:
         fecha_cxp = c.get('vencimiento')
         if fecha_cxp and hoy <= fecha_cxp <= fin_semana:
-            salidas_semana.append({'concepto': c['proveedor'], 'monto': c['saldo'], 'tipo': 'cxp', 'fecha': fecha_cxp, 'documento': c.get('documento', '')})
+            salidas_semana.append({'concepto': c['proveedor'], 'monto': c['saldo'], 'tipo': 'cxp', 'fecha': fecha_cxp, 'documento': c.get('documento', ''), 'pagado': False})
     
     salidas_semana = sorted(salidas_semana, key=lambda x: x['monto'], reverse=True)[:5]
     rows_salidas_semana = ""
     for s in salidas_semana:
         badge_class = 'badge-rec' if s['tipo'] == 'rec' else 'badge-cxp'
-        bg = 'style="background:#fff5f5"' if s['monto'] > 50000000 else ''
+        pagado = s.get('pagado', False)
+        bg = 'style="background:#f0fff0;opacity:0.7"' if pagado else ('style="background:#fff5f5"' if s['monto'] > 50000000 else '')
         fecha_str = fecha_es(s['fecha'])
+        concepto_texto = s['concepto'][:35]
+        if pagado:
+            concepto_texto += ' ✓'
+        monto_style = 'class="right" style="text-decoration:line-through;color:#888"' if pagado else 'class="right"'
         rows_salidas_semana += f'''<tr {bg}>
-            <td>{s['concepto'][:35]}</td>
+            <td>{concepto_texto}</td>
             <td class="center">{fecha_str}</td>
             <td class="center"><span class="badge {badge_class}">{s['tipo']}</span></td>
-            <td class="right">{fmt_full(s['monto'])}</td>
+            <td {monto_style}>{fmt_full(s['monto'])}</td>
         </tr>'''
     
     if not rows_salidas_semana:
@@ -1012,11 +1736,11 @@ def cashflow_semanal():
     chart_salidas = [-d['salidas'] for d in dias_data]
     chart_saldos = [d['saldo'] for d in dias_data]
     
-    # Saldo final clase
-    saldo_final_class = '' if saldo_final >= saldo_clp else 'rojo'
-    saldo_final_color = 'verde' if saldo_final >= saldo_clp else 'rojo'
+    # Variación neta clase
+    variacion_class = '' if variacion_neta >= 0 else 'rojo'
+    variacion_color = 'verde' if variacion_neta >= 0 else 'rojo'
     
-    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', 'active')
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', 'active')
     logo_b64 = get_logo_base64()
     
     html = CASHFLOW_SEMANAL_HTML.replace('LOGO_BASE64', logo_b64)
@@ -1025,9 +1749,9 @@ def cashflow_semanal():
     html = html.replace('SALDO_PLACEHOLDER', fmt_full(saldo_clp))
     html = html.replace('ENTRADAS_PLACEHOLDER', fmt_full(total_entradas))
     html = html.replace('SALIDAS_PLACEHOLDER', fmt_full(total_salidas))
-    html = html.replace('SALDO_FINAL_PLACEHOLDER', fmt_full(saldo_final))
-    html = html.replace('SALDO_FINAL_CLASS', saldo_final_class)
-    html = html.replace('SALDO_FINAL_COLOR', saldo_final_color)
+    html = html.replace('VARIACION_NETA_PLACEHOLDER', fmt_full(variacion_neta))
+    html = html.replace('SALDO_FINAL_CLASS', variacion_class)
+    html = html.replace('SALDO_FINAL_COLOR', variacion_color)
     html = html.replace('ALERT_PLACEHOLDER', alert_html)
     html = html.replace('TAGS_DIAS_PAGO', tags_html)
     html = html.replace('ROWS_DIARIO', rows_diario)
@@ -1038,7 +1762,8 @@ def cashflow_semanal():
     html = html.replace('CHART_ENTRADAS', str(chart_entradas))
     html = html.replace('CHART_SALIDAS', str(chart_salidas))
     html = html.replace('CHART_SALDOS', str(chart_saldos))
-    
+    html = html.replace('KEY_PLACEHOLDER', key)
+
     return html
 
 
@@ -1151,9 +1876,9 @@ def nomina_scotiabank():
             <td class="center">{status_icon}</td>
         </tr>'''
     
-    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
     logo_b64 = get_logo_base64()
-    
+
     html = f'''<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -1492,9 +2217,9 @@ def chat_ui():
     if not CHAT_ENABLED:
         return "<h1>Chat no disponible - Falta configurar ANTHROPIC_API_KEY</h1>"
     
-    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
     logo_b64 = get_logo_base64()
-    
+
     html = CHAT_HTML.replace('LOGO_BASE64', logo_b64)
     html = html.replace('NAV_PLACEHOLDER', nav)
     html = html.replace('KEY_PLACEHOLDER', key)
