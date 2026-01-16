@@ -361,7 +361,7 @@ TESORERIA_HTML = """
                 <p>TOTAL_EGRESOS</p>
             </div>
             <div class="card SALDO_CLASS">
-                <h3>Saldo Neto</h3>
+                <h3>Variación Neta</h3>
                 <p>SALDO_NETO</p>
             </div>
         </div>
@@ -387,7 +387,8 @@ TESORERIA_HTML = """
                 <table>
                     <tr>
                         <th>Banco</th>
-                        <th>Descripción</th>
+                        <th>Cliente / Descripción</th>
+                        <th>Nº Factura</th>
                         <th class="monto">Monto</th>
                         <th class="center">Conciliado</th>
                     </tr>
@@ -1144,10 +1145,17 @@ def tesoreria():
 
         # Obtener saldo actual de Fintoc para este banco
         balance_actual = 0
+        moneda_saldo = 'CLP'
         for b in balances:
-            if b['banco'] == banco_nombre and b['moneda'] == 'CLP':
-                balance_actual = b['disponible']
-                break
+            if b['banco'] == banco_nombre:
+                # Preferir CLP, pero si solo hay USD/EUR, mostrar eso
+                if b['moneda'] == 'CLP':
+                    balance_actual = b['disponible']
+                    moneda_saldo = 'CLP'
+                    break
+                elif balance_actual == 0:  # Si no hay CLP, usar la primera moneda disponible
+                    balance_actual = b['disponible']
+                    moneda_saldo = b['moneda']
 
         # Generar indicador de cambio
         cambio_html = '<span style="color:#888">-</span>'  # Default si no hay datos
@@ -1163,11 +1171,19 @@ def tesoreria():
             else:
                 cambio_html = '<span style="color:#888">= Sin cambio</span>'
 
+        # Formatear saldo con moneda
+        if moneda_saldo == 'USD':
+            saldo_display = f"${balance_actual:,.2f} USD"
+        elif moneda_saldo == 'EUR':
+            saldo_display = f"${balance_actual:,.2f} EUR"
+        else:
+            saldo_display = f"${balance_actual:,.0f}"
+
         rows_bancos += f'''
         <tr>
             <td>{banco_nombre}</td>
             <td class="center">{banco_info['cuenta']}</td>
-            <td class="monto">${balance_actual:,.0f}</td>
+            <td class="monto">{saldo_display}</td>
             <td class="center">{cambio_html}</td>
             <td class="center">{banco_info['num_movimientos']}</td>
             <td class="monto ingreso">${banco_info['ingresos']:,.0f}</td>
@@ -1175,14 +1191,16 @@ def tesoreria():
         </tr>
         '''
 
-    # Obtener CxP de Skualo para vincular pagos
+    # Obtener CxC y CxP de Skualo para vincular movimientos
     try:
         from skualo_cashflow import SkualoCashFlow
         cf = SkualoCashFlow()
         cxp_detalle = cf.get_cxp_detalle()
+        cxc_detalle = cf.get_cxc_detalle()
     except Exception as e:
-        print(f"Error obteniendo CxP: {e}")
+        print(f"Error obteniendo CxC/CxP: {e}")
         cxp_detalle = []
+        cxc_detalle = []
 
     # Obtener movimientos detallados de todos los bancos
     todos_movimientos = []
@@ -1201,11 +1219,30 @@ def tesoreria():
         conciliado = mov.get('conciliado', False)
 
         if abono > 0:
+            glosa = mov.get('glosa', 'Sin descripción')
+
+            # Intentar vincular con CxC si es pago de cliente
+            cliente = None
+            num_factura = None
+            vinculado = False
+
+            # Buscar coincidencia por monto en CxC
+            for cxc in cxc_detalle:
+                # Buscar facturas con monto similar (+/- 2% para tolerar diferencias menores)
+                if abs(cxc['saldo'] - abono) / abono < 0.02:
+                    cliente = cxc['cliente']
+                    num_factura = cxc.get('documento', '')
+                    vinculado = True
+                    break
+
             ingresos.append({
                 'banco': mov['banco'],
-                'glosa': mov.get('glosa', 'Sin descripción'),
+                'glosa': glosa,
                 'monto': abono,
-                'conciliado': conciliado
+                'conciliado': conciliado,
+                'cliente': cliente,
+                'num_factura': num_factura,
+                'vinculado': vinculado
             })
         if cargo > 0:
             glosa = mov.get('glosa', 'Sin descripción')
@@ -1245,17 +1282,27 @@ def tesoreria():
     for ing in ingresos_top:
         conciliado_icon = '✓' if ing['conciliado'] else '✗'
         conciliado_color = '#55b245' if ing['conciliado'] else '#e74c3c'
+
+        if ing['vinculado']:
+            cliente_texto = ing['cliente']
+            num_factura = ing['num_factura'][:15] if ing['num_factura'] else '-'
+        else:
+            # Mostrar glosa y marcar como sin vincular
+            cliente_texto = ing['glosa'][:40] + ' <small style="color:#888">(Sin vincular)</small>'
+            num_factura = '-'
+
         rows_top_ingresos += f'''
         <tr>
             <td>{ing['banco']}</td>
-            <td>{ing['glosa'][:50]}</td>
+            <td>{cliente_texto}</td>
+            <td>{num_factura}</td>
             <td class="monto ingreso">${ing['monto']:,.0f}</td>
             <td class="center" style="color:{conciliado_color}">{conciliado_icon}</td>
         </tr>
         '''
 
     if not rows_top_ingresos:
-        rows_top_ingresos = '<tr><td colspan="4" style="text-align:center;color:#7f8c8d">No hay ingresos registrados hoy</td></tr>'
+        rows_top_ingresos = '<tr><td colspan="5" style="text-align:center;color:#7f8c8d">No hay ingresos registrados hoy</td></tr>'
 
     # Generar filas de top egresos
     rows_top_egresos = ""

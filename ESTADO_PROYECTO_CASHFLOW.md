@@ -1,11 +1,18 @@
 # ESTADO PROYECTO CASH FLOW CATHPRO
-## Documentación de avances y pendientes - 13 Enero 2026
+## Documentación de avances y pendientes - 16 Enero 2026
 
 ---
 
 ## RESUMEN EJECUTIVO
 
-Se ha desarrollado un sistema de proyección de cash flow a 90 días que integra múltiples fuentes de datos. El dashboard HTML está funcional con las 3 vistas (semanal, mensual, anual). Quedan pendientes ajustes de UX y la integración dinámica del saldo Fintoc.
+Sistema completo de gestión financiera desplegado en Render con múltiples módulos:
+- **Saldos**: Integración Fintoc + Skualo CxC/CxP
+- **Tesorería**: Movimientos bancarios del día con indicadores de tendencia (flechitas)
+- **Pipeline**: Trazabilidad SOLI → OC → Factura (corregido 16-ene)
+- **Cash Flow Semanal/Anual**: Proyección con forecast Google Sheets
+- **Nómina Scotiabank**: Exportación pagos proveedores
+
+**URL Producción**: https://fintoc-dashboard.onrender.com
 
 ---
 
@@ -14,183 +21,265 @@ Se ha desarrollado un sistema de proyección de cash flow a 90 días que integra
 ### Fuentes integradas:
 | Fuente | Qué aporta | Estado |
 |--------|------------|--------|
-| **Fintoc API** | Saldo bancario real CLP | ⚠️ Hardcodeado $160M (debe ser dinámico) |
-| **Skualo CxC** | Facturas emitidas + fecha cobro estimada | ✅ Integrado |
+| **Fintoc API** | Saldo bancario real CLP/USD/EUR | ✅ Dinámico |
+| **Fintoc Webhook** | Movimientos bancarios tiempo real | ✅ /webhook/fintoc |
+| **Skualo CxC** | Facturas emitidas + fecha cobro | ✅ Integrado |
 | **Skualo CxP** | Facturas por pagar + vencimientos | ✅ Integrado |
-| **Config Recurrentes** | Pagos fijos mensuales (IVA, sueldos, etc.) | ✅ Integrado |
-| **Dashboard Facturación** | Forecast ingresos futuros | ✅ Integrado en cashflow_data_v2.json |
+| **Skualo Documentos** | Pipeline SOLI/OC/OCX | ✅ Corregido 16-ene |
+| **Skualo Bancos** | Movimientos bancarios Skualo | ✅ Integrado |
+| **Google Sheets** | Forecast 2026 (Compromiso/Forecast) | ✅ Integrado |
+| **Config Recurrentes** | Pagos fijos mensuales | ✅ En app.py |
 
-### Archivos generados:
+### Estructura de archivos:
 ```
 /Desktop/DEVS/Fintoc/
-├── cashflow_data.json          # Proyección SOLO Skualo (va a negativo)
-├── cashflow_data_v2.json       # Proyección Skualo + Forecast (positivo)
-├── cashflow_config.json        # Config días pago + recurrentes
-├── cashflow_dashboard.html     # Dashboard funcional con Chart.js
-├── fintoc_client.py            # Cliente API Fintoc
-├── generate_cashflow_v2.py     # Script generador proyección
+├── app.py                      # App principal Flask (todas las rutas)
+├── fintoc_client.py            # Cliente API Fintoc (saldos bancarios)
+├── fintoc_webhook.py           # Procesador webhooks Fintoc
+├── skualo_client.py            # Cliente base Skualo
+├── skualo_cashflow.py          # CxC/CxP para cash flow
+├── skualo_bancos.py            # Movimientos bancarios Skualo
+├── skualo_documentos.py        # Pipeline SOLI/OC/OCX ← CORREGIDO 16-ENE
+├── chat_assistant.py           # Asistente virtual VeriCosas
+├── saldos_historicos.json      # Historial saldos para tendencias
+├── maestro_proveedores.json    # Datos bancarios proveedores
+├── requirements.txt            # Dependencias Python
+├── render.yaml                 # Config deployment Render
 └── ESTADO_PROYECTO_CASHFLOW.md # Este archivo
 ```
 
 ---
 
-## 2. PROYECCIÓN 90 DÍAS - DATOS REALES
+## 2. MÓDULOS DEL DASHBOARD
 
-### Solo Skualo (cashflow_data.json):
-| Métrica | Valor | Problema |
-|---------|-------|----------|
-| Saldo inicial | $160M | Hardcodeado |
-| Entradas 90d | $382M | Solo CxC enero, feb-abril = $0 |
-| Salidas 90d | $857M | Recurrentes siguen todos los meses |
-| Saldo final | **-$315M** | ❌ Negativo porque falta forecast |
-| Días alerta | 45 | 50% del horizonte |
+### 2.1 Saldos (/tablero)
+- Saldos bancarios Fintoc (CLP, USD, EUR)
+- Fondos mutuos Skualo
+- CxC y CxP totales
+- Posición neta
 
-### Skualo + Forecast (cashflow_data_v2.json):
-| Métrica | Valor | Mejora |
-|---------|-------|--------|
-| Saldo inicial | $160M | Hardcodeado |
-| Entradas 90d | $1,311M | +$929M del forecast |
-| Salidas 90d | $857M | Sin cambio |
-| Saldo final | **$660M** | ✅ Positivo |
-| Días alerta | 0 | ✅ Sin alertas |
+### 2.2 Tesorería (/tesoreria) ✅ COMPLETADO 16-ENE
+- Movimientos bancarios del día (Skualo Bancos)
+- **Indicadores de tendencia**: Flechitas ↑↓ comparando con día anterior
+- Top 10 ingresos/egresos
+- Vinculación egresos con CxP
+- Historial guardado en `saldos_historicos.json`
+
+**Implementación tendencias:**
+```python
+# En app.py líneas 994-1073
+- get_saldos_historicos() - Lee JSON histórico
+- guardar_saldo_historico() - Guarda saldo con timestamp
+- comparar_saldo_anterior() - Calcula diferencia y porcentaje
+```
+
+### 2.3 Pipeline (/pipeline) ✅ CORREGIDO 16-ENE
+Muestra compromisos pendientes en la cadena de documentos.
+
+**Problema anterior:**
+- Mostraba 100 SOLIs, 99 OCs, 56 OCXs
+- Todos decían "Sin proveedor"
+- No mostraba proyectos
+- No detectaba documentos ya procesados
+
+**Corrección aplicada en `skualo_documentos.py`:**
+| Campo | Antes | Ahora |
+|-------|-------|-------|
+| Proveedor | `razonSocial` (vacío) | `auxiliar` ✅ |
+| Proyecto | No consultaba | `proyecto` del detalle ✅ |
+| Trazabilidad | `documentoReferenciado` | `detalles[].cerrado` ✅ |
+
+**Resultado después de corrección:**
+| Tipo | Antes | Ahora |
+|------|-------|-------|
+| SOLIs sin OC | 100 | **18** |
+| OCs sin Factura | 99 | **45** |
+| OCXs sin Invoice | 56 | **12** |
+
+**Lógica de trazabilidad:**
+- Un documento está "pendiente" si `detalles[].cerrado == false`
+- Si TODOS los detalles tienen `cerrado: true`, ya fue procesado
+- Ejemplo: SOLI 336 tiene OC 2698 → `cerrado: true` → no aparece en pipeline
+
+### 2.4 Cash Flow Anual (/cashflow)
+- Proyección 2026 desde Google Sheets
+- Lógica: Q1 = Solo Compromiso | Q2-Q4 = Forecast (G > E)
+- Barras apiladas: Apalancada vs Venta Nueva
+- KPIs de certeza por mes
+
+### 2.5 Cash Flow Semanal (/cashflow/semanal)
+- Proyección 7 días
+- Entradas: CxC Skualo con días de pago por cliente
+- Salidas: Recurrentes + CxP próximos 7 días
+- Gráfico barras + línea de saldo
+- Botón acceso a VeriCosas (chat)
+
+### 2.6 Nómina Scotiabank (/nomina/scotiabank)
+- Lista CxP para pago el próximo viernes
+- Cruza con maestro proveedores (datos bancarios)
+- Exporta Excel formato macro Scotiabank
+
+### 2.7 Chat VeriCosas (/chat)
+- Asistente virtual para consultas financieras
+- Usa `chat_assistant.py` con Anthropic API
+- Consultas sobre saldos, CxC, CxP, etc.
 
 ---
 
-## 3. VISTA MENSUAL - DATOS REALES
-
-### Sin Forecast (problema):
-| Mes | Entradas | Salidas | Neto | Saldo |
-|-----|----------|---------|------|-------|
-| Ene 2026 | $376M | $265M | +$111M | $271M |
-| Feb 2026 | **$0M** | $286M | -$286M | -$15M |
-| Mar 2026 | $6M | $268M | -$262M | -$277M |
-| Abr 2026 | $0M | $38M | -$38M | -$315M |
-
-### Con Forecast (solución):
-| Mes | Entradas | Salidas | Neto | Saldo |
-|-----|----------|---------|------|-------|
-| Ene 2026 | $413M | $265M | +$148M | $308M |
-| Feb 2026 | $408M | $286M | +$122M | $430M |
-| Mar 2026 | $491M | $268M | +$223M | $653M |
-| Abr 2026 | $7M | $38M | -$31M | $660M |
-
----
-
-## 4. PAGOS RECURRENTES CONFIGURADOS
+## 3. CONFIGURACIÓN RECURRENTES
 
 | Día | Concepto | Monto | Criticidad |
 |-----|----------|-------|------------|
+| 1 | Crédito Hipotecario | $1.0M | Normal |
 | 5 | ARRIENDO OFICINA | $1.8M | Normal |
 | 5 | Leasing BCI1 | $3.2M | Normal |
 | 7 | PREVIRED | $32.0M | Alto |
+| 7 | Leasing Progreso | $1.5M | Normal |
 | 10 | Leasing Oficina | $1.2M | Normal |
 | 15 | LEASING BCI | $3.2M | Normal |
 | 15 | Leaseback | $1.8M | Normal |
 | **16** | **SII - IVA** | **$115.0M** | **CRÍTICO** |
+| 19 | Crédito Santander | $6.0M | Normal |
 | **27** | **REMUNERACIONES** | **$105.0M** | **CRÍTICO** |
-| | **TOTAL MENSUAL** | **$263.2M** | |
+| 28 | Honorarios | $2.1M | Normal |
+| | **TOTAL MENSUAL** | **$274.0M** | |
 
 ---
 
-## 5. DÍAS DE PAGO POR CLIENTE
+## 4. DÍAS DE PAGO POR CLIENTE
 
-| Cliente | Días | Riesgo |
-|---------|------|--------|
-| CENTINELA | 10d | Bajo |
-| COLLAHUASI | 10d | Bajo |
-| COPEC | 15d | Bajo |
-| MINERA LOS PELAMBRES | 15d | Bajo |
-| ENAP | 20d | Medio |
-| CODELCO | 30d | Medio |
-| TECHINT | 30d | Medio |
-| MONTEC | 60d | Alto |
-| **Default** | **30d** | - |
-
----
-
-## 6. TOP MOVIMIENTOS IDENTIFICADOS
-
-### Top 5 Entradas (90 días):
-1. TECHINT CHILE S.A. - 29-ene - $96.8M (30d)
-2. MINERA LOS PELAMBRES - 14-ene - $87.9M (15d)
-3. ENAEX S.A. - 25-ene - $43.4M (30d)
-4. ENAP - 29-ene - $35.5M (30d)
-5. TECHINT CHILE S.A. - 29-ene - $31.1M (30d)
-
-### Top 5 Salidas CxP (90 días):
-1. DAIRYLAND ELECTRICAL - 13-feb - $15.8M
-2. LATAM AIRLINES - 17-ene - $8.8M
-3. ELECTRICIDAD GOBANTES - 29-ene - $6.7M
-4. DAIRYLAND ELECTRICAL - 01-mar - $4.3M
-5. CERANODE VV - 26-feb - $4.0M
+| Cliente | Días |
+|---------|------|
+| CENTINELA | 10d |
+| COLLAHUASI | 10d |
+| COPEC | 15d |
+| PELAMBRES | 15d |
+| ENAP | 20d |
+| CODELCO | 30d |
+| TECHINT | 30d |
+| MONTEC | 60d |
 
 ---
 
-## 7. DASHBOARD HTML - FUNCIONALIDADES
+## 5. API SKUALO - ENDPOINTS CLAVE
 
-### Vista Semanal ✅
-- [x] Alerta día crítico (banner naranja)
-- [x] 4 KPIs con bordes de color
-- [x] Gráfico barras + línea saldo (Chart.js)
-- [x] Tags días de pago configurados
-- [x] Tabla detalle diario
-- [x] Top 5 Salidas / Top 3 Entradas
+### Documentos
+```
+GET /documentos?search=IDTipoDocumento eq SOLI
+GET /documentos/{idDocumento}  # Detalle con detalles[].cerrado
+GET /documentos/{id}/posteriores/{idDetalle}  # Docs referenciados
+```
 
-### Vista Mensual ✅
-- [x] 4 KPIs mensuales
-- [x] Gráfico por semana
-- [x] Tabla detalle semanal
-- [x] Tabla pagos recurrentes
+### Campos importantes documento detalle:
+- `auxiliar`: Nombre proveedor
+- `idAuxiliar`: RUT proveedor
+- `proyecto`: Nombre proyecto
+- `detalles[].cerrado`: true si ya tiene doc posterior
+- `detalles[].referenciasPosteriores.href`: Link a docs posteriores
 
-### Vista Anual ✅
-- [x] Banner informativo
-- [x] Gráfico línea proyección
-- [x] Tabla detalle mensual
-- [x] Aging CxC / CxP
+### Contabilidad
+```
+GET /contabilidad/reportes/balancetributario/{YYYYMM}
+```
 
----
-
-## 8. PENDIENTES PRIORITARIOS
-
-### Alta prioridad:
-- [ ] **Saldo inicial dinámico de Fintoc** (no hardcoded $160M)
-- [ ] **Título**: "Cash Flow CathPro" (quitar "Dashboard")
-- [ ] **Fechas**: Verificar que inicie desde fecha actual
-
-### Media prioridad:
-- [ ] Artefacto React con mismo estilo que HTML
-- [ ] Vista anual en React (tabs no funcionan)
-- [ ] Integrar datos de cashflow_data_v2.json (con forecast)
-
-### Baja prioridad:
-- [ ] Automatizar generación diaria
-- [ ] Alertas por email cuando saldo < umbral
-- [ ] Escenarios what-if
-
----
-
-## 9. COLORES CATHPRO
-
-```css
---verde-cathpro: #55b245;    /* Entradas, positivo */
---naranja-cathpro: #f7941d;  /* Línea saldo, alertas */
---rojo: #dc3545;             /* Salidas, crítico */
---fondo-oscuro: #242625;     /* Header */
---fondo-claro: #f5f5f5;      /* Body */
---azul: #17a2b8;             /* Info */
---morado: #6f42c1;           /* Saldo final */
+### Movimientos Bancarios
+```
+GET /tesoreria/movimientosbancarios?IDCuentaCorreo={id}&Fecha={YYYY-MM-DD}
 ```
 
 ---
 
-## 10. PRÓXIMOS PASOS (Mañana)
+## 6. VARIABLES DE ENTORNO (Render)
 
-1. Obtener saldo real de Fintoc
-2. Actualizar dashboard con saldo dinámico
-3. Corregir título y fechas
-4. Validar vista anual funcione en artifact React
-5. Deploy final
+```
+FINTOC_SECRET_KEY=sk_live_xxxxx
+FINTOC_BASE_URL=https://api.fintoc.com
+FINTOC_LINK_SCOTIA=link_xxx_token_xxx
+FINTOC_LINK_BCI=link_xxx_token_xxx
+FINTOC_LINK_CHILE=link_xxx_token_xxx
+FINTOC_LINK_SANTANDER=link_xxx_token_xxx
+FINTOC_LINK_BICE=link_xxx_token_xxx
+DASHBOARD_PASSWORD=cathpro2024
+ANTHROPIC_API_KEY=sk-ant-xxxxx  # Para chat VeriCosas
+```
 
 ---
 
-*Última actualización: 13-ene-2026 ~01:00*
+## 7. DEPLOYMENT
+
+### Render
+- **URL**: https://fintoc-dashboard.onrender.com
+- **Repo**: Conectado a GitHub (auto-deploy en push)
+- **Build**: `pip install -r requirements.txt`
+- **Start**: `gunicorn app:app`
+
+### Local
+```bash
+cd ~/Desktop/DEVS/Fintoc
+source venv_new/bin/activate
+python app.py
+# Acceder: http://127.0.0.1:5001
+```
+
+---
+
+## 8. COLORES CATHPRO
+
+```css
+--verde-cathpro: #55b245;    /* Entradas, positivo */
+--naranja-cathpro: #f46302;  /* Alertas, OCX */
+--rojo: #e74c3c;             /* Salidas, crítico */
+--fondo-oscuro: #242625;     /* Header */
+--fondo-claro: #f4f4f4;      /* Body */
+--azul: #3498db;             /* Info, EUR */
+--morado: #9b59b6;           /* Fondos mutuos */
+```
+
+---
+
+## 9. PENDIENTES
+
+### Alta prioridad:
+- [ ] Token Skualo vence frecuentemente - implementar refresh automático
+- [ ] Optimizar Pipeline (hace muchas llamadas API, puede ser lento)
+
+### Media prioridad:
+- [ ] Webhook Fintoc: procesar y mostrar movimientos reales vs Skualo
+- [ ] Alertas email cuando saldo < umbral
+
+### Completados hoy (16-ene-2026):
+- [✅] Scotiabank muestra $0 - Ahora detecta y muestra cuentas USD/EUR correctamente
+- [✅] Cambiar "Saldo Neto" por "Variación Neta" en Tesorería
+- [✅] Top Ingresos: mostrar cliente/factura en vez de código glosa
+
+### Baja prioridad:
+- [ ] Escenarios what-if en cash flow
+- [ ] Dashboard móvil optimizado
+- [ ] Exportar reportes PDF
+
+---
+
+## 10. HISTORIAL DE CAMBIOS
+
+| Fecha | Cambio |
+|-------|--------|
+| 13-ene-2026 | Proyecto inicial, dashboard básico |
+| 14-ene-2026 | Integración Fintoc saldos |
+| 15-ene-2026 | Cash Flow semanal/anual con Google Sheets |
+| 16-ene-2026 | **Tesorería con tendencias (flechitas)** |
+| 16-ene-2026 | **Pipeline corregido: trazabilidad SOLI→OC→Factura** |
+| 16-ene-2026 | **Tesorería mejorada**: Saldos USD/EUR, "Variación Neta", Top Ingresos con cliente/factura |
+
+---
+
+## 11. CÓMO RETOMAR
+
+Al iniciar nueva conversación con Claude, indicar:
+
+> "Lee ESTADO_PROYECTO_CASHFLOW.md en ~/Desktop/DEVS/Fintoc para contexto del proyecto Cash Flow CathPro"
+
+O copiar sección relevante si es tema específico.
+
+---
+
+*Última actualización: 16-ene-2026 16:30*
