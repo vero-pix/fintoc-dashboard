@@ -1,6 +1,6 @@
 from flask import Flask, request, Response, jsonify
 from dotenv import load_dotenv
-from fintoc_client import FintocClient
+# from fintoc_client import FintocClient
 from skualo_client import SkualoClient
 from skualo_cashflow import SkualoCashFlow
 from skualo_bancos import SkualoBancosClient
@@ -13,7 +13,7 @@ import json
 import requests
 import pandas as pd
 from io import BytesIO
-from fintoc_webhook import get_total_entradas_hoy, get_resumen_hoy, set_movimientos_hoy, procesar_evento_fintoc
+# from fintoc_webhook import get_total_entradas_hoy, get_resumen_hoy, set_movimientos_hoy, procesar_evento_fintoc
 # Importar asistente de chat (lazy load para evitar error si no hay API key)
 try:
     from chat_assistant import CathProAssistant
@@ -947,11 +947,13 @@ def tablero():
     if key != TABLERO_PASSWORD:
         return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
     
-    fintoc = FintocClient()
-    balances = fintoc.get_all_balances()
-    total_clp = sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
-    total_usd = sum(b['disponible'] for b in balances if b['moneda'] == 'USD')
-    total_eur = sum(b['disponible'] for b in balances if b['moneda'] == 'EUR')
+    # Fintoc deprecated
+    # fintoc = FintocClient()
+    # balances = fintoc.get_all_balances()
+    balances = []
+    total_clp = 0 # sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
+    total_usd = 0 # sum(b['disponible'] for b in balances if b['moneda'] == 'USD')
+    total_eur = 0 # sum(b['disponible'] for b in balances if b['moneda'] == 'EUR')
     
     skualo = SkualoClient()
     saldos_skualo = skualo.get_saldos_cuentas()
@@ -1083,8 +1085,9 @@ def tesoreria():
         return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
 
     # Obtener saldos bancarios de Fintoc
-    fintoc = FintocClient()
-    balances = fintoc.get_all_balances()
+    # Obtener saldos bancarios de Fintoc (DEPRECATED)
+    # fintoc = FintocClient()
+    balances = [] # fintoc.get_all_balances()
 
     # Guardar saldos históricos y obtener comparaciones
     comparaciones = {}
@@ -1472,9 +1475,10 @@ def cashflow_anual():
         return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
     
     try:
-        fintoc = FintocClient()
-        balances = fintoc.get_all_balances()
-        saldo_clp = sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
+        # fintoc = FintocClient()
+        # balances = fintoc.get_all_balances()
+        # saldo_clp = sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
+        saldo_clp = 160000000 # Placeholder
     except:
         saldo_clp = 160000000
     
@@ -1549,9 +1553,10 @@ def cashflow_semanal():
     
     # Obtener saldo Fintoc
     try:
-        fintoc = FintocClient()
-        balances = fintoc.get_all_balances()
-        saldo_clp = sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
+        # fintoc = FintocClient()
+        # balances = fintoc.get_all_balances()
+        # saldo_clp = sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
+        saldo_clp = 160000000 # Placeholder
     except Exception as e:
         print(f"Error Fintoc: {e}")
         saldo_clp = 160000000
@@ -2300,19 +2305,19 @@ def chat_api():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@app.route('/webhook/fintoc', methods=['POST'])
-def webhook_fintoc():
-    """Recibe webhooks de Fintoc con movimientos bancarios reales"""
-    try:
-        evento = request.get_json()
-        if not evento:
-            return jsonify({"error": "No JSON"}), 400
-        resultado = procesar_evento_fintoc(evento)
-        print(f"[Webhook Fintoc] {resultado.get('tipo')}: {resultado.get('mensaje')}")
-        return jsonify({"status": "ok"}), 200
-    except Exception as e:
-        print(f"[Webhook Fintoc] Error: {e}")
-        return jsonify({"error": str(e)}), 500
+# @app.route('/webhook/fintoc', methods=['POST'])
+# def webhook_fintoc():
+#     """Recibe webhooks de Fintoc con movimientos bancarios reales"""
+#     try:
+#         evento = request.get_json()
+#         if not evento:
+#             return jsonify({"error": "No JSON"}), 400
+#         resultado = procesar_evento_fintoc(evento)
+#         print(f"[Webhook Fintoc] {resultado.get('tipo')}: {resultado.get('mensaje')}")
+#         return jsonify({"status": "ok"}), 200
+#     except Exception as e:
+#         print(f"[Webhook Fintoc] Error: {e}")
+#         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/movimientos/hoy')
 def api_movimientos_hoy():

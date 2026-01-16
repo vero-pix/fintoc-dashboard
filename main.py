@@ -1,5 +1,6 @@
 from apscheduler.schedulers.background import BackgroundScheduler
-from fintoc_client import FintocClient
+# from fintoc_client import FintocClient
+from skualo_bancos import SkualoBancosClient
 from mailer import Mailer
 import os
 from dotenv import load_dotenv
@@ -10,7 +11,8 @@ load_dotenv()
 
 class CathproMonitor:
     def __init__(self):
-        self.fintoc = FintocClient()
+        # self.fintoc = FintocClient()
+        self.skualo = SkualoBancosClient()
         self.mailer = Mailer()
         self.scheduler = BackgroundScheduler()
         self.umbral_pago = int(os.getenv("UMBRAL_PAGO", 1000000))
@@ -18,39 +20,25 @@ class CathproMonitor:
     def reporte_diario_saldos(self):
         """Task: Envía reporte de saldos a las 08:00"""
         print("🔄 Iniciando reporte diario de saldos...")
-        accounts = self.fintoc.get_accounts()
         
-        if not accounts:
-            print("Error: No se obtuvieron cuentas")
-            return
+        # Fintoc Deprecated
+        # accounts = self.fintoc.get_accounts()
+        # ... logic ...
         
-        accounts_data = []
-        for account in accounts.get('accounts', []):
-            account_id = account['id']
-            balance_info = self.fintoc.get_account_balance(account_id)
-            
-            if balance_info:
-                accounts_data.append(balance_info)
-        
-        if accounts_data:
-            self.mailer.send_balances_report(accounts_data)
-        else:
-            print("⚠️ No se obtuvieron saldos")
+        # Placeholder for Skualo integration
+        print("⚠️ Reporte diario deshabilitado por migración a Skualo.")
+        try:
+             resumen = self.skualo.get_resumen_todos_bancos()
+             print(f"Resumen Skualo: {resumen}")
+             # TODO: Adaptar mailer para usar datos de Skualo
+        except Exception as e:
+             print(f"Error obteniendo datos Skualo: {e}")
 
     def detectar_pago_umbral(self, account_id):
         """Task: Verifica transacciones recientes y alerta si superan umbral"""
-        print(f"🔍 Verificando pagos en cuenta {account_id}...")
-        
-        transactions = self.fintoc.get_transactions(account_id, limit=10)
-        account_info = self.fintoc.get_account_balance(account_id)
-        
-        if not transactions or not account_info:
-            return
-        
-        for tx in transactions.get('transactions', []):
-            # Solo ingresos (depósitos)
-            if tx.get('amount', 0) > 0 and tx.get('amount', 0) >= self.umbral_pago:
-                self.mailer.send_payment_alert(account_info, tx)
+        # print(f"🔍 Verificando pagos en cuenta {account_id}...")
+        pass 
+        # Fintoc Deprecated logic removed
 
     def start(self):
         """Inicia scheduler con tasks"""
@@ -63,17 +51,16 @@ class CathproMonitor:
             id='reporte_diario'
         )
         
-        # Task 2: Verificar pagos cada 30 minutos
-        # (alternativa: usar webhook de Fintoc si disponible)
-        self.scheduler.add_job(
-            self._verificar_todas_cuentas,
-            'interval',
-            minutes=30,
-            id='vigilancia_pagos'
-        )
+        # Task 2: Verificar pagos cada 30 minutos - DESHABILITADO
+        # self.scheduler.add_job(
+        #     self._verificar_todas_cuentas,
+        #     'interval',
+        #     minutes=30,
+        #     id='vigilancia_pagos'
+        # )
         
         self.scheduler.start()
-        print("✅ Scheduler iniciado. Presiona Ctrl+C para detener.")
+        print("✅ Scheduler iniciado (Modo Migración). Presiona Ctrl+C para detener.")
         
         # Mantener ejecutándose
         try:
@@ -84,10 +71,8 @@ class CathproMonitor:
 
     def _verificar_todas_cuentas(self):
         """Itera sobre todas las cuentas verificando pagos"""
-        accounts = self.fintoc.get_accounts()
-        if accounts:
-            for account in accounts.get('accounts', []):
-                self.detectar_pago_umbral(account['id'])
+        # accounts = self.fintoc.get_accounts()
+        pass
 
     def stop(self):
         """Detiene scheduler"""
