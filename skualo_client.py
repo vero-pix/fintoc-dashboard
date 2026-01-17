@@ -1,14 +1,15 @@
 import requests
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from datetime import datetime
+from skualo_auth import SkualoAuth
 
 load_dotenv()
 
 
 class SkualoClient:
     def __init__(self):
-        self.token = os.getenv("SKUALO_TOKEN")
+        self.token = SkualoAuth().get_token()
         self.base_url = "https://api.skualo.cl/76243957-3"
         self.headers = {
             "Authorization": f"Bearer {self.token}",

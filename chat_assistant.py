@@ -7,10 +7,10 @@ import os
 import json
 from dotenv import load_dotenv
 from anthropic import Anthropic
-from fintoc_client import FintocClient
 from skualo_client import SkualoClient
 from skualo_cashflow import SkualoCashFlow
 from datetime import datetime
+from skualo_bancos import SkualoBancosClient
 
 load_dotenv()
 
@@ -21,7 +21,8 @@ class CathProAssistant:
         self.model = "claude-sonnet-4-20250514"
         
         # Clientes de datos
-        self.fintoc = FintocClient()
+        # Clientes de datos
+        self.skualo_bancos = SkualoBancosClient()
         self.skualo = SkualoClient()
         self.cashflow = SkualoCashFlow()
         
@@ -29,7 +30,7 @@ class CathProAssistant:
         self.system_prompt = """Eres el asistente financiero virtual de CathPro, una empresa de servicios industriales en Chile.
 
 Tu rol es responder consultas sobre:
-1. Saldos bancarios (datos de Fintoc)
+1. Saldos bancarios (datos de Skualo Bancos)
 2. Cuentas por cobrar y pagar (datos de Skualo)
 3. Cash flow y proyecciones (datos combinados)
 4. Pagos recurrentes configurados
@@ -52,8 +53,29 @@ CONTEXTO DE LA EMPRESA:
     def _obtener_contexto_datos(self):
         """Obtiene snapshot actual de todos los datos financieros"""
         try:
-            # Saldos bancarios
-            balances = self.fintoc.get_all_balances()
+            # Saldos bancarios (Ahora via Skualo Bancos o Balance Tributario)
+            # Usaremos Balance Tributario usando la misma logica de App.py para saldos disponibles
+            saldos_contables = self.skualo.get_balance_tributario()
+             
+            mapa_bancos = {
+                "1102002": {"nombre": "Santander", "moneda": "CLP"},
+                "1102003": {"nombre": "BCI", "moneda": "CLP"},
+                "1102004": {"nombre": "Scotiabank", "moneda": "CLP"},
+                "1102005": {"nombre": "Banco de Chile", "moneda": "CLP"},
+                "1102013": {"nombre": "Bice", "moneda": "CLP"},
+            }
+
+            balances = []
+            for item in saldos_contables:
+                id_cta = item.get("idCuenta")
+                if id_cta in mapa_bancos:
+                    info = mapa_bancos[id_cta]
+                    balances.append({
+                        "banco": info["nombre"],
+                        "disponible": item.get("activos", 0) - item.get("pasivos", 0),
+                        "moneda": info["moneda"]
+                    })
+            
             total_clp = sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
             total_usd = sum(b['disponible'] for b in balances if b['moneda'] == 'USD')
             total_eur = sum(b['disponible'] for b in balances if b['moneda'] == 'EUR')
@@ -80,7 +102,7 @@ CONTEXTO DE LA EMPRESA:
             contexto = f"""
 DATOS ACTUALIZADOS AL {datetime.now().strftime('%d/%m/%Y %H:%M')}
 
-=== SALDOS BANCARIOS (Fintoc) ===
+=== SALDOS BANCARIOS (Skualo) ===
 Total CLP: ${total_clp:,.0f}
 Total USD: ${total_usd:,.2f}
 Total EUR: €{total_eur:,.0f}

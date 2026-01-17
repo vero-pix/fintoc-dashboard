@@ -1,4 +1,4 @@
-# ESTADO PROYECTO CASH FLOW CATHPRO
+# ESTADO DEL PROYECTO - CASHFLOW DASHBOARD (✅ MIGRADO A SKUALO)
 ## Documentación de avances y pendientes - 16 Enero 2026
 
 ---
@@ -34,12 +34,25 @@ Sistema completo de gestión financiera desplegado en Render con múltiples mód
 ```
 /Desktop/DEVS/Fintoc/
 ├── app.py                      # App principal Flask (todas las rutas)
-├── fintoc_client.py            # Cliente API Fintoc (saldos bancarios)
-├── fintoc_webhook.py           # Procesador webhooks Fintoc
-├── skualo_client.py            # Cliente base Skualo
-├── skualo_cashflow.py          # CxC/CxP para cash flow
-├── skualo_bancos.py            # Movimientos bancarios Skualo
-├── skualo_documentos.py        # Pipeline SOLI/OC/OCX ← CORREGIDO 16-ENE
+## 1. Integración de Fuentes de Datos (Status: ✅ Completo)
+
+### A. Skualo (ERP & Bancos) - ✅ INTEGRADO
+- **Estado**: Fuente PRINCIPAL de datos.
+- **Módulos**:
+    - `skualo_client.py`: Balances contables y generales.
+    - `skualo_bancos.py`: Movimientos bancarios reales (API Bancos).
+    - `skualo_cashflow.py`: Proyección de flujo de caja.
+    - `skualo_documentos.py`: Detalle de documentos pendientes (DTEs).
+    - `skualo_auth.py`: Autenticación y renovación de tokens.
+
+### B. Fintoc (Bancos Legacy) - ❌ DEPRECADO
+- **Estado**: ELIMINADO/DEPRECADO.
+- **Razón**: Reemplazado por Skualo Bancos.
+- **Código**: Eliminado de `app.py`, `main.py`, `alerts.py`.
+
+### C. Google Sheets (Metas & Forecast) - ✅ ACTIVO
+- **Estado**: Integrado.
+- **Uso**: Metas de venta, forecast comercial.
 ├── chat_assistant.py           # Asistente virtual VeriCosas
 ├── saldos_historicos.json      # Historial saldos para tendencias
 ├── maestro_proveedores.json    # Datos bancarios proveedores

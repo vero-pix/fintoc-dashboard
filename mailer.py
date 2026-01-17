@@ -14,8 +14,8 @@ class Mailer:
         self.smtp_port = 587
         self.sender = os.getenv("EMAIL_FROM")
         self.password = os.getenv("EMAIL_APP_PASSWORD", "").replace(" ", "").strip()
-        recipients = os.getenv("EMAIL_TO", "")
-        self.recipient = [r.strip() for r in recipients.split(",") if r.strip()]
+        # IMPORTANT: Restricted to single recipient per user request
+        self.recipient = ["vvelasquez@cathpro.cl"]
 
     def send_daily_balances(self, balances, saldos_skualo, variaciones=None):
         subject = "Saldos Diarios CathPro"

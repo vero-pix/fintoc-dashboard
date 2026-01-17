@@ -5,3 +5,6 @@ gunicorn
 gspread
 pandas
 openpyxl
+anthropic
+apscheduler
+xhtml2pdf

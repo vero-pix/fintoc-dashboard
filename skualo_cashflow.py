@@ -9,13 +9,14 @@ import json
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
 from collections import defaultdict
+from skualo_auth import SkualoAuth
 
 load_dotenv()
 
 
 class SkualoCashFlow:
     def __init__(self):
-        self.token = os.getenv("SKUALO_TOKEN")
+        self.token = SkualoAuth().get_token()
         self.base_url = "https://api.skualo.cl/76243957-3"
         self.headers = {
             "Authorization": f"Bearer {self.token}",

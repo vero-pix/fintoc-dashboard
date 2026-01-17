@@ -13,6 +13,7 @@ import json
 import requests
 import pandas as pd
 from io import BytesIO
+from xhtml2pdf import pisa
 # from fintoc_webhook import get_total_entradas_hoy, get_resumen_hoy, set_movimientos_hoy, procesar_evento_fintoc
 # Importar asistente de chat (lazy load para evitar error si no hay API key)
 try:
@@ -239,6 +240,7 @@ TABLERO_HTML = """
         .posicion.positive p{color:#55b245}
         .posicion.negative p{color:#e74c3c}
         .note{margin-top:20px;padding:15px;background:#fff3cd;border-left:4px solid #f46302;border-radius:5px;font-size:13px;color:#856404}
+        .table-responsive{overflow-x:auto;-webkit-overflow-scrolling:touch}
     </style>
 </head>
 <body>
@@ -275,10 +277,12 @@ TABLERO_HTML = """
         </div>
         
         <div class="section-title">Detalle Saldos Bancarios</div>
-        <table>
-            <tr><th>Banco</th><th style="text-align:right">Disponible</th><th>Moneda</th></tr>
-            ROWS_PLACEHOLDER
-        </table>
+        <div class="table-responsive">
+            <table>
+                <tr><th>Banco</th><th style="text-align:right">Disponible</th><th>Moneda</th></tr>
+                ROWS_PLACEHOLDER
+            </table>
+        </div>
     </div>
 </body>
 </html>
@@ -332,6 +336,7 @@ TESORERIA_HTML = """
         .badge-egreso{background:#f8d7da;color:#721c24}
         .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
         @media(max-width:768px){.cards{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}}
+        .table-responsive{overflow-x:auto;-webkit-overflow-scrolling:touch}
     </style>
 </head>
 <body>
@@ -367,46 +372,52 @@ TESORERIA_HTML = """
         </div>
 
         <div class="section-title">Movimientos por Banco (Hoy)</div>
-        <table>
-            <tr>
-                <th>Banco</th>
-                <th class="center">Cuenta</th>
-                <th class="monto">Saldo Actual</th>
-                <th class="center">Cambio</th>
-                <th class="center">Movimientos</th>
-                <th class="monto">Ingresos</th>
-                <th class="monto">Egresos</th>
-            </tr>
-            ROWS_BANCOS
-        </table>
+        <div class="table-responsive">
+            <table>
+                <tr>
+                    <th>Banco</th>
+                    <th class="center">Cuenta</th>
+                    <th class="monto">Saldo Actual</th>
+                    <th class="center">Cambio</th>
+                    <th class="center">Movimientos</th>
+                    <th class="monto">Ingresos</th>
+                    <th class="monto">Egresos</th>
+                </tr>
+                ROWS_BANCOS
+            </table>
+        </div>
 
         <div class="section-title">Detalle de Movimientos (Hoy)</div>
         <div class="two-col">
             <div>
                 <h4 style="font-size:15px;margin-bottom:10px;color:#55b245">💰 Top 10 Ingresos</h4>
-                <table>
-                    <tr>
-                        <th>Banco</th>
-                        <th>Cliente / Descripción</th>
-                        <th>Nº Factura</th>
-                        <th class="monto">Monto</th>
-                        <th class="center">Conciliado</th>
-                    </tr>
-                    ROWS_TOP_INGRESOS
-                </table>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th>Banco</th>
+                            <th>Cliente / Descripción</th>
+                            <th>Nº Factura</th>
+                            <th class="monto">Monto</th>
+                            <th class="center">Conciliado</th>
+                        </tr>
+                        ROWS_TOP_INGRESOS
+                    </table>
+                </div>
             </div>
             <div>
                 <h4 style="font-size:15px;margin-bottom:10px;color:#e74c3c">💸 Top 10 Egresos</h4>
-                <table>
-                    <tr>
-                        <th>Banco</th>
-                        <th>Proveedor / Descripción</th>
-                        <th>Nº Factura</th>
-                        <th class="monto">Monto</th>
-                        <th class="center">Conciliado</th>
-                    </tr>
-                    ROWS_TOP_EGRESOS
-                </table>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th>Banco</th>
+                            <th>Proveedor / Descripción</th>
+                            <th>Nº Factura</th>
+                            <th class="monto">Monto</th>
+                            <th class="center">Conciliado</th>
+                        </tr>
+                        ROWS_TOP_EGRESOS
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -448,6 +459,7 @@ PIPELINE_HTML = """
         .center{text-align:center}
         .badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600}
         .badge-critico{background:#f8d7da;color:#721c24}
+        .table-responsive{overflow-x:auto;-webkit-overflow-scrolling:touch}
         .badge-alerta{background:#fff3cd;color:#856404}
         .badge-ok{background:#d4edda;color:#155724}
         tr.highlight{background:#fff9e6}
@@ -947,16 +959,54 @@ def tablero():
     if key != TABLERO_PASSWORD:
         return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
     
-    # Fintoc deprecated
-    # fintoc = FintocClient()
-    # balances = fintoc.get_all_balances()
-    balances = []
-    total_clp = 0 # sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
-    total_usd = 0 # sum(b['disponible'] for b in balances if b['moneda'] == 'USD')
-    total_eur = 0 # sum(b['disponible'] for b in balances if b['moneda'] == 'EUR')
+    # Obtenemos saldo contable (que debería cuadrar con banco si está conciliado) from skualo (Accounting)
+    data_contable = skualo.get_balance_tributario()
     
-    skualo = SkualoClient()
-    saldos_skualo = skualo.get_saldos_cuentas()
+    balances = []
+    
+    # Mapeo manual de IDs a nombres para el dashboard (mismos que skualo_bancos.py)
+    mapa_bancos = {
+        "1102002": {"nombre": "Santander", "moneda": "CLP"},
+        "1102003": {"nombre": "BCI", "moneda": "CLP"},
+        "1102004": {"nombre": "Scotiabank", "moneda": "CLP"}, # Ojo: Revisar si Scotiabank es USD/EUR en contabilidad
+        "1102005": {"nombre": "Banco de Chile", "moneda": "CLP"},
+        "1102013": {"nombre": "Bice", "moneda": "CLP"},
+        # Agregar cuentas USD/EUR si existen en el plan de cuentas con otros IDs
+        # Por ahora asumimos todo CLP salvo que se detecte lo contrario
+    }
+
+    total_clp = 0
+    total_usd = 0
+    total_eur = 0
+
+    for item in data_contable:
+        id_cta = item.get("idCuenta")
+        if id_cta in mapa_bancos:
+            info = mapa_bancos[id_cta]
+            # En balance tributario: activos - pasivos = saldo deudor (positivo para banco)
+            activos = item.get("activos", 0)
+            pasivos = item.get("pasivos", 0)
+            saldo = activos - pasivos 
+            
+            balances.append({
+                "banco": info["nombre"],
+                "disponible": saldo,
+                "moneda": info["moneda"],
+                # "numero": id_cta # Si se necesita para alertas
+            })
+            
+            if info["moneda"] == "CLP":
+                total_clp += saldo
+            elif info["moneda"] == "USD":
+                total_usd += saldo
+            elif info["moneda"] == "EUR":
+                total_eur += saldo
+
+    # s = SkualoClient() ya instanciado arriba
+    # saldos_skualo = skualo.get_saldos_cuentas() ya está
+
+    
+    saldos_skualo = skualo.get_saldos_cuentas() # Recalcula internos pero es rápido
     
     posicion_neta = saldos_skualo['por_cobrar'] - saldos_skualo['por_pagar_total']
     posicion_class = "positive" if posicion_neta >= 0 else "negative"
@@ -1475,12 +1525,16 @@ def cashflow_anual():
         return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
     
     try:
-        # fintoc = FintocClient()
-        # balances = fintoc.get_all_balances()
-        # saldo_clp = sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
-        saldo_clp = 160000000 # Placeholder
+        # Usar Skualo Balance (Lógica estandarizada)
+        skualo_cli = SkualoClient() 
+        data_contable = skualo_cli.get_balance_tributario()
+        saldo_clp = 0
+        bancos_clp = ["1102002", "1102003", "1102004", "1102005", "1102013"]
+        for item in data_contable:
+            if item.get("idCuenta") in bancos_clp:
+                 saldo_clp += (item.get("activos", 0) - item.get("pasivos", 0))    
     except:
-        saldo_clp = 160000000
+        saldo_clp = 0
     
     forecast = get_forecast_2026()
     if not forecast:
@@ -1551,15 +1605,32 @@ def cashflow_semanal():
     if key != TABLERO_PASSWORD:
         return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
     
-    # Obtener saldo Fintoc
     try:
-        # fintoc = FintocClient()
-        # balances = fintoc.get_all_balances()
-        # saldo_clp = sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
-        saldo_clp = 160000000 # Placeholder
+        # Fintoc deprecated -> Usando Skualo
+        skualo_cli = SkualoClient() 
+        saldos = skualo_cli.get_saldos_cuentas()
+        
+        # Calcular Total CLP (Bancos + Caja)
+        # Por ahora usamos el "disponible" mapeado en /tablero o una aproximación
+        # Si get_saldos_cuentas devuelve activos, usaremos eso.
+        # En tablero hicimos: total_clp += saldo para ciertos bancos.
+        # Aquí simplificaremos usando el calculo hecho en Tablero si pudiéramos, 
+        # pero para ser dry, instanciamos logic similar.
+        
+        # Opcion rapida: Balance Tributario
+        data_contable = skualo_cli.get_balance_tributario()
+        saldo_clp = 0
+        
+        # IDs de bancos CLP (mismos que tablero)
+        bancos_clp = ["1102002", "1102003", "1102004", "1102005", "1102013"]
+        
+        for item in data_contable:
+            if item.get("idCuenta") in bancos_clp:
+                 saldo_clp += (item.get("activos", 0) - item.get("pasivos", 0))
+
     except Exception as e:
-        print(f"Error Fintoc: {e}")
-        saldo_clp = 160000000
+        print(f"Error Skualo Balance: {e}")
+        saldo_clp = 0
 
     # Obtener movimientos reales de hoy desde Skualo Bancos
     try:
@@ -2324,7 +2395,140 @@ def api_movimientos_hoy():
     """API para ver movimientos reales del día"""
     key = request.args.get('key', '')
     if key != TABLERO_PASSWORD:
+        return jsonify({'error': 'Unauthorized'}), 401
+    
+    try:
+        # Usar SkualoBancosClient para obtener resumen del día actual
+        skualo_bancos = SkualoBancosClient()
+        resumen = skualo_bancos.get_resumen_todos_bancos()
+        
+        # Mapear respuesta de Skualo a la estructura esperada por el frontend
+        # Espera: { movimientos_hoy: N, ingresos_hoy: $, egresos_hoy: $ }
+        return jsonify({
+            'movimientos_hoy': resumen['total_movimientos'],
+            'ingresos_hoy': resumen['total_ingresos'],
+            'egresos_hoy': resumen['total_egresos'],
+            'detalle_bancos': resumen['bancos']
+        })
+    except Exception as e:
+        print(f"Error Getting Skualo Moves: {e}")
+        return jsonify({'error': str(e)}), 500
+
+    if key != TABLERO_PASSWORD:
         return jsonify({"error": "No autorizado"}), 401
     return jsonify(get_resumen_hoy())
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)
+
+@app.route('/export/pdf')
+def export_pdf():
+    key = request.args.get('key', '')
+    if key != TABLERO_PASSWORD:
+        return "Unauthorized", 401
+    
+    # Reutilizar lógica de tablero (vamos a extraerla a una funcion)
+    html = generate_tablero_html(key, for_pdf=True)
+    
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), result)
+    if not pdf.err:
+        return Response(result.getvalue(), mimetype='application/pdf')
+    return "Error generating PDF", 500
+
+@app.route('/tablero')
+def tablero():
+    key = request.args.get('key', '')
+    if key != TABLERO_PASSWORD:
+        return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
+    
+    return generate_tablero_html(key)
+
+def generate_tablero_html(key, for_pdf=False):
+    skualo = SkualoClient()
+    
+    # --- LOGICA EXTRACTADA DE /tablero ---
+    # Obtenemos saldo contable
+    data_contable = skualo.get_balance_tributario()
+    
+    mapa_bancos = {
+        "1102002": {"nombre": "Santander", "moneda": "CLP"},
+        "1102003": {"nombre": "BCI", "moneda": "CLP"},
+        "1102004": {"nombre": "Scotiabank", "moneda": "CLP"},
+        "1102005": {"nombre": "Banco de Chile", "moneda": "CLP"},
+        "1102013": {"nombre": "Bice", "moneda": "CLP"},
+    }
+
+    balances = []
+    
+    # Calcular Totales (CLP, USD, EUR)
+    total_clp = 0
+    total_usd = 0
+    total_eur = 0
+    
+    for item in data_contable:
+        id_cta = item.get("idCuenta")
+        if id_cta in mapa_bancos:
+            info = mapa_bancos[id_cta]
+            saldo = item.get("activos", 0) - item.get("pasivos", 0)
+            
+            # Sumar al total correspondiente
+            if info["moneda"] == "CLP":
+                total_clp += saldo
+            elif info["moneda"] == "USD":
+                total_usd += saldo
+            elif info["moneda"] == "EUR":
+                total_eur += saldo
+            
+            # Agregar a lista para tabla
+            balances.append({
+                "banco": info["nombre"],
+                "disponible": saldo,
+                "moneda": info["moneda"]
+            })
+            
+    # Obtener Saldos Skualo (Fondos mutuos, CxC, CxP)
+    saldos = skualo.get_saldos_cuentas()
+    
+    # Calcular posicion neta
+    posicion_neta = saldos['por_cobrar'] - saldos['por_pagar_total']
+    posicion_class = "positive" if posicion_neta >= 0 else "negative"
+    
+    # Generar filas tabla bancos
+    rows = ""
+    for b in balances:
+        moneda = b['moneda']
+        if moneda == 'USD':
+            monto = f"${b['disponible']:,.2f}"
+        elif moneda == 'EUR':
+            monto = f"€{b['disponible']:,.0f}"
+        else:
+            monto = f"${b['disponible']:,.0f}"
+        rows += f"<tr><td>{b['banco']}</td><td class='monto'>{monto}</td><td>{moneda}</td></tr>"
+
+    if for_pdf:
+        # Versión simplificada para PDF (sin nav, sin refresh)
+        template = TABLERO_HTML.replace('<meta http-equiv="refresh" content="300">', '')
+        nav = ""
+    else:
+        template = TABLERO_HTML
+        nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', 'active').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
+
+    logo_b64 = get_logo_base64()
+    
+    html = template.replace('LOGO_BASE64', logo_b64)
+    html = html.replace('NAV_PLACEHOLDER', nav)
+    html = html.replace('FECHA_PLACEHOLDER', now_chile().strftime('%d-%m-%Y %H:%M'))
+    
+    html = html.replace('TOTAL_CLP_PLACEHOLDER', f"${total_clp:,.0f}")
+    html = html.replace('TOTAL_USD_PLACEHOLDER', f"${total_usd:,.2f}")
+    html = html.replace('TOTAL_EUR_PLACEHOLDER', f"€{total_eur:,.0f}")
+    html = html.replace('FONDOS_MUTUOS_PLACEHOLDER', f"${saldos['fondos_mutuos']:,.0f}")
+    
+    html = html.replace('POR_COBRAR_PLACEHOLDER', f"${saldos['por_cobrar']:,.0f}")
+    html = html.replace('POR_PAGAR_NAC_PLACEHOLDER', f"${saldos['por_pagar_nacional']:,.0f}")
+    html = html.replace('POR_PAGAR_INT_PLACEHOLDER', f"${saldos['por_pagar_internacional']:,.0f}")
+    
+    html = html.replace('POSICION_NETA_PLACEHOLDER', f"${posicion_neta:,.0f}")
+    html = html.replace('POSICION_CLASS', posicion_class)
+    
+    html = html.replace('ROWS_PLACEHOLDER', rows)
+    
+    return html

@@ -1,16 +1,71 @@
+import os
 import requests
+import json
+from dotenv import load_dotenv
+from skualo_auth import SkualoAuth
 from datetime import datetime, date
 from typing import Dict, List, Optional
 
 
 class SkualoDocumentosClient:
     def __init__(self):
-        self.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI5ZTUxMTA0Yi00ZWZkLTQ3MzMtYmNhOS0xZDdmMWI4ZGZjZWYiLCJmdWxsX25hbWUiOiJNYWdnaWUgVmVsYXNxdWV6IiwiZmlyc3RfbmFtZSI6Ik1hZ2dpZSIsImxhc3RfbmFtZSI6IlZlbGFzcXVleiIsImVtYWlsIjoidmVyb0BlY29ub21pY3MuY2wiLCJzdWIiOiJ2ZXJvQGVjb25vbWljcy5jbCIsImp0aSI6ImZlYTUzM2Q2YmFiZTRkYWRiMzRkNTMxZjYxODk2MGUzIiwiaXNzIjoiaHR0cHM6Ly9hcGkuc2t1YWxvLmNsIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc2t1YWxvLmNsIiwicm9sZSI6IlVzdWFyaW8iLCJuYmYiOjE3NjM2NzY5ODMsImV4cCI6MTc2MzY4MDU4MywiaWF0IjoxNzYzNjc2OTgzfQ._wvsAAPusFoPIl-5D-mDKGMoTZvaeUDRJ0vs-KzwpRw"
+        load_dotenv() # Ensure .env is loaded for SkualoAuth
+        self.token = SkualoAuth().get_token()
         self.base_url = "https://api.skualo.cl/76243957-3"
         self.headers = {
             "Authorization": f"Bearer {self.token}",
             "accept": "application/json"
         }
+        
+        # Cache simple en memoria
+        self._cache_detalles = {}
+        self._cache_file = os.path.join(os.path.dirname(__file__), "skualo_cache_detalles.json")
+        self._load_cache()
+
+    def _load_cache(self):
+        try:
+            if os.path.exists(self._cache_file):
+                with open(self._cache_file, 'r') as f:
+                    self._cache_detalles = json.load(f)
+                    print(f"📦 Cache detalles cargado: {len(self._cache_detalles)} items")
+        except Exception as e:
+            print(f"Error cargando cache: {e}")
+            self._cache_detalles = {}
+
+    def _save_cache(self):
+        try:
+            with open(self._cache_file, 'w') as f:
+                json.dump(self._cache_detalles, f)
+        except Exception as e:
+            print(f"Error guardando cache: {e}")
+
+    def _get_detalle_documento(self, id_documento: str) -> Optional[Dict]:
+        """Obtiene detalle con caching"""
+        if str(id_documento) in self._cache_detalles:
+            # Si ya está cerrado o es antiguo, usar cache
+            # (Podríamos invalidar si es muy viejo, pero asumimos documentos históricos no cambian mucho)
+            return self._cache_detalles[str(id_documento)]
+            
+        url = f"{self.base_url}/documentos/{id_documento}"
+        try:
+            response = requests.get(url, headers=self.headers)
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Guardar solo si tiene detalles significativos (o siempre)
+                # Si el documento está "cerrado" (procesado), es seguro cachearlo por mucho tiempo
+                detalles_cerrados = all(d.get("cerrado", False) for d in data.get("detalles", []))
+                
+                if detalles_cerrados:
+                    self._cache_detalles[str(id_documento)] = data
+                    # Guardamos incrementalmente o al final
+                    # self._save_cache() 
+                
+                return data
+            return None
+        except requests.exceptions.RequestException as e:
+            print(f"ERROR obteniendo detalle documento {id_documento}: {e}")
+            return None
 
     def get_documentos(self, tipo_documento: str) -> List[Dict]:
         """
@@ -32,16 +87,9 @@ class SkualoDocumentosClient:
         """
         Obtiene el detalle completo de un documento específico.
         Incluye detalles con campo 'cerrado' y proyecto.
+        Usando versión on caching.
         """
-        url = f"{self.base_url}/documentos/{id_documento}"
-
-        try:
-            response = requests.get(url, headers=self.headers)
-            response.raise_for_status()
-            return response.json()
-        except requests.exceptions.RequestException as e:
-            print(f"ERROR obteniendo detalle documento {id_documento}: {e}")
-            return None
+        return self._get_detalle_documento(id_documento)
 
     def documento_tiene_posterior(self, detalle_doc: Dict) -> bool:
         """

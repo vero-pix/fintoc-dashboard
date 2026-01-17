@@ -6,5 +6,3 @@ __pycache__/
 .DS_Store
 logs/
 google_credentials.json
-.venv/
-google_credentials.json

@@ -2,11 +2,12 @@ import requests
 from datetime import datetime, date
 from typing import Dict, List, Optional
 import calendar
+from skualo_auth import SkualoAuth
 
 
 class SkualoBancosClient:
     def __init__(self):
-        self.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI5ZTUxMTA0Yi00ZWZkLTQ3MzMtYmNhOS0xZDdmMWI4ZGZjZWYiLCJmdWxsX25hbWUiOiJNYWdnaWUgVmVsYXNxdWV6IiwiZmlyc3RfbmFtZSI6Ik1hZ2dpZSIsImxhc3RfbmFtZSI6IlZlbGFzcXVleiIsImVtYWlsIjoidmVyb0BlY29ub21pY3MuY2wiLCJzdWIiOiJ2ZXJvQGVjb25vbWljcy5jbCIsImp0aSI6ImZlYTUzM2Q2YmFiZTRkYWRiMzRkNTMxZjYxODk2MGUzIiwiaXNzIjoiaHR0cHM6Ly9hcGkuc2t1YWxvLmNsIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc2t1YWxvLmNsIiwicm9sZSI6IlVzdWFyaW8iLCJuYmYiOjE3NjM2NzY5ODMsImV4cCI6MTc2MzY4MDU4MywiaWF0IjoxNzYzNjc2OTgzfQ._wvsAAPusFoPIl-5D-mDKGMoTZvaeUDRJ0vs-KzwpRw"
+        self.token = SkualoAuth().get_token()
         self.base_url = "https://api.skualo.cl/76243957-3"
         self.headers = {
             "Authorization": f"Bearer {self.token}",
