@@ -7,3 +7,4 @@ __pycache__/
 logs/
 google_credentials.json
 .venv/
+google_credentials.json
