@@ -200,9 +200,9 @@ NAV_HTML = """
 <div class="nav-links">
     <a href="/tablero?key=KEY_PLACEHOLDER" class="NAV_SALDOS">Saldos</a>
     <a href="/tesoreria?key=KEY_PLACEHOLDER" class="NAV_TESORERIA">Tesorería</a>
-    <a href="/pipeline?key=KEY_PLACEHOLDER" class="NAV_PIPELINE">Pipeline</a>
-    <a href="/cashflow?key=KEY_PLACEHOLDER" class="NAV_ANUAL">Cash Flow Anual</a>
     <a href="/cashflow/semanal?key=KEY_PLACEHOLDER" class="NAV_SEMANAL">Cash Flow Semanal</a>
+    <a href="/cashflow?key=KEY_PLACEHOLDER" class="NAV_ANUAL">Cash Flow Anual</a>
+    <a href="/pipeline?key=KEY_PLACEHOLDER" class="NAV_PIPELINE">Pipeline</a>
     <a href="/nomina/scotiabank?key=KEY_PLACEHOLDER" class="NAV_NOMINA" style="background:#dc3545;color:white">Nomina Scotiabank</a>
 </div>
 """
