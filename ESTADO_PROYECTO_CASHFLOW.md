@@ -12,7 +12,17 @@ Sistema completo de gestión financiera desplegado en Render con múltiples mód
 - **Cash Flow Semanal/Anual**: Proyección con forecast Google Sheets
 - **Nómina Scotiabank**: Exportación pagos proveedores
 
-**URL Producción**: https://fintoc-dashboard.onrender.com
+**URL Producción**: https://cathpro-dashboard.onrender.com
+
+---
+
+## NOTA IMPORTANTE (16-ENE-2026)
+**Saldos USD/EUR**: Skualo devuelve **todos los saldos en CLP** en su Balance Tributario, incluso para cuentas en dólares o euros.
+- **Solución actual**: 
+    - Se muestran los montos grandes en **CLP**.
+    - Se añade "Total estimativo: US$ X" (o €) en pequeño bajo el monto en peso.
+    - Se usa TC fijo: USD 970, EUR 1020.
+- **Feedback usuario**: "Fintoc era más confiable" para esto. Se mantiene la solución Skualo por solicitud, pero se anota esta limitación.
 
 ---
 
@@ -21,8 +31,8 @@ Sistema completo de gestión financiera desplegado en Render con múltiples mód
 ### Fuentes integradas:
 | Fuente | Qué aporta | Estado |
 |--------|------------|--------|
-| **Fintoc API** | Saldo bancario real CLP/USD/EUR | ✅ Dinámico |
-| **Fintoc Webhook** | Movimientos bancarios tiempo real | ✅ /webhook/fintoc |
+| **Fintoc API** | Saldo bancario real CLP/USD/EUR | ❌ Eliminado (Fase 3) |
+| **Fintoc Webhook** | Movimientos bancarios tiempo real | ❌ Eliminado (Fase 3) |
 | **Skualo CxC** | Facturas emitidas + fecha cobro | ✅ Integrado |
 | **Skualo CxP** | Facturas por pagar + vencimientos | ✅ Integrado |
 | **Skualo Documentos** | Pipeline SOLI/OC/OCX | ✅ Corregido 16-ene |
@@ -205,15 +215,12 @@ GET /tesoreria/movimientosbancarios?IDCuentaCorreo={id}&Fecha={YYYY-MM-DD}
 ## 6. VARIABLES DE ENTORNO (Render)
 
 ```
-FINTOC_SECRET_KEY=sk_live_xxxxx
-FINTOC_BASE_URL=https://api.fintoc.com
-FINTOC_LINK_SCOTIA=link_xxx_token_xxx
-FINTOC_LINK_BCI=link_xxx_token_xxx
-FINTOC_LINK_CHILE=link_xxx_token_xxx
-FINTOC_LINK_SANTANDER=link_xxx_token_xxx
-FINTOC_LINK_BICE=link_xxx_token_xxx
+SKUALO_TOKEN=...
+SKUALO_USERNAME=...
+SKUALO_PASSWORD=...
 DASHBOARD_PASSWORD=cathpro2024
-ANTHROPIC_API_KEY=sk-ant-xxxxx  # Para chat VeriCosas
+ANTHROPIC_API_KEY=sk-ant-xxxxx
+# FINTOC variables eliminadas en Fase 4
 ```
 
 ---
@@ -267,8 +274,8 @@ python app.py
 
 ### Baja prioridad:
 - [ ] Escenarios what-if en cash flow
-- [ ] Dashboard móvil optimizado
-- [ ] Exportar reportes PDF
+- [x] Dashboard móvil optimizado (CSS table-responsive)
+- [x] Exportar reportes PDF (/export/pdf)
 
 ---
 

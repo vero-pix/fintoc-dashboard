@@ -7,6 +7,10 @@ from email.mime.multipart import MIMEMultipart
 
 load_dotenv()
 
+# Tipo de cambio referencial
+TC_USD = 970
+TC_EUR = 1020
+
 
 class Mailer:
     def __init__(self):
@@ -22,7 +26,7 @@ class Mailer:
         body = self._build_body(balances, saldos_skualo, variaciones)
         return self._send_email(subject, body)
 
-    def _formato_variacion(self, valor, moneda='CLP', invertir=False):
+    def _formato_variacion(self, valor, moneda='CLP', invertir=False, size='11px'):
         """
         Formatea variación con flecha y color.
         invertir=True para CxP (subir es malo = rojo, bajar es bueno = verde)
@@ -32,57 +36,82 @@ class Mailer:
         
         if moneda == 'EUR':
             simbolo = "€"
-            formato = f"{abs(valor):,.0f}"
+            formato = f"{abs(valor):,.2f}"
         elif moneda == 'USD':
-            simbolo = "$"
+            simbolo = "US$"
             formato = f"{abs(valor):,.2f}"
         else:
             simbolo = "$"
             formato = f"{abs(valor):,.0f}"
         
         if invertir:
-            # Para CxP: subir es malo (rojo), bajar es bueno (verde)
             if valor > 0:
-                return f"<span style='color:#e74c3c;font-size:12px'>▲ +{simbolo}{formato}</span>"
+                return f"<span style='color:#e74c3c;font-size:{size}'>▲ +{simbolo}{formato}</span>"
             else:
-                return f"<span style='color:#55b245;font-size:12px'>▼ -{simbolo}{formato}</span>"
+                return f"<span style='color:#55b245;font-size:{size}'>▼ {simbolo}{formato}</span>"
         else:
-            # Normal: subir es bueno (verde), bajar es malo (rojo)
             if valor > 0:
-                return f"<span style='color:#55b245;font-size:12px'>▲ +{simbolo}{formato}</span>"
+                return f"<span style='color:#55b245;font-size:{size}'>▲ +{simbolo}{formato}</span>"
             else:
-                return f"<span style='color:#e74c3c;font-size:12px'>▼ -{simbolo}{formato}</span>"
+                return f"<span style='color:#e74c3c;font-size:{size}'>▼ {simbolo}{formato}</span>"
 
     def _build_body(self, balances, saldos_skualo, variaciones=None):
+        # Totales por moneda desde balances (Fintoc)
         total_clp = sum(b['disponible'] for b in balances if b['moneda'] == 'CLP')
         total_usd = sum(b['disponible'] for b in balances if b['moneda'] == 'USD')
         total_eur = sum(b['disponible'] for b in balances if b['moneda'] == 'EUR')
+        
+        # Fondos Mutuos (separado - menor liquidez)
+        fondos_mutuos = saldos_skualo.get('fondos_mutuos', 0)
+        
+        # Convertir USD/EUR a CLP
+        total_usd_clp = total_usd * TC_USD
+        total_eur_clp = total_eur * TC_EUR
+        
         fecha = datetime.now().strftime('%d-%m-%Y %H:%M')
         
-        posicion_neta = saldos_skualo['por_cobrar'] - saldos_skualo['por_pagar_total']
+        # CxC / CxP
+        por_cobrar = saldos_skualo.get('por_cobrar', 0)
+        por_pagar_nacional = saldos_skualo.get('por_pagar_nacional', 0)
+        por_pagar_internacional = saldos_skualo.get('por_pagar_internacional', 0)
+        por_pagar_total = por_pagar_nacional + por_pagar_internacional
+        
+        posicion_neta = por_cobrar - por_pagar_total
         posicion_color = "#55b245" if posicion_neta >= 0 else "#e74c3c"
         
-        # Variaciones - activos (subir = verde)
+        # Variaciones
         var_clp = self._formato_variacion(variaciones.get('total_clp'), 'CLP') if variaciones else ""
         var_usd = self._formato_variacion(variaciones.get('total_usd'), 'USD') if variaciones else ""
         var_eur = self._formato_variacion(variaciones.get('total_eur'), 'EUR') if variaciones else ""
         var_fondos = self._formato_variacion(variaciones.get('fondos_mutuos'), 'CLP') if variaciones else ""
         var_cobrar = self._formato_variacion(variaciones.get('por_cobrar'), 'CLP') if variaciones else ""
-        
-        # Variaciones - pasivos (subir = rojo, invertir=True)
         var_pagar_nac = self._formato_variacion(variaciones.get('por_pagar_nacional'), 'CLP', invertir=True) if variaciones else ""
         var_pagar_int = self._formato_variacion(variaciones.get('por_pagar_internacional'), 'CLP', invertir=True) if variaciones else ""
 
+        # Detalle de saldos bancarios
         rows = ""
         for b in balances:
             moneda = b['moneda']
+            banco = b['banco']
             if moneda == 'USD':
-                monto = f"${b['disponible']:,.2f}"
+                monto = f"US${b['disponible']:,.2f}"
             elif moneda == 'EUR':
-                monto = f"€{b['disponible']:,.0f}"
+                monto = f"€{b['disponible']:,.2f}"
             else:
                 monto = f"${b['disponible']:,.0f}"
-            rows += f"<tr><td style='padding:10px 15px;border-bottom:1px solid #ecf0f1'>{b['banco']}</td><td style='padding:10px 15px;border-bottom:1px solid #ecf0f1;text-align:right;font-family:monospace;font-weight:bold'>{monto}</td><td style='padding:10px 15px;border-bottom:1px solid #ecf0f1'>{moneda}</td></tr>"
+            
+            if moneda == 'USD':
+                border_color = '#f46302'
+            elif moneda == 'EUR':
+                border_color = '#3498db'
+            else:
+                border_color = '#55b245'
+            
+            rows += f"""<tr>
+                <td style='padding:10px 15px;border-bottom:1px solid #ecf0f1;border-left:3px solid {border_color}'>{banco}</td>
+                <td style='padding:10px 15px;border-bottom:1px solid #ecf0f1;text-align:right;font-family:monospace;font-weight:bold'>{monto}</td>
+                <td style='padding:10px 15px;border-bottom:1px solid #ecf0f1'>{moneda}</td>
+            </tr>"""
 
         html = f"""<html>
 <head><meta charset="UTF-8"></head>
@@ -93,59 +122,69 @@ class Mailer:
     <div style="max-width:800px;margin:0 auto;padding:20px">
         <p style="color:#7f8c8d;margin-bottom:20px">Actualizado: {fecha}</p>
         
-        <table style="width:100%;margin-bottom:20px;border-collapse:separate;border-spacing:10px 0">
+        <!-- TARJETAS SALDOS BANCOS / INVERSIONES -->
+        <p style="font-size:16px;font-weight:bold;color:#242625;margin:0 0 10px">Saldos Bancos / Inversiones</p>
+        <table style="width:100%;margin-bottom:25px;border-collapse:separate;border-spacing:8px 0">
             <tr>
-                <td colspan="3" style="padding-bottom:10px;font-size:16px;font-weight:bold;color:#242625">Saldos Bancos</td>
-                <td style="padding-bottom:10px;font-size:16px;font-weight:bold;color:#242625;text-align:right">Inversiones</td>
-            </tr>
-            <tr>
-                <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #55b245">
+                <td style="background:white;padding:15px;border-radius:10px;border-left:5px solid #55b245;width:25%;vertical-align:top">
                     <span style="color:#7f8c8d;font-size:11px;font-weight:600">TOTAL CLP</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">${total_clp:,.0f}</span><br>{var_clp}
+                    <span style="font-size:20px;font-weight:800;color:#242625">${total_clp:,.0f}</span><br>
+                    {var_clp}
                 </td>
-                <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #f46302">
-                    <span style="color:#7f8c8d;font-size:11px;font-weight:600">TOTAL USD</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">${total_usd:,.2f}</span><br>{var_usd}
+                <td style="background:white;padding:15px;border-radius:10px;border-left:5px solid #f46302;width:25%;vertical-align:top">
+                    <span style="color:#7f8c8d;font-size:11px;font-weight:600">TOTAL USD (EN CLP)</span><br>
+                    <span style="font-size:20px;font-weight:800;color:#242625">${total_usd_clp:,.0f}</span><br>
+                    <span style="color:#f46302;font-size:12px">~ US${total_usd:,.2f}</span><br>
+                    {var_usd}
                 </td>
-                <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #3498db">
-                    <span style="color:#7f8c8d;font-size:11px;font-weight:600">TOTAL EUR</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">€{total_eur:,.0f}</span><br>{var_eur}
+                <td style="background:white;padding:15px;border-radius:10px;border-left:5px solid #3498db;width:25%;vertical-align:top">
+                    <span style="color:#7f8c8d;font-size:11px;font-weight:600">TOTAL EUR (EN CLP)</span><br>
+                    <span style="font-size:20px;font-weight:800;color:#242625">${total_eur_clp:,.0f}</span><br>
+                    <span style="color:#3498db;font-size:12px">~ €{total_eur:,.2f}</span><br>
+                    {var_eur}
                 </td>
-                <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #9b59b6">
+                <td style="background:white;padding:15px;border-radius:10px;border-left:5px solid #9b59b6;width:25%;vertical-align:top">
                     <span style="color:#7f8c8d;font-size:11px;font-weight:600">FONDOS MUTUOS</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">${saldos_skualo['fondos_mutuos']:,.0f}</span><br>
-                    <span style="color:#9b59b6;font-size:10px">* Cierre mes anterior</span>
+                    <span style="font-size:20px;font-weight:800;color:#242625">${fondos_mutuos:,.0f}</span><br>
+                    <span style="color:#9b59b6;font-size:10px">* Cierre mes anterior</span><br>
+                    {var_fondos}
                 </td>
             </tr>
         </table>
         
+        <!-- CUENTAS POR COBRAR / PAGAR -->
         <p style="font-size:16px;font-weight:bold;color:#242625;margin:25px 0 10px">Cuentas por Cobrar / Pagar</p>
-        <table style="width:100%;margin-bottom:20px;border-collapse:separate;border-spacing:10px 0">
+        <table style="width:100%;margin-bottom:20px;border-collapse:separate;border-spacing:8px 0">
             <tr>
                 <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #55b245;width:33%">
                     <span style="color:#7f8c8d;font-size:11px;font-weight:600">POR COBRAR</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">${saldos_skualo['por_cobrar']:,.0f}</span><br>{var_cobrar}
+                    <span style="font-size:20px;font-weight:800;color:#242625">${por_cobrar:,.0f}</span><br>
+                    {var_cobrar}
                 </td>
                 <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #e74c3c;width:33%">
                     <span style="color:#7f8c8d;font-size:11px;font-weight:600">POR PAGAR NACIONAL</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">${saldos_skualo['por_pagar_nacional']:,.0f}</span><br>{var_pagar_nac}
+                    <span style="font-size:20px;font-weight:800;color:#242625">${por_pagar_nacional:,.0f}</span><br>
+                    {var_pagar_nac}
                 </td>
                 <td style="background:white;padding:15px;border-radius:10px;border-left:4px solid #f46302;width:33%">
                     <span style="color:#7f8c8d;font-size:11px;font-weight:600">POR PAGAR INTERNACIONAL</span><br>
-                    <span style="font-size:20px;font-weight:800;color:#242625">${saldos_skualo['por_pagar_internacional']:,.0f}</span><br>{var_pagar_int}
+                    <span style="font-size:20px;font-weight:800;color:#242625">${por_pagar_internacional:,.0f}</span><br>
+                    {var_pagar_int}
                 </td>
             </tr>
         </table>
         
+        <!-- POSICIÓN NETA -->
         <div style="background:#242625;padding:20px;border-radius:10px;text-align:center;margin-bottom:20px">
             <span style="color:#7f8c8d;font-size:12px">POSICIÓN NETA (Por Cobrar - Por Pagar)</span><br>
             <span style="font-size:28px;font-weight:800;color:{posicion_color}">${posicion_neta:,.0f}</span>
         </div>
         
         <div style="background:#fff3cd;border-left:4px solid #f46302;padding:12px;border-radius:5px;margin-bottom:25px">
-            <span style="color:#856404;font-size:12px"><strong>Nota:</strong> Las cuentas por pagar internacional NO incluyen las OCX (órdenes de compra internacional) sobre las que aún no se ha recibido invoice.</span>
+            <span style="color:#856404;font-size:12px"><strong>Nota:</strong> Las cuentas por pagar internacional NO incluyen las OCX sin invoice.</span>
         </div>
         
+        <!-- DETALLE SALDOS BANCARIOS -->
         <p style="font-size:16px;font-weight:bold;color:#242625;margin:25px 0 10px">Detalle Saldos Bancarios</p>
         <table style="width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden">
             <tr>
@@ -157,7 +196,7 @@ class Mailer:
         </table>
         
         <div style="background:#e8f5e9;border-left:4px solid #55b245;padding:12px;border-radius:5px;margin-top:20px;text-align:center">
-            <span style="color:#2e7d32;font-size:12px">Envío automático diario 8:00 y 18:00</span>
+            <span style="color:#2e7d32;font-size:12px">Envío automático diario 8:00 y 18:00 | TC Ref: USD ${TC_USD} | EUR ${TC_EUR}</span>
         </div>
         
         <div style="margin-top:25px;text-align:center;padding:20px;background:#f8f9fa;border-radius:10px">

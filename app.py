@@ -1,6 +1,6 @@
 from flask import Flask, request, Response, jsonify
 from dotenv import load_dotenv
-# from fintoc_client import FintocClient
+from fintoc_client import FintocClient
 from skualo_client import SkualoClient
 from skualo_cashflow import SkualoCashFlow
 from skualo_bancos import SkualoBancosClient
@@ -12,8 +12,12 @@ import base64
 import json
 import requests
 import pandas as pd
-from io import BytesIO
-from xhtml2pdf import pisa
+try:
+    from xhtml2pdf import pisa
+    PDF_ENABLED = True
+except ImportError:
+    PDF_ENABLED = False
+    print("WARNING: xhtml2pdf not found. PDF export disabled.")
 # from fintoc_webhook import get_total_entradas_hoy, get_resumen_hoy, set_movimientos_hoy, procesar_evento_fintoc
 # Importar asistente de chat (lazy load para evitar error si no hay API key)
 try:
@@ -255,8 +259,16 @@ TABLERO_HTML = """
         <div class="section-title">Saldos Bancos / Inversiones</div>
         <div class="cards">
             <div class="card green"><h3>Total CLP</h3><p>TOTAL_CLP_PLACEHOLDER</p></div>
-            <div class="card orange"><h3>Total USD</h3><p>TOTAL_USD_PLACEHOLDER</p></div>
-            <div class="card blue"><h3>Total EUR</h3><p>TOTAL_EUR_PLACEHOLDER</p></div>
+            <div class="card orange">
+                <h3>Total USD (en CLP)</h3>
+                <p>TOTAL_USD_CLP_PLACEHOLDER</p>
+                <div style="font-size:14px;color:#d35400;margin-top:5px">~ TOTAL_USD_ORIG_PLACEHOLDER</div>
+            </div>
+            <div class="card blue">
+                <h3>Total EUR (en CLP)</h3>
+                <p>TOTAL_EUR_CLP_PLACEHOLDER</p>
+                <div style="font-size:14px;color:#2980b9;margin-top:5px">~ TOTAL_EUR_ORIG_PLACEHOLDER</div>
+            </div>
             <div class="card purple"><h3>Fondos Mutuos</h3><p>FONDOS_MUTUOS_PLACEHOLDER</p></div>
         </div>
         
@@ -274,6 +286,8 @@ TABLERO_HTML = """
         
         <div class="note">
             <strong>Nota:</strong> Las cuentas por pagar internacional NO incluyen las OCX sin invoice.
+            <br>
+            <strong>* Cambio:</strong> Los saldos USD/EUR se muestran en CLP según contabilidad. El valor en divisa original es estimado (USD: $970, EUR: $1020).
         </div>
         
         <div class="section-title">Detalle Saldos Bancarios</div>
@@ -959,87 +973,7 @@ def tablero():
     if key != TABLERO_PASSWORD:
         return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
     
-    # Obtenemos saldo contable (que debería cuadrar con banco si está conciliado) from skualo (Accounting)
-    data_contable = skualo.get_balance_tributario()
-    
-    balances = []
-    
-    # Mapeo manual de IDs a nombres para el dashboard (mismos que skualo_bancos.py)
-    mapa_bancos = {
-        "1102002": {"nombre": "Santander", "moneda": "CLP"},
-        "1102003": {"nombre": "BCI", "moneda": "CLP"},
-        "1102004": {"nombre": "Scotiabank", "moneda": "CLP"}, # Ojo: Revisar si Scotiabank es USD/EUR en contabilidad
-        "1102005": {"nombre": "Banco de Chile", "moneda": "CLP"},
-        "1102013": {"nombre": "Bice", "moneda": "CLP"},
-        # Agregar cuentas USD/EUR si existen en el plan de cuentas con otros IDs
-        # Por ahora asumimos todo CLP salvo que se detecte lo contrario
-    }
-
-    total_clp = 0
-    total_usd = 0
-    total_eur = 0
-
-    for item in data_contable:
-        id_cta = item.get("idCuenta")
-        if id_cta in mapa_bancos:
-            info = mapa_bancos[id_cta]
-            # En balance tributario: activos - pasivos = saldo deudor (positivo para banco)
-            activos = item.get("activos", 0)
-            pasivos = item.get("pasivos", 0)
-            saldo = activos - pasivos 
-            
-            balances.append({
-                "banco": info["nombre"],
-                "disponible": saldo,
-                "moneda": info["moneda"],
-                # "numero": id_cta # Si se necesita para alertas
-            })
-            
-            if info["moneda"] == "CLP":
-                total_clp += saldo
-            elif info["moneda"] == "USD":
-                total_usd += saldo
-            elif info["moneda"] == "EUR":
-                total_eur += saldo
-
-    # s = SkualoClient() ya instanciado arriba
-    # saldos_skualo = skualo.get_saldos_cuentas() ya está
-
-    
-    saldos_skualo = skualo.get_saldos_cuentas() # Recalcula internos pero es rápido
-    
-    posicion_neta = saldos_skualo['por_cobrar'] - saldos_skualo['por_pagar_total']
-    posicion_class = "positive" if posicion_neta >= 0 else "negative"
-    
-    rows = ""
-    for b in balances:
-        moneda = b['moneda']
-        if moneda == 'USD':
-            monto = f"${b['disponible']:,.2f}"
-        elif moneda == 'EUR':
-            monto = f"€{b['disponible']:,.0f}"
-        else:
-            monto = f"${b['disponible']:,.0f}"
-        rows += f"<tr><td>{b['banco']}</td><td class='monto'>{monto}</td><td>{moneda}</td></tr>"
-    
-    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', 'active').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
-    logo_b64 = get_logo_base64()
-    
-    html = TABLERO_HTML.replace('LOGO_BASE64', logo_b64)
-    html = html.replace('NAV_PLACEHOLDER', nav)
-    html = html.replace('FECHA_PLACEHOLDER', now_chile().strftime('%d-%m-%Y %H:%M'))
-    html = html.replace('ROWS_PLACEHOLDER', rows)
-    html = html.replace('TOTAL_CLP_PLACEHOLDER', f"${total_clp:,.0f}")
-    html = html.replace('TOTAL_USD_PLACEHOLDER', f"${total_usd:,.2f}")
-    html = html.replace('TOTAL_EUR_PLACEHOLDER', f"€{total_eur:,.0f}")
-    html = html.replace('FONDOS_MUTUOS_PLACEHOLDER', f"${saldos_skualo['fondos_mutuos']:,.0f}")
-    html = html.replace('POR_COBRAR_PLACEHOLDER', f"${saldos_skualo['por_cobrar']:,.0f}")
-    html = html.replace('POR_PAGAR_NAC_PLACEHOLDER', f"${saldos_skualo['por_pagar_nacional']:,.0f}")
-    html = html.replace('POR_PAGAR_INT_PLACEHOLDER', f"${saldos_skualo['por_pagar_internacional']:,.0f}")
-    html = html.replace('POSICION_NETA_PLACEHOLDER', f"${posicion_neta:,.0f}")
-    html = html.replace('POSICION_CLASS', posicion_class)
-    
-    return html
+    return generate_tablero_html(key)
 
 
 # ============================================
@@ -1134,10 +1068,21 @@ def tesoreria():
     if key != TABLERO_PASSWORD:
         return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
 
-    # Obtener saldos bancarios de Fintoc
-    # Obtener saldos bancarios de Fintoc (DEPRECATED)
-    # fintoc = FintocClient()
-    balances = [] # fintoc.get_all_balances()
+    # Obtener saldos bancarios de Fintoc (restaurado)
+    fintoc = FintocClient()
+    fintoc_balances = fintoc.get_all_balances()
+    
+    # Convertir formato de Fintoc a lista de balances
+    balances = []
+    for banco, saldo in fintoc_balances["clp"].items():
+        if banco != "total":
+            balances.append({"banco": banco, "disponible": saldo, "moneda": "CLP"})
+    for banco, saldo in fintoc_balances["usd"].items():
+        if banco != "total":
+            balances.append({"banco": banco, "disponible": saldo, "moneda": "USD"})
+    for banco, saldo in fintoc_balances["eur"].items():
+        if banco != "total":
+            balances.append({"banco": banco, "disponible": saldo, "moneda": "EUR"})
 
     # Guardar saldos históricos y obtener comparaciones
     comparaciones = {}
@@ -2414,12 +2359,13 @@ def api_movimientos_hoy():
         print(f"Error Getting Skualo Moves: {e}")
         return jsonify({'error': str(e)}), 500
 
-    if key != TABLERO_PASSWORD:
-        return jsonify({"error": "No autorizado"}), 401
-    return jsonify(get_resumen_hoy())
+
 
 @app.route('/export/pdf')
 def export_pdf():
+    if not PDF_ENABLED:
+        return "PDF generation disabled (missing libraries)", 501
+        
     key = request.args.get('key', '')
     if key != TABLERO_PASSWORD:
         return "Unauthorized", 401
@@ -2433,13 +2379,7 @@ def export_pdf():
         return Response(result.getvalue(), mimetype='application/pdf')
     return "Error generating PDF", 500
 
-@app.route('/tablero')
-def tablero():
-    key = request.args.get('key', '')
-    if key != TABLERO_PASSWORD:
-        return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
-    
-    return generate_tablero_html(key)
+
 
 def generate_tablero_html(key, for_pdf=False):
     skualo = SkualoClient()
@@ -2457,31 +2397,55 @@ def generate_tablero_html(key, for_pdf=False):
     }
 
     balances = []
-    
-    # Calcular Totales (CLP, USD, EUR)
     total_clp = 0
-    total_usd = 0
-    total_eur = 0
     
+    # Tipo de cambio para mostrar equivalente CLP de USD/EUR
+    TC_USD = 970
+    TC_EUR = 1020
+
+    # Obtener saldos CLP desde Balance Tributario
     for item in data_contable:
         id_cta = item.get("idCuenta")
         if id_cta in mapa_bancos:
             info = mapa_bancos[id_cta]
-            saldo = item.get("activos", 0) - item.get("pasivos", 0)
+            activos = item.get("activos", 0)
+            pasivos = item.get("pasivos", 0)
+            saldo_clp = activos - pasivos 
             
-            # Sumar al total correspondiente
-            if info["moneda"] == "CLP":
-                total_clp += saldo
-            elif info["moneda"] == "USD":
-                total_usd += saldo
-            elif info["moneda"] == "EUR":
-                total_eur += saldo
-            
-            # Agregar a lista para tabla
             balances.append({
                 "banco": info["nombre"],
+                "disponible": saldo_clp,
+                "moneda": "CLP"
+            })
+            total_clp += saldo_clp
+    
+    # Obtener saldos USD/EUR REALES desde Fintoc (conexión directa al banco)
+    fintoc_client = FintocClient()
+    saldos_usd_eur = fintoc_client.get_usd_eur_balances()
+    
+    total_usd_orig = saldos_usd_eur["usd"]["total"]
+    total_eur_orig = saldos_usd_eur["eur"]["total"]
+    
+    # Calcular equivalente CLP para mostrar en cards principales
+    total_usd_clp = total_usd_orig * TC_USD
+    total_eur_clp = total_eur_orig * TC_EUR
+    
+    # Agregar cuentas USD a la tabla de detalle
+    for nombre, saldo in saldos_usd_eur["usd"].items():
+        if nombre != "total":
+            balances.append({
+                "banco": nombre,
                 "disponible": saldo,
-                "moneda": info["moneda"]
+                "moneda": "USD"
+            })
+    
+    # Agregar cuentas EUR a la tabla de detalle
+    for nombre, saldo in saldos_usd_eur["eur"].items():
+        if nombre != "total":
+            balances.append({
+                "banco": nombre,
+                "disponible": saldo,
+                "moneda": "EUR"
             })
             
     # Obtener Saldos Skualo (Fondos mutuos, CxC, CxP)
@@ -2518,8 +2482,12 @@ def generate_tablero_html(key, for_pdf=False):
     html = html.replace('FECHA_PLACEHOLDER', now_chile().strftime('%d-%m-%Y %H:%M'))
     
     html = html.replace('TOTAL_CLP_PLACEHOLDER', f"${total_clp:,.0f}")
-    html = html.replace('TOTAL_USD_PLACEHOLDER', f"${total_usd:,.2f}")
-    html = html.replace('TOTAL_EUR_PLACEHOLDER', f"€{total_eur:,.0f}")
+    
+    html = html.replace('TOTAL_USD_CLP_PLACEHOLDER', f"${total_usd_clp:,.0f}")
+    html = html.replace('TOTAL_USD_ORIG_PLACEHOLDER', f"US${total_usd_orig:,.2f}")
+    
+    html = html.replace('TOTAL_EUR_CLP_PLACEHOLDER', f"${total_eur_clp:,.0f}")
+    html = html.replace('TOTAL_EUR_ORIG_PLACEHOLDER', f"€{total_eur_orig:,.0f}")
     html = html.replace('FONDOS_MUTUOS_PLACEHOLDER', f"${saldos['fondos_mutuos']:,.0f}")
     
     html = html.replace('POR_COBRAR_PLACEHOLDER', f"${saldos['por_cobrar']:,.0f}")
@@ -2532,3 +2500,6 @@ def generate_tablero_html(key, for_pdf=False):
     html = html.replace('ROWS_PLACEHOLDER', rows)
     
     return html
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5001)

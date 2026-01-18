@@ -14,12 +14,22 @@ class SkualoBancosClient:
             "accept": "application/json"
         }
 
+        # Cuentas CLP
         self.cuentas = {
             "Santander": "1102002",
             "BCI": "1102003",
             "Scotiabank": "1102004",
             "Banco de Chile": "1102005",
             "Bice": "1102013"
+        }
+        
+        # Cuentas USD/EUR (moneda original)
+        self.cuentas_usd = {
+            "Bice USD": "1103001",
+            "Santander USD": "1103002"
+        }
+        self.cuentas_eur = {
+            "Bice EUR": "1103003"
         }
 
     def _fetch_movimientos(self, cuenta: str, fecha_desde: str) -> List[Dict]:
@@ -198,6 +208,82 @@ class SkualoBancosClient:
         resumen["saldo_neto"] = resumen["total_ingresos"] - resumen["total_egresos"]
 
         return resumen
+
+    def _fetch_all_movimientos(self, cuenta_id: str) -> List[Dict]:
+        """
+        Obtiene TODOS los movimientos de una cuenta (sin filtro de fecha).
+        Necesario para calcular saldo acumulado.
+        """
+        url = f"{self.base_url}/bancos/{cuenta_id}"
+        all_items = []
+        page = 1
+        
+        while True:
+            params = {"page": page, "pageSize": 100}
+            try:
+                response = requests.get(url, headers=self.headers, params=params)
+                response.raise_for_status()
+                data = response.json()
+                items = data.get("items", [])
+                if not items:
+                    break
+                all_items.extend(items)
+                # Si hay menos de 100 items, no hay más páginas
+                if len(items) < 100:
+                    break
+                page += 1
+            except requests.exceptions.RequestException as e:
+                print(f"ERROR consultando cuenta {cuenta_id}: {e}")
+                break
+        
+        return all_items
+
+    def get_saldo_cuenta(self, cuenta_id: str) -> float:
+        """
+        Calcula el saldo actual de una cuenta sumando abonos y restando cargos.
+        
+        Args:
+            cuenta_id: ID de la cuenta (ej: "1103001")
+            
+        Returns:
+            Saldo actual (abonos - cargos)
+        """
+        movimientos = self._fetch_all_movimientos(cuenta_id)
+        
+        total_abonos = sum(m.get("montoAbono", 0) for m in movimientos)
+        total_cargos = sum(m.get("montoCargo", 0) for m in movimientos)
+        
+        return total_abonos - total_cargos
+
+    def get_saldos_usd_eur(self) -> Dict:
+        """
+        Obtiene los saldos actuales de las cuentas USD y EUR.
+        
+        Returns:
+            Dict con saldos en moneda original:
+            {
+                "usd": {"Bice USD": 240.0, "Santander USD": 75000.0, "total": 75240.0},
+                "eur": {"Bice EUR": 84.0, "total": 84.0}
+            }
+        """
+        result = {
+            "usd": {"total": 0},
+            "eur": {"total": 0}
+        }
+        
+        # Saldos USD
+        for nombre, cuenta_id in self.cuentas_usd.items():
+            saldo = self.get_saldo_cuenta(cuenta_id)
+            result["usd"][nombre] = saldo
+            result["usd"]["total"] += saldo
+        
+        # Saldos EUR
+        for nombre, cuenta_id in self.cuentas_eur.items():
+            saldo = self.get_saldo_cuenta(cuenta_id)
+            result["eur"][nombre] = saldo
+            result["eur"]["total"] += saldo
+        
+        return result
 
 
 if __name__ == "__main__":

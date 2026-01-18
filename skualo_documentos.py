@@ -78,7 +78,9 @@ class SkualoDocumentosClient:
             response = requests.get(url, headers=self.headers, params=params)
             response.raise_for_status()
             data = response.json()
-            return data.get("items", [])
+            items = data.get("items", [])
+            print(f"DEBUG: get_documentos({tipo_documento}) retornó {len(items)} items")
+            return items
         except requests.exceptions.RequestException as e:
             print(f"ERROR consultando documentos {tipo_documento}: {e}")
             return []
@@ -171,6 +173,8 @@ class SkualoDocumentosClient:
             if estado != "Aprobado":
                 continue
 
+            # print(f"  Procesando OC {doc.get('idDocumento')}...")
+
             # Obtener detalle completo
             id_documento = doc.get("idDocumento", "")
             detalle = self.get_documento_detalle(id_documento)
@@ -219,6 +223,8 @@ class SkualoDocumentosClient:
             estado = doc.get("estado", "")
             if estado != "Aprobado":
                 continue
+            
+            # print(f"  Procesando OCX {doc.get('idDocumento')}...")
 
             # Obtener detalle completo
             id_documento = doc.get("idDocumento", "")
