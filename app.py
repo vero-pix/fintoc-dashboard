@@ -458,7 +458,8 @@ PIPELINE_HTML = """
         .container{max-width:1400px;margin:0 auto;padding:20px}
         .fecha{color:#7f8c8d;margin-bottom:20px;font-size:14px}
         .section-title{color:#242625;font-size:18px;font-weight:700;margin:30px 0 15px}
-        .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;margin-bottom:20px}
+        .section-title.warning{color:#856404}
+        .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-bottom:20px}
         .card{background:white;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
         .card h3{margin:0;color:#7f8c8d;font-size:12px;font-weight:600;text-transform:uppercase}
         .card p{margin:10px 0 0;font-size:24px;font-weight:800;color:#242625}
@@ -466,18 +467,23 @@ PIPELINE_HTML = """
         .card.blue{border-left:4px solid #3498db}
         .card.orange{border-left:4px solid #f46302}
         .card.purple{border-left:4px solid #9b59b6}
+        .card.yellow{border-left:4px solid #f1c40f}
+        .card.gray{border-left:4px solid #95a5a6}
         table{width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1);margin-bottom:20px}
         th{background:#242625;color:white;padding:12px 15px;text-align:left;font-weight:600;font-size:13px}
+        th.warning{background:#856404}
         td{padding:10px 15px;border-bottom:1px solid #ecf0f1;font-size:13px}
         .monto{text-align:right;font-family:monospace;font-weight:bold}
         .center{text-align:center}
         .badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600}
         .badge-critico{background:#f8d7da;color:#721c24}
-        .table-responsive{overflow-x:auto;-webkit-overflow-scrolling:touch}
         .badge-alerta{background:#fff3cd;color:#856404}
         .badge-ok{background:#d4edda;color:#155724}
+        .badge-pendiente{background:#e2e3e5;color:#383d41}
+        .table-responsive{overflow-x:auto;-webkit-overflow-scrolling:touch}
         tr.highlight{background:#fff9e6}
-        @media(max-width:768px){.cards{grid-template-columns:1fr}}
+        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        @media(max-width:768px){.cards{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}}
     </style>
 </head>
 <body>
@@ -489,7 +495,7 @@ PIPELINE_HTML = """
     <div class="container">
         <p class="fecha">Actualizado: FECHA_PLACEHOLDER</p>
 
-        <div class="section-title">Resumen Ejecutivo</div>
+        <div class="section-title">Resumen Ejecutivo - Aprobados</div>
         <div class="cards">
             <div class="card blue">
                 <h3>SOLIs sin OC</h3>
@@ -505,6 +511,20 @@ PIPELINE_HTML = """
                 <h3>OCXs sin Invoice</h3>
                 <p>OCX_CANTIDAD</p>
                 <small>Monto: OCX_MONTO USD</small>
+            </div>
+        </div>
+
+        <div class="section-title warning">Visibilidad Temprana - Pendientes Aprobación (15d)</div>
+        <div class="cards">
+            <div class="card yellow">
+                <h3>OCs Pendientes</h3>
+                <p>OC_PEND_CANTIDAD</p>
+                <small>Monto: OC_PEND_MONTO CLP</small>
+            </div>
+            <div class="card gray">
+                <h3>OCXs Pendientes</h3>
+                <p>OCX_PEND_CANTIDAD</p>
+                <small>Monto: OCX_PEND_MONTO USD</small>
             </div>
         </div>
 
@@ -542,6 +562,32 @@ PIPELINE_HTML = """
                 <th class="monto">Monto USD</th>
             </tr>
             ROWS_OCX
+        </table>
+
+        <div class="section-title warning">⏳ OCs Pendientes de Aprobación (15d)</div>
+        <table>
+            <tr>
+                <th class="warning">Folio</th>
+                <th class="warning">Fecha</th>
+                <th class="warning">Proveedor</th>
+                <th class="warning">Estado</th>
+                <th class="warning center">Días</th>
+                <th class="warning monto">Monto CLP</th>
+            </tr>
+            ROWS_OC_PEND
+        </table>
+
+        <div class="section-title warning">⏳ OCXs Pendientes de Aprobación (15d)</div>
+        <table>
+            <tr>
+                <th class="warning">Folio</th>
+                <th class="warning">Fecha</th>
+                <th class="warning">Proveedor</th>
+                <th class="warning">Estado</th>
+                <th class="warning center">Días</th>
+                <th class="warning monto">Monto USD</th>
+            </tr>
+            ROWS_OCX_PEND
         </table>
     </div>
 </body>
@@ -1369,17 +1415,23 @@ def pipeline():
         print(f"Error obteniendo pipeline: {e}")
         return f"<h1>Error cargando pipeline: {e}</h1>"
 
-    # KPIs
+    # KPIs Aprobados
     soli_cantidad = resumen['soli']['cantidad']
     soli_monto = resumen['soli']['monto_total']
     oc_cantidad = resumen['oc']['cantidad']
     oc_monto = resumen['oc']['monto_total']
     ocx_cantidad = resumen['ocx']['cantidad']
     ocx_monto_usd = resumen['ocx']['monto_total_usd']
+    
+    # KPIs Pendientes Aprobación
+    oc_pend_cantidad = resumen['oc_pendiente']['cantidad']
+    oc_pend_monto = resumen['oc_pendiente']['monto_total']
+    ocx_pend_cantidad = resumen['ocx_pendiente']['cantidad']
+    ocx_pend_monto_usd = resumen['ocx_pendiente']['monto_total_usd']
 
     # Generar filas SOLIs
     rows_soli = ""
-    for soli in resumen['soli']['documentos'][:50]:  # Limitar a 50
+    for soli in resumen['soli']['documentos'][:50]:
         fecha_str = soli['fecha'].strftime('%d-%m-%Y') if soli['fecha'] else '-'
         proyecto = soli['proyecto'] if soli['proyecto'] else '-'
         rows_soli += f'''<tr>
@@ -1395,11 +1447,10 @@ def pipeline():
 
     # Generar filas OCs
     rows_oc = ""
-    for oc in resumen['oc']['documentos'][:50]:  # Limitar a 50
+    for oc in resumen['oc']['documentos'][:50]:
         fecha_str = oc['fecha'].strftime('%d-%m-%Y') if oc['fecha'] else '-'
         dias = oc['dias_pendiente']
 
-        # Badge según días pendientes
         if dias > 30:
             badge = '<span class="badge badge-critico">+30d</span>'
             highlight = 'highlight'
@@ -1423,11 +1474,10 @@ def pipeline():
 
     # Generar filas OCXs
     rows_ocx = ""
-    for ocx in resumen['ocx']['documentos'][:50]:  # Limitar a 50
+    for ocx in resumen['ocx']['documentos'][:50]:
         fecha_str = ocx['fecha'].strftime('%d-%m-%Y') if ocx['fecha'] else '-'
         dias = ocx['dias_pendiente']
 
-        # Badge según días pendientes
         if dias > 30:
             badge = '<span class="badge badge-critico">+30d</span>'
             highlight = 'highlight'
@@ -1449,6 +1499,44 @@ def pipeline():
     if not rows_ocx:
         rows_ocx = '<tr><td colspan="5" style="text-align:center;color:#888">No hay OCXs pendientes</td></tr>'
 
+    # Generar filas OCs Pendientes Aprobación
+    rows_oc_pend = ""
+    for oc in resumen['oc_pendiente']['documentos'][:30]:
+        fecha_str = oc['fecha'].strftime('%d-%m-%Y') if oc['fecha'] else '-'
+        estado = oc.get('estado', 'Pendiente')
+        dias = oc.get('dias_pendiente', 0)
+        
+        rows_oc_pend += f'''<tr>
+            <td>{oc['folio']}</td>
+            <td>{fecha_str}</td>
+            <td>{oc['proveedor'][:40]}</td>
+            <td><span class="badge badge-pendiente">{estado}</span></td>
+            <td class="center">{dias}d</td>
+            <td class="monto">${oc['monto']:,.0f}</td>
+        </tr>'''
+
+    if not rows_oc_pend:
+        rows_oc_pend = '<tr><td colspan="6" style="text-align:center;color:#888">No hay OCs pendientes de aprobación</td></tr>'
+
+    # Generar filas OCXs Pendientes Aprobación
+    rows_ocx_pend = ""
+    for ocx in resumen['ocx_pendiente']['documentos'][:30]:
+        fecha_str = ocx['fecha'].strftime('%d-%m-%Y') if ocx['fecha'] else '-'
+        estado = ocx.get('estado', 'Pendiente')
+        dias = ocx.get('dias_pendiente', 0)
+        
+        rows_ocx_pend += f'''<tr>
+            <td>{ocx['folio']}</td>
+            <td>{fecha_str}</td>
+            <td>{ocx['proveedor'][:40]}</td>
+            <td><span class="badge badge-pendiente">{estado}</span></td>
+            <td class="center">{dias}d</td>
+            <td class="monto">${ocx['monto_usd']:,.2f}</td>
+        </tr>'''
+
+    if not rows_ocx_pend:
+        rows_ocx_pend = '<tr><td colspan="6" style="text-align:center;color:#888">No hay OCXs pendientes de aprobación</td></tr>'
+
     # Construir HTML
     nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', 'active').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
     logo_b64 = get_logo_base64()
@@ -1462,9 +1550,15 @@ def pipeline():
     html = html.replace('OC_MONTO', f"${oc_monto:,.0f}")
     html = html.replace('OCX_CANTIDAD', str(ocx_cantidad))
     html = html.replace('OCX_MONTO', f"${ocx_monto_usd:,.2f}")
+    html = html.replace('OC_PEND_CANTIDAD', str(oc_pend_cantidad))
+    html = html.replace('OC_PEND_MONTO', f"${oc_pend_monto:,.0f}")
+    html = html.replace('OCX_PEND_CANTIDAD', str(ocx_pend_cantidad))
+    html = html.replace('OCX_PEND_MONTO', f"${ocx_pend_monto_usd:,.2f}")
     html = html.replace('ROWS_SOLI', rows_soli)
     html = html.replace('ROWS_OC', rows_oc)
     html = html.replace('ROWS_OCX', rows_ocx)
+    html = html.replace('ROWS_OC_PEND', rows_oc_pend)
+    html = html.replace('ROWS_OCX_PEND', rows_ocx_pend)
 
     return html
 

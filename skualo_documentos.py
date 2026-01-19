@@ -143,12 +143,23 @@ class SkualoDocumentosClient:
             except:
                 fecha = None
 
+            monto = detalle.get("total", 0)
+            
+            # Filtrar: excluir montos $0 o muy pequeños y documentos muy antiguos (>120 días)
+            if monto < 1000:  # Excluir montos menores a $1,000
+                continue
+            
+            if fecha:
+                dias_antiguedad = (date.today() - fecha).days
+                if dias_antiguedad > 15:  # Excluir SOLIs de más de 15 días
+                    continue
+
             soli_sin_oc.append({
                 "folio": detalle.get("folio", ""),
                 "fecha": fecha,
                 "proveedor": detalle.get("auxiliar", "Sin proveedor"),
                 "rut": detalle.get("idAuxiliar", ""),
-                "monto": detalle.get("total", 0),
+                "monto": monto,
                 "proyecto": detalle.get("proyecto", ""),
                 "centro_costo": detalle.get("centroCosto", ""),
                 "glosa": detalle.get("observaciones", "")
@@ -194,12 +205,21 @@ class SkualoDocumentosClient:
                 fecha = None
                 dias_pendiente = 0
 
+            monto = detalle.get("total", 0)
+            
+            # Filtrar: excluir montos muy pequeños y OCs muy antiguas (>180 días = 6 meses)
+            if monto < 1000:
+                continue
+            
+            if dias_pendiente > 15:  # Excluir OCs de más de 15 días
+                continue
+
             oc_sin_factura.append({
                 "folio": detalle.get("folio", ""),
                 "fecha": fecha,
                 "proveedor": detalle.get("auxiliar", "Sin proveedor"),
                 "rut": detalle.get("idAuxiliar", ""),
-                "monto": detalle.get("total", 0),
+                "monto": monto,
                 "proyecto": detalle.get("proyecto", ""),
                 "dias_pendiente": dias_pendiente,
                 "glosa": detalle.get("observaciones", "")
@@ -245,18 +265,131 @@ class SkualoDocumentosClient:
                 fecha = None
                 dias_pendiente = 0
 
+            monto_usd = detalle.get("total", 0)
+            
+            # Filtrar: excluir montos muy pequeños y OCXs muy antiguas (>180 días = 6 meses)
+            if monto_usd < 100:  # Excluir montos menores a $100 USD
+                continue
+            
+            if dias_pendiente > 15:  # Excluir OCXs de más de 15 días
+                continue
+
             ocx_sin_invoice.append({
                 "folio": detalle.get("folio", ""),
                 "fecha": fecha,
                 "proveedor": detalle.get("auxiliar", "Sin proveedor"),
                 "rut": detalle.get("idAuxiliar", ""),
-                "monto_usd": detalle.get("total", 0),
+                "monto_usd": monto_usd,
                 "proyecto": detalle.get("proyecto", ""),
                 "dias_pendiente": dias_pendiente,
                 "glosa": detalle.get("observaciones", "")
             })
 
         return sorted(ocx_sin_invoice, key=lambda x: x['dias_pendiente'], reverse=True)
+
+    def get_oc_pendientes_aprobacion(self, dias_max: int = 30) -> List[Dict]:
+        """
+        Obtiene OCs pendientes de aprobación (últimos N días).
+        Visibilidad temprana de compromisos que vienen.
+        """
+        ocs = self.get_documentos("OC")
+        oc_pendientes = []
+        hoy = date.today()
+
+        for doc in ocs:
+            estado = doc.get("estado", "")
+            # Solo pendientes (no aprobadas ni rechazadas)
+            if estado in ["Aprobado", "Rechazado", "Anulado"]:
+                continue
+
+            id_documento = doc.get("idDocumento", "")
+            detalle = self.get_documento_detalle(id_documento)
+            
+            if not detalle:
+                continue
+
+            fecha_str = detalle.get("fecha", "")
+            try:
+                fecha = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None
+                dias_pendiente = (hoy - fecha).days if fecha else 0
+            except:
+                fecha = None
+                dias_pendiente = 0
+
+            monto = detalle.get("total", 0)
+            
+            # Filtrar: solo últimos N días y montos significativos
+            if monto < 1000:
+                continue
+            
+            if dias_pendiente > 15:  # Fijo 15 días
+                continue
+
+            oc_pendientes.append({
+                "folio": detalle.get("folio", ""),
+                "fecha": fecha,
+                "proveedor": detalle.get("auxiliar", "Sin proveedor"),
+                "rut": detalle.get("idAuxiliar", ""),
+                "monto": monto,
+                "proyecto": detalle.get("proyecto", ""),
+                "estado": estado,
+                "dias_pendiente": dias_pendiente,
+                "glosa": detalle.get("observaciones", "")
+            })
+
+        return sorted(oc_pendientes, key=lambda x: x['monto'], reverse=True)
+
+    def get_ocx_pendientes_aprobacion(self, dias_max: int = 30) -> List[Dict]:
+        """
+        Obtiene OCXs pendientes de aprobación (últimos N días).
+        Visibilidad temprana de compromisos internacionales que vienen.
+        """
+        ocxs = self.get_documentos("OCX")
+        ocx_pendientes = []
+        hoy = date.today()
+
+        for doc in ocxs:
+            estado = doc.get("estado", "")
+            # Solo pendientes (no aprobadas ni rechazadas)
+            if estado in ["Aprobado", "Rechazado", "Anulado"]:
+                continue
+
+            id_documento = doc.get("idDocumento", "")
+            detalle = self.get_documento_detalle(id_documento)
+            
+            if not detalle:
+                continue
+
+            fecha_str = detalle.get("fecha", "")
+            try:
+                fecha = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None
+                dias_pendiente = (hoy - fecha).days if fecha else 0
+            except:
+                fecha = None
+                dias_pendiente = 0
+
+            monto_usd = detalle.get("total", 0)
+            
+            # Filtrar: solo últimos N días y montos significativos
+            if monto_usd < 100:
+                continue
+            
+            if dias_pendiente > 15:  # Fijo 15 días
+                continue
+
+            ocx_pendientes.append({
+                "folio": detalle.get("folio", ""),
+                "fecha": fecha,
+                "proveedor": detalle.get("auxiliar", "Sin proveedor"),
+                "rut": detalle.get("idAuxiliar", ""),
+                "monto_usd": monto_usd,
+                "proyecto": detalle.get("proyecto", ""),
+                "estado": estado,
+                "dias_pendiente": dias_pendiente,
+                "glosa": detalle.get("observaciones", "")
+            })
+
+        return sorted(ocx_pendientes, key=lambda x: x['monto_usd'], reverse=True)
 
     def get_resumen_pipeline(self) -> Dict:
         """
@@ -273,6 +406,14 @@ class SkualoDocumentosClient:
         print("Cargando OCXs sin Invoice...")
         ocxs = self.get_ocx_sin_invoice()
         print(f"  → {len(ocxs)} encontradas")
+        
+        print("Cargando OCs pendientes aprobación (30d)...")
+        ocs_pend = self.get_oc_pendientes_aprobacion(dias_max=30)
+        print(f"  → {len(ocs_pend)} encontradas")
+        
+        print("Cargando OCXs pendientes aprobación (30d)...")
+        ocxs_pend = self.get_ocx_pendientes_aprobacion(dias_max=30)
+        print(f"  → {len(ocxs_pend)} encontradas")
 
         return {
             "soli": {
@@ -289,6 +430,16 @@ class SkualoDocumentosClient:
                 "cantidad": len(ocxs),
                 "monto_total_usd": sum(o['monto_usd'] for o in ocxs),
                 "documentos": ocxs
+            },
+            "oc_pendiente": {
+                "cantidad": len(ocs_pend),
+                "monto_total": sum(o['monto'] for o in ocs_pend),
+                "documentos": ocs_pend
+            },
+            "ocx_pendiente": {
+                "cantidad": len(ocxs_pend),
+                "monto_total_usd": sum(o['monto_usd'] for o in ocxs_pend),
+                "documentos": ocxs_pend
             }
         }
 
