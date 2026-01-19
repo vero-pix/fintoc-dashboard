@@ -392,7 +392,6 @@ TESORERIA_HTML = """
                     <th>Banco</th>
                     <th class="center">Cuenta</th>
                     <th class="monto">Saldo Actual</th>
-                    <th class="center">Cambio</th>
                     <th class="center">Movimientos</th>
                     <th class="monto">Ingresos</th>
                     <th class="monto">Egresos</th>
@@ -1234,7 +1233,6 @@ def tesoreria():
             <td>{banco_nombre}</td>
             <td class="center">{banco_info['cuenta']}</td>
             <td class="monto">{saldo_display}</td>
-            <td class="center">{cambio_html}</td>
             <td class="center">{banco_info['num_movimientos']}</td>
             <td class="monto ingreso">${banco_info['ingresos']:,.0f}</td>
             <td class="monto egreso">${banco_info['egresos']:,.0f}</td>
