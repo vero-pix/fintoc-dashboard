@@ -19,7 +19,7 @@ class Mailer:
         self.sender = os.getenv("EMAIL_FROM")
         self.password = os.getenv("EMAIL_APP_PASSWORD", "").replace(" ", "").strip()
         # IMPORTANT: Restricted to single recipient per user request
-        self.recipient = ["vvelasquez@cathpro.cl"]
+        self.recipient = ["vvelasquez@cathpro.cl", "rmoraga@cathpro.cl", "mmoraga@cathpro.cl", "cnorambuena@cathpro.cl"]
 
     def send_daily_balances(self, balances, saldos_skualo, variaciones=None):
         subject = "Saldos Diarios CathPro"
