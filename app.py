@@ -1068,19 +1068,26 @@ def tesoreria():
     if key != TABLERO_PASSWORD:
         return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
 
-    # Obtener saldos bancarios de Fintoc (restaurado)
-    fintoc = FintocClient()
-    fintoc_balances = fintoc.get_all_balances()
+    # Obtener saldos CLP desde Skualo (calculado desde movimientos bancarios)
+    skualo_bancos = SkualoBancosClient()
+    saldos_clp = skualo_bancos.get_saldos_clp()
     
-    # Convertir formato de Fintoc a lista de balances
+    # Obtener saldos USD/EUR desde Fintoc (conexión directa banco)
+    fintoc = FintocClient()
+    saldos_usd_eur = fintoc.get_usd_eur_balances()
+    
+    # Convertir a lista de balances para la tabla
     balances = []
-    for banco, saldo in fintoc_balances["clp"].items():
+    # CLP desde Skualo
+    for banco, saldo in saldos_clp.items():
         if banco != "total":
             balances.append({"banco": banco, "disponible": saldo, "moneda": "CLP"})
-    for banco, saldo in fintoc_balances["usd"].items():
+    # USD desde Fintoc
+    for banco, saldo in saldos_usd_eur["usd"].items():
         if banco != "total":
             balances.append({"banco": banco, "disponible": saldo, "moneda": "USD"})
-    for banco, saldo in fintoc_balances["eur"].items():
+    # EUR desde Fintoc
+    for banco, saldo in saldos_usd_eur["eur"].items():
         if banco != "total":
             balances.append({"banco": banco, "disponible": saldo, "moneda": "EUR"})
 
@@ -1099,8 +1106,7 @@ def tesoreria():
             comparacion = comparar_saldo_anterior(banco, saldo_actual)
             comparaciones[banco] = comparacion
 
-    # Obtener resumen de todos los bancos
-    skualo_bancos = SkualoBancosClient()
+    # Obtener resumen de movimientos de hoy (skualo_bancos ya está instanciado arriba)
     resumen = skualo_bancos.get_resumen_todos_bancos()
 
     # Calcular totales
@@ -2384,40 +2390,25 @@ def export_pdf():
 def generate_tablero_html(key, for_pdf=False):
     skualo = SkualoClient()
     
-    # --- LOGICA EXTRACTADA DE /tablero ---
-    # Obtenemos saldo contable
-    data_contable = skualo.get_balance_tributario()
+    # --- SALDOS CLP desde Skualo Bancos (tiempo real, calculado desde movimientos) ---
+    skualo_bancos = SkualoBancosClient()
+    saldos_clp = skualo_bancos.get_saldos_clp()
     
-    mapa_bancos = {
-        "1102002": {"nombre": "Santander", "moneda": "CLP"},
-        "1102003": {"nombre": "BCI", "moneda": "CLP"},
-        "1102004": {"nombre": "Scotiabank", "moneda": "CLP"},
-        "1102005": {"nombre": "Banco de Chile", "moneda": "CLP"},
-        "1102013": {"nombre": "Bice", "moneda": "CLP"},
-    }
-
     balances = []
-    total_clp = 0
+    total_clp = saldos_clp["total"]
+    
+    # Agregar saldos CLP por banco
+    for banco, saldo in saldos_clp.items():
+        if banco != "total":
+            balances.append({
+                "banco": banco,
+                "disponible": saldo,
+                "moneda": "CLP"
+            })
     
     # Tipo de cambio para mostrar equivalente CLP de USD/EUR
     TC_USD = 970
     TC_EUR = 1020
-
-    # Obtener saldos CLP desde Balance Tributario
-    for item in data_contable:
-        id_cta = item.get("idCuenta")
-        if id_cta in mapa_bancos:
-            info = mapa_bancos[id_cta]
-            activos = item.get("activos", 0)
-            pasivos = item.get("pasivos", 0)
-            saldo_clp = activos - pasivos 
-            
-            balances.append({
-                "banco": info["nombre"],
-                "disponible": saldo_clp,
-                "moneda": "CLP"
-            })
-            total_clp += saldo_clp
     
     # Obtener saldos USD/EUR REALES desde Fintoc (conexión directa al banco)
     fintoc_client = FintocClient()

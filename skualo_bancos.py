@@ -285,31 +285,77 @@ class SkualoBancosClient:
         
         return result
 
+    def get_saldos_clp(self) -> Dict:
+        """
+        Obtiene los saldos actuales de todas las cuentas CLP.
+        Calcula el saldo sumando todos los abonos menos todos los cargos.
+        
+        Returns:
+            Dict con saldos CLP por banco:
+            {
+                "Santander": 135000000,
+                "BCI": 9000000,
+                "Scotiabank": 1400000,
+                "Banco de Chile": 14500000,
+                "Bice": 7600000,
+                "total": 167500000
+            }
+        """
+        result = {"total": 0}
+        
+        for nombre, cuenta_id in self.cuentas.items():
+            saldo = self.get_saldo_cuenta(cuenta_id)
+            result[nombre] = saldo
+            result["total"] += saldo
+        
+        return result
+
+    def get_saldos_completos(self) -> Dict:
+        """
+        Obtiene todos los saldos: CLP, USD y EUR.
+        Fuente única de verdad para saldos bancarios desde Skualo.
+        
+        Returns:
+            Dict con estructura:
+            {
+                "clp": {"Santander": X, "BCI": X, ..., "total": X},
+                "usd": {"Bice USD": X, "Santander USD": X, "total": X},
+                "eur": {"Bice EUR": X, "total": X}
+            }
+        """
+        return {
+            "clp": self.get_saldos_clp(),
+            "usd": self.get_saldos_usd_eur()["usd"],
+            "eur": self.get_saldos_usd_eur()["eur"]
+        }
+
 
 if __name__ == "__main__":
     # Ejemplo de uso
     client = SkualoBancosClient()
 
-    print("=== Resumen de todos los bancos (hoy) ===")
+    print("=== SALDOS CLP (Skualo) ===")
+    saldos_clp = client.get_saldos_clp()
+    for banco, saldo in saldos_clp.items():
+        if banco != "total":
+            print(f"  {banco}: ${saldo:,.0f}")
+    print(f"  TOTAL CLP: ${saldos_clp['total']:,.0f}")
+
+    print("\n=== SALDOS USD/EUR (Skualo) ===")
+    saldos_usd_eur = client.get_saldos_usd_eur()
+    for cuenta, saldo in saldos_usd_eur["usd"].items():
+        if cuenta != "total":
+            print(f"  {cuenta}: ${saldo:,.2f} USD")
+    print(f"  TOTAL USD: ${saldos_usd_eur['usd']['total']:,.2f}")
+    for cuenta, saldo in saldos_usd_eur["eur"].items():
+        if cuenta != "total":
+            print(f"  {cuenta}: €{saldo:,.2f} EUR")
+    print(f"  TOTAL EUR: €{saldos_usd_eur['eur']['total']:,.2f}")
+
+    print("\n=== Resumen movimientos de hoy ===")
     resumen = client.get_resumen_todos_bancos()
     print(f"Fecha: {resumen['fecha']}")
     print(f"Total movimientos: {resumen['total_movimientos']}")
     print(f"Total ingresos: ${resumen['total_ingresos']:,.0f}")
     print(f"Total egresos: ${resumen['total_egresos']:,.0f}")
-    print(f"Saldo neto: ${resumen['saldo_neto']:,.0f}")
-    print("\nPor banco:")
-    for banco_info in resumen['bancos']:
-        print(f"  - {banco_info['banco']}: {banco_info['num_movimientos']} movimientos")
-
-    print("\n=== Movimientos de hoy - Santander ===")
-    movs_hoy = client.get_movimientos_hoy("Santander")
-    print(f"Movimientos: {movs_hoy['num_movimientos']}")
-    print(f"Ingresos: ${movs_hoy['total_ingresos']:,.0f}")
-    print(f"Egresos: ${movs_hoy['total_egresos']:,.0f}")
-
-    print("\n=== Movimientos del mes - BCI ===")
-    movs_mes = client.get_movimientos_mes("BCI", 1, 2026)
-    print(f"Periodo: {movs_mes['periodo']}")
-    print(f"Movimientos: {movs_mes['num_movimientos']}")
-    print(f"Ingresos: ${movs_mes['total_ingresos']:,.0f}")
-    print(f"Egresos: ${movs_mes['total_egresos']:,.0f}")
+    print(f"Variación neta: ${resumen['saldo_neto']:,.0f}")
