@@ -2401,14 +2401,21 @@ def chat_api():
         return jsonify({'error': 'No autorizado'}), 401
     
     if not CHAT_ENABLED:
-        return jsonify({'error': 'Chat no disponible'}), 503
+        return jsonify({'error': 'Chat no disponible - módulo no cargado'}), 503
     
     try:
         data = request.get_json()
+        if not data:
+            return jsonify({'error': 'No se recibió JSON'}), 400
+            
         pregunta = data.get('pregunta', '')
         
         if not pregunta:
             return jsonify({'error': 'Pregunta vacía'}), 400
+        
+        # Verificar API key
+        if not os.getenv('ANTHROPIC_API_KEY'):
+            return jsonify({'error': 'ANTHROPIC_API_KEY no configurada en servidor'}), 503
         
         # Crear instancia y responder
         assistant = CathProAssistant()
@@ -2417,7 +2424,10 @@ def chat_api():
         return jsonify({'respuesta': respuesta})
         
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        import traceback
+        print(f"Error en chat_api: {e}")
+        traceback.print_exc()
+        return jsonify({'error': f'Error: {str(e)}'}), 500
 
 # @app.route('/webhook/fintoc', methods=['POST'])
 # def webhook_fintoc():

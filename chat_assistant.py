@@ -17,7 +17,10 @@ load_dotenv()
 
 class CathProAssistant:
     def __init__(self):
-        self.client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        api_key = os.getenv("ANTHROPIC_API_KEY")
+        if not api_key:
+            raise ValueError("ANTHROPIC_API_KEY no configurada")
+        self.client = Anthropic(api_key=api_key)
         self.model = "claude-sonnet-4-20250514"
         
         # Clientes de datos
