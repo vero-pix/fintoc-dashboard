@@ -287,7 +287,7 @@ TABLERO_HTML = """
         <div class="note">
             <strong>Nota:</strong> Las cuentas por pagar internacional NO incluyen las OCX sin invoice.
             <br>
-            <strong>* Cambio:</strong> Los saldos USD/EUR se muestran en CLP según contabilidad. El valor en divisa original es estimado (USD: $970, EUR: $1020).
+            <strong>* Cambio:</strong> Los saldos USD/EUR se muestran en CLP según contabilidad. El valor en divisa original es estimado (USD: $885, EUR: $1027).
         </div>
         
         <div class="section-title">Detalle Saldos Bancarios</div>
@@ -2406,9 +2406,9 @@ def generate_tablero_html(key, for_pdf=False):
                 "moneda": "CLP"
             })
     
-    # Tipo de cambio para mostrar equivalente CLP de USD/EUR
-    TC_USD = 970
-    TC_EUR = 1020
+    # Tipo de cambio para mostrar equivalente CLP de USD/EUR (actualizar mensualmente)
+    TC_USD = 885
+    TC_EUR = 1027
     
     # Obtener saldos USD/EUR REALES desde Fintoc (conexión directa al banco)
     fintoc_client = FintocClient()
