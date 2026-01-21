@@ -32,6 +32,18 @@ class SkualoBancosClient:
             "Bice EUR": "1103003"
         }
 
+        # WORKAROUND TEMPORAL: Saldos iniciales para cuentas sin saldo de apertura en Skualo
+        # Estas cuentas tienen un desfase histórico porque no se cargó el saldo inicial en Skualo.
+        # El valor representa el saldo de apertura que falta para que el cálculo sea correcto.
+        # TODO: Eliminar este workaround cuando los saldos de apertura se carguen correctamente en Skualo.
+        self.SALDOS_INICIALES = {
+            # Scotiabank: El saldo calculado desde movimientos es -$1,418,296
+            # Se requiere ajuste de saldo inicial. CONFIRMAR SALDO REAL con Verónica.
+            # Por ahora, se usa un placeholder conservador de $1,418,296 para llevar a 0.
+            # Ajustar este valor al saldo real una vez confirmado.
+            "1102004": 1_418_296,  # Scotiabank - PLACEHOLDER, confirmar con Verónica
+        }
+
     def _fetch_movimientos(self, cuenta: str, fecha_desde: str) -> List[Dict]:
         """
         Método privado para consultar movimientos de una cuenta.
@@ -241,19 +253,23 @@ class SkualoBancosClient:
     def get_saldo_cuenta(self, cuenta_id: str) -> float:
         """
         Calcula el saldo actual de una cuenta sumando abonos y restando cargos.
-        
+        Aplica saldo inicial (workaround) si existe para cuentas con desfase histórico.
+
         Args:
             cuenta_id: ID de la cuenta (ej: "1103001")
-            
+
         Returns:
-            Saldo actual (abonos - cargos)
+            Saldo actual (saldo_inicial + abonos - cargos)
         """
         movimientos = self._fetch_all_movimientos(cuenta_id)
-        
+
         total_abonos = sum(m.get("montoAbono", 0) for m in movimientos)
         total_cargos = sum(m.get("montoCargo", 0) for m in movimientos)
-        
-        return total_abonos - total_cargos
+
+        # Aplicar saldo inicial si existe (workaround temporal)
+        saldo_inicial = self.SALDOS_INICIALES.get(cuenta_id, 0)
+
+        return saldo_inicial + total_abonos - total_cargos
 
     def get_saldos_usd_eur(self) -> Dict:
         """

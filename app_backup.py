@@ -209,45 +209,9 @@ NAV_HTML = """
     <a href="/cashflow/semanal?key=KEY_PLACEHOLDER" class="NAV_SEMANAL">Cash Flow Semanal</a>
     <a href="/cashflow?key=KEY_PLACEHOLDER" class="NAV_ANUAL">Cash Flow Anual</a>
     <a href="/pipeline?key=KEY_PLACEHOLDER" class="NAV_PIPELINE">Pipeline</a>
-    <a href="/chat?key=KEY_PLACEHOLDER&context=CONTEXT_PLACEHOLDER" class="NAV_CHAT" style="background:#55b245;color:white">VeriCosas</a>
-    <a href="/nomina/scotiabank?key=KEY_PLACEHOLDER" class="NAV_NOMINA" style="background:#dc3545;color:white">Nomina</a>
+    <a href="/nomina/scotiabank?key=KEY_PLACEHOLDER" class="NAV_NOMINA" style="background:#dc3545;color:white">Nomina Scotiabank</a>
 </div>
 """
-
-def get_nav_html(key, active_section, context='general'):
-    """
-    Genera el HTML de navegación con la key, sección activa y contexto especificados.
-
-    Args:
-        key: La clave de autenticación
-        active_section: La sección activa ('saldos', 'tesoreria', 'pipeline', 'cashflow_anual', 'cashflow_semanal', 'chat', 'nomina')
-        context: El contexto para el chat (por defecto 'general')
-
-    Returns:
-        HTML de navegación con los valores reemplazados
-    """
-    # Mapeo de secciones a sus marcadores NAV
-    section_markers = {
-        'saldos': 'NAV_SALDOS',
-        'tesoreria': 'NAV_TESORERIA',
-        'pipeline': 'NAV_PIPELINE',
-        'cashflow_anual': 'NAV_ANUAL',
-        'cashflow_semanal': 'NAV_SEMANAL',
-        'chat': 'NAV_CHAT',
-        'nomina': 'NAV_NOMINA'
-    }
-
-    # Comenzar con el HTML base
-    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('CONTEXT_PLACEHOLDER', context)
-
-    # Reemplazar todos los marcadores
-    for section, marker in section_markers.items():
-        if section == active_section:
-            nav = nav.replace(marker, 'active')
-        else:
-            nav = nav.replace(marker, '')
-
-    return nav
 
 TABLERO_HTML = """
 <!DOCTYPE html>
@@ -1422,7 +1386,7 @@ def tesoreria():
         rows_top_egresos = '<tr><td colspan="5" style="text-align:center;color:#7f8c8d">No hay egresos registrados hoy</td></tr>'
 
     # Construir HTML
-    nav = get_nav_html(key, 'tesoreria', 'tesoreria')
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_TESORERIA', 'active').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
     logo_b64 = get_logo_base64()
 
     html = TESORERIA_HTML.replace('LOGO_BASE64', logo_b64)
@@ -1578,7 +1542,7 @@ def pipeline():
         rows_ocx_pend = '<tr><td colspan="6" style="text-align:center;color:#888">No hay OCXs pendientes de aprobación</td></tr>'
 
     # Construir HTML
-    nav = get_nav_html(key, 'pipeline', 'pipeline')
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', 'active').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
     logo_b64 = get_logo_base64()
 
     html = PIPELINE_HTML.replace('LOGO_BASE64', logo_b64)
@@ -1664,8 +1628,8 @@ def cashflow_anual():
         <td class="right" style="font-size:14px">{fmt(total_anual)}</td>
         <td colspan="2"></td>
     </tr>'''
-
-    nav = get_nav_html(key, 'cashflow_anual', 'cashflow_anual')
+    
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', 'active').replace('NAV_SEMANAL', '')
     logo_b64 = get_logo_base64()
     
     html = CASHFLOW_ANUAL_HTML.replace('LOGO_BASE64', logo_b64)
@@ -1947,8 +1911,8 @@ def cashflow_semanal():
     # Variación neta clase
     variacion_class = '' if variacion_neta >= 0 else 'rojo'
     variacion_color = 'verde' if variacion_neta >= 0 else 'rojo'
-
-    nav = get_nav_html(key, 'cashflow_semanal', 'cashflow_semanal')
+    
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', 'active')
     logo_b64 = get_logo_base64()
     
     html = CASHFLOW_SEMANAL_HTML.replace('LOGO_BASE64', logo_b64)
@@ -2083,8 +2047,8 @@ def nomina_scotiabank():
             <td>{c['cuenta'] if c['cuenta'] else '-'}</td>
             <td class="center">{status_icon}</td>
         </tr>'''
-
-    nav = get_nav_html(key, 'nomina', 'nomina')
+    
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
     logo_b64 = get_logo_base64()
 
     html = f'''<!DOCTYPE html>
@@ -2392,7 +2356,6 @@ CHAT_HTML = '''
     </div>
     <script>
         var KEY = "KEY_PLACEHOLDER";
-        var CONTEXTO = "CONTEXTO_PLACEHOLDER";
         var SUGERENCIAS = [
             "¿Cuál es el EERR del proyecto 14420?",
             "¿Cuál es el margen del proyecto CODELCO?",
@@ -2495,7 +2458,7 @@ CHAT_HTML = '''
             fetch("/chat/api?key=" + KEY, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({pregunta: pregunta, contexto: CONTEXTO})
+                body: JSON.stringify({pregunta: pregunta})
             })
             .then(function(r) { return r.json(); })
             .then(function(data) {
@@ -2537,17 +2500,15 @@ CHAT_HTML = '''
 def chat_ui():
     """Interfaz de chat VeriCosas - conecta a VeriFlux backend"""
     key = request.args.get('key', '')
-    contexto = request.args.get('context', '')  # Contexto de página actual
     if key != TABLERO_PASSWORD:
         return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
-
-    nav = get_nav_html(key, 'chat', contexto)
+    
+    nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
     logo_b64 = get_logo_base64()
 
     html = CHAT_HTML.replace('LOGO_BASE64', logo_b64)
     html = html.replace('NAV_PLACEHOLDER', nav)
     html = html.replace('KEY_PLACEHOLDER', key)
-    html = html.replace('CONTEXTO_PLACEHOLDER', contexto)  # Pasar contexto al JS
     
     return html
 
@@ -2565,22 +2526,9 @@ def chat_api():
             return jsonify({'error': 'No se recibió JSON'}), 400
             
         pregunta = data.get('pregunta', '')
-        contexto = data.get('contexto', '')  # Contexto de página actual
         
         if not pregunta:
             return jsonify({'error': 'Pregunta vacía'}), 400
-        
-        # Construir pregunta enriquecida con contexto
-        pregunta_con_contexto = pregunta
-        if contexto:
-            contexto_desc = {
-                'saldos': 'El usuario está viendo la página de Saldos Diarios (bancos CLP, USD, EUR, CxC, CxP)',
-                'tesoreria': 'El usuario está viendo Tesorería (movimientos bancarios del día, ingresos/egresos)',
-                'cashflow_semanal': 'El usuario está viendo Cash Flow Semanal (proyección 7 días, CxC/CxP)',
-                'cashflow_anual': 'El usuario está viendo Cash Flow Anual 2026 (forecast, compromiso, venta nueva)',
-                'pipeline': 'El usuario está viendo Pipeline (SOLIs, OCs, OCXs pendientes)'
-            }.get(contexto, f'El usuario está en: {contexto}')
-            pregunta_con_contexto = f"[Contexto: {contexto_desc}]\n\n{pregunta}"
         
         # ============================================
         # OPCIÓN 1: VeriFlux Backend (preferido)
@@ -2590,7 +2538,7 @@ def chat_api():
                 # Llamar al backend VeriFlux
                 veriflux_response = requests.post(
                     f"{VERIFLUX_BACKEND_URL}/api/ask",
-                    json={"question": pregunta_con_contexto, "context": contexto},
+                    json={"question": pregunta},
                     timeout=60  # Timeout alto porque VeriFlux puede hacer múltiples tool calls
                 )
                 
@@ -2786,7 +2734,7 @@ def generate_tablero_html(key, for_pdf=False):
         nav = ""
     else:
         template = TABLERO_HTML
-        nav = get_nav_html(key, 'saldos', 'saldos')
+        nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', 'active').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
 
     logo_b64 = get_logo_base64()
     
