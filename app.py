@@ -19,15 +19,21 @@ except ImportError:
     PDF_ENABLED = False
     print("WARNING: xhtml2pdf not found. PDF export disabled.")
 # from fintoc_webhook import get_total_entradas_hoy, get_resumen_hoy, set_movimientos_hoy, procesar_evento_fintoc
-# Importar asistente de chat (lazy load para evitar error si no hay API key)
+# Importar asistente de chat (legacy - fallback si VeriFlux no disponible)
 try:
     from chat_assistant import CathProAssistant
-    CHAT_ENABLED = True
+    CHAT_LOCAL_ENABLED = True
 except Exception as e:
-    print(f"Chat assistant no disponible: {e}")
-    CHAT_ENABLED = False
+    print(f"Chat assistant local no disponible: {e}")
+    CHAT_LOCAL_ENABLED = False
 
 load_dotenv()
+
+# ============================================
+# CONFIGURACIÓN VERIFLUX BACKEND
+# ============================================
+VERIFLUX_BACKEND_URL = os.getenv("VERIFLUX_BACKEND_URL", "https://veriflux.onrender.com")
+VERIFLUX_ENABLED = True  # Usar VeriFlux por defecto
 
 app = Flask(__name__)
 TABLERO_PASSWORD = os.getenv("DASHBOARD_PASSWORD", "cathpro2024")
@@ -203,7 +209,8 @@ NAV_HTML = """
     <a href="/cashflow/semanal?key=KEY_PLACEHOLDER" class="NAV_SEMANAL">Cash Flow Semanal</a>
     <a href="/cashflow?key=KEY_PLACEHOLDER" class="NAV_ANUAL">Cash Flow Anual</a>
     <a href="/pipeline?key=KEY_PLACEHOLDER" class="NAV_PIPELINE">Pipeline</a>
-    <a href="/nomina/scotiabank?key=KEY_PLACEHOLDER" class="NAV_NOMINA" style="background:#dc3545;color:white">Nomina Scotiabank</a>
+    <a href="/chat?key=KEY_PLACEHOLDER" class="NAV_CHAT" style="background:#55b245;color:white">VeriCosas</a>
+    <a href="/nomina/scotiabank?key=KEY_PLACEHOLDER" class="NAV_NOMINA" style="background:#dc3545;color:white">Nomina</a>
 </div>
 """
 
@@ -2247,32 +2254,33 @@ def exportar_nomina_scotiabank():
 # CHAT ASISTENTE VIRTUAL
 # ============================================
 
-CHAT_HTML = """
+CHAT_HTML = '''
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>CathPro - Asistente Virtual</title>
+    <title>VeriCosas - Asistente Financiero</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Segoe UI',sans-serif;background:#f5f5f5;height:100vh;display:flex;flex-direction:column}
+        body{font-family:"Segoe UI",sans-serif;background:#f5f5f5;height:100vh;display:flex;flex-direction:column}
         .header{background:#242625;padding:15px 30px;display:flex;align-items:center;gap:15px}
         .header img{height:40px}
         .header h1{color:#fff;font-size:18px;font-weight:500}
         .header-sub{color:#888;font-size:11px}
+        .header-badge{background:#55b245;color:white;padding:3px 8px;border-radius:10px;font-size:10px;margin-left:10px}
         .nav-links{display:flex;gap:10px;margin-left:20px}
         .nav-links a{color:#888;text-decoration:none;padding:8px 15px;border-radius:5px;font-size:13px}
         .nav-links a:hover,.nav-links a.active{background:#55b245;color:white}
-        .chat-container{flex:1;max-width:900px;margin:0 auto;width:100%;display:flex;flex-direction:column;padding:20px}
+        .chat-container{flex:1;max-width:1000px;margin:0 auto;width:100%;display:flex;flex-direction:column;padding:20px}
         .messages{flex:1;overflow-y:auto;padding:20px;background:white;border-radius:10px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
         .message{margin-bottom:15px;display:flex;gap:10px}
         .message.user{flex-direction:row-reverse}
         .message .avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-        .message.assistant .avatar{background:#55b245;color:white}
+        .message.assistant .avatar{background:linear-gradient(135deg,#55b245,#3d8c31);color:white}
         .message.user .avatar{background:#242625;color:white}
-        .message .content{max-width:70%;padding:12px 16px;border-radius:12px;font-size:14px;line-height:1.5}
-        .message.assistant .content{background:#f0f0f0;border-bottom-left-radius:4px}
+        .message .content{max-width:75%;padding:12px 16px;border-radius:12px;font-size:14px;line-height:1.6}
+        .message.assistant .content{background:#f8f9fa;border-bottom-left-radius:4px;border:1px solid #e9ecef}
         .message.user .content{background:#55b245;color:white;border-bottom-right-radius:4px}
         .input-area{display:flex;gap:10px}
         .input-area input{flex:1;padding:14px 18px;border:1px solid #ddd;border-radius:25px;font-size:14px;outline:none}
@@ -2280,108 +2288,221 @@ CHAT_HTML = """
         .input-area button{padding:14px 24px;background:#55b245;color:white;border:none;border-radius:25px;cursor:pointer;font-size:14px;font-weight:500}
         .input-area button:hover{background:#449636}
         .input-area button:disabled{background:#ccc;cursor:not-allowed}
-        .typing{color:#888;font-style:italic;font-size:13px}
         .suggestions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:15px}
         .suggestion{background:#e8f5e9;border:1px solid #c8e6c9;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer;transition:all 0.2s}
-        .suggestion:hover{background:#c8e6c9}
+        .suggestion:hover{background:#c8e6c9;transform:translateY(-1px)}
+        .suggestion.eerr{background:#e3f2fd;border-color:#90caf9}
+        .suggestion.eerr:hover{background:#bbdefb}
+        .suggestion.cxc{background:#fff3e0;border-color:#ffcc80}
+        .suggestion.cxc:hover{background:#ffe0b2}
+        .suggestion.cxp{background:#fce4ec;border-color:#f48fb1}
+        .suggestion.cxp:hover{background:#f8bbd9}
+        .suggestion.remu{background:#f3e5f5;border-color:#ce93d8}
+        .suggestion.remu:hover{background:#e1bee7}
+        /* Estilos para respuestas estructuradas */
+        .resp-card{background:#fff;border-radius:8px;padding:15px;margin-top:10px;border-left:4px solid #55b245}
+        .resp-card.eerr{border-left-color:#2196f3}
+        .resp-card.cxc{border-left-color:#ff9800}
+        .resp-card.cxp{border-left-color:#e91e63}
+        .resp-card h4{margin:0 0 10px;color:#242625;font-size:14px}
+        .resp-table{width:100%;font-size:12px;border-collapse:collapse;margin-top:8px}
+        .resp-table th{text-align:left;padding:6px 8px;background:#f5f5f5;font-weight:600}
+        .resp-table td{padding:6px 8px;border-bottom:1px solid #eee}
+        .resp-table td.monto{text-align:right;font-family:monospace}
+        .resp-kpi{display:inline-block;background:#e8f5e9;padding:4px 10px;border-radius:4px;margin:2px;font-size:12px}
+        .resp-kpi.negative{background:#ffebee;color:#c62828}
+        .typing{display:flex;gap:4px;padding:10px}
+        .typing span{width:8px;height:8px;background:#55b245;border-radius:50%;animation:bounce 1.4s infinite ease-in-out both}
+        .typing span:nth-child(1){animation-delay:-0.32s}
+        .typing span:nth-child(2){animation-delay:-0.16s}
+        @keyframes bounce{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
     </style>
 </head>
 <body>
     <div class="header">
         <img src="data:image/png;base64,LOGO_BASE64" alt="CathPro">
         <div>
-            <h1>Asistente Virtual CathPro</h1>
-            <div class="header-sub">Cash Flow & Contabilidad</div>
+            <h1>VeriCosas <span class="header-badge">VeriFlux</span></h1>
+            <div class="header-sub">Asistente Financiero Inteligente | EERR, CxC, CxP, Remuneraciones</div>
         </div>
         NAV_PLACEHOLDER
     </div>
-    
     <div class="chat-container">
         <div class="suggestions">
-            <span class="suggestion" onclick="enviarSugerencia('¿Cuánto tenemos en caja hoy?')">💰 Saldo en caja</span>
-            <span class="suggestion" onclick="enviarSugerencia('¿Quiénes son los 5 clientes que más nos deben?')">📊 Top deudores</span>
-            <span class="suggestion" onclick="enviarSugerencia('¿Qué pagos tenemos esta semana?')">📅 Pagos semana</span>
-            <span class="suggestion" onclick="enviarSugerencia('¿Cuál es la posición neta?')">📈 Posición neta</span>
-            <span class="suggestion" onclick="enviarSugerencia('¿Cuánto debemos a proveedores?')">💸 CxP total</span>
+            <span class="suggestion eerr" onclick="clickSugerencia(0)">EERR Proyecto 14420</span>
+            <span class="suggestion eerr" onclick="clickSugerencia(1)">Margen CODELCO</span>
+            <span class="suggestion cxc" onclick="clickSugerencia(2)">CxC pendientes</span>
+            <span class="suggestion cxp" onclick="clickSugerencia(3)">CxP por pagar</span>
+            <span class="suggestion remu" onclick="clickSugerencia(4)">Remuneraciones Dic</span>
+            <span class="suggestion" onclick="clickSugerencia(5)">Saldo en caja</span>
         </div>
-        
         <div class="messages" id="messages">
             <div class="message assistant">
-                <div class="avatar">🤖</div>
-                <div class="content">¡Hola! Soy el asistente financiero de CathPro. Puedo ayudarte con consultas sobre saldos bancarios, cuentas por cobrar/pagar, cash flow y pagos recurrentes. ¿En qué puedo ayudarte?</div>
+                <div class="avatar">V</div>
+                <div class="content">
+                    <strong>Hola! Soy VeriCosas</strong>, el asistente financiero inteligente de CathPro.<br><br>
+                    Puedo ayudarte con:<br>
+                    • <strong>Estado de Resultados</strong> por proyecto (EERR)<br>
+                    • <strong>Cuentas por Cobrar</strong> (CxC) - deudores, vencimientos<br>
+                    • <strong>Cuentas por Pagar</strong> (CxP) - proveedores pendientes<br>
+                    • <strong>Remuneraciones</strong> - liquidaciones, aportes<br><br>
+                    <em>Pregúntame lo que necesites...</em>
+                </div>
             </div>
         </div>
-        
         <div class="input-area">
-            <input type="text" id="input" placeholder="Escribe tu pregunta..." onkeypress="if(event.key==='Enter')enviar()">
-            <button onclick="enviar()" id="btnEnviar">Enviar</button>
+            <input type="text" id="chatInput" placeholder="Ej: ¿Cuál es el margen del proyecto 14420?">
+            <button id="btnEnviar">Enviar</button>
         </div>
     </div>
-    
     <script>
-        const KEY = 'KEY_PLACEHOLDER';
+        var KEY = "KEY_PLACEHOLDER";
+        var SUGERENCIAS = [
+            "¿Cuál es el EERR del proyecto 14420?",
+            "¿Cuál es el margen del proyecto CODELCO?",
+            "¿Cuánto nos deben los clientes?",
+            "¿Cuáles son las CxP pendientes?",
+            "¿Cuánto pagamos en remuneraciones en diciembre?",
+            "¿Cuánto tenemos en caja hoy?"
+        ];
         
-        function enviarSugerencia(texto) {
-            document.getElementById('input').value = texto;
-            enviar();
+        function clickSugerencia(idx) {
+            document.getElementById("chatInput").value = SUGERENCIAS[idx];
+            enviarMensaje();
         }
         
-        async function enviar() {
-            const input = document.getElementById('input');
-            const pregunta = input.value.trim();
-            if (!pregunta) return;
-            
-            // Mostrar mensaje del usuario
-            agregarMensaje(pregunta, 'user');
-            input.value = '';
-            
-            // Mostrar typing
-            const btn = document.getElementById('btnEnviar');
-            btn.disabled = true;
-            btn.textContent = '...';
-            
-            try {
-                const response = await fetch('/chat/api?key=' + KEY, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({pregunta: pregunta})
-                });
-                
-                const data = await response.json();
-                agregarMensaje(data.respuesta || data.error, 'assistant');
-            } catch (e) {
-                agregarMensaje('Error de conexión: ' + e.message, 'assistant');
+        function mostrarTyping() {
+            var msgs = document.getElementById("messages");
+            var div = document.createElement("div");
+            div.id = "typing-indicator";
+            div.className = "message assistant";
+            div.innerHTML = '<div class="avatar">V</div><div class="content"><div class="typing"><span></span><span></span><span></span></div></div>';
+            msgs.appendChild(div);
+            msgs.scrollTop = msgs.scrollHeight;
+        }
+        
+        function ocultarTyping() {
+            var typing = document.getElementById("typing-indicator");
+            if (typing) typing.remove();
+        }
+        
+        function formatearRespuesta(data) {
+            // Si hay error
+            if (data.error) {
+                return '<span style="color:#c62828">Error: ' + data.error + '</span>';
             }
             
-            btn.disabled = false;
-            btn.textContent = 'Enviar';
+            // Si tiene insight (respuesta procesada por VeriFlux)
+            var html = '';
+            
+            if (data.insight) {
+                html += data.insight.split("\\n").join("<br>");
+            }
+            
+            // Si tiene datos estructurados (tabla, KPIs)
+            if (data.datos && Array.isArray(data.datos) && data.datos.length > 0) {
+                html += '<div class="resp-card ' + (data.tipo || '') + '">';
+                html += '<h4>' + (data.titulo || 'Resultados') + '</h4>';
+                html += '<table class="resp-table"><thead><tr>';
+                
+                // Headers dinámicos
+                var keys = Object.keys(data.datos[0]);
+                keys.forEach(function(k) {
+                    html += '<th>' + k + '</th>';
+                });
+                html += '</tr></thead><tbody>';
+                
+                // Filas (máximo 10)
+                data.datos.slice(0, 10).forEach(function(row) {
+                    html += '<tr>';
+                    keys.forEach(function(k) {
+                        var val = row[k];
+                        var cls = (typeof val === 'number' || (typeof val === 'string' && val.includes('$'))) ? 'monto' : '';
+                        html += '<td class="' + cls + '">' + (val !== null ? val : '-') + '</td>';
+                    });
+                    html += '</tr>';
+                });
+                html += '</tbody></table></div>';
+            }
+            
+            // Si tiene KPIs
+            if (data.kpis) {
+                html += '<div style="margin-top:10px">';
+                for (var k in data.kpis) {
+                    var val = data.kpis[k];
+                    var cls = (typeof val === 'string' && val.includes('-')) ? 'negative' : '';
+                    html += '<span class="resp-kpi ' + cls + '"><strong>' + k + ':</strong> ' + val + '</span>';
+                }
+                html += '</div>';
+            }
+            
+            // Si solo tiene respuesta simple
+            if (data.respuesta && !data.insight) {
+                html = data.respuesta.split("\\n").join("<br>");
+            }
+            
+            return html || 'Sin respuesta';
         }
         
-        function agregarMensaje(texto, tipo) {
-            const messages = document.getElementById('messages');
-            const avatar = tipo === 'user' ? '👤' : '🤖';
-            messages.innerHTML += `
-                <div class="message ${tipo}">
-                    <div class="avatar">${avatar}</div>
-                    <div class="content">${texto.replace(/\n/g, '<br>')}</div>
-                </div>
-            `;
-            messages.scrollTop = messages.scrollHeight;
+        function enviarMensaje() {
+            var input = document.getElementById("chatInput");
+            var pregunta = input.value.trim();
+            if (!pregunta) return;
+            
+            agregarMsg(pregunta, "user");
+            input.value = "";
+            
+            var btn = document.getElementById("btnEnviar");
+            btn.disabled = true;
+            mostrarTyping();
+            
+            fetch("/chat/api?key=" + KEY, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({pregunta: pregunta})
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                ocultarTyping();
+                var contenido = formatearRespuesta(data);
+                agregarMsgHtml(contenido, "assistant");
+                btn.disabled = false;
+            })
+            .catch(function(e) {
+                ocultarTyping();
+                agregarMsg("Error de conexión: " + e.message, "assistant");
+                btn.disabled = false;
+            });
         }
+        
+        function agregarMsg(texto, tipo) {
+            agregarMsgHtml(texto.split("\\n").join("<br>"), tipo);
+        }
+        
+        function agregarMsgHtml(html, tipo) {
+            var msgs = document.getElementById("messages");
+            var avatar = tipo === "user" ? "U" : "V";
+            var div = document.createElement("div");
+            div.className = "message " + tipo;
+            div.innerHTML = '<div class="avatar">' + avatar + '</div><div class="content">' + html + '</div>';
+            msgs.appendChild(div);
+            msgs.scrollTop = msgs.scrollHeight;
+        }
+        
+        document.getElementById("chatInput").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") enviarMensaje();
+        });
     </script>
 </body>
 </html>
-"""
+'''
 
 @app.route('/chat')
 def chat_ui():
-    """Interfaz de chat"""
+    """Interfaz de chat VeriCosas - conecta a VeriFlux backend"""
     key = request.args.get('key', '')
     if key != TABLERO_PASSWORD:
         return "<script>alert('Contraseña incorrecta');window.location='/';</script>"
-    
-    if not CHAT_ENABLED:
-        return "<h1>Chat no disponible - Falta configurar ANTHROPIC_API_KEY</h1>"
     
     nav = NAV_HTML.replace('KEY_PLACEHOLDER', key).replace('NAV_SALDOS', '').replace('NAV_TESORERIA', '').replace('NAV_PIPELINE', '').replace('NAV_ANUAL', '').replace('NAV_SEMANAL', '')
     logo_b64 = get_logo_base64()
@@ -2395,13 +2516,10 @@ def chat_ui():
 
 @app.route('/chat/api', methods=['POST'])
 def chat_api():
-    """API de chat"""
+    """API de chat - proxy a VeriFlux backend con fallback local"""
     key = request.args.get('key', '')
     if key != TABLERO_PASSWORD:
         return jsonify({'error': 'No autorizado'}), 401
-    
-    if not CHAT_ENABLED:
-        return jsonify({'error': 'Chat no disponible - módulo no cargado'}), 503
     
     try:
         data = request.get_json()
@@ -2413,15 +2531,66 @@ def chat_api():
         if not pregunta:
             return jsonify({'error': 'Pregunta vacía'}), 400
         
-        # Verificar API key
-        if not os.getenv('ANTHROPIC_API_KEY'):
-            return jsonify({'error': 'ANTHROPIC_API_KEY no configurada en servidor'}), 503
+        # ============================================
+        # OPCIÓN 1: VeriFlux Backend (preferido)
+        # ============================================
+        if VERIFLUX_ENABLED:
+            try:
+                # Llamar al backend VeriFlux
+                veriflux_response = requests.post(
+                    f"{VERIFLUX_BACKEND_URL}/api/ask",
+                    json={"question": pregunta},
+                    timeout=60  # Timeout alto porque VeriFlux puede hacer múltiples tool calls
+                )
+                
+                if veriflux_response.status_code == 200:
+                    result = veriflux_response.json()
+                    
+                    # VeriFlux responde con estructura: {success, tipo, titulo, insight, datos?, kpis?}
+                    if result.get('success', True):
+                        return jsonify({
+                            'success': True,
+                            'tipo': result.get('tipo', 'resumen'),
+                            'titulo': result.get('titulo', 'VeriFlux'),
+                            'insight': result.get('insight', ''),
+                            'datos': result.get('datos'),
+                            'kpis': result.get('kpis'),
+                            'respuesta': result.get('insight', '')  # Fallback para compatibilidad
+                        })
+                    else:
+                        # VeriFlux reportó error
+                        raise Exception(result.get('error', 'Error en VeriFlux'))
+                else:
+                    raise Exception(f"VeriFlux HTTP {veriflux_response.status_code}")
+                    
+            except requests.exceptions.Timeout:
+                print("VeriFlux timeout, intentando fallback local...")
+            except requests.exceptions.ConnectionError:
+                print("VeriFlux no disponible, intentando fallback local...")
+            except Exception as e:
+                print(f"Error VeriFlux: {e}, intentando fallback local...")
         
-        # Crear instancia y responder
-        assistant = CathProAssistant()
-        respuesta = assistant.responder(pregunta)
+        # ============================================
+        # OPCIÓN 2: Fallback a asistente local
+        # ============================================
+        if CHAT_LOCAL_ENABLED:
+            try:
+                if not os.getenv('ANTHROPIC_API_KEY'):
+                    return jsonify({'error': 'ANTHROPIC_API_KEY no configurada'}), 503
+                
+                assistant = CathProAssistant()
+                respuesta = assistant.responder(pregunta)
+                
+                return jsonify({
+                    'success': True,
+                    'respuesta': respuesta,
+                    'fuente': 'local'  # Indicar que usó el fallback
+                })
+            except Exception as e:
+                return jsonify({'error': f'Error local: {str(e)}'}), 500
         
-        return jsonify({'respuesta': respuesta})
+        # Ninguna opción disponible
+        return jsonify({'error': 'Servicio de chat no disponible'}), 503
         
     except Exception as e:
         import traceback
