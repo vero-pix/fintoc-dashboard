@@ -699,7 +699,8 @@ def tablero():
                     • SKUALO API: {snapshot.get('logs', {}).get('skualo', 'N/A')}<br>
                     • CUENTAS ENCONTRADAS: {len(fintoc.get('clp', {})) + len(fintoc.get('usd', {})) + len(fintoc.get('eur', {})) - 3 if fintoc else 0}<br>
                     • FINTOC_SK: {"✅ PRESENTE" if os.getenv("FINTOC_SECRET_KEY") else "❌ FALTA"}<br>
-                    • AMBIENTE: {"PRODUCCIÓN (CLOUD)" if os.getenv("PORT") else "LOCAL (DESARROLLO)"}
+                    
+                    { "".join([f"<div style='color:#d9534f; font-size:9px; margin-top:5px;'>❌ {err}</div>" for err in snapshot.get('logs', {}).get('detalles', [])]) }
                 </div>
             </div>
         </div>

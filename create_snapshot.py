@@ -187,10 +187,19 @@ def get_snapshot():
     f_data = snapshot["data"].get("fintoc_balances", {})
     num_ctx = len(f_data.get('clp', {})) + len(f_data.get('usd', {})) + len(f_data.get('eur', {})) - 3 if f_data else 0
     
+    # Extraer errores de los clientes si existen
+    detalles_error = []
+    if 'fintoc_client' in locals() or 'fintoc' in locals():
+        # Intentar sacar errores de la instancia usada
+        try:
+            target = fintoc if 'fintoc' in locals() else fintoc_client
+            detalles_error.extend(target.last_errors)
+        except: pass
+
     snapshot["logs"] = {
         "fintoc": "OK" if num_ctx > 0 else "ERROR (0 CUENTAS)",
         "skualo": "OK" if snapshot["data"].get("skualo_balances") else "FALLO",
-        "detalles": []
+        "detalles": detalles_error
     }
     
     with open('data_snapshot.json', 'w', encoding='utf-8') as f:

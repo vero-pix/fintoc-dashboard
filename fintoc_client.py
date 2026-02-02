@@ -23,6 +23,7 @@ class FintocClient:
             "Authorization": self.secret_key,
             "Accept": "application/json"
         }
+        self.last_errors = []
         
         # Links de las cuentas bancarias (link_token format: link_XXX_token_YYY)
         self.links = {
@@ -66,8 +67,10 @@ class FintocClient:
             if response.status_code != 200:
                 raise Exception(f"Fintoc Error {response.status_code}: {response.text}")
             return response.json()
-        except requests.exceptions.RequestException as e:
-            print(f"ERROR obteniendo cuentas de {banco}: {e}")
+        except Exception as e:
+            error_msg = f"{banco}: {str(e)}"
+            print(f"ERROR: {error_msg}")
+            self.last_errors.append(error_msg)
             return []
 
     def get_all_balances(self) -> Dict:
