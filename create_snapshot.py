@@ -184,6 +184,12 @@ def get_snapshot():
         snapshot["data"]["historico"] = {}
 
     # Guardar a archivo
+    snapshot["logs"] = {
+        "fintoc": "OK" if snapshot["data"].get("fintoc_balances") else "FALLO O VACIO",
+        "skualo": "OK" if snapshot["data"].get("skualo_balances") else "FALLO O VACIO",
+        "errors": []
+    }
+    
     with open('data_snapshot.json', 'w', encoding='utf-8') as f:
         json.dump(snapshot, f, indent=2, ensure_ascii=False, cls=DateTimeEncoder)
     

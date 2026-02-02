@@ -695,10 +695,10 @@ def tablero():
                 
                 <div style="margin-top:20px; background:#111; padding:15px; border-radius:10px; text-align:left; color:#666;">
                     <b style="color:var(--orange)">🔍 DIAGNÓSTICO DEL SISTEMA:</b><br><br>
+                    • FINTOC API: {snapshot.get('logs', {}).get('fintoc', 'N/A')}<br>
+                    • SKUALO API: {snapshot.get('logs', {}).get('skualo', 'N/A')}<br>
+                    • CUENTAS ENCONTRADAS: {len(fintoc.get('clp', {})) + len(fintoc.get('usd', {})) + len(fintoc.get('eur', {})) - 3 if fintoc else 0}<br>
                     • FINTOC_SK: {"✅ PRESENTE" if os.getenv("FINTOC_SECRET_KEY") else "❌ FALTA"}<br>
-                    • FINTOC_LINKS: {len([k for k in os.environ if k.startswith("FINTOC_LINK_")])} configurados<br>
-                    • SKUALO_TOKEN: {"✅ PRESENTE" if os.getenv("SKUALO_TOKEN") else "❌ FALTA"}<br>
-                    • SNAPSHOT_FILE: {"✅ LOCALIZADO" if os.path.exists(SNAPSHOT_FILE) else "❌ NO GENERADO"}<br>
                     • AMBIENTE: {"PRODUCCIÓN (CLOUD)" if os.getenv("PORT") else "LOCAL (DESARROLLO)"}
                 </div>
             </div>
