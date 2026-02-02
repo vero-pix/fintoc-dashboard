@@ -3,6 +3,8 @@ import json
 import os
 from datetime import datetime
 import pytz
+from apscheduler.schedulers.background import BackgroundScheduler
+from create_snapshot import get_snapshot
 
 app = Flask(__name__)
 
@@ -618,5 +620,20 @@ def tablero():
     </html>
     """
 
+# --- PROGRAMACIÓN DE ACTUALIZACIÓN AUTOMÁTICA ---
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=get_snapshot, trigger="interval", hours=6)
+scheduler.start()
+
+# Si no hay snapshot al arrancar, forzar uno inicial
+if not os.path.exists(SNAPSHOT_FILE):
+    print("⚠️ No se encontró snapshot inicial. Iniciando captura de datos...")
+    try:
+        get_snapshot()
+    except Exception as e:
+        print(f"❌ Error en captura inicial: {e}")
+
 if __name__ == '__main__':
-    app.run(debug=True, port=5002)
+    import os
+    port = int(os.environ.get("PORT", 5002))
+    app.run(host='0.0.0.0', port=port)
