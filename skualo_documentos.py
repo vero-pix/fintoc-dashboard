@@ -16,6 +16,7 @@ class SkualoDocumentosClient:
             "Authorization": f"Bearer {self.token}",
             "accept": "application/json"
         }
+        self.last_errors = []
         
         # Cache simple en memoria
         self._cache_detalles = {}
@@ -73,7 +74,8 @@ class SkualoDocumentosClient:
         Maneja casos donde la API retorna una lista directa o un objeto con campo 'items'.
         """
         url = f"{self.base_url}/documentos"
-        params = {"search": f"IDTipoDocumento eq {tipo_documento}"}
+        # IMPORTANTE: Los filtros de string en OData requieren comillas simples
+        params = {"search": f"IDTipoDocumento eq '{tipo_documento}'"}
 
         try:
             response = requests.get(url, headers=self.headers, params=params)
@@ -87,8 +89,10 @@ class SkualoDocumentosClient:
                 
             print(f"DEBUG: get_documentos({tipo_documento}) retornó {len(items)} items")
             return items
-        except requests.exceptions.RequestException as e:
-            print(f"ERROR consultando documentos {tipo_documento}: {e}")
+        except Exception as e:
+            err = f"Error Pipeline {tipo_documento}: {str(e)}"
+            print(err)
+            self.last_errors.append(err)
             return []
 
     def get_documento_detalle(self, id_documento: str) -> Optional[Dict]:
@@ -471,7 +475,8 @@ class SkualoDocumentosClient:
             items = self.get_documentos(tipo)
             for doc in items:
                 estado = doc.get("estado", "")
-                if estado not in ["Aprobado", "Aceptado", "Vigente", ""]: 
+                # Permitir estados comunes de documentos vigentes
+                if estado not in ["Aprobado", "Aceptado", "Vigente", "Pendiente", ""]: 
                     continue
 
                 id_documento = doc.get("idDocumento", "")

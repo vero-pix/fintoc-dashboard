@@ -697,7 +697,8 @@ def tablero():
                     <b style="color:var(--orange)">🔍 DIAGNÓSTICO DEL SISTEMA:</b><br><br>
                     • FINTOC API: {snapshot.get('logs', {}).get('fintoc', 'N/A')}<br>
                     • SKUALO API: {snapshot.get('logs', {}).get('skualo', 'N/A')}<br>
-                    • CUENTAS ENCONTRADAS: {len(fintoc.get('clp', {})) + len(fintoc.get('usd', {})) + len(fintoc.get('eur', {})) - 3 if fintoc else 0}<br>
+                    • CUENTAS BANCARIAS: {len(fintoc.get('clp', {})) + len(fintoc.get('usd', {})) + len(fintoc.get('eur', {})) - 3 if fintoc else 0}<br>
+                    • REGISTROS PIPELINE: {pipeline.get('ingresos', {}).get('cantidad', 0) + sum(e.get('cantidad', 0) for e in pipeline.get('egresos', {}).values())}<br>
                     • FINTOC_SK: {"✅ PRESENTE" if os.getenv("FINTOC_SECRET_KEY") else "❌ FALTA"}<br>
                     
                     { "".join([f"<div style='color:#d9534f; font-size:9px; margin-top:5px;'>❌ {err}</div>" for err in snapshot.get('logs', {}).get('detalles', [])]) }

@@ -189,12 +189,16 @@ def get_snapshot():
     
     # Extraer errores de los clientes si existen
     detalles_error = []
-    if 'fintoc_client' in locals() or 'fintoc' in locals():
-        # Intentar sacar errores de la instancia usada
-        try:
-            target = fintoc if 'fintoc' in locals() else fintoc_client
-            detalles_error.extend(target.last_errors)
-        except: pass
+    
+    # Errores Fintoc
+    if 'fintoc' in locals():
+        detalles_error.extend(fintoc.last_errors)
+    elif 'fintoc_client' in locals():
+        detalles_error.extend(fintoc_client.last_errors)
+        
+    # Errores Skualo Pipeline
+    if 'doc_client' in locals():
+        detalles_error.extend(doc_client.last_errors)
 
     snapshot["logs"] = {
         "fintoc": "OK" if num_ctx > 0 else "ERROR (0 CUENTAS)",
