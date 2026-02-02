@@ -690,8 +690,17 @@ def tablero():
                 </div>
             </div>
             
-            <div style="font-size:10px; color:#444; text-align:center; margin-top:40px;">
+            <div style="font-size:10px; color:#444; text-align:center; margin-top:40px; padding:20px; border-top:1px solid #222;">
                 Actualizado: {snapshot.get('timestamp')} | CathPro Financial Intelligence Ecosystem
+                
+                <div style="margin-top:20px; background:#111; padding:15px; border-radius:10px; text-align:left; color:#666;">
+                    <b style="color:var(--orange)">🔍 DIAGNÓSTICO DEL SISTEMA:</b><br><br>
+                    • FINTOC_SK: {"✅ PRESENTE" if os.getenv("FINTOC_SECRET_KEY") else "❌ FALTA"}<br>
+                    • FINTOC_LINKS: {len([k for k in os.environ if k.startswith("FINTOC_LINK_")])} configurados<br>
+                    • SKUALO_TOKEN: {"✅ PRESENTE" if os.getenv("SKUALO_TOKEN") else "❌ FALTA"}<br>
+                    • SNAPSHOT_FILE: {"✅ LOCALIZADO" if os.path.exists(SNAPSHOT_FILE) else "❌ NO GENERADO"}<br>
+                    • AMBIENTE: {"PRODUCCIÓN (CLOUD)" if os.getenv("PORT") else "LOCAL (DESARROLLO)"}
+                </div>
             </div>
         </div>
     </body>

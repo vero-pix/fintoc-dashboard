@@ -17,7 +17,7 @@ class FintocClient:
     """
     
     def __init__(self):
-        self.secret_key = os.getenv("FINTOC_SECRET_KEY")
+        self.secret_key = str(os.getenv("FINTOC_SECRET_KEY", "")).strip()
         self.base_url = os.getenv("FINTOC_BASE_URL", "https://api.fintoc.com")
         self.headers = {
             "Authorization": self.secret_key,
@@ -95,9 +95,9 @@ class FintocClient:
             accounts = self.get_accounts(banco)
             
             for account in accounts:
-                # Solo procesar cuentas corrientes, ignorar tarjetas de crédito
+                # Procesar cuentas de activo (evitar tarjetas de crédito si es posible)
                 account_type = account.get("type", "")
-                if account_type != "checking_account":
+                if account_type in ["credit_card"]:
                     continue
                     
                 currency = account.get("currency", "CLP").upper()
