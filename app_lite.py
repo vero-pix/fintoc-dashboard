@@ -100,8 +100,8 @@ def load_config():
         "ING_BENCHMARK_2025": 385000000, 
         "MARGEN_BENCHMARK_2025": 0.62,
         "USE_LIVE_RATES": True,
-        "TASA_USD_MANUAL": 858,
-        "TASA_EUR_MANUAL": 935
+        "TASA_USD": 858,
+        "TASA_EUR": 935
     }
     if not os.path.exists(CONFIG_FILE): return default
     with open(CONFIG_FILE, 'r') as f: 
@@ -120,6 +120,16 @@ def load_config():
 
 def save_config(new_config):
     with open(CONFIG_FILE, 'w') as f: json.dump(new_config, f, indent=2)
+
+@app.route('/trigger_snapshot')
+def trigger_snapshot():
+    key = request.args.get('key', '')
+    if key != PASSWORD: return "No autorizado"
+    try:
+        get_snapshot()
+        return f"<html><script>alert('✅ Sincronización Exitosa'); window.location='/tablero?key={PASSWORD}';</script></html>"
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 @app.route('/update_config', methods=['POST'])
 def update_config():
@@ -147,8 +157,8 @@ def tablero():
     DIA_CIERRE_CONTABLE = cfg["DIA_CIERRE_CONTABLE"]
     ING_BENCHMARK_2025 = cfg["ING_BENCHMARK_2025"]
     MARGEN_BENCHMARK_2025 = cfg["MARGEN_BENCHMARK_2025"]
-    TASA_USD = cfg.get("TASA_USD", 955)
-    TASA_EUR = cfg.get("TASA_EUR", 1030)
+    TASA_USD = cfg.get("TASA_USD", 858)
+    TASA_EUR = cfg.get("TASA_EUR", 935)
 
     snapshot = load_snapshot()
     if not snapshot: return "Error: Snapshot no encontrado."
@@ -273,15 +283,18 @@ def tablero():
                 <div id="manual-rates" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:10px; opacity: {'0.3' if cfg.get('USE_LIVE_RATES') else '1'};">
                     <div>
                         <label style="font-size:10px; color:#888;">Tasa USD ($)</label><br>
-                        <input type="number" step="0.1" name="tasa_usd" value="{cfg.get('TASA_USD_MANUAL', 858)}" style="background:#000; color:white; border:1px solid #444; padding:5px; width:60px;">
+                        <input type="number" step="0.1" name="tasa_usd" value="{cfg.get('TASA_USD', 858)}" style="background:#000; color:white; border:1px solid #444; padding:5px; width:60px;">
                     </div>
                     <div>
                         <label style="font-size:10px; color:#888;">Tasa EUR ($)</label><br>
-                        <input type="number" step="0.1" name="tasa_eur" value="{cfg.get('TASA_EUR_MANUAL', 935)}" style="background:#000; color:white; border:1px solid #444; padding:5px; width:60px;">
+                        <input type="number" step="0.1" name="tasa_eur" value="{cfg.get('TASA_EUR', 935)}" style="background:#000; color:white; border:1px solid #444; padding:5px; width:60px;">
                     </div>
                 </div>
 
-                <button type="submit" style="margin-top:15px; background:var(--orange); color:white; border:none; padding:8px 20px; border-radius:4px; font-size:11px; font-weight:800; cursor:pointer;">Guardar y Actualizar Dashboard</button>
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:15px;">
+                    <button type="submit" style="background:var(--orange); color:white; border:none; padding:10px 20px; border-radius:4px; font-size:12px; font-weight:800; cursor:pointer;">Guardar y Refrescar</button>
+                    <a href="/trigger_snapshot?key={PASSWORD}" style="color:#666; font-size:10px; text-decoration:none; border:1px solid #333; padding:5px 10px; border-radius:4px;">🔄 Forzar Sincronización Bancaria</a>
+                </div>
             </form>
         </div>
 
