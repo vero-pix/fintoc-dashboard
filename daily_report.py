@@ -14,12 +14,35 @@ from mailer import Mailer
 from dotenv import load_dotenv
 import os
 import sys
+import requests
 
 load_dotenv()
 
-# Tipo de cambio referencial
-TC_USD = 970
-TC_EUR = 1020
+
+def get_exchange_rates():
+    """Obtiene tipos de cambio USD y EUR desde API gratuita"""
+    try:
+        # Usar exchangerate-api (gratuito, no requiere key)
+        response = requests.get('https://api.exchangerate-api.com/v4/latest/USD', timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            clp_per_usd = data['rates'].get('CLP', 890)
+            
+            # EUR/CLP = USD/CLP / USD/EUR
+            usd_per_eur = data['rates'].get('EUR', 0.92)
+            clp_per_eur = clp_per_usd / usd_per_eur if usd_per_eur > 0 else 1030
+            
+            print(f"  → TC obtenido: USD={clp_per_usd:.0f} | EUR={clp_per_eur:.0f}")
+            return round(clp_per_usd), round(clp_per_eur)
+    except Exception as e:
+        print(f"  → Error obteniendo TC, usando valores por defecto: {e}")
+    
+    # Valores por defecto si falla la API
+    return 890, 1030
+
+
+# Tipo de cambio (se obtiene dinámicamente)
+TC_USD, TC_EUR = get_exchange_rates()
 
 
 def enviar_reporte():

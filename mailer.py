@@ -7,9 +7,9 @@ from email.mime.multipart import MIMEMultipart
 
 load_dotenv()
 
-# Tipo de cambio referencial
-TC_USD = 970
-TC_EUR = 1020
+# Tipo de cambio por defecto (se sobreescribe con datos dinámicos)
+TC_USD_DEFAULT = 970
+TC_EUR_DEFAULT = 1020
 
 
 class Mailer:
@@ -64,9 +64,13 @@ class Mailer:
         # Fondos Mutuos (separado - menor liquidez)
         fondos_mutuos = saldos_skualo.get('fondos_mutuos', 0)
         
+        # Tipo de cambio dinámico (viene de daily_report via API)
+        tc_usd = saldos_skualo.get('tc_usd', TC_USD_DEFAULT)
+        tc_eur = saldos_skualo.get('tc_eur', TC_EUR_DEFAULT)
+        
         # Convertir USD/EUR a CLP
-        total_usd_clp = total_usd * TC_USD
-        total_eur_clp = total_eur * TC_EUR
+        total_usd_clp = total_usd * tc_usd
+        total_eur_clp = total_eur * tc_eur
         
         fecha = datetime.now().strftime('%d-%m-%Y %H:%M')
         
@@ -196,7 +200,7 @@ class Mailer:
         </table>
         
         <div style="background:#e8f5e9;border-left:4px solid #55b245;padding:12px;border-radius:5px;margin-top:20px;text-align:center">
-            <span style="color:#2e7d32;font-size:12px">Envío automático diario 8:00 y 18:00 | TC Ref: USD ${TC_USD} | EUR ${TC_EUR}</span>
+            <span style="color:#2e7d32;font-size:12px">Envío automático diario 8:00 y 18:00 | TC Ref: USD ${tc_usd:,.0f} | EUR ${tc_eur:,.0f}</span>
         </div>
         
         <div style="margin-top:25px;text-align:center;padding:20px;background:#f8f9fa;border-radius:10px">

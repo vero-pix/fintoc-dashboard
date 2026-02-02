@@ -70,6 +70,7 @@ class SkualoDocumentosClient:
     def get_documentos(self, tipo_documento: str) -> List[Dict]:
         """
         Obtiene documentos por tipo desde Skualo.
+        Maneja casos donde la API retorna una lista directa o un objeto con campo 'items'.
         """
         url = f"{self.base_url}/documentos"
         params = {"search": f"IDTipoDocumento eq {tipo_documento}"}
@@ -78,7 +79,12 @@ class SkualoDocumentosClient:
             response = requests.get(url, headers=self.headers, params=params)
             response.raise_for_status()
             data = response.json()
-            items = data.get("items", [])
+            
+            if isinstance(data, list):
+                items = data
+            else:
+                items = data.get("items", [])
+                
             print(f"DEBUG: get_documentos({tipo_documento}) retornó {len(items)} items")
             return items
         except requests.exceptions.RequestException as e:
@@ -88,25 +94,25 @@ class SkualoDocumentosClient:
     def get_documento_detalle(self, id_documento: str) -> Optional[Dict]:
         """
         Obtiene el detalle completo de un documento específico.
-        Incluye detalles con campo 'cerrado' y proyecto.
-        Usando versión on caching.
         """
-        return self._get_detalle_documento(id_documento)
+        data = self._get_detalle_documento(id_documento)
+        # Si viene como lista (sucede con algunos tipos en Skualo), tomar el primero
+        if isinstance(data, list) and len(data) > 0:
+            return data[0]
+        return data
 
     def documento_tiene_posterior(self, detalle_doc: Dict) -> bool:
         """
-        Verifica si un documento tiene todos sus detalles cerrados
-        (es decir, ya fue procesado con documento posterior).
-        
-        Un documento está completamente procesado si TODOS sus detalles
-        tienen cerrado=True.
+        Verifica si un documento tiene todos sus detalles cerrados.
         """
+        if not detalle_doc or not isinstance(detalle_doc, dict):
+            return False
+            
         detalles = detalle_doc.get("detalles", [])
         
         if not detalles:
             return False
         
-        # Si TODOS los detalles están cerrados, el documento tiene posterior
         return all(d.get("cerrado", False) for d in detalles)
 
     def get_soli_sin_oc(self) -> List[Dict]:
@@ -125,27 +131,30 @@ class SkualoDocumentosClient:
             if estado != "Aprobado":
                 continue
 
-            # Obtener detalle completo para verificar campo 'cerrado'
+            # --- OPTIMIZACIÓN: Filtro temprano por fecha ---
+            fecha_str = doc.get("fecha", "")
+            try:
+                fecha = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None
+                if fecha:
+                    dias_antiguedad = (date.today() - fecha).days
+                    if dias_antiguedad > 45: # Ampliamos a 45 días para SOLIs
+                        continue
+            except:
+                pass
+
+            # Solo si pasa el filtro de fecha, pedimos el detalle para verificar si está 'cerrado'
             id_documento = doc.get("idDocumento", "")
             detalle = self.get_documento_detalle(id_documento)
             
             if not detalle:
                 continue
 
-            # Verificar si tiene documento posterior (todos cerrados)
             if self.documento_tiene_posterior(detalle):
-                continue  # Ya tiene OC, no incluir
-
-            # Extraer datos del detalle completo
-            fecha_str = detalle.get("fecha", "")
-            try:
-                fecha = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None
-            except:
-                fecha = None
+                continue
 
             monto = detalle.get("total", 0)
             
-            # Filtrar: excluir montos $0 o muy pequeños y documentos muy antiguos (>120 días)
+            # Filtrar: excluir montos $0 o muy pequeños y documentos muy antiguos (>15 días)
             if monto < 1000:  # Excluir montos menores a $1,000
                 continue
             
@@ -186,28 +195,30 @@ class SkualoDocumentosClient:
 
             # print(f"  Procesando OC {doc.get('idDocumento')}...")
 
-            # Obtener detalle completo
+            # --- OPTIMIZACIÓN: Filtro temprano por fecha ---
+            fecha_str = doc.get("fecha", "")
+            try:
+                fecha = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None
+                if fecha:
+                    dias_pendiente = (hoy - fecha).days
+                    if dias_pendiente > 45: # Filtro de 45 días inmediato
+                        continue
+            except:
+                pass
+
+            # Obtener detalle completo para verificar campo 'cerrado'
             id_documento = doc.get("idDocumento", "")
             detalle = self.get_documento_detalle(id_documento)
             
             if not detalle:
                 continue
 
-            # Verificar si tiene factura (todos cerrados)
             if self.documento_tiene_posterior(detalle):
-                continue  # Ya tiene factura, no incluir
-
-            fecha_str = detalle.get("fecha", "")
-            try:
-                fecha = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None
-                dias_pendiente = (hoy - fecha).days if fecha else 0
-            except:
-                fecha = None
-                dias_pendiente = 0
+                continue
 
             monto = detalle.get("total", 0)
             
-            # Filtrar: excluir montos muy pequeños y OCs muy antiguas (>180 días = 6 meses)
+            # Filtrar: excluir montos muy pequeños y OCs muy antiguas (>15 días)
             if monto < 1000:
                 continue
             
@@ -244,7 +255,16 @@ class SkualoDocumentosClient:
             if estado != "Aprobado":
                 continue
             
-            # print(f"  Procesando OCX {doc.get('idDocumento')}...")
+            # --- OPTIMIZACIÓN: Filtro temprano por fecha ---
+            fecha_str = doc.get("fecha", "")
+            try:
+                fecha = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None
+                if fecha:
+                    dias_pendiente = (hoy - fecha).days
+                    if dias_pendiente > 45: # Filtro de 45 días inmediato
+                        continue
+            except:
+                pass
 
             # Obtener detalle completo
             id_documento = doc.get("idDocumento", "")
@@ -253,21 +273,12 @@ class SkualoDocumentosClient:
             if not detalle:
                 continue
 
-            # Verificar si tiene invoice (todos cerrados)
             if self.documento_tiene_posterior(detalle):
-                continue  # Ya tiene invoice, no incluir
-
-            fecha_str = detalle.get("fecha", "")
-            try:
-                fecha = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None
-                dias_pendiente = (hoy - fecha).days if fecha else 0
-            except:
-                fecha = None
-                dias_pendiente = 0
+                continue
 
             monto_usd = detalle.get("total", 0)
             
-            # Filtrar: excluir montos muy pequeños y OCXs muy antiguas (>180 días = 6 meses)
+            # Filtrar: excluir montos muy pequeños y OCXs muy antiguas (>15 días)
             if monto_usd < 100:  # Excluir montos menores a $100 USD
                 continue
             
@@ -287,7 +298,63 @@ class SkualoDocumentosClient:
 
         return sorted(ocx_sin_invoice, key=lambda x: x['dias_pendiente'], reverse=True)
 
-    def get_oc_pendientes_aprobacion(self, dias_max: int = 30) -> List[Dict]:
+    def get_face_pendientes_pago(self, dias_max: int = 90) -> List[Dict]:
+        """
+        Obtiene Facturas de Compra (FACE) y otros documentos tributarios pendientes de pago.
+        Horizonte temporal: 90 días.
+        """
+        tipos = ["FACE", "DIN", "NCE"]
+        docs_pendientes = []
+        hoy = date.today()
+
+        for tipo in tipos:
+            items = self.get_documentos(tipo)
+            for doc in items:
+                estado = doc.get("estado", "")
+                if estado not in ["Aprobado", "Pendiente", ""]: # Depende de cómo Skualo marque FACE
+                    continue
+
+                id_documento = doc.get("idDocumento", "")
+                detalle = self.get_documento_detalle(id_documento)
+                
+                if not detalle:
+                    continue
+
+                # Un documento tributario está pendiente si no está cerrado
+                if self.documento_tiene_posterior(detalle):
+                    continue
+
+                fecha_str = detalle.get("fecha", "")
+                try:
+                    fecha = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None
+                    dias_pendiente = (hoy - fecha).days if fecha else 0
+                except:
+                    fecha = None
+                    dias_pendiente = 0
+
+                # Filtro de 90 días para FACE y otros
+                if dias_pendiente > dias_max:
+                    continue
+
+                monto = detalle.get("total", 0)
+                if abs(monto) < 1000: # Ignorar montos despreciables
+                    continue
+
+                docs_pendientes.append({
+                    "tipo": tipo,
+                    "folio": detalle.get("folio", ""),
+                    "fecha": fecha,
+                    "proveedor": detalle.get("auxiliar", "Sin proveedor"),
+                    "rut": detalle.get("idAuxiliar", ""),
+                    "monto": monto,
+                    "proyecto": detalle.get("proyecto", ""),
+                    "dias_pendiente": dias_pendiente,
+                    "glosa": detalle.get("observaciones", "")
+                })
+
+        return sorted(docs_pendientes, key=lambda x: x['dias_pendiente'], reverse=True)
+
+    def get_oc_pendientes_aprobacion(self, dias_max: int = 15) -> List[Dict]:
         """
         Obtiene OCs pendientes de aprobación (últimos N días).
         Visibilidad temprana de compromisos que vienen.
@@ -322,7 +389,7 @@ class SkualoDocumentosClient:
             if monto < 1000:
                 continue
             
-            if dias_pendiente > 15:  # Fijo 15 días
+            if dias_pendiente > dias_max:  # Respetar dias_max
                 continue
 
             oc_pendientes.append({
@@ -339,7 +406,7 @@ class SkualoDocumentosClient:
 
         return sorted(oc_pendientes, key=lambda x: x['monto'], reverse=True)
 
-    def get_ocx_pendientes_aprobacion(self, dias_max: int = 30) -> List[Dict]:
+    def get_ocx_pendientes_aprobacion(self, dias_max: int = 15) -> List[Dict]:
         """
         Obtiene OCXs pendientes de aprobación (últimos N días).
         Visibilidad temprana de compromisos internacionales que vienen.
@@ -374,7 +441,7 @@ class SkualoDocumentosClient:
             if monto_usd < 100:
                 continue
             
-            if dias_pendiente > 15:  # Fijo 15 días
+            if dias_pendiente > dias_max:  # Respetar dias_max
                 continue
 
             ocx_pendientes.append({
@@ -391,55 +458,107 @@ class SkualoDocumentosClient:
 
         return sorted(ocx_pendientes, key=lambda x: x['monto_usd'], reverse=True)
 
+    def get_ventas_pendientes(self) -> List[Dict]:
+        """
+        Obtiene Órdenes de Venta (OV) o Hojas de Entrada (HE) pendientes de facturar.
+        Esto representa el verdadero pipeline de INGRESOS.
+        """
+        tipos_venta = ["OV", "HE", "NV"] # Orden de Venta, Hoja de Entrada, Nota de Venta
+        ventas_pendientes = []
+        hoy = date.today()
+
+        for tipo in tipos_venta:
+            items = self.get_documentos(tipo)
+            for doc in items:
+                estado = doc.get("estado", "")
+                if estado not in ["Aprobado", "Aceptado", "Vigente", ""]: 
+                    continue
+
+                id_documento = doc.get("idDocumento", "")
+                detalle = self.get_documento_detalle(id_documento)
+                
+                if not detalle:
+                    continue
+
+                # Si el documento ya está cerrado, es que ya se facturó
+                if self.documento_tiene_posterior(detalle):
+                    continue
+
+                fecha_str = detalle.get("fecha", "")
+                try:
+                    fecha = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None
+                except:
+                    fecha = None
+
+                monto = detalle.get("total", 0)
+                if monto < 1000: continue
+
+                ventas_pendientes.append({
+                    "tipo": tipo,
+                    "folio": detalle.get("folio", ""),
+                    "fecha": fecha,
+                    "cliente": detalle.get("auxiliar", "Cliente desconocido"),
+                    "rut": detalle.get("idAuxiliar", ""),
+                    "monto": monto,
+                    "proyecto": detalle.get("proyecto", ""),
+                    "glosa": detalle.get("observaciones", "")
+                })
+
+        return sorted(ventas_pendientes, key=lambda x: x['monto'], reverse=True)
+
     def get_resumen_pipeline(self) -> Dict:
         """
-        Obtiene resumen consolidado del pipeline de compromisos.
+        Obtiene resumen consolidado del pipeline distinguiendo Ingresos de Egresos.
         """
-        print("Cargando SOLIs sin OC...")
+        print("🔍 Cargando Pipeline de INGRESOS (Ventas/HE)...")
+        ventas = self.get_ventas_pendientes()
+        print(f"  → {len(ventas)} ventas pendientes encontradas")
+
+        print("💸 Cargando Pipeline de EGRESOS (OC/OCX)...")
         solis = self.get_soli_sin_oc()
-        print(f"  → {len(solis)} encontradas")
-        
-        print("Cargando OCs sin Factura...")
         ocs = self.get_oc_sin_factura()
-        print(f"  → {len(ocs)} encontradas")
-        
-        print("Cargando OCXs sin Invoice...")
         ocxs = self.get_ocx_sin_invoice()
-        print(f"  → {len(ocxs)} encontradas")
-        
-        print("Cargando OCs pendientes aprobación (30d)...")
-        ocs_pend = self.get_oc_pendientes_aprobacion(dias_max=30)
-        print(f"  → {len(ocs_pend)} encontradas")
-        
-        print("Cargando OCXs pendientes aprobación (30d)...")
-        ocxs_pend = self.get_ocx_pendientes_aprobacion(dias_max=30)
-        print(f"  → {len(ocxs_pend)} encontradas")
+        ocs_pend = self.get_oc_pendientes_aprobacion(dias_max=45)
+        ocxs_pend = self.get_ocx_pendientes_aprobacion(dias_max=45)
+        face = self.get_face_pendientes_pago(dias_max=90)
 
         return {
-            "soli": {
-                "cantidad": len(solis),
-                "monto_total": sum(s['monto'] for s in solis),
-                "documentos": solis
+            "ingresos": {
+                "cantidad": len(ventas),
+                "monto_total": sum(v['monto'] for v in ventas),
+                "documentos": ventas
             },
-            "oc": {
-                "cantidad": len(ocs),
-                "monto_total": sum(o['monto'] for o in ocs),
-                "documentos": ocs
-            },
-            "ocx": {
-                "cantidad": len(ocxs),
-                "monto_total_usd": sum(o['monto_usd'] for o in ocxs),
-                "documentos": ocxs
-            },
-            "oc_pendiente": {
-                "cantidad": len(ocs_pend),
-                "monto_total": sum(o['monto'] for o in ocs_pend),
-                "documentos": ocs_pend
-            },
-            "ocx_pendiente": {
-                "cantidad": len(ocxs_pend),
-                "monto_total_usd": sum(o['monto_usd'] for o in ocxs_pend),
-                "documentos": ocxs_pend
+            "egresos": {
+                "soli": {
+                    "cantidad": len(solis),
+                    "monto_total": sum(s['monto'] for s in solis),
+                    "documentos": solis
+                },
+                "oc": {
+                    "cantidad": len(ocs),
+                    "monto_total": sum(o['monto'] for o in ocs),
+                    "documentos": ocs
+                },
+                "ocx": {
+                    "cantidad": len(ocxs),
+                    "monto_total_usd": sum(o['monto_usd'] for o in ocxs),
+                    "documentos": ocxs
+                },
+                "oc_pendiente": {
+                    "cantidad": len(ocs_pend),
+                    "monto_total": sum(o['monto'] for o in ocs_pend),
+                    "documentos": ocs_pend
+                },
+                "ocx_pendiente": {
+                    "cantidad": len(ocxs_pend),
+                    "monto_total_usd": sum(o['monto_usd'] for o in ocxs_pend),
+                    "documentos": ocxs_pend
+                },
+                "face": {
+                    "cantidad": len(face),
+                    "monto_total": sum(f['monto'] for f in face),
+                    "documentos": face
+                }
             }
         }
 

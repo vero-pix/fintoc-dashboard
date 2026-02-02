@@ -553,6 +553,11 @@ PIPELINE_HTML = """
                 <p>OCX_CANTIDAD</p>
                 <small>Monto: OCX_MONTO USD</small>
             </div>
+            <div class="card green">
+                <h3>Facturas (90d)</h3>
+                <p>FACE_CANTIDAD</p>
+                <small>Monto: FACE_MONTO CLP</small>
+            </div>
         </div>
 
         <div class="section-title warning">Visibilidad Temprana - Pendientes Aprobación (15d)</div>
@@ -591,6 +596,18 @@ PIPELINE_HTML = """
                 <th class="monto">Monto CLP</th>
             </tr>
             ROWS_OC
+        </table>
+
+        <div class="section-title">🧾 Facturas de Compra (FACE) y otros (90d)</div>
+        <table>
+            <tr>
+                <th>Documento</th>
+                <th>Fecha</th>
+                <th>Proveedor</th>
+                <th class="center">Días Pendiente</th>
+                <th class="monto">Monto CLP</th>
+            </tr>
+            ROWS_FACE
         </table>
 
         <div class="section-title">🌐 OCXs Aprobadas sin Invoice</div>
@@ -1468,6 +1485,10 @@ def pipeline():
     oc_pend_monto = resumen['oc_pendiente']['monto_total']
     ocx_pend_cantidad = resumen['ocx_pendiente']['cantidad']
     ocx_pend_monto_usd = resumen['ocx_pendiente']['monto_total_usd']
+    
+    # KPIs FACE y otros (90d)
+    face_cantidad = resumen['face']['cantidad']
+    face_monto = resumen['face']['monto_total']
 
     # Generar filas SOLIs
     rows_soli = ""
@@ -1491,14 +1512,11 @@ def pipeline():
         fecha_str = oc['fecha'].strftime('%d-%m-%Y') if oc['fecha'] else '-'
         dias = oc['dias_pendiente']
 
-        if dias > 30:
-            badge = '<span class="badge badge-critico">+30d</span>'
+        if dias > 10:
+            badge = '<span class="badge badge-alerta">+10d</span>'
             highlight = 'highlight'
-        elif dias > 15:
-            badge = '<span class="badge badge-alerta">15-30d</span>'
-            highlight = ''
         else:
-            badge = '<span class="badge badge-ok">&lt;15d</span>'
+            badge = '<span class="badge badge-ok">&lt;10d</span>'
             highlight = ''
 
         rows_oc += f'''<tr class="{highlight}">
@@ -1518,14 +1536,11 @@ def pipeline():
         fecha_str = ocx['fecha'].strftime('%d-%m-%Y') if ocx['fecha'] else '-'
         dias = ocx['dias_pendiente']
 
-        if dias > 30:
-            badge = '<span class="badge badge-critico">+30d</span>'
+        if dias > 10:
+            badge = '<span class="badge badge-alerta">+10d</span>'
             highlight = 'highlight'
-        elif dias > 15:
-            badge = '<span class="badge badge-alerta">15-30d</span>'
-            highlight = ''
         else:
-            badge = '<span class="badge badge-ok">&lt;15d</span>'
+            badge = '<span class="badge badge-ok">&lt;10d</span>'
             highlight = ''
 
         rows_ocx += f'''<tr class="{highlight}">
@@ -1538,6 +1553,33 @@ def pipeline():
 
     if not rows_ocx:
         rows_ocx = '<tr><td colspan="5" style="text-align:center;color:#888">No hay OCXs pendientes</td></tr>'
+
+    # Generar filas FACE y otros (90d)
+    rows_face = ""
+    for f in resumen['face']['documentos'][:50]:
+        fecha_str = f['fecha'].strftime('%d-%m-%Y') if f['fecha'] else '-'
+        dias = f['dias_pendiente']
+        
+        if dias > 60:
+            badge = '<span class="badge badge-critico">+60d</span>'
+            highlight = 'highlight'
+        elif dias > 30:
+            badge = '<span class="badge badge-alerta">30-60d</span>'
+            highlight = ''
+        else:
+            badge = '<span class="badge badge-ok">&lt;30d</span>'
+            highlight = ''
+            
+        rows_face += f'''<tr class="{highlight}">
+            <td>{f['tipo']} {f['folio']}</td>
+            <td>{fecha_str}</td>
+            <td>{f['proveedor'][:40]}</td>
+            <td class="center">{dias} días {badge}</td>
+            <td class="monto">${f['monto']:,.0f}</td>
+        </tr>'''
+
+    if not rows_face:
+        rows_face = '<tr><td colspan="5" style="text-align:center;color:#888">No hay documentos tributarios pendientes</td></tr>'
 
     # Generar filas OCs Pendientes Aprobación
     rows_oc_pend = ""
@@ -1594,9 +1636,12 @@ def pipeline():
     html = html.replace('OC_PEND_MONTO', f"${oc_pend_monto:,.0f}")
     html = html.replace('OCX_PEND_CANTIDAD', str(ocx_pend_cantidad))
     html = html.replace('OCX_PEND_MONTO', f"${ocx_pend_monto_usd:,.2f}")
+    html = html.replace('FACE_CANTIDAD', str(face_cantidad))
+    html = html.replace('FACE_MONTO', f"${face_monto:,.0f}")
     html = html.replace('ROWS_SOLI', rows_soli)
     html = html.replace('ROWS_OC', rows_oc)
     html = html.replace('ROWS_OCX', rows_ocx)
+    html = html.replace('ROWS_FACE', rows_face)
     html = html.replace('ROWS_OC_PEND', rows_oc_pend)
     html = html.replace('ROWS_OCX_PEND', rows_ocx_pend)
 
