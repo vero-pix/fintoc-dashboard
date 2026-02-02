@@ -431,24 +431,85 @@ def tablero():
     <html lang="es">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title>CathPro CFO Cockpit</title>
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
         <style>
-            :root {{ --orange: {CP_ORANGE}; --green: {CP_GREEN}; --dark: {CP_DARK}; --white: {CP_WHITE}; --bg: #0b0c0c; }}
-            body {{ font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--white); margin: 0; padding: 25px; }}
+            :root {{ --orange: {CP_ORANGE}; --green: {CP_GREEN}; --dark: {CP_DARK}; --white: {CP_WHITE}; --bg: #0b0c0c; --card-bg: #161819; }}
+            body {{ font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--white); margin: 0; padding: 15px; line-height: 1.4; }}
             .container {{ max-width: 1400px; margin: 0 auto; }}
-            .header-cfo {{ display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; border-bottom: 4px solid var(--orange); padding-bottom: 15px; }}
-            .grid-kpis {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 15px; margin-bottom: 25px; }}
-            .kpi-card {{ background: var(--dark); padding: 20px; border-radius: 10px; border-left: 5px solid var(--green); }}
-            .main-val {{ font-size: 26px; font-weight: 800; display: block; margin: 10px 0; }}
-            .section {{ background: var(--dark); padding: 25px; border-radius: 12px; margin-bottom: 25px; border: 1px solid #222; }}
-            .section-title {{ font-size: 15px; font-weight: 800; color: var(--orange); text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 8px; margin-bottom: 20px; }}
-            .alerts-box {{ background: #1a1510; border: 1px solid #3d2b1f; padding: 20px; border-radius: 10px; margin-bottom: 25px; }}
-            table {{ width: 100%; border-collapse: collapse; }}
-            th {{ text-align: left; padding: 12px; color: #666; font-size: 10px; text-transform: uppercase; border-bottom: 2px solid #333; }}
-            td {{ padding: 12px; font-size: 13px; border-bottom: 1px solid #1a1a1a; }}
-            .monto {{ text-align: right; font-family: monospace; font-weight: 700; }}
+            
+            .header-cfo {{ 
+                display: flex; 
+                justify-content: space-between; 
+                align-items: center; 
+                margin-bottom: 20px; 
+                border-bottom: 2px solid var(--orange); 
+                padding-bottom: 15px; 
+            }}
+            .header-cfo h1 {{ font-size: 1.5rem; margin: 0; }}
+            
+            .grid-kpis {{ 
+                display: grid; 
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+                gap: 15px; 
+                margin-bottom: 25px; 
+            }}
+            .kpi-card {{ 
+                background: var(--card-bg); 
+                padding: 22px; 
+                border-radius: 12px; 
+                border-left: 6px solid var(--green);
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            }}
+            .kpi-card h3 {{ font-size: 14px; margin: 0; opacity: 0.8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }}
+            .main-val {{ font-size: 32px; font-weight: 800; display: block; margin: 8px 0; letter-spacing: -1px; }}
+            
+            .section {{ 
+                background: var(--card-bg); 
+                padding: 20px; 
+                border-radius: 16px; 
+                margin-bottom: 25px; 
+                border: 1px solid #222; 
+            }}
+            .section-title {{ 
+                font-size: 14px; 
+                font-weight: 800; 
+                color: var(--orange); 
+                text-transform: uppercase; 
+                border-bottom: 1px solid #222; 
+                padding-bottom: 10px; 
+                margin-bottom: 20px;
+                letter-spacing: 1px;
+            }}
+            
+            .alerts-box {{ 
+                background: linear-gradient(145deg, #1a1510, #110e0a); 
+                border: 1px solid #3d2b1f; 
+                padding: 18px; 
+                border-radius: 12px; 
+                margin-bottom: 25px; 
+            }}
+            
+            .table-container {{ overflow-x: auto; -webkit-overflow-scrolling: touch; }}
+            table {{ width: 100%; border-collapse: collapse; min-width: 600px; }}
+            th {{ text-align: left; padding: 12px 8px; color: #888; font-size: 11px; text-transform: uppercase; border-bottom: 2px solid #333; }}
+            td {{ padding: 14px 8px; font-size: 14px; border-bottom: 1px solid #222; }}
+            
+            .monto {{ text-align: right; font-family: 'Outfit', sans-serif; font-weight: 700; }}
             .center {{ text-align: center; }}
+            
+            @media (max-width: 768px) {{
+                body {{ padding: 10px; }}
+                .header-cfo {{ flex-direction: column; align-items: flex-start; gap: 10px; }}
+                .main-val {{ font-size: 28px; }}
+                .grid-kpis {{ grid-template-columns: 1fr; }}
+                .kpi-card {{ padding: 18px; }}
+                .pipe-grid {{ grid-template-columns: 1fr; }}
+                table {{ min-width: 500px; }}
+                td, th {{ padding: 10px 5px; font-size: 13px; }}
+            }}
+            
             .pipe-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }}
             .pipe-col {{ background: #161718; padding: 15px; border-radius: 8px; }}
             .pipe-title {{ font-size: 11px; font-weight: 700; color: #888; margin-bottom: 10px; border-bottom: 1px solid #222; padding-bottom: 5px; }}
@@ -549,10 +610,12 @@ def tablero():
 
             <div class="section">
                 <h2 class="section-title">📊 VERICOSAS COCKPIT Q1 2026</h2>
-                <table>
-                    <thead><tr><th>Indicador</th><th class="center">Enero</th><th class="center">Febrero</th><th class="center">Marzo</th><th class="center">Q1 Total</th></tr></thead>
-                    <tbody>{resumen_body}</tbody>
-                </table>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Indicador</th><th class="center">Enero</th><th class="center">Febrero</th><th class="center">Marzo</th><th class="center">Q1 Total</th></tr></thead>
+                        <tbody>{resumen_body}</tbody>
+                    </table>
+                </div>
             </div>
 
             <div class="section">
@@ -562,12 +625,14 @@ def tablero():
                 </div>
                 <div class="pipe-col" style="background:transparent; padding:0">
                     <div style="font-size:20px; font-weight:800; margin-bottom:15px; color:var(--green)">Registrado en Sistema: {format_m(ingresos_pipe['monto_total'])}</div>
-                    <table>
-                        <thead><tr><th>Fecha</th><th>Folio</th><th>Cliente</th><th>Proyecto</th><th class="monto">Monto</th></tr></thead>
-                        <tbody>
-                            {render_pipe_table(ingresos_pipe)}
-                        </tbody>
-                    </table>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Fecha</th><th>Folio</th><th>Cliente</th><th>Proyecto</th><th class="monto">Monto</th></tr></thead>
+                            <tbody>
+                                {render_pipe_table(ingresos_pipe)}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
