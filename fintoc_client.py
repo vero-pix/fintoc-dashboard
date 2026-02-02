@@ -26,11 +26,11 @@ class FintocClient:
         
         # Links de las cuentas bancarias (link_token format: link_XXX_token_YYY)
         self.links = {
-            "Scotiabank": os.getenv("FINTOC_LINK_SCOTIA"),
-            "BCI": os.getenv("FINTOC_LINK_BCI"),
-            "Banco de Chile": os.getenv("FINTOC_LINK_CHILE"),
-            "Santander": os.getenv("FINTOC_LINK_SANTANDER"),
-            "Bice": os.getenv("FINTOC_LINK_BICE"),
+            "Scotiabank": str(os.getenv("FINTOC_LINK_SCOTIA", "")).strip(),
+            "BCI": str(os.getenv("FINTOC_LINK_BCI", "")).strip(),
+            "Banco de Chile": str(os.getenv("FINTOC_LINK_CHILE", "")).strip(),
+            "Santander": str(os.getenv("FINTOC_LINK_SANTANDER", "")).strip(),
+            "Bice": str(os.getenv("FINTOC_LINK_BICE", "")).strip(),
         }
 
     def _parse_link_token(self, link_token: str) -> tuple:
@@ -63,7 +63,8 @@ class FintocClient:
         
         try:
             response = requests.get(url, headers=self.headers, params=params)
-            response.raise_for_status()
+            if response.status_code != 200:
+                raise Exception(f"Fintoc Error {response.status_code}: {response.text}")
             return response.json()
         except requests.exceptions.RequestException as e:
             print(f"ERROR obteniendo cuentas de {banco}: {e}")

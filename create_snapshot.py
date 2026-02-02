@@ -184,10 +184,13 @@ def get_snapshot():
         snapshot["data"]["historico"] = {}
 
     # Guardar a archivo
+    f_data = snapshot["data"].get("fintoc_balances", {})
+    num_ctx = len(f_data.get('clp', {})) + len(f_data.get('usd', {})) + len(f_data.get('eur', {})) - 3 if f_data else 0
+    
     snapshot["logs"] = {
-        "fintoc": "OK" if snapshot["data"].get("fintoc_balances") else "FALLO O VACIO",
-        "skualo": "OK" if snapshot["data"].get("skualo_balances") else "FALLO O VACIO",
-        "errors": []
+        "fintoc": "OK" if num_ctx > 0 else "ERROR (0 CUENTAS)",
+        "skualo": "OK" if snapshot["data"].get("skualo_balances") else "FALLO",
+        "detalles": []
     }
     
     with open('data_snapshot.json', 'w', encoding='utf-8') as f:
