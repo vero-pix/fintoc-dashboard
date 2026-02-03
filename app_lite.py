@@ -783,7 +783,7 @@ def tablero():
                     • FINTOC API: {snapshot.get('logs', {}).get('fintoc', 'N/A')}<br>
                     • SKUALO API: {snapshot.get('logs', {}).get('skualo', 'N/A')}<br>
                     • CUENTAS BANCARIAS: {len(fintoc.get('clp', {})) + len(fintoc.get('usd', {})) + len(fintoc.get('eur', {})) - 3 if fintoc else 0}<br>
-                    • INGRESO POR FACTURAR (GAP): {format_m(snapshot.get('data', {}).get('forecast', [{}])[0].get('forecast', 0) - snapshot.get('data', {}).get('contabilidad_real', {}).get('Febrero', {}).get('ing_real', 0))}<br>
+                    • INGRESO POR FACTURAR (GAP): {format_m(next((f['forecast'] for f in snapshot.get('data', {}).get('forecast', []) if f['mes'] == datetime.now(TZ_CHILE).strftime('%B').replace('February','Febrero').replace('January','Enero').replace('March','Marzo')), 0) - snapshot.get('data', {}).get('contabilidad_real', {}).get(datetime.now(TZ_CHILE).strftime('%B').replace('February','Febrero').replace('January','Enero').replace('March','Marzo'), {}).get('ing_real', 0))}<br>
                     • REGISTROS PIPELINE: {pipeline.get('ingresos', {}).get('cantidad', 0) + sum(e.get('cantidad', 0) for e in pipeline.get('egresos', {}).values())}<br>
                     • FINTOC_SK: {"✅ PRESENTE" if os.getenv("FINTOC_SECRET_KEY") else "❌ FALTA"}<br>
                     
