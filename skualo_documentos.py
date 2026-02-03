@@ -69,36 +69,35 @@ class SkualoDocumentosClient:
             return None
 
     def get_documentos(self, tipo_documento: str) -> List[Dict]:
-        """
-        Obtiene documentos desde Skualo. 
-        Nota: Filtrado manual en Python para evitar errores 500 de la API.
-        """
         url = f"{self.base_url}/documentos"
-        # Traer los últimos 200 documentos sin filtro complejo para máxima estabilidad
-        params = {"PageSize": 200} 
+        params = {"PageSize": 100} 
 
         try:
             response = requests.get(url, headers=self.headers, params=params)
             if response.status_code != 200:
-                raise Exception(f"Skualo Status {response.status_code}")
+                raise Exception(f"Skualo Error {response.status_code}")
             
             data = response.json()
             items = data if isinstance(data, list) else data.get("items", [])
             
-            # Filtrar manual por tipo para evitar errores de sintaxis en la API
-            # Skualo suele usar 'idTipoDocumento' o 'codigo'
-            filtered = [
-                doc for doc in items 
-                if str(doc.get("idTipoDocumento", "")).upper() == tipo_documento.upper() or
-                   str(doc.get("idDocumento", "")).startswith(tipo_documento.upper())
-            ]
+            # DIAGNÓSTICO: Registrar qué tipos vemos realmente en Skualo
+            if items:
+                tipos_vistos = list(set([str(d.get('idTipoDocumento', '')) for d in items if d.get('idTipoDocumento')]))
+                self.last_errors.append(f"Tipos en sistema: {', '.join(tipos_vistos[:8])}")
+
+            # Filtro flexible: buscamos en idTipoDocumento o en el folio/idDocumento
+            filtered = []
+            for d in items:
+                id_tipo = str(d.get("idTipoDocumento", "")).upper()
+                id_doc = str(d.get("idDocumento", "")).upper()
+                codigo = str(d.get("codigo", "")).upper()
+                
+                if tipo_documento.upper() in [id_tipo, codigo] or id_doc.startswith(tipo_documento.upper()):
+                    filtered.append(d)
             
-            print(f"DEBUG: get_documentos({tipo_documento}) encontró {len(filtered)} de {len(items)} totales")
             return filtered
         except Exception as e:
-            err = f"Error Pipeline {tipo_documento}: {str(e)}"
-            print(err)
-            self.last_errors.append(err)
+            self.last_errors.append(f"Error {tipo_documento}: {str(e)}")
             return []
 
     def get_documento_detalle(self, id_documento: str) -> Optional[Dict]:
