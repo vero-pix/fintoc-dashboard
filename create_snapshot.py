@@ -85,9 +85,11 @@ def get_snapshot():
                 fecha_str = d.get("Fecha", "")
                 if not fecha_str: continue
                 mes_num = int(fecha_str[5:7])
-                mes_nombre = {1:"Enero", 2:"Febrero", 3:"Marzo"}.get(mes_num, "Otro")
+                meses_map = {1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 
+                             7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"}
+                mes_nombre = meses_map.get(mes_num, "Desconocido")
                 
-                if (mes_nombre != "Otro"):
+                if (mes_nombre != "Desconocido"):
                     if mes_nombre not in real_data:
                         real_data[mes_nombre] = {"ing_real": 0, "cos_real": 0}
                     
