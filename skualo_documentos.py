@@ -70,34 +70,33 @@ class SkualoDocumentosClient:
 
     def get_documentos(self, tipo_documento: str) -> List[Dict]:
         url = f"{self.base_url}/documentos"
-        params = {"PageSize": 100} 
+        # Quitamos PageSize por si la API no lo soporta en este endpoint
+        params = {} 
 
         try:
             response = requests.get(url, headers=self.headers, params=params)
             if response.status_code != 200:
-                raise Exception(f"Skualo Error {response.status_code}")
+                # Capturamos el texto real del error para diagnóstico
+                error_msg = response.text[:100]
+                raise Exception(f"Skualo {response.status_code}: {error_msg}")
             
             data = response.json()
             items = data if isinstance(data, list) else data.get("items", [])
             
-            # DIAGNÓSTICO: Registrar qué tipos vemos realmente en Skualo
+            # Diagnóstico de tipos
             if items:
-                tipos_vistos = list(set([str(d.get('idTipoDocumento', '')) for d in items if d.get('idTipoDocumento')]))
-                self.last_errors.append(f"Tipos en sistema: {', '.join(tipos_vistos[:8])}")
+                tipos = list(set([str(d.get('idTipoDocumento', '')) for d in items if d.get('idTipoDocumento')]))
+                self.last_errors.append(f"Vistos: {', '.join(tipos[:5])}")
 
-            # Filtro flexible: buscamos en idTipoDocumento o en el folio/idDocumento
             filtered = []
             for d in items:
-                id_tipo = str(d.get("idTipoDocumento", "")).upper()
-                id_doc = str(d.get("idDocumento", "")).upper()
-                codigo = str(d.get("codigo", "")).upper()
-                
-                if tipo_documento.upper() in [id_tipo, codigo] or id_doc.startswith(tipo_documento.upper()):
+                # Búsqueda más amplia para encontrar el documento
+                if any(str(v).upper() == tipo_documento.upper() for v in d.values() if isinstance(v, (str, int))):
                     filtered.append(d)
             
             return filtered
         except Exception as e:
-            self.last_errors.append(f"Error {tipo_documento}: {str(e)}")
+            self.last_errors.append(f"Err {tipo_documento}: {str(e)}")
             return []
 
     def get_documento_detalle(self, id_documento: str) -> Optional[Dict]:
