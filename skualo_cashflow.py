@@ -291,12 +291,13 @@ class SkualoCashFlow:
     # CASH FLOW PROYECTADO
     # =========================================================================
     
-    def get_cashflow_proyectado(self, dias=14):
+    def get_cashflow_proyectado(self, dias=14, forecast_delta=0):
         """
         Proyección de cash flow usando:
         - Fecha de cobro ajustada por cliente
         - Pagos recurrentes configurados
         - CxP por fecha de vencimiento
+        - Inyección de Forecast (opcional)
         """
         print(f"\n📊 Calculando cash flow proyectado ({dias} días)...")
         
@@ -350,6 +351,25 @@ class SkualoCashFlow:
                     "monto": r["monto"],
                     "tipo": "recurrente",
                 })
+        
+        # Inyección de Forecast Delta (Ingresos proyectados no facturados todavía)
+        if forecast_delta > 0:
+            # Encontrar los viernes que quedan en el mes actual dentro de los 'dias' proyectados
+            viernes_proyeccion = []
+            for i in range(dias):
+                f = self.hoy + timedelta(days=i)
+                if f.weekday() == 4: # 4 es viernes
+                    viernes_proyeccion.append(f)
+            
+            if viernes_proyeccion:
+                monto_por_viernes = forecast_delta / len(viernes_proyeccion)
+                for f in viernes_proyeccion:
+                    proyeccion[f]["entradas"] += monto_por_viernes
+                    proyeccion[f]["detalle_entradas"].append({
+                        "cliente": "PROYECCIÓN FORECAST (GSheets)",
+                        "monto": monto_por_viernes,
+                        "dias_config": 0
+                    })
         
         # Calcular totales
         for fecha in proyeccion:

@@ -179,9 +179,27 @@ def get_snapshot():
     # 4.7 Cash Flow Proyectado (7, 14, 30, 90 días)
     try:
         print("  → Calculando Proyecciones de Cash Flow (90 días)...")
+        
+        # Calcular Gap de Forecast para el mes actual
+        hoy = datetime.now(TZ_CHILE)
+        mes_actual_nombre = {1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 
+                             7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"}.get(hoy.month)
+        
+        forecast_mes = 0
+        for f in snapshot["data"].get("forecast", []):
+            if f['mes'] == mes_actual_nombre:
+                forecast_mes = f['forecast']
+                break
+        
+        real_mes = snapshot["data"].get("contabilidad_real", {}).get(mes_actual_nombre, {}).get("ing_real", 0)
+        gap_forecast = max(0, forecast_mes - real_mes)
+        
+        if gap_forecast > 0:
+            print(f"    💡 Inyectando Gap de Forecast: ${gap_forecast:,.0f} ({mes_actual_nombre})")
+        
         cf_engine = SkualoCashFlow()
-        # Calculamos la de 90 días que es la más completa
-        proy_full = cf_engine.get_cashflow_proyectado(dias=95)
+        # Pasamos el gap para que se distribuya en los viernes restantes
+        proy_full = cf_engine.get_cashflow_proyectado(dias=95, forecast_delta=gap_forecast)
         
         # IMPORTANTE: JSON no acepta objetos 'date' como llaves. Convertir a string.
         proy_serializable = { (k.isoformat() if isinstance(k, (date, datetime)) else str(k)): v for k, v in proy_full.items() }
