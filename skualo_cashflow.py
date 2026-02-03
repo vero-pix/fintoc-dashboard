@@ -291,24 +291,23 @@ class SkualoCashFlow:
     # CASH FLOW PROYECTADO
     # =========================================================================
     
-    def get_cashflow_proyectado(self, dias=14, forecast_delta=0):
+    def get_cashflow_proyectado(self, dias=14, forecast_gaps=None):
         """
         Proyección de cash flow usando:
         - Fecha de cobro ajustada por cliente
         - Pagos recurrentes configurados
         - CxP por fecha de vencimiento
-        - Inyección de Forecast (opcional)
+        - Inyección de Forecast Multi-Mes (opcional)
         """
+        if forecast_gaps is None:
+            forecast_gaps = {}
+
         print(f"\n📊 Calculando cash flow proyectado ({dias} días)...")
-        
-        cxc = self.get_cxc_detalle(con_fecha_comprobante=False)  # Sin API extra por ahora
-        cxp = self.get_cxp_detalle("todas")
-        recurrentes = self.get_pagos_recurrentes_periodo(dias)
         
         # Inicializar días
         proyeccion = {}
-        for i in range(dias):
-            fecha = self.hoy + timedelta(days=i)
+        for i in range(dias + 1):
+            fecha = (self.hoy + timedelta(days=i))
             proyeccion[fecha] = {
                 "entradas": 0,
                 "salidas_cxp": 0,
@@ -319,6 +318,10 @@ class SkualoCashFlow:
                 "detalle_salidas": [],
             }
         
+        cxc = self.get_cxc_detalle(con_fecha_comprobante=False)
+        cxp = self.get_cxp_detalle("todas")
+        recurrentes = self.get_pagos_recurrentes_periodo(dias)
+
         # Entradas: CxC por fecha de cobro esperada
         for doc in cxc:
             fecha_cobro = doc["fecha_cobro_esperada"]
@@ -351,25 +354,34 @@ class SkualoCashFlow:
                     "monto": r["monto"],
                     "tipo": "recurrente",
                 })
-        
-        # Inyección de Forecast Delta (Ingresos proyectados no facturados todavía)
-        if forecast_delta > 0:
-            # Encontrar los viernes que quedan en el mes actual dentro de los 'dias' proyectados
-            viernes_proyeccion = []
-            for i in range(dias):
-                f = self.hoy + timedelta(days=i)
-                if f.weekday() == 4: # 4 es viernes
-                    viernes_proyeccion.append(f)
-            
-            if viernes_proyeccion:
-                monto_por_viernes = forecast_delta / len(viernes_proyeccion)
-                for f in viernes_proyeccion:
-                    proyeccion[f]["entradas"] += monto_por_viernes
-                    proyeccion[f]["detalle_entradas"].append({
-                        "cliente": "PROYECCIÓN FORECAST (GSheets)",
-                        "monto": monto_por_viernes,
-                        "dias_config": 0
-                    })
+
+        # --- Inyección de Forecast Gaps Multi-Mes ---
+        meses_es = {1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 
+                    7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"}
+
+        # Agrupar viernes por mes
+        viernes_por_mes = {}
+        for i in range(dias + 1):
+            f = self.hoy + timedelta(days=i)
+            if f.weekday() == 4: # Viernes
+                mes_nombre = meses_es.get(f.month)
+                if mes_nombre not in viernes_por_mes:
+                    viernes_por_mes[mes_nombre] = []
+                viernes_por_mes[mes_nombre].append(f)
+
+        # Inyectar el gap de cada mes en sus viernes
+        for mes_nombre, gap_monto in forecast_gaps.items():
+            if gap_monto > 0:
+                viernes_del_mes = viernes_por_mes.get(mes_nombre, [])
+                if viernes_del_mes:
+                    monto_por_viernes = gap_monto / len(viernes_del_mes)
+                    for f in viernes_del_mes:
+                        proyeccion[f]["entradas"] += monto_por_viernes
+                        proyeccion[f]["detalle_entradas"].append({
+                            "cliente": f"PROYECCIÓN FORECAST ({mes_nombre})",
+                            "monto": monto_por_viernes,
+                            "dias_config": 0
+                        })
         
         # Calcular totales
         for fecha in proyeccion:

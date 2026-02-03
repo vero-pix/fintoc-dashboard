@@ -1,6 +1,6 @@
 import json
 import os
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 import pytz
 from fintoc_client import FintocClient
 from skualo_client import SkualoClient
@@ -180,26 +180,34 @@ def get_snapshot():
     try:
         print("  → Calculando Proyecciones de Cash Flow (90 días)...")
         
-        # Calcular Gap de Forecast para el mes actual
+        # Calcular Gaps de Forecast para todos los meses en la proyeccion (Próximos 95 días)
+        meses_es = {1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 
+                    7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"}
+        
         hoy = datetime.now(TZ_CHILE)
-        mes_actual_nombre = {1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 
-                             7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"}.get(hoy.month)
+        forecast_gaps = {}
         
-        forecast_mes = 0
-        for f in snapshot["data"].get("forecast", []):
-            if f['mes'] == mes_actual_nombre:
-                forecast_mes = f['forecast']
-                break
-        
-        real_mes = snapshot["data"].get("contabilidad_real", {}).get(mes_actual_nombre, {}).get("ing_real", 0)
-        gap_forecast = max(0, forecast_mes - real_mes)
-        
-        if gap_forecast > 0:
-            print(f"    💡 Inyectando Gap de Forecast: ${gap_forecast:,.0f} ({mes_actual_nombre})")
+        # Identificar meses en el horizonte de 95 días
+        for d in range(0, 96, 30):
+            fecha = hoy + timedelta(days=d)
+            mes_nombre = meses_es.get(fecha.month)
+            if mes_nombre not in forecast_gaps:
+                forecast_mes = 0
+                for f in snapshot["data"].get("forecast", []):
+                    if f['mes'] == mes_nombre:
+                        forecast_mes = f['forecast']
+                        break
+                
+                real_mes = snapshot["data"].get("contabilidad_real", {}).get(mes_nombre, {}).get("ing_real", 0)
+                gap = max(0, forecast_mes - real_mes)
+                forecast_gaps[mes_nombre] = gap
+                
+                if gap > 0:
+                    print(f"    💡 Inyectando Gap de Forecast: ${gap:,.0f} ({mes_nombre})")
         
         cf_engine = SkualoCashFlow()
-        # Pasamos el gap para que se distribuya en los viernes restantes
-        proy_full = cf_engine.get_cashflow_proyectado(dias=95, forecast_delta=gap_forecast)
+        # Pasamos el diccionario de gaps para distribución multimes
+        proy_full = cf_engine.get_cashflow_proyectado(dias=95, forecast_gaps=forecast_gaps)
         
         # IMPORTANTE: JSON no acepta objetos 'date' como llaves. Convertir a string.
         proy_serializable = { (k.isoformat() if isinstance(k, (date, datetime)) else str(k)): v for k, v in proy_full.items() }
