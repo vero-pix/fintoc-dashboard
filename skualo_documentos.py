@@ -70,8 +70,12 @@ class SkualoDocumentosClient:
 
     def get_documentos(self, tipo_documento: str) -> List[Dict]:
         url = f"{self.base_url}/documentos"
-        # Quitamos PageSize por si la API no lo soporta en este endpoint
-        params = {} 
+        # Skualo exige al menos un criterio de búsqueda. Usamos rango de fecha.
+        params = {
+            "desde": "2026-01-01",
+            "hasta": "2026-12-31",
+            "PageSize": 200
+        } 
 
         try:
             response = requests.get(url, headers=self.headers, params=params)
@@ -90,7 +94,7 @@ class SkualoDocumentosClient:
 
             filtered = []
             for d in items:
-                # Búsqueda más amplia para encontrar el documento
+                # Búsqueda más amplia para encontrar el documento (en cualquier campo)
                 if any(str(v).upper() == tipo_documento.upper() for v in d.values() if isinstance(v, (str, int))):
                     filtered.append(d)
             
