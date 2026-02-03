@@ -70,11 +70,10 @@ class SkualoDocumentosClient:
 
     def get_documentos(self, tipo_documento: str) -> List[Dict]:
         url = f"{self.base_url}/documentos"
-        # Skualo exige al menos un criterio. Filtramos por tipo y fecha.
+        # Skualo exige al menos un criterio. Según pruebas, NO usar comillas para los valores.
         fecha_desde = "01-01-2026"
-        # Importante: El tipo de documento debe ir entre comillas simples para Skualo
         params = {
-            "search": f"idTipoDocumento eq '{tipo_documento}' AND fecha gte {fecha_desde}",
+            "search": f"idTipoDocumento eq {tipo_documento} and fecha gte {fecha_desde}",
             "pageSize": 200
         } 
 
