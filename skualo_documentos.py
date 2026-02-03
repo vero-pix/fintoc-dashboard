@@ -70,25 +70,31 @@ class SkualoDocumentosClient:
 
     def get_documentos(self, tipo_documento: str) -> List[Dict]:
         """
-        Obtiene documentos por tipo desde Skualo.
-        Maneja casos donde la API retorna una lista directa o un objeto con campo 'items'.
+        Obtiene documentos desde Skualo. 
+        Nota: Filtrado manual en Python para evitar errores 500 de la API.
         """
         url = f"{self.base_url}/documentos"
-        # IMPORTANTE: Los filtros de string en OData requieren comillas simples
-        params = {"search": f"IDTipoDocumento eq '{tipo_documento}'"}
+        # Traer los últimos 200 documentos sin filtro complejo para máxima estabilidad
+        params = {"PageSize": 200} 
 
         try:
             response = requests.get(url, headers=self.headers, params=params)
-            response.raise_for_status()
-            data = response.json()
+            if response.status_code != 200:
+                raise Exception(f"Skualo Status {response.status_code}")
             
-            if isinstance(data, list):
-                items = data
-            else:
-                items = data.get("items", [])
-                
-            print(f"DEBUG: get_documentos({tipo_documento}) retornó {len(items)} items")
-            return items
+            data = response.json()
+            items = data if isinstance(data, list) else data.get("items", [])
+            
+            # Filtrar manual por tipo para evitar errores de sintaxis en la API
+            # Skualo suele usar 'idTipoDocumento' o 'codigo'
+            filtered = [
+                doc for doc in items 
+                if str(doc.get("idTipoDocumento", "")).upper() == tipo_documento.upper() or
+                   str(doc.get("idDocumento", "")).startswith(tipo_documento.upper())
+            ]
+            
+            print(f"DEBUG: get_documentos({tipo_documento}) encontró {len(filtered)} de {len(items)} totales")
+            return filtered
         except Exception as e:
             err = f"Error Pipeline {tipo_documento}: {str(e)}"
             print(err)
