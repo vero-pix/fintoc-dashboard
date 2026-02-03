@@ -106,19 +106,17 @@ class SkualoDocumentosClient:
             return data[0]
         return data
 
-    def documento_tiene_posterior(self, detalle_doc: Dict) -> bool:
+    def documento_tiene_posterior(self, detalle: Dict) -> bool:
         """
-        Verifica si un documento tiene todos sus detalles cerrados.
+        Determina si un documento tiene referencias posteriores (ej: FACE que ya tiene pago).
+        Optimización: Solo considera que tiene posterior si TODOS sus ítems están cerrados.
         """
-        if not detalle_doc or not isinstance(detalle_doc, dict):
-            return False
-            
-        detalles = detalle_doc.get("detalles", [])
-        
-        if not detalles:
+        items = detalle.get("items", [])
+        if not items:
             return False
         
-        return all(d.get("cerrado", False) for d in detalles)
+        # Si todos los ítems están marcados como cerrados, el documento ya no es "pendiente"
+        return all(item.get("cerrado", False) for item in items)
 
     def get_soli_sin_oc(self, dias_max: int = 45) -> List[Dict]:
         """
@@ -295,17 +293,30 @@ class SkualoDocumentosClient:
         Obtiene Facturas de Compra (FACE) y otros documentos tributarios pendientes de pago.
         Horizonte temporal: 90 días.
         """
-        tipos = ["FACE", "DIN", "NCE"]
+        tipos = ["FACE", "FXCE", "INV", "DI", "BOHE", "NDCE", "DIN", "NCE"]
         docs_pendientes = []
         hoy = date.today()
 
         for tipo in tipos:
             items = self.get_documentos(tipo)
             for doc in items:
+                # 1. Filtro por estado
                 estado = doc.get("estado", "")
-                if estado not in ["Aprobado", "Pendiente", ""]: # Depende de cómo Skualo marque FACE
+                if estado not in ["Aprobado", "Pendiente", "Contabilizado", "Vigente", ""]: 
                     continue
 
+                # 2. OPTIMIZACIÓN: Filtro temprano por fecha (desde la lista)
+                fecha_str = doc.get("fecha", "")
+                try:
+                    fecha_obj = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None
+                    if fecha_obj:
+                        dias_e = (hoy - fecha_obj).days
+                        if dias_e > dias_max:
+                            continue
+                except:
+                    pass
+
+                # 3. Solo si pasa los filtros previos, pedimos el detalle
                 id_documento = doc.get("idDocumento", "")
                 detalle = self.get_documento_detalle(id_documento)
                 
@@ -316,6 +327,7 @@ class SkualoDocumentosClient:
                 if self.documento_tiene_posterior(detalle):
                     continue
 
+                # Recalcular días con fecha definitiva del detalle (por si acaso)
                 fecha_str = detalle.get("fecha", "")
                 try:
                     fecha = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None

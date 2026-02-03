@@ -1,0 +1,52 @@
+ID         | Nombre                                   | Es Fiscal 
+-----------------------------------------------------------------
+ABB        | Abono Bancario                           |           
+ABO        | Abono                                    |           
+AJBD       | Ajuste de Inventario                     |           
+AJT        | Ajuste                                   |           
+ANT        | Anticipo                                 |           
+BOHE       | Boleta Honorarios Electrónica            |           
+BOLE       | Boleta De Venta Electrónica              |           
+BS3E       | Boleta Prest. Servicios Electrónica      |           
+CAR        | Cargo                                    |           
+CHQ        | Cheque                                   |           
+CI         | Carperta De Importación                  |           
+COT        | Orden de Venta                           |           
+CSM        | Entrega de Materiales                    |           
+DEP        | Depósito                                 |           
+DI         | Declaraciópn De Importación              |           
+EB         | Ajuste - Entraba a bodega                |           
+EBCO       | Entrada a Bodega por Compra              |           
+EFE        | Efectivo                                 |           
+FACE       | Factura Compra Electrónica               |           
+FACT       | Factura Electrónica                      |           
+FAVA       | Factura de Venta Electrónica - Anticipada |           
+FAVE       | Factura Venta Electrónica - Rebaja Stock |           
+FIN        | Finiquito                                |           
+FPR        | Fondo Por Rendir                         |           
+FXCE       | Factura Compra Exenta Electrónica        |           
+FXVE       | Factura Venta Exenta Electrónica         |           
+GDE        | Guías de Despacho Electrónica - No Rebaja Stock |           
+GDEA       | Guía De Despacho Electrónica - Rebaja Stock |           
+INV        | Invoice                                  |           
+NCCE       | Nota Crédito Compra Electrónica          |           
+NCO        | Nota de Cobro                            |           
+NCVE       | Nota Crédito Venta Electrónica           |           
+NDCE       | Nota Débito Compra Electrónica           |           
+NDVE       | Nota Débito Venta Electrónica            |           
+NV         | Nota de Ventas                           |           
+OC         | Orden de Compra                          |           
+OCX        | Orden de Compra Internacional            |           
+PMT        | Prestamos                                |           
+RDC        | Rendición De Gastos                      |           
+RDG        | Rendición RideGastos                     |           
+REM        | Remuneraciones                           |           
+RET        | Retención                                |           
+SB         | Ajuste - Salida de Bodega                |           
+SLOC       | Solicitud de Compra                      |           
+SOLI       | SOLICITUD ABASTECIMIENTO Y SERVICIOS     |           
+SP         | Solicitud de Pedido                      |           
+TBK        | Comprobante Transbank                    |           
+TRBD       | Guía de Traspaso Stock entre Bodegas     |           
+TRF        | Transferencia                            |           
+VAL        | Vale                                     |           
