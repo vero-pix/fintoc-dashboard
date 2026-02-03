@@ -76,6 +76,50 @@ def format_pct(value, color_logic=False, is_cost=False):
             else: color = CP_RED
     return f"<span style='color:{color}'>{pct:,.1f}%</span>".replace(".", ",")
 
+def render_cf_horizon(data, days, active=False):
+    cf_data = data.get("cashflow", {})
+    if not cf_data:
+        return f"<div id='cf-{days}' class='cf-row {'active' if active else ''}' style='color:#666; font-style:italic; padding:20px; text-align:center'>Datos de Cash Flow no disponibles.</div>"
+    
+    hoy = datetime.now().date()
+    total_in = 0
+    total_out = 0
+    
+    # Consolidar por el periodo solicitado
+    for i in range(days):
+        fecha_target = (hoy + timedelta(days=i)).isoformat()
+        dia_info = cf_data.get(fecha_target, {})
+        total_in += dia_info.get("entradas", 0)
+        total_out += dia_info.get("salidas_total", 0)
+
+    neto = total_in - total_out
+    color_neto = CP_GREEN if neto >= 0 else CP_RED
+    
+    # Formatear números para visualización ejecutiva ($14M)
+    def fmt_cf(val):
+        prefix = "$" if val >= 0 else "-$"
+        return f"{prefix}{abs(val)/1_000_000:,.1f}M".replace(",", "X").replace(".", ",").replace("X", ".")
+
+    return f"""
+    <div id="cf-{days}" class="cf-row {"active" if active else ""}">
+        <div class="cf-grid">
+            <div class="cf-stat" style="border-top-color:var(--green)">
+                <h4>Entradas Esp.</h4>
+                <div class="val" style="color:var(--green)">{fmt_cf(total_in)}</div>
+            </div>
+            <div class="cf-stat" style="border-top-color:var(--red)">
+                <h4>Salidas Prog.</h4>
+                <div class="val" style="color:var(--red)">{fmt_cf(total_out)}</div>
+            </div>
+            <div class="cf-stat" style="border-top-color:{color_neto}">
+                <h4>Flujo Neto</h4>
+                <div class="val" style="color:{color_neto}">{fmt_cf(neto)}</div>
+            </div>
+        </div>
+    </div>
+    """
+from datetime import timedelta
+
 @app.route('/')
 def index():
     return f"<html><meta http-equiv='refresh' content='0; url=/tablero?key={PASSWORD}' /></html>"
@@ -512,6 +556,18 @@ def tablero():
             .monto {{ text-align: right; font-family: 'Outfit', sans-serif; font-weight: 700; }}
             .center {{ text-align: center; }}
             
+            /* TABS CASHFLOW */
+            .tabs-container {{ margin-bottom: 25px; }}
+            .tabs {{ display: flex; gap: 5px; background: #1a1a1a; padding: 5px; border-radius: 8px; margin-bottom: 15px; }}
+            .tab-btn {{ flex: 1; padding: 10px; border: none; background: transparent; color: #888; border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }}
+            .tab-btn.active {{ background: var(--orange); color: white; }}
+            .cf-grid {{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }}
+            .cf-stat {{ background: #161718; padding: 15px; border-radius: 8px; border-top: 2px solid #333; }}
+            .cf-stat h4 {{ font-size: 10px; color: #888; margin: 0 0 5px 0; text-transform: uppercase; }}
+            .cf-stat .val {{ font-size: 18px; font-weight: 800; }}
+            .cf-row {{ display: none; }}
+            .cf-row.active {{ display: block; }}
+            
             @media (max-width: 768px) {{
                 body {{ padding: 10px; }}
                 .header-cfo {{ flex-direction: column; align-items: flex-start; gap: 10px; }}
@@ -521,6 +577,7 @@ def tablero():
                 .pipe-grid {{ grid-template-columns: 1fr; }}
                 table {{ min-width: 500px; }}
                 td, th {{ padding: 10px 5px; font-size: 13px; }}
+                .cf-grid {{ grid-template-columns: 1fr; }}
             }}
             
             .pipe-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }}
@@ -619,7 +676,35 @@ def tablero():
                 var x = document.getElementById("config-panel");
                 x.style.display = (x.style.display === "none") ? "block" : "none";
             }}
+            function switchCF(days, btn) {{
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.cf-row').forEach(r => r.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById('cf-' + days).classList.add('active');
+            }}
             </script>
+
+            <!-- SECCIÓN: PROYECCIÓN DE FLUJO DE CAJA -->
+            <div class="section">
+                <h2 class="section-title">📅 Proyección de Flujo de Caja (Cash Flow)</h2>
+                <div class="tabs-container">
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="switchCF(7, this)">7 Días</button>
+                        <button class="tab-btn" onclick="switchCF(14, this)">14 Días</button>
+                        <button class="tab-btn" onclick="switchCF(30, this)">1 Mes</button>
+                        <button class="tab-btn" onclick="switchCF(90, this)">3 Meses</button>
+                    </div>
+
+                    {render_cf_horizon(data, 7, True)}
+                    {render_cf_horizon(data, 14)}
+                    {render_cf_horizon(data, 30)}
+                    {render_cf_horizon(data, 90)}
+                </div>
+                <div style="font-size:10px; color:#555; margin-top:10px; font-style:italic;">
+                    * Incluye CxC ajustada por días de pago de clientes + CxP + Pagos Recurrentes (Previred, SII, Remuneraciones).
+                </div>
+            </div>
 
             <div class="section">
                 <h2 class="section-title">📊 VERICOSAS COCKPIT Q1 2026</h2>

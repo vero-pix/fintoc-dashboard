@@ -6,6 +6,7 @@ from fintoc_client import FintocClient
 from skualo_client import SkualoClient
 from skualo_bancos import SkualoBancosClient
 from skualo_documentos import SkualoDocumentosClient
+from skualo_cashflow import SkualoCashFlow
 import requests
 import pandas as pd
 from io import BytesIO
@@ -174,6 +175,21 @@ def get_snapshot():
         snapshot["data"]["proyectos_map"] = proy_map
     except:
         snapshot["data"]["proyectos_map"] = {}
+
+    # 4.7 Cash Flow Proyectado (7, 14, 30, 90 días)
+    try:
+        print("  → Calculando Proyecciones de Cash Flow (90 días)...")
+        cf_engine = SkualoCashFlow()
+        # Calculamos la de 90 días que es la más completa
+        proy_full = cf_engine.get_cashflow_proyectado(dias=95)
+        
+        # IMPORTANTE: JSON no acepta objetos 'date' como llaves. Convertir a string.
+        proy_serializable = { (k.isoformat() if isinstance(k, (date, datetime)) else str(k)): v for k, v in proy_full.items() }
+        
+        snapshot["data"]["cashflow"] = proy_serializable
+    except Exception as e:
+        print(f"  ❌ Error CashFlow Proyección: {e}")
+        snapshot["data"]["cashflow"] = {}
 
     # 5. Histórico local (para variaciones)
     try:
