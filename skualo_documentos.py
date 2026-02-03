@@ -70,11 +70,11 @@ class SkualoDocumentosClient:
 
     def get_documentos(self, tipo_documento: str) -> List[Dict]:
         url = f"{self.base_url}/documentos"
-        # Skualo exige al menos un criterio. Según pruebas, NO usar comillas para los valores.
-        fecha_desde = "01-01-2026"
+        # Skualo exige al menos un criterio. Usamos el tipo.
+        # Quitamos fecha del search porque el 'and' de Skualo es inestable.
         params = {
-            "search": f"idTipoDocumento eq {tipo_documento} and fecha gte {fecha_desde}",
-            "pageSize": 200
+            "search": f"idTipoDocumento eq {tipo_documento}",
+            "pageSize": 400
         } 
 
         try:
@@ -120,20 +120,18 @@ class SkualoDocumentosClient:
         
         return all(d.get("cerrado", False) for d in detalles)
 
-    def get_soli_sin_oc(self) -> List[Dict]:
+    def get_soli_sin_oc(self, dias_max: int = 45) -> List[Dict]:
         """
-        Obtiene SOLIs aprobadas sin OC generada.
-        
-        Una SOLI está "sin OC" si:
-        - Estado = "Aprobado"
-        - Al menos un detalle tiene cerrado=False
+        Obtiene SOLIs aprobadas que no han sido convertidas a OC.
+        Horizonte: 45 días.
         """
         solis = self.get_documentos("SOLI")
         soli_sin_oc = []
+        hoy = date.today()
 
         for doc in solis:
             estado = doc.get("estado", "")
-            if estado != "Aprobado":
+            if estado not in ["Aprobado", "Aceptado", "Vigente"]: 
                 continue
 
             # --- OPTIMIZACIÓN: Filtro temprano por fecha ---
@@ -141,11 +139,11 @@ class SkualoDocumentosClient:
             try:
                 fecha = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None
                 if fecha:
-                    dias_antiguedad = (date.today() - fecha).days
-                    if dias_antiguedad > 45: # Ampliamos a 45 días para SOLIs
+                    dias_antiguedad = (hoy - fecha).days
+                    if dias_antiguedad > dias_max:
                         continue
             except:
-                pass
+                fecha = None
 
             # Solo si pasa el filtro de fecha, pedimos el detalle para verificar si está 'cerrado'
             id_documento = doc.get("idDocumento", "")
@@ -159,14 +157,9 @@ class SkualoDocumentosClient:
 
             monto = detalle.get("total", 0)
             
-            # Filtrar: excluir montos $0 o muy pequeños y documentos muy antiguos (>15 días)
-            if monto < 1000:  # Excluir montos menores a $1,000
+            # Filtrar: excluir montos $0 o muy pequeños
+            if monto < 1000:
                 continue
-            
-            if fecha:
-                dias_antiguedad = (date.today() - fecha).days
-                if dias_antiguedad > 15:  # Excluir SOLIs de más de 15 días
-                    continue
 
             soli_sin_oc.append({
                 "folio": detalle.get("folio", ""),
@@ -181,13 +174,10 @@ class SkualoDocumentosClient:
 
         return sorted(soli_sin_oc, key=lambda x: x['fecha'] or date.min, reverse=True)
 
-    def get_oc_sin_factura(self) -> List[Dict]:
+    def get_oc_sin_factura(self, dias_max: int = 45) -> List[Dict]:
         """
-        Obtiene OCs aprobadas sin factura.
-        
-        Una OC está "sin factura" si:
-        - Estado = "Aprobado"
-        - Al menos un detalle tiene cerrado=False
+        Obtiene OCs aprobadas que no han sido facturadas (pendientes de FACE).
+        Horizonte: 45 días.
         """
         ocs = self.get_documentos("OC")
         oc_sin_factura = []
@@ -195,7 +185,7 @@ class SkualoDocumentosClient:
 
         for doc in ocs:
             estado = doc.get("estado", "")
-            if estado != "Aprobado":
+            if estado not in ["Aprobado", "Aceptado", "Vigente"]:
                 continue
 
             # print(f"  Procesando OC {doc.get('idDocumento')}...")
@@ -206,7 +196,7 @@ class SkualoDocumentosClient:
                 fecha = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None
                 if fecha:
                     dias_pendiente = (hoy - fecha).days
-                    if dias_pendiente > 45: # Filtro de 45 días inmediato
+                    if dias_pendiente > dias_max: # Filtro de dias_max inmediato
                         continue
             except:
                 pass
@@ -223,11 +213,11 @@ class SkualoDocumentosClient:
 
             monto = detalle.get("total", 0)
             
-            # Filtrar: excluir montos muy pequeños y OCs muy antiguas (>15 días)
+            # Filtrar: excluir montos muy pequeños y OCs muy antiguas (>dias_max)
             if monto < 1000:
                 continue
             
-            if dias_pendiente > 15:  # Excluir OCs de más de 15 días
+            if dias_pendiente > dias_max:  # Excluir OCs de más de dias_max
                 continue
 
             oc_sin_factura.append({
@@ -243,13 +233,10 @@ class SkualoDocumentosClient:
 
         return sorted(oc_sin_factura, key=lambda x: x['dias_pendiente'], reverse=True)
 
-    def get_ocx_sin_invoice(self) -> List[Dict]:
+    def get_ocx_sin_invoice(self, dias_max: int = 45) -> List[Dict]:
         """
-        Obtiene OCXs aprobadas sin invoice.
-        
-        Una OCX está "sin invoice" si:
-        - Estado = "Aprobado"
-        - Al menos un detalle tiene cerrado=False
+        Obtiene OCX (Internacionales) aprobadas sin Invoice.
+        Horizonte: 45 días.
         """
         ocxs = self.get_documentos("OCX")
         ocx_sin_invoice = []
@@ -257,7 +244,7 @@ class SkualoDocumentosClient:
 
         for doc in ocxs:
             estado = doc.get("estado", "")
-            if estado != "Aprobado":
+            if estado not in ["Aprobado", "Aceptado", "Vigente"]:
                 continue
             
             # --- OPTIMIZACIÓN: Filtro temprano por fecha ---
@@ -266,7 +253,7 @@ class SkualoDocumentosClient:
                 fecha = datetime.fromisoformat(fecha_str.replace("Z", "+00:00")).date() if fecha_str else None
                 if fecha:
                     dias_pendiente = (hoy - fecha).days
-                    if dias_pendiente > 45: # Filtro de 45 días inmediato
+                    if dias_pendiente > dias_max:
                         continue
             except:
                 pass
@@ -283,11 +270,11 @@ class SkualoDocumentosClient:
 
             monto_usd = detalle.get("total", 0)
             
-            # Filtrar: excluir montos muy pequeños y OCXs muy antiguas (>15 días)
-            if monto_usd < 100:  # Excluir montos menores a $100 USD
+            # Filtrar: excluir montos muy pequeños
+            if monto_usd < 100:
                 continue
             
-            if dias_pendiente > 15:  # Excluir OCXs de más de 15 días
+            if dias_pendiente > dias_max:  # Excluir OCXs de más de dias_max
                 continue
 
             ocx_sin_invoice.append({
