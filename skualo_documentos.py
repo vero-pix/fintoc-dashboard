@@ -70,11 +70,12 @@ class SkualoDocumentosClient:
 
     def get_documentos(self, tipo_documento: str) -> List[Dict]:
         url = f"{self.base_url}/documentos"
-        # Skualo exige al menos un criterio de búsqueda. Usamos rango de fecha.
+        # Skualo exige al menos un criterio. Filtramos por tipo y fecha.
+        fecha_desde = "01-01-2026"
+        # Importante: El tipo de documento debe ir entre comillas simples para Skualo
         params = {
-            "desde": "2026-01-01",
-            "hasta": "2026-12-31",
-            "PageSize": 200
+            "search": f"idTipoDocumento eq '{tipo_documento}' AND fecha gte {fecha_desde}",
+            "pageSize": 200
         } 
 
         try:
@@ -87,18 +88,11 @@ class SkualoDocumentosClient:
             data = response.json()
             items = data if isinstance(data, list) else data.get("items", [])
             
-            # Diagnóstico de tipos
+            # Diagnóstico de éxito
             if items:
-                tipos = list(set([str(d.get('idTipoDocumento', '')) for d in items if d.get('idTipoDocumento')]))
-                self.last_errors.append(f"Vistos: {', '.join(tipos[:5])}")
+                self.last_errors.append(f"Éxito {tipo_documento}: {len(items)} docs")
 
-            filtered = []
-            for d in items:
-                # Búsqueda más amplia para encontrar el documento (en cualquier campo)
-                if any(str(v).upper() == tipo_documento.upper() for v in d.values() if isinstance(v, (str, int))):
-                    filtered.append(d)
-            
-            return filtered
+            return items
         except Exception as e:
             self.last_errors.append(f"Err {tipo_documento}: {str(e)}")
             return []
